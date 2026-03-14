@@ -116,14 +116,14 @@ export const Navbar = () => {
           >
             <a href="/" className="flex items-center gap-3">
               <img
-                src="/ScalarDrift.png"
-                alt="ScalarDrift Logo"
+                src={`${import.meta.env.BASE_URL}ScalarAI.png`}
+                alt="ScalarAI Logo"
                 className={`h-10 transition-all duration-300 brightness-0 invert`}
               />
               <span
                 className={`text-xl font-regular tracking-tight font-sans transition-colors duration-300 text-white`}
               >
-                ScalarDrift
+                Scalar AI
               </span>
             </a>
 

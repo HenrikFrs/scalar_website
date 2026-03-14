@@ -4,7 +4,7 @@ const Testimonials = () => {
   const testimonials = [
     {
       quote:
-        "Wir arbeiten sehr gerne mit Henrik (von ScalarDrift) zusammen. Er achtet auf Details und versteht es, skalierbare Automationen aufzubauen – insbesondere im Zusammenspiel von Outbound-Tools und CRM-Systemen. Für uns und unsere Kunden liefert er hochwertige Arbeit in Kombination mit einer professionellen Arbeitsweise. Eine klare Empfehlung für die Zusammenarbeit mit ihm.",
+        "Wir arbeiten sehr gerne mit Henrik (von ScalarAI) zusammen. Er achtet auf Details und versteht es, skalierbare Automationen aufzubauen – insbesondere im Zusammenspiel von Outbound-Tools und CRM-Systemen. Für uns und unsere Kunden liefert er hochwertige Arbeit in Kombination mit einer professionellen Arbeitsweise. Eine klare Empfehlung für die Zusammenarbeit mit ihm.",
       author: "Patrick Perner",
       role: "Co-Founder, Founder Sales",
     },
@@ -16,7 +16,7 @@ const Testimonials = () => {
     },
     {
       quote:
-        "Henrik (from ScalarDrift) was great - attentive, good clear communications, fast turnaround, high quality. He is exactly what I'm looking for in an automation developer. We will certainly be working again very soon on our next projects.",
+        "Henrik (from ScalarAI) was great - attentive, good clear communications, fast turnaround, high quality. He is exactly what I'm looking for in an automation developer. We will certainly be working again very soon on our next projects.",
       author: "Gordon Grant",
       role: "Co-Founder, Secondcity AI",
     },

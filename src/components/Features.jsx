@@ -195,8 +195,8 @@ const Features = () => {
             </h2>
           </div>
           <p className="text-lg text-muted max-w-md font-medium">
-            ScalarDrift ersetzt manuelle Engpässe durch präzise, digitale
-            Systeme, die rund um die Uhr fehlerfrei arbeiten.
+            ScalarAI ersetzt manuelle Engpässe durch präzise, digitale Systeme,
+            die rund um die Uhr fehlerfrei arbeiten.
           </p>
         </div>
 

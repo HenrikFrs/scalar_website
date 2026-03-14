@@ -148,12 +148,12 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 mb-2">
               <img
-                src="/ScalarDrift.png"
-                alt="ScalarDrift Logo"
+                src={`${import.meta.env.BASE_URL}ScalarAI.png`}
+                alt="ScalarAI Logo"
                 className="h-6 brightness-0 invert"
               />
               <span className="text-xl font-bold tracking-tight font-sans text-white">
-                ScalarDrift
+                ScalarAI
               </span>
             </div>
             <p className="text-white/40 text-sm font-medium">
@@ -177,7 +177,7 @@ const Footer = () => {
                 Datenschutz
               </Link>
             </div>
-            <p>&copy; {new Date().getFullYear()} ScalarDrift AI Labs.</p>
+            <p>&copy; {new Date().getFullYear()} ScalarAI AI Labs.</p>
           </div>
         </div>
       </div>
