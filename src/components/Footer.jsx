@@ -95,19 +95,13 @@ const Footer = () => {
         {/* Left: Massive ambient blue glow resting in the bottom left corner, stretched higher */}
         <div
           ref={bgBlueLeftRef}
-          className="absolute w-[100vw] sm:w-[100vw] h-[90vh] rounded-[100%] bg-[#14349D] blur-[140px] opacity-0 -bottom-[40vh] -left-[22vw]"
+          className="absolute w-[100vw] sm:w-[100vw] h-[80vh] rounded-[100%] bg-[#14349D] blur-[140px] opacity-0 -bottom-[40vh]"
         ></div>
 
         {/* Left Core: The bright "weiß unten" glow, shorter and very blurry for smooth transition */}
         <div
           ref={bgWhiteRef}
-          className="absolute w-[70vw] sm:w-[90vw] h-[15vh] rounded-[100%] bg-[rgba(200,230,255,1)] blur-[120px] opacity-0 -bottom-[20vh] -left-[25vw]"
-        ></div>
-
-        {/* Right: Secondary brighter blue glow coming strictly from the right border, pushed far out */}
-        <div
-          ref={bgBlueRightRef}
-          className="absolute w-[70vw] sm:w-[40vw] h-[150vh] rounded-[100%] bg-[#1a4cd2] blur-[140px] opacity-0 top-[15vh] -right-[28vw]"
+          className="absolute w-[70vw] sm:w-[90vw] h-[10vh] rounded-[100%] bg-[rgba(200,230,255,1)] blur-[120px] opacity-0 -bottom-[20vh]"
         ></div>
       </div>
 
@@ -118,12 +112,12 @@ const Footer = () => {
         {/* Massive Footer CTA */}
         <div className="relative overflow-hidden rounded-[3rem] p-12 md:p-24 mb-20 border border-white/10 flex flex-col items-center text-center gap-8 bg-white/5 backdrop-blur-2xl shadow-2xl">
           <div className="relative z-10 flex flex-col items-center">
-            <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-4 font-sans text-white pb-2">
-              System startklar.
+            <h2 className="text-4xl md:text-6xl font-medium tracking-normal mb-4 font-sans text-white pb-2">
+              Bereit für mehr Umsatz?
             </h2>
             <p className="text-white/70 text-lg md:text-xl font-medium max-w-md">
-              Vereinbaren Sie eine Potenzialanalyse und skalieren Sie Ihre
-              Operationen.
+              Erfahren Sie in 30 Minuten, wo für Ihr Unternehmen die größten
+              Hebel für Wachstum liegen.
             </p>
           </div>
 
@@ -138,7 +132,8 @@ const Footer = () => {
                 )
               }
             >
-              Kickoff Termin <ArrowUpRight size={22} className="ml-1" />
+              Strategiegespräch sichern{" "}
+              <ArrowUpRight size={22} className="ml-1" />
             </MagneticButton>
           </div>
         </div>
@@ -150,14 +145,14 @@ const Footer = () => {
               <img
                 src={`${import.meta.env.BASE_URL}ScalarAI.png`}
                 alt="ScalarAI Logo"
-                className="h-6 brightness-0 invert"
+                className="h-10 brightness-0 invert"
               />
-              <span className="text-xl font-bold tracking-tight font-sans text-white">
-                ScalarAI
+              <span className="text-xl font-medium tracking-tight font-sans text-white">
+                Scalar AI
               </span>
             </div>
             <p className="text-white/40 text-sm font-medium">
-              Mehr Effizienz & Wachstum durch Automatisierung und KI.
+              Mehr Umsatz durch Automatisierung und KI
             </p>
           </div>
 
@@ -177,7 +172,7 @@ const Footer = () => {
                 Datenschutz
               </Link>
             </div>
-            <p>&copy; {new Date().getFullYear()} ScalarAI AI Labs.</p>
+            <p>&copy; {new Date().getFullYear()} Scalar AI.</p>
           </div>
         </div>
       </div>

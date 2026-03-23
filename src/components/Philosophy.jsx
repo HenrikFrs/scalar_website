@@ -49,15 +49,15 @@ const Philosophy = () => {
 
                     <div ref={textRef1} className="w-full text-left max-w-2xl self-start">
                         <p className="text-muted text-xl md:text-2xl font-sans font-medium tracking-wide leading-relaxed overflow-hidden">
-                            <span className="reveal-line block">Viele Agenturen konzentrieren sich auf</span>
-                            <span className="reveal-line block mt-1 text-dark/70">oberflächliche Tools und manuelle Fleißarbeit.</span>
+                            <span className="reveal-line block">Viele Agenturen verkaufen Beratung,</span>
+                            <span className="reveal-line block mt-1 text-dark/70">Konzepte und Analyse-Reports.</span>
                         </p>
                     </div>
 
                     <div ref={textRef2} className="w-full text-right max-w-4xl self-end">
-                        <h2 className="text-4xl md:text-6xl lg:text-[5rem] text-dark tracking-tighter leading-[1.05] overflow-hidden">
-                            <span className="reveal-line block font-sans font-medium mb-2 text-white pb-1">Wir bauen das Fundament</span>
-                            <span className="reveal-line block font-sans font-medium text-white/50 pb-2">für exponentielle Skalierbarkeit.</span>
+                        <h2 className="text-4xl md:text-6xl lg:text-[5rem] text-dark tracking-tight leading-[1.05] overflow-hidden">
+                            <span className="reveal-line block font-sans font-medium mb-2 text-white pb-1">Wir liefern Systeme,</span>
+                            <span className="reveal-line block font-sans font-medium text-white/50 pb-2">die direkt Umsatz generieren.</span>
                         </h2>
                     </div>
 

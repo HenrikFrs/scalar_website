@@ -8,8 +8,8 @@ const Datenschutz = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground pt-32 pb-24 px-6 md:px-12 lg:px-24">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-background text-foreground pt-32 pb-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+      <div className="max-w-3xl mx-auto relative z-10">
         <Link
           to="/"
           className="inline-flex items-center text-white/50 hover:text-white transition-colors mb-12 text-sm font-medium"
@@ -27,7 +27,7 @@ const Datenschutz = () => {
           </p>
 
           <p>
-            ScalarAI respektiert Ihre Privatsphäre und verpflichtet sich, Ihre
+            Scalar AI respektiert Ihre Privatsphäre und verpflichtet sich, Ihre
             personenbezogenen Daten zu schützen. Diese Datenschutzerklärung
             erläutert, welche Arten von Informationen wir erheben, wie wir diese
             verwenden und welche Rechte Sie in Bezug auf Ihre Daten haben.
@@ -199,10 +199,10 @@ const Datenschutz = () => {
           </p>
           <div className="text-white/70">
             <p className="mb-1">Henrik Freisleben</p>
-            <p className="mb-1">Rheingutstraße 36</p>
-            <p className="mb-4">78462 Konstanz</p>
+            <p className="mb-1">Ludwig-Finckh-Straße 1D</p>
+            <p className="mb-4">78234 Engen</p>
             <p>
-              <span className="text-white">Email:</span> henrik@ScalarAI.com
+              <span className="text-white">Email:</span> henrik@scalarai.co
             </p>
           </div>
         </div>

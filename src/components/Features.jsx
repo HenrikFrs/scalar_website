@@ -7,15 +7,19 @@ const Shuffler = () => {
   const [cards, setCards] = useState([
     {
       id: 1,
-      title: "Lead Qualifizierung",
+      title: "Lead antwortet in 90 Sek.",
       color: "bg-surface text-foreground",
     },
     {
       id: 2,
-      title: "CRM Synchronisation",
+      title: "Termin automatisch gebucht",
       color: "bg-surface2 text-foreground",
     },
-    { id: 3, title: "Datenextraktion", color: "bg-foreground text-background" },
+    {
+      id: 3,
+      title: "Follow-up gesendet",
+      color: "bg-foreground text-background",
+    },
   ]);
 
   useEffect(() => {
@@ -63,11 +67,11 @@ const Shuffler = () => {
 // --- TYPEWRITER (KI-gestützte Kundengewinnung) ---
 const Typewriter = () => {
   const messages = [
-    "Analysiere Zielgruppen-Datenstrom...",
-    "Generiere personalisierte Ansprache...",
-    "Optimiere Konversionsraten...",
-    "Identifiziere High-Value Leads...",
-    "Initiiere automatisierten Outreach...",
+    "Generiere personalisierte Outreach-Sequenz...",
+    "Skaliere UGC-Kampagne auf Zielsegment...",
+    "Identifiziere High-Intent Prospects...",
+    "Erstelle Outbound-Kampagne für Q2...",
+    "Analysiere Conversion-Daten in Echtzeit...",
   ];
 
   const [text, setText] = useState("");
@@ -125,7 +129,7 @@ const ChartAnimation = () => {
   return (
     <div className="h-48 w-full bg-surface rounded-xl border border-borderLight p-5 relative overflow-hidden flex flex-col justify-end gap-2">
       <div className="absolute top-4 left-4 text-[10px] font-mono text-muted uppercase">
-        Strategie-Audit
+        Umsatz-Impact
       </div>
 
       {/* Abstract minimal bar chart */}
@@ -163,7 +167,7 @@ const ChartAnimation = () => {
       </div>
 
       <div className="flex justify-between items-center mt-2 border-t border-borderLight pt-2">
-        <div className="text-[10px] font-mono text-muted">PROGNOSE</div>
+        <div className="text-[10px] font-mono text-muted">UMSATZ-POTENZIAL</div>
         <div className="text-[10px] font-mono font-bold text-foreground">
           +340%
         </div>
@@ -189,14 +193,14 @@ const Features = () => {
       <div className="max-w-6xl mx-auto">
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-xl">
-            <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-foreground font-sans mb-4 leading-tight pb-2">
-              Infrastruktur für <br />{" "}
-              <span className="text-muted/80">Skalierbarkeit.</span>
+            <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans mb-4 leading-tight pb-2">
+              Worauf wir <br />
+              <span className="text-muted/80">spezialisiert sind</span>
             </h2>
           </div>
           <p className="text-lg text-muted max-w-md font-medium">
-            ScalarAI ersetzt manuelle Engpässe durch präzise, digitale Systeme,
-            die rund um die Uhr fehlerfrei arbeiten.
+            Scalar AI baut KI- und Automatisierungssysteme für Lead-Generierung,
+            Sales und operative Prozesse.
           </p>
         </div>
 
@@ -206,12 +210,11 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Network size={20} className="text-foreground" />
               </span>
-              Automatisierte Workflows
+              Sales-Systeme
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
-              Verknüpfung fragmentierter Systeme (CRM, Mail, ERP) zu nahtlosen,
-              fehlerfreien Datenautobahnen. Wir eliminieren repetitive Aufgaben
-              vollständig.
+              KI-Agenten antworten Leads in Sekunden, buchen automatisch Termine
+              in Ihren Kalender und fassen konsequent nach.
             </p>
             <Shuffler />
           </div>
@@ -221,12 +224,11 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Activity size={20} className="text-foreground" />
               </span>
-              KI-gestützte Kundengewinnung
+              Lead-Gen-Systeme
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
-              Einsatz von intelligenten Agenten zur Identifizierung,
-              Qualifizierung und personalisierten Ansprache von Leads in
-              Echtzeit.
+              Personalisierter Outbound und skalierbare Ads/UGC-Systeme, die
+              Ihnen täglich neue, qualifizierte Leads liefern.
             </p>
             <Typewriter />
           </div>
@@ -236,12 +238,11 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Presentation size={20} className="text-foreground" />
               </span>
-              KI- und Automatisierungsberatung
+              Operations-Systeme
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
-              Strategische Analyse Ihrer Unternehmensprozesse zur
-              Identifizierung der lukrativsten Automatisierungs-Hebel und
-              KI-Anwendungsfälle.
+              Maßgeschneiderte automatisierte Systeme für mehr Output und
+              weniger Overhead.
             </p>
             <ChartAnimation />
           </div>

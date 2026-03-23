@@ -8,8 +8,8 @@ const Impressum = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground pt-32 pb-24 px-6 md:px-12 lg:px-24">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-background text-foreground pt-32 pb-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+      <div className="max-w-3xl mx-auto relative z-10">
         <Link
           to="/"
           className="inline-flex items-center text-white/50 hover:text-white transition-colors mb-12 text-sm font-medium"
@@ -34,7 +34,7 @@ const Impressum = () => {
 
           <div>
             <p>
-              <span className="text-white">Email:</span> henrik@ScalarAI.com
+              <span className="text-white">Email:</span> henrik@scalarai.co
             </p>
           </div>
         </div>

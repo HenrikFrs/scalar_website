@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
 import Lenis from "lenis";
 import { Navbar, Hero } from "./components/Header";
 import Features from "./components/Features";
@@ -14,6 +16,8 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => (
   <>
@@ -25,15 +29,9 @@ const Home = () => (
   </>
 );
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
-
 function App() {
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -42,6 +40,7 @@ function App() {
       gestureOrientation: "vertical",
       smoothWheel: true,
     });
+    lenisRef.current = lenis;
 
     function raf(time) {
       lenis.raf(time);
@@ -51,8 +50,18 @@ function App() {
 
     return () => {
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
+
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+    useEffect(() => {
+      lenisRef.current?.scrollTo(0, { immediate: true });
+      setTimeout(() => ScrollTrigger.refresh(), 50);
+    }, [pathname]);
+    return null;
+  };
 
   return (
     <Router basename="/scalar_website">

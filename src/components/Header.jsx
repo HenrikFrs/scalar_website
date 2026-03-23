@@ -112,16 +112,16 @@ export const Navbar = () => {
       >
         <div className="flex justify-center w-full">
           <nav
-            className={`flex items-center justify-between w-full max-w-6xl px-6 py-4 transition-transform duration-500 ${!scrolled && !mobileMenuOpen ? "translate-y-2" : "translate-y-0"}`}
+            className={`flex items-center justify-between w-full max-w-6xl px-6 md:px-0 py-4 transition-transform duration-500 ${!scrolled && !mobileMenuOpen ? "translate-y-2" : "translate-y-0"}`}
           >
             <a href="/" className="flex items-center gap-3">
               <img
                 src={`${import.meta.env.BASE_URL}ScalarAI.png`}
                 alt="ScalarAI Logo"
-                className={`h-10 transition-all duration-300 brightness-0 invert`}
+                className={`h-10 md:h-11 transition-all duration-300 brightness-0 invert`}
               />
               <span
-                className={`text-xl font-regular tracking-tight font-sans transition-colors duration-300 text-white`}
+                className={`text-xl md:text-[1.35rem] font-regular tracking-tight font-sans transition-colors duration-300 text-white`}
               >
                 Scalar AI
               </span>
@@ -271,7 +271,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] w-full flex flex-col justify-end items-start text-left px-6 pt-24 pb-20 text-white bg-black overflow-hidden"
+      className="relative min-h-[100dvh] w-full flex flex-col justify-end items-start text-left px-6 pt-24 pb-28 text-white bg-black overflow-hidden"
     >
       {/* Background Layers Container (Replicating Framer setup) */}
       <div className="absolute inset-x-0 bottom-[-20vh] h-[90vh] pointer-events-none z-0 flex items-end justify-center">
@@ -303,27 +303,27 @@ export const Hero = () => {
       ></div>
 
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-start mt-12 pb-12">
-        <div className="hero-element inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md mb-8">
-          <span className="text-[14px] font-mono font-medium text-white/80 tracking-wide uppercase">
-            Für Marketing-Agenturen
-          </span>
-        </div>
-
-        <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-regular tracking-normal leading-[1.05] mb-6 font-sans w-full max-w-6xl text-white pb-2">
-          Mehr Umsatz & weniger Aufwand durch Automatisierung und KI
+        <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] font-regular tracking-wide leading-[1.05] mb-6 font-sans w-full max-w-6xl text-white pb-2">
+          Mehr Umsatz durch Automatisierung und KI
         </h1>
 
-        <p className="hero-element text-lg md:text-xl text-white/80 font-medium max-w-2xl mb-10 leading-relaxed text-left">
-          Wir bauen die Infrastruktur, die Ihrem Unternehmen exponentielle
-          Hebelwirkung verleiht.
+        <p className="hero-element text-lg md:text-xl text-white/80 font-regular max-w-2xl mb-10 leading-relaxed text-left">
+          Wir entwickeln Systeme, die Leads generieren, in Kunden umwandeln und
+          Prozesse skalieren.
         </p>
 
         <div className="hero-element flex flex-col sm:flex-row items-start lg:items-center gap-4 w-full sm:w-auto mt-2">
           <MagneticButton
             variant="heroPrimary"
             className="w-full sm:w-auto text-base py-4 px-8"
+            onClick={() =>
+              window.open(
+                "https://cal.com/henrik-freisleben-3prokl/30min",
+                "_blank",
+              )
+            }
           >
-            Potentialanalyse starten <ArrowUpRight size={22} className="ml-1" />
+            Termin vereinbaren <ArrowUpRight size={22} className="ml-1" />
           </MagneticButton>
           <MagneticButton
             variant="heroSecondary"
