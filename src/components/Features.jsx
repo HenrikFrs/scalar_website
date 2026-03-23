@@ -238,7 +238,7 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Presentation size={20} className="text-foreground" />
               </span>
-              Operations-Systeme
+              Backend-Systeme
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
               Maßgeschneiderte automatisierte Systeme für mehr Output und
