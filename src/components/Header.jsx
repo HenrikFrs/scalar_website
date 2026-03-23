@@ -146,7 +146,7 @@ export const Navbar = () => {
                 className="px-5 py-2.5 text-xs"
                 onClick={() =>
                   window.open(
-                    "https://cal.com/henrik-freisleben-3prokl/30min",
+                    "https://cal.com/henrik-freisleben-3prokl/strategiegesprach-30-minuten",
                     "_blank",
                   )
                 }
@@ -191,7 +191,7 @@ export const Navbar = () => {
               className="w-full justify-center text-sm py-3.5"
               onClick={() =>
                 window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/30min",
+                  "https://cal.com/henrik-freisleben-3prokl/strategiegesprach-30-minuten",
                   "_blank",
                 )
               }
@@ -318,7 +318,7 @@ export const Hero = () => {
             className="w-full sm:w-auto text-base py-4 px-8"
             onClick={() =>
               window.open(
-                "https://cal.com/henrik-freisleben-3prokl/30min",
+                "https://cal.com/henrik-freisleben-3prokl/strategiegesprach-30-minuten",
                 "_blank",
               )
             }

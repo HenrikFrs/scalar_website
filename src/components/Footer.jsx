@@ -127,7 +127,7 @@ const Footer = () => {
               className="w-full sm:w-auto text-base py-4 px-8 shadow-xl"
               onClick={() =>
                 window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/30min",
+                  "https://cal.com/henrik-freisleben-3prokl/strategiegesprach-30-minuten",
                   "_blank",
                 )
               }
