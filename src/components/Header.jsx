@@ -308,8 +308,8 @@ export const Hero = () => {
         </h1>
 
         <p className="hero-element text-lg md:text-xl text-white/80 font-regular max-w-2xl mb-10 leading-relaxed text-left">
-          Wir entwickeln Systeme, die Leads generieren, in Kunden umwandeln und
-          Prozesse skalieren.
+          Wir entwickeln Systeme, die Leads generieren, Anfragen in Kunden
+          umwandeln und Prozesse skalieren.
         </p>
 
         <div className="hero-element flex flex-col sm:flex-row items-start lg:items-center gap-4 w-full sm:w-auto mt-2">
