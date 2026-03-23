@@ -64,7 +64,7 @@ function App() {
   };
 
   return (
-    <Router basename="/scalar_website">
+    <Router basename="/">
       <ScrollToTop />
       <div className="min-h-screen bg-background text-foreground relative selection:bg-foreground selection:text-background overflow-x-hidden">
         <Navbar />
