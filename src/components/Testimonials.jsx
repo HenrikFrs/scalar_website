@@ -33,7 +33,7 @@ const Testimonials = () => {
       <div className="max-w-6xl mx-auto">
         <div className="mb-20">
           <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans mb-4 pb-2">
-            Was unsere Partner sagen.
+            Was unsere Partner sagen
           </h2>
           <p className="text-lg text-muted max-w-2xl font-medium">
             Ein paar Worte zufriedener Kunden, die bereits mit unseren Systemen
@@ -61,10 +61,17 @@ const Testimonials = () => {
               <div className="mt-auto flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-surface2 border border-borderLight flex-shrink-0 overflow-hidden flex items-center justify-center">
                   {t.image ? (
-                    <img src={t.image} alt={t.author} className="w-full h-full object-cover" />
+                    <img
+                      src={t.image}
+                      alt={t.author}
+                      className="w-full h-full object-cover"
+                    />
                   ) : (
                     <span className="text-xs font-medium text-muted font-sans">
-                      {t.author.split(" ").map((n) => n[0]).join("")}
+                      {t.author
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
                     </span>
                   )}
                 </div>

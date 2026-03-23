@@ -63,10 +63,10 @@ const FAQ = () => {
       <div className="max-w-4xl mx-auto">
         <div className="mb-16">
           <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans mb-4 pb-2">
-            Häufige Fragen.
+            Häufige Fragen
           </h2>
           <p className="text-lg text-muted font-medium">
-            Transparenz ist unser Prinzip.
+            Klare Antworten auf die wichtigsten Fragen.
           </p>
         </div>
 
