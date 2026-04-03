@@ -4,14 +4,14 @@ const Testimonials = () => {
   const testimonials = [
     {
       quote:
-        "Wir arbeiten sehr gerne mit Henrik (von Scalar) zusammen. Er achtet auf Details und versteht es, skalierbare Automationen aufzubauen – insbesondere im Zusammenspiel von Outbound-Tools und CRM-Systemen. Für uns und unsere Kunden liefert er hochwertige Arbeit in Kombination mit einer professionellen Arbeitsweise. Eine klare Empfehlung für die Zusammenarbeit mit ihm.",
+        "We genuinely enjoy working with Henrik (from Scalar). He pays close attention to detail and knows how to build scalable automations — especially when it comes to the interplay between outbound tools and CRM systems. For us and our clients, he delivers high-quality work paired with a professional approach. A clear recommendation for anyone considering working with him.",
       author: "Patrick Perner",
       role: "Co-Founder, Founder Sales",
       image: `${import.meta.env.BASE_URL}patrick.png`,
     },
     {
       quote:
-        "Ich war anfangs ehrlich gesagt eher skeptisch, wenn jemand mit einem Automatisierungssystem auf mich zukommt. Henrik hat das aber auf eine sehr angenehme und professionelle Art gemacht, was mich als marketingaffinen Unternehmer sofort abgeholt hat. In der Zusammenarbeit war er jederzeit sehr responsive, lösungsorientiert und absolut zuverlässig in der Umsetzung und bei den Timelines. Die Resultate können sich sehen lassen und der Austausch auf Augenhöhe hat richtig Spass gemacht.",
+        "Honestly, I was initially quite skeptical whenever someone approaches me with an automation system. But Henrik did it in a very pleasant and professional way, which immediately resonated with me as a marketing-minded entrepreneur. Throughout our collaboration, he was always highly responsive, solution-oriented, and completely reliable in execution and on timelines. The results speak for themselves, and working together was genuinely enjoyable.",
       author: "Nicolas Borer",
       role: "Managing Partner, Kontaktkompass",
       image: null,
@@ -33,11 +33,10 @@ const Testimonials = () => {
       <div className="max-w-6xl mx-auto">
         <div className="mb-20">
           <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans mb-4 pb-2">
-            Was unsere Partner sagen
+            What our partners say
           </h2>
           <p className="text-lg text-muted max-w-2xl font-medium">
-            Ein paar Worte zufriedener Kunden, die bereits mit unseren Systemen
-            arbeiten.
+            A few words from satisfied clients already working with our systems.
           </p>
         </div>
 

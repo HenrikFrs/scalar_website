@@ -7,17 +7,17 @@ const Shuffler = () => {
   const [cards, setCards] = useState([
     {
       id: 1,
-      title: "Lead antwortet in 90 Sek.",
+      title: "Lead replied within 90 sec.",
       color: "bg-surface text-foreground",
     },
     {
       id: 2,
-      title: "Termin automatisch gebucht",
+      title: "Appointment automatically booked",
       color: "bg-surface2 text-foreground",
     },
     {
       id: 3,
-      title: "Follow-up gesendet",
+      title: "Follow-up sent",
       color: "bg-foreground text-background",
     },
   ]);
@@ -67,11 +67,11 @@ const Shuffler = () => {
 // --- TYPEWRITER (KI-gestützte Kundengewinnung) ---
 const Typewriter = () => {
   const messages = [
-    "Generiere personalisierte Outreach-Sequenz...",
-    "Skaliere UGC-Kampagne auf Zielsegment...",
-    "Identifiziere High-Intent Prospects...",
-    "Erstelle Outbound-Kampagne für Q2...",
-    "Analysiere Conversion-Daten in Echtzeit...",
+    "Generating personalized outreach sequence...",
+    "Identifying high-intent prospects...",
+    "Creating outbound campaign for Q2...",
+    "Analyzing conversion data in real time...",
+    "Qualifying leads by ICP criteria...",
   ];
 
   const [text, setText] = useState("");
@@ -129,7 +129,7 @@ const ChartAnimation = () => {
   return (
     <div className="h-48 w-full bg-surface rounded-xl border border-borderLight p-5 relative overflow-hidden flex flex-col justify-end gap-2">
       <div className="absolute top-4 left-4 text-[10px] font-mono text-muted uppercase">
-        Umsatz-Impact
+        Revenue Impact
       </div>
 
       {/* Abstract minimal bar chart */}
@@ -167,7 +167,7 @@ const ChartAnimation = () => {
       </div>
 
       <div className="flex justify-between items-center mt-2 border-t border-borderLight pt-2">
-        <div className="text-[10px] font-mono text-muted">UMSATZ-POTENZIAL</div>
+        <div className="text-[10px] font-mono text-muted">REVENUE POTENTIAL</div>
         <div className="text-[10px] font-mono font-bold text-foreground">
           +340%
         </div>
@@ -194,13 +194,13 @@ const Features = () => {
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-xl">
             <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans mb-4 leading-tight pb-2">
-              Worauf wir <br />
-              <span className="text-muted/80">spezialisiert sind</span>
+              What we <br />
+              <span className="text-muted/80">specialize in</span>
             </h2>
           </div>
           <p className="text-lg text-muted max-w-md font-medium">
-            Scalar AI baut KI- und Automatisierungssysteme für Lead-Generierung,
-            Sales und operative Prozesse.
+            Scalar AI builds AI-driven systems that generate leads, convert
+            inquiries into customers, and scale processes for B2B companies.
           </p>
         </div>
 
@@ -210,11 +210,11 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Network size={20} className="text-foreground" />
               </span>
-              Sales-Systeme
+              Sales Systems
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
-              KI-Agenten antworten Leads in Sekunden, buchen automatisch Termine
-              in Ihren Kalender und fassen konsequent nach.
+              AI Agents respond to leads in seconds, automatically book
+              appointments in your calendar, and send follow-ups reliably.
             </p>
             <Shuffler />
           </div>
@@ -224,11 +224,12 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Activity size={20} className="text-foreground" />
               </span>
-              Lead-Gen-Systeme
+              Lead Gen Systems
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
-              Personalisierter Outbound und skalierbare Ads/UGC-Systeme, die
-              Ihnen täglich neue, qualifizierte Leads liefern.
+              AI-driven automated outbound systems that send personalized
+              messages to qualified prospects and generate new leads
+              consistently.
             </p>
             <Typewriter />
           </div>
@@ -238,11 +239,10 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Presentation size={20} className="text-foreground" />
               </span>
-              Backend-Systeme
+              Backend Systems
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
-              Maßgeschneiderte automatisierte Systeme für mehr Output und
-              weniger Overhead.
+              Customized automated systems for more output and less overhead.
             </p>
             <ChartAnimation />
           </div>

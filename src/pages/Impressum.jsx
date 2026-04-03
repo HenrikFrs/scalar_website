@@ -14,16 +14,16 @@ const Impressum = () => {
           to="/"
           className="inline-flex items-center text-white/50 hover:text-white transition-colors mb-12 text-sm font-medium"
         >
-          <ArrowLeft size={16} className="mr-2" /> Zurück zur Startseite
+          <ArrowLeft size={16} className="mr-2" /> Back to Home
         </Link>
 
         <h1 className="text-4xl md:text-5xl font-medium tracking-tight mb-4 font-sans text-white">
-          Impressum
+          Imprint
         </h1>
 
         <div className="prose prose-invert prose-lg text-white/70 max-w-none mt-12 space-y-8">
           <p className="text-sm text-white/40">
-            Zuletzt geändert am 25. März 2026
+            Last updated March 25, 2026
           </p>
 
           <div>

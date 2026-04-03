@@ -113,11 +113,11 @@ const Footer = () => {
         <div className="relative overflow-hidden rounded-[3rem] p-12 md:p-24 mb-20 border border-white/10 flex flex-col items-center text-center gap-8 bg-white/5 backdrop-blur-2xl shadow-2xl">
           <div className="relative z-10 flex flex-col items-center">
             <h2 className="text-4xl md:text-6xl font-medium tracking-normal mb-4 font-sans text-white pb-2">
-              Bereit für mehr Umsatz?
+              Ready for more revenue?
             </h2>
             <p className="text-white/70 text-lg md:text-xl font-medium max-w-md">
-              Erfahren Sie in 30 Minuten, wo für Ihr Unternehmen die größten
-              Hebel für Wachstum liegen.
+              Find out in 30 minutes where the biggest growth levers are for
+              your business.
             </p>
           </div>
 
@@ -127,13 +127,12 @@ const Footer = () => {
               className="w-full sm:w-auto text-base py-4 px-8 shadow-xl"
               onClick={() =>
                 window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/strategiegesprach-30-minuten",
+                  "https://cal.com/henrik-freisleben-3prokl/discovery",
                   "_blank",
                 )
               }
             >
-              Strategiegespräch sichern{" "}
-              <ArrowUpRight size={22} className="ml-1" />
+              Book a Strategy Call <ArrowUpRight size={22} className="ml-1" />
             </MagneticButton>
           </div>
         </div>
@@ -152,7 +151,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-white/40 text-sm font-medium">
-              Mehr Umsatz durch Automatisierung und KI
+              More revenue through automation and AI
             </p>
           </div>
 
@@ -163,13 +162,13 @@ const Footer = () => {
                 to="/impressum"
                 className="hover:text-white transition-colors"
               >
-                Impressum
+                Imprint
               </Link>
               <Link
                 to="/datenschutz"
                 className="hover:text-white transition-colors"
               >
-                Datenschutz
+                Privacy Policy
               </Link>
             </div>
             <p>&copy; {new Date().getFullYear()} Scalar AI.</p>

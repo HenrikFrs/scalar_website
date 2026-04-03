@@ -129,7 +129,7 @@ export const Navbar = () => {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
-              {["Features", "Prozess", "Testimonials", "FAQ"].map((item) => (
+              {["Features", "Process", "Testimonials", "FAQ"].map((item) => (
                 <a
                   key={item}
                   href={`/#${item.toLowerCase()}`}
@@ -146,12 +146,12 @@ export const Navbar = () => {
                 className="px-5 py-2.5 text-xs"
                 onClick={() =>
                   window.open(
-                    "https://cal.com/henrik-freisleben-3prokl/strategiegesprach-30-minuten",
+                    "https://cal.com/henrik-freisleben-3prokl/discovery",
                     "_blank",
                   )
                 }
               >
-                Termin vereinbaren <ArrowUpRight size={20} className="ml-1" />
+                Book a Call <ArrowUpRight size={20} className="ml-1" />
               </MagneticButton>
             </div>
 
@@ -175,7 +175,7 @@ export const Navbar = () => {
         className={`fixed top-0 left-0 right-0 z-40 pt-[72px] bg-background/40 backdrop-blur-md border-b border-white/5 shadow-2xl flex flex-col justify-start px-6 pb-8 transition-all duration-500 origin-top md:hidden ${mobileMenuOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"}`}
       >
         <div className="flex flex-col gap-4 items-center w-full pt-6">
-          {["Features", "Prozess", "Testimonials", "FAQ"].map((item) => (
+          {["Features", "Process", "Testimonials", "FAQ"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -191,12 +191,12 @@ export const Navbar = () => {
               className="w-full justify-center text-sm py-3.5"
               onClick={() =>
                 window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/strategiegesprach-30-minuten",
+                  "https://cal.com/henrik-freisleben-3prokl/discovery",
                   "_blank",
                 )
               }
             >
-              Termin vereinbaren <ArrowUpRight size={18} className="ml-1" />
+              Book a Call <ArrowUpRight size={18} className="ml-1" />
             </MagneticButton>
           </div>
         </div>
@@ -303,13 +303,13 @@ export const Hero = () => {
       ></div>
 
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-start mt-12 pb-12">
-        <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] font-regular tracking-wide leading-[1.05] mb-6 font-sans w-full max-w-6xl text-white pb-2">
-          Mehr Umsatz durch Automatisierung und KI
+        <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-regular tracking-wide leading-[1.05] mb-6 font-sans w-full max-w-6xl text-white pb-2">
+          2x Your Pipeline with Automated Sales Systems
         </h1>
 
         <p className="hero-element text-lg md:text-xl text-white/80 font-regular max-w-2xl mb-10 leading-relaxed text-left">
-          Wir entwickeln Systeme, die Leads generieren, Anfragen in Kunden
-          umwandeln und Prozesse skalieren.
+          We develop systems that generate leads, convert inquiries into
+          customers, and scale processes.
         </p>
 
         <div className="hero-element flex flex-col sm:flex-row items-start lg:items-center gap-4 w-full sm:w-auto mt-2">
@@ -318,12 +318,12 @@ export const Hero = () => {
             className="w-full sm:w-auto text-base py-4 px-8"
             onClick={() =>
               window.open(
-                "https://cal.com/henrik-freisleben-3prokl/strategiegesprach-30-minuten",
+                "https://cal.com/henrik-freisleben-3prokl/discovery",
                 "_blank",
               )
             }
           >
-            Termin vereinbaren <ArrowUpRight size={22} className="ml-1" />
+            Let's Talk <ArrowUpRight size={22} className="ml-1" />
           </MagneticButton>
           <MagneticButton
             variant="heroSecondary"
@@ -334,7 +334,7 @@ export const Hero = () => {
                 ?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            Lösungen entdecken
+            Discover Solutions
           </MagneticButton>
         </div>
       </div>

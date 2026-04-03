@@ -19,8 +19,8 @@ const Protocol = () => {
   const steps = [
     {
       num: "01",
-      title: "Strategiegespräch",
-      desc: "Gemeinsam analysieren wir Ihr Unternehmen und identifizieren, wo KI-Systeme den größten Hebel für Wachstum bieten — klar, konkret, ohne Umwege.",
+      title: "Strategy Call",
+      desc: "Together we analyze your business and identify where AI systems can create the biggest lever for growth — clearly, concretely, without detours.",
       icon: Users,
       color: "text-blue-400",
       bg: "bg-surface2",
@@ -28,15 +28,15 @@ const Protocol = () => {
     {
       num: "02",
       title: "Kickoff & Onboarding",
-      desc: "Strukturierter Austausch notwendiger Zugänge (API Keys, Credentials) und Definition der exakten Spezifikationen für die Integration.",
+      desc: "Structured exchange of required credentials (API keys, access) and definition of exact specifications for the integration.",
       icon: KeyRound,
       color: "text-green-400",
       bg: "bg-surface2",
     },
     {
       num: "03",
-      title: "Implementierung",
-      desc: "Entwicklung und Aufbau der Infrastruktur. Maßgeschneiderte Agenten und Workflows werden nach den definierten Parametern programmiert.",
+      title: "Implementation",
+      desc: "Development and build-out of the infrastructure. Custom agents and workflows are programmed according to the defined parameters.",
       icon: Wrench,
       color: "text-purple-400",
       bg: "bg-surface2",
@@ -44,7 +44,7 @@ const Protocol = () => {
     {
       num: "04",
       title: "Testing & Rollout",
-      desc: "Intensive QA-Phase vor der Live-Schaltung. Wir validieren jeden Datenpunkt, bevor das System final in Ihre Betriebsumgebung übergeben wird.",
+      desc: "Intensive QA phase before going live. We validate every data point before the system is handed over to your production environment.",
       icon: ShieldCheck,
       color: "text-pink-400",
       bg: "bg-surface2",
@@ -53,17 +53,17 @@ const Protocol = () => {
 
   return (
     <section
-      id="prozess"
+      id="process"
       className="bg-background py-32 px-6 md:px-12 lg:px-24 border-t border-borderLight"
       ref={containerRef}
     >
       <div className="max-w-6xl mx-auto">
         <div className="mb-20 text-center">
           <h2 className="text-5xl md:text-6xl font-medium font-sans tracking-normal text-foreground mb-6 pb-2">
-            So arbeiten <span className="text-muted">wir</span>
+            How we <span className="text-muted">work</span>
           </h2>
           <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
-            Transparent, strukturiert und ohne unnötige Reibung.
+            Transparent, structured, and without unnecessary friction.
           </p>
         </div>
 

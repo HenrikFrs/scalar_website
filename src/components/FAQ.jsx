@@ -38,20 +38,20 @@ const FAQ = () => {
 
   const faqs = [
     {
-      q: "Wie schnell sehe ich erste Ergebnisse?",
-      a: "Die meisten Kunden sehen erste messbare Ergebnisse innerhalb von 2–4 Wochen nach dem Kickoff. Komplexere Stacks wie Lead Generation oder Proposal-Automatisierung brauchen etwas mehr Vorlaufzeit.",
+      q: "How quickly will I see first results?",
+      a: "Most clients see first measurable results within 2–4 weeks after kickoff. More complex stacks like lead generation or proposal automation require a bit more lead time.",
     },
     {
-      q: "Was passiert im Strategiegespräch?",
-      a: "Das Strategiegespräch dauert ca. 30 Minuten und ist völlig unverbindlich. Wir schauen uns gemeinsam Ihr Geschäftsmodell, Ihre aktuelle Vertriebssituation und Ihre Prozesse an — und zeigen Ihnen konkret, welche KI-Systeme bei Ihnen den größten Hebel für Wachstum haben. Kein Pitch, keine Verkaufspräsentation. Sie gehen raus mit einem klaren Bild, was möglich ist.",
+      q: "What happens during the strategy call?",
+      a: "The strategy call takes about 30 minutes and is completely non-binding. We take a joint look at your business model, your current sales situation, and your processes — and show you concretely which AI systems will create the biggest lever for growth in your case. No pitch, no sales presentation. You leave with a clear picture of what's possible.",
     },
     {
-      q: "Funktioniert das mit unserem bestehenden Tool-Stack?",
-      a: "In der Regel ja. Unsere Systeme integrieren sich über APIs in die Tools, die Sie bereits nutzen — darunter gängige CRMs wie HubSpot oder Pipedrive, Kalender-Tools, E-Mail-Systeme und Outreach-Plattformen. Im Strategiegespräch klären wir, was bei Ihnen im Einsatz ist und wie die Integration aussieht.",
+      q: "Does this work with our existing tool stack?",
+      a: "Generally, yes. Our systems integrate via APIs into the tools you already use — including common CRMs like HubSpot or Pipedrive, calendar tools, email systems, and outreach platforms. During the strategy call we'll clarify what you're currently running and how the integration will look.",
     },
     {
-      q: "Wer wartet die Systeme nach dem Rollout?",
-      a: "Wir. APIs ändern sich, Plattformen entwickeln sich weiter — ein System, das heute läuft, muss aktiv betreut werden. Deshalb bieten wir Maintenance-Packages an, bei denen wir Ihre Systeme kontinuierlich überwachen, bei Änderungen proaktiv eingreifen und bei Bedarf weiterentwickeln.",
+      q: "Who maintains the systems after rollout?",
+      a: "We do. APIs change, platforms evolve — a system that works today needs active maintenance. That's why we offer maintenance packages where we continuously monitor your systems, proactively intervene when things change, and further develop them as needed.",
     },
   ];
 
@@ -63,10 +63,10 @@ const FAQ = () => {
       <div className="max-w-4xl mx-auto">
         <div className="mb-16">
           <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans mb-4 pb-2">
-            Häufige Fragen
+            Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted font-medium">
-            Klare Antworten auf die wichtigsten Fragen.
+            Clear answers to the most important questions.
           </p>
         </div>
 

@@ -7,7 +7,7 @@ const PricingCard = ({ title, price, desc, features, isPopular }) => {
         <div className={`relative flex flex-col p-8 md:p-10 rounded-3xl border ${isPopular ? 'bg-dark text-white border-dark transform md:-translate-y-4 shadow-xl z-10' : 'bg-white text-dark border-borderLight'} transition-all duration-300 hover:border-dark/30`}>
             {isPopular && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-white text-dark border border-dark text-[10px] font-mono font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
-                    Empfohlen
+                    Recommended
                 </div>
             )}
 
@@ -30,7 +30,7 @@ const PricingCard = ({ title, price, desc, features, isPopular }) => {
             </ul>
 
             <button className={`w-full py-4 rounded-full font-medium transition-transform duration-300 hover:scale-[1.02] flex justify-center items-center gap-2 ${isPopular ? 'bg-white text-dark hover:bg-surface border border-transparent' : 'bg-surface text-dark border border-borderLight hover:border-dark/50'}`}>
-                Anfrage stellen <ArrowRight size={16} />
+                Get in Touch <ArrowRight size={16} />
             </button>
         </div>
     );
@@ -58,10 +58,10 @@ const Pricing = () => {
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-20 max-w-3xl mx-auto">
                     <h2 className="text-4xl md:text-5xl font-sans tracking-normal font-bold mb-6 text-dark leading-[1.1]">
-                        Kalkulierbare Investition. <span className="text-muted/80">Messbarer Return.</span>
+                        Predictable Investment. <span className="text-muted/80">Measurable Return.</span>
                     </h2>
                     <p className="text-lg text-muted font-medium">
-                        Keine Beratungs-Reports, keine Konzepte. Nur Systeme, die direkt Umsatz generieren.
+                        No consulting reports, no concepts. Only systems that directly generate revenue.
                     </p>
                 </div>
 
@@ -70,12 +70,12 @@ const Pricing = () => {
                         <PricingCard
                             title="Sales System"
                             price="2.5k€"
-                            desc="Ihr erstes umsatzsteigerndes KI-System live in 2 Wochen."
+                            desc="Your first revenue-generating AI system live in 2 weeks."
                             features={[
-                                "KI Sales Agent (Lead-Antwort in Sekunden)",
-                                "Automatische Kalender-Buchung",
-                                "Follow-up Sequenzen",
-                                "2 Wochen Hypercare"
+                                "AI Sales Agent (lead response in seconds)",
+                                "Automatic calendar booking",
+                                "Follow-up sequences",
+                                "2 weeks hypercare"
                             ]}
                             isPopular={false}
                         />
@@ -84,13 +84,12 @@ const Pricing = () => {
                         <PricingCard
                             title="Growth Stack"
                             price="8.0k€"
-                            desc="Vollständiger Lead-to-Close Stack für maximales Wachstum."
+                            desc="Complete lead-to-close stack for maximum growth."
                             features={[
                                 "Sales System + Lead Generation",
-                                "Personalisierter Outbound-Kanal",
-                                "Ads/UGC System Setup",
-                                "CRM Integration",
-                                "4 Wochen Hypercare"
+                                "Personalized outbound channel",
+                                "CRM integration",
+                                "4 weeks hypercare"
                             ]}
                             isPopular={true}
                         />
@@ -99,13 +98,13 @@ const Pricing = () => {
                         <PricingCard
                             title="Full-Stack"
                             price="Custom"
-                            desc="Das komplette Revenue-Betriebssystem für Ihr Unternehmen."
+                            desc="The complete revenue operating system for your business."
                             features={[
-                                "Sales + Lead Gen + Automatisierungen",
-                                "Proposal & Asset Generierung",
-                                "Intelligentes CRM-System",
-                                "Dedizierter Solutions Architect",
-                                "Full-Service Maintenance & 24/7 Support"
+                                "Sales + Lead Gen + Automations",
+                                "Proposal & asset generation",
+                                "Intelligent CRM system",
+                                "Dedicated Solutions Architect",
+                                "Full-service maintenance & 24/7 support"
                             ]}
                             isPopular={false}
                         />
