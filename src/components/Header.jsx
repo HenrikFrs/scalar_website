@@ -285,11 +285,11 @@ export const Hero = () => {
       className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center md:justify-end text-center px-6 py-24 md:pb-20 text-white bg-black overflow-hidden"
     >
       {/* Background Layers Container */}
-      <div className="absolute inset-x-0 bottom-[-20vh] h-[160vh] sm:h-[90vh] pointer-events-none z-0 flex items-end justify-center">
-        <div className="absolute w-[150vw] sm:w-[120vw] h-[160vh] sm:h-[100vh] rounded-[100%] bg-[#14349D] blur-[100px] opacity-30 translate-y-[15vh]"></div>
+      <div className="absolute inset-x-0 bottom-[-20vh] h-[90vh] pointer-events-none z-0 flex items-end justify-center">
+        <div className="absolute w-[150vw] sm:w-[120vw] h-[100vh] rounded-[100%] bg-[#14349D] blur-[100px] opacity-30 translate-y-[15vh]"></div>
         <div
           ref={bgBlueRef}
-          className="absolute w-[120vw] sm:w-[100vw] h-[140vh] sm:h-[65vh] rounded-[100%] bg-[#14349D] blur-[90px] opacity-80 translate-y-[15vh]"
+          className="absolute w-[120vw] sm:w-[100vw] h-[65vh] rounded-[100%] bg-[#14349D] blur-[90px] opacity-80 translate-y-[15vh]"
         ></div>
         <div
           ref={bgWhiteRef}
