@@ -129,13 +129,19 @@ export const Navbar = () => {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
-              {["Features", "Process", "Testimonials", "FAQ"].map((item) => (
+              {[
+                { label: "Results", href: "results" },
+                { label: "Features", href: "advantage" },
+                { label: "Offer", href: "offer" },
+                { label: "Testimonials", href: "testimonials" },
+                { label: "FAQ", href: "faq" },
+              ].map(({ label, href }) => (
                 <a
-                  key={item}
-                  href={`/#${item.toLowerCase()}`}
+                  key={label}
+                  href={`/#${href}`}
                   className={`text-sm font-medium transition-colors hover:-translate-y-[1px] inline-block transform text-white/90 hover:text-white`}
                 >
-                  {item}
+                  {label}
                 </a>
               ))}
             </div>
@@ -146,12 +152,12 @@ export const Navbar = () => {
                 className="px-5 py-2.5 text-xs"
                 onClick={() =>
                   window.open(
-                    "https://cal.com/henrik-freisleben-3prokl/discovery",
+                    "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
                     "_blank",
                   )
                 }
               >
-                Book a Call <ArrowUpRight size={20} className="ml-1" />
+                See If You Qualify <ArrowUpRight size={20} className="ml-1" />
               </MagneticButton>
             </div>
 
@@ -175,14 +181,20 @@ export const Navbar = () => {
         className={`fixed top-0 left-0 right-0 z-40 pt-[72px] bg-background/40 backdrop-blur-md border-b border-white/5 shadow-2xl flex flex-col justify-start px-6 pb-8 transition-all duration-500 origin-top md:hidden ${mobileMenuOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"}`}
       >
         <div className="flex flex-col gap-4 items-center w-full pt-6">
-          {["Features", "Process", "Testimonials", "FAQ"].map((item) => (
+          {[
+            { label: "Results", href: "results" },
+            { label: "Features", href: "advantage" },
+            { label: "Offer", href: "offer" },
+            { label: "Testimonials", href: "testimonials" },
+            { label: "FAQ", href: "faq" },
+          ].map(({ label, href }) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={label}
+              href={`#${href}`}
               className={`text-lg font-medium py-2 transition-colors text-white hover:text-white/70 w-full text-center`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              {item}
+              {label}
             </a>
           ))}
           <div className={`mt-2 w-full pt-4 border-t border-white/5`}>
@@ -191,12 +203,12 @@ export const Navbar = () => {
               className="w-full justify-center text-sm py-3.5"
               onClick={() =>
                 window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/discovery",
+                  "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
                   "_blank",
                 )
               }
             >
-              Book a Call <ArrowUpRight size={18} className="ml-1" />
+              See If You Qualify <ArrowUpRight size={18} className="ml-1" />
             </MagneticButton>
           </div>
         </div>
@@ -267,32 +279,25 @@ export const Hero = () => {
     return () => ctx.revert();
   }, []);
 
-  // Restored overflow-hidden to prevent horizontal scrolling
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] w-full flex flex-col justify-end items-start text-left px-6 pt-24 pb-28 text-white bg-black overflow-hidden"
+      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center md:justify-end text-center px-6 py-24 md:pb-20 text-white bg-black overflow-hidden"
     >
-      {/* Background Layers Container (Replicating Framer setup) */}
-      <div className="absolute inset-x-0 bottom-[-20vh] h-[90vh] pointer-events-none z-0 flex items-end justify-center">
-        {/* Back: Wide ambient blue base */}
-        <div className="absolute w-[150vw] sm:w-[120vw] h-[100vh] rounded-[100%] bg-[#14349D] blur-[100px] opacity-30 translate-y-[15vh]"></div>
-
-        {/* Middle: More focused blue that moves down on scroll */}
+      {/* Background Layers Container */}
+      <div className="absolute inset-x-0 bottom-[-20vh] h-[160vh] sm:h-[90vh] pointer-events-none z-0 flex items-end justify-center">
+        <div className="absolute w-[150vw] sm:w-[120vw] h-[160vh] sm:h-[100vh] rounded-[100%] bg-[#14349D] blur-[100px] opacity-30 translate-y-[15vh]"></div>
         <div
           ref={bgBlueRef}
-          className="absolute w-[120vw] sm:w-[100vw] h-[65vh] rounded-[100%] bg-[#14349D] blur-[90px] opacity-80 translate-y-[15vh]"
+          className="absolute w-[120vw] sm:w-[100vw] h-[140vh] sm:h-[65vh] rounded-[100%] bg-[#14349D] blur-[90px] opacity-80 translate-y-[15vh]"
         ></div>
-
-        {/* Top: The intense cyan/white core that shoots up and brightens on scroll */}
-        {/* Made much taller and placed deeper so the bottom edge stays grounded during scale */}
         <div
           ref={bgWhiteRef}
           className="absolute w-[100vw] sm:w-[100vw] h-[65vh] rounded-[100%] bg-[rgba(200,230,255,1)] blur-[80px] opacity-0 translate-y-[35vh]"
         ></div>
       </div>
 
-      {/* Absolute Minimalist Background Grid */}
+      {/* Background Grid */}
       <div
         className="hero-grid absolute inset-0 z-0 opacity-[0.07] pointer-events-none"
         style={{
@@ -302,41 +307,41 @@ export const Hero = () => {
         }}
       ></div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-start mt-12 pb-12">
-        <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-regular tracking-wide leading-[1.05] mb-6 font-sans w-full max-w-6xl text-white pb-2">
-          2x Your Pipeline with Automated Sales Systems
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center gap-6">
+        {/* Headline near top */}
+        <h1 className="pt-10 hero-element text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-regular tracking-wide leading-[1.05] text-white">
+          Book 10+ Qualified Sales Meetings In The Next 60 Days
         </h1>
 
-        <p className="hero-element text-lg md:text-xl text-white/80 font-regular max-w-2xl mb-10 leading-relaxed text-left">
-          We develop systems that generate leads, convert inquiries into
-          customers, and scale processes.
+        {/* Sub-headline */}
+        <p className="hero-element text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
+          We build and deploy an AI-leveraged cold outreach engine for your
+          business that consistently generates meetings with your ideal
+          prospects - you only pay for calls that show up.
         </p>
 
-        <div className="hero-element flex flex-col sm:flex-row items-start lg:items-center gap-4 w-full sm:w-auto mt-2">
-          <MagneticButton
-            variant="heroPrimary"
-            className="w-full sm:w-auto text-base py-4 px-8"
-            onClick={() =>
-              window.open(
-                "https://cal.com/henrik-freisleben-3prokl/discovery",
-                "_blank",
-              )
-            }
-          >
-            Let's Talk <ArrowUpRight size={22} className="ml-1" />
-          </MagneticButton>
-          <MagneticButton
-            variant="heroSecondary"
-            className="w-full sm:w-auto text-base py-4 px-8"
-            onClick={() =>
-              document
-                .getElementById("features")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            Discover Solutions
-          </MagneticButton>
+        {/* Wistia Video */}
+        <div className="hero-element w-full max-w-4xl mt-4 rounded-[1.5rem] overflow-hidden shadow-2xl">
+          {/* @ts-ignore — wistia-player is a custom element */}
+          <wistia-player
+            media-id="0hefil3c8d"
+            aspect="1.7777777777777777"
+          ></wistia-player>
         </div>
+
+        {/* CTA below video */}
+        <MagneticButton
+          variant="heroPrimary"
+          className="hero-element text-base py-4 px-20 w-full sm:w-auto justify-center"
+          onClick={() =>
+            window.open(
+              "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
+              "_blank",
+            )
+          }
+        >
+          See If You Qualify <ArrowUpRight size={20} className="ml-1" />
+        </MagneticButton>
       </div>
     </section>
   );

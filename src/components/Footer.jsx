@@ -113,11 +113,12 @@ const Footer = () => {
         <div className="relative overflow-hidden rounded-[3rem] p-12 md:p-24 mb-20 border border-white/10 flex flex-col items-center text-center gap-8 bg-white/5 backdrop-blur-2xl shadow-2xl">
           <div className="relative z-10 flex flex-col items-center">
             <h2 className="text-4xl md:text-6xl font-medium tracking-normal mb-4 font-sans text-white pb-2">
-              Ready for more revenue?
+              10+ qualified sales calls.
+              <br />
+              <span className="text-white/60">In the next 60 days.</span>
             </h2>
-            <p className="text-white/70 text-lg md:text-xl font-medium max-w-md">
-              Find out in 30 minutes where the biggest growth levers are for
-              your business.
+            <p className="text-white/70 text-lg md:text-xl font-medium max-w-lg">
+              Two weeks of warmup. Then interested replies start coming in.
             </p>
           </div>
 
@@ -127,12 +128,12 @@ const Footer = () => {
               className="w-full sm:w-auto text-base py-4 px-8 shadow-xl"
               onClick={() =>
                 window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/discovery",
+                  "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
                   "_blank",
                 )
               }
             >
-              Book a Strategy Call <ArrowUpRight size={22} className="ml-1" />
+              Claim Your Spot <ArrowUpRight size={22} className="ml-1" />
             </MagneticButton>
           </div>
         </div>

@@ -38,20 +38,16 @@ const FAQ = () => {
 
   const faqs = [
     {
-      q: "How quickly will I see first results?",
-      a: "Most clients see first measurable results within 2–4 weeks after kickoff. More complex stacks like lead generation or proposal automation require a bit more lead time.",
+      q: "How long until we see results?",
+      a: "There's a 14-day warmup phase before sending begins. After that, the first positive replies typically come in within the first day of sending. Expect the first booked calls shortly after.",
     },
     {
-      q: "What happens during the strategy call?",
-      a: "The strategy call takes about 30 minutes and is completely non-binding. We take a joint look at your business model, your current sales situation, and your processes — and show you concretely which AI systems will create the biggest lever for growth in your case. No pitch, no sales presentation. You leave with a clear picture of what's possible.",
+      q: "How much time does it take on my end?",
+      a: "Your involvement is minimal: fill out an onboarding form, confirm the lead list and messaging angles, and reply to interested leads quickly when they come in.",
     },
     {
-      q: "Does this work with our existing tool stack?",
-      a: "Generally, yes. Our systems integrate via APIs into the tools you already use — including common CRMs like HubSpot or Pipedrive, calendar tools, email systems, and outreach platforms. During the strategy call we'll clarify what you're currently running and how the integration will look.",
-    },
-    {
-      q: "Who maintains the systems after rollout?",
-      a: "We do. APIs change, platforms evolve — a system that works today needs active maintenance. That's why we offer maintenance packages where we continuously monitor your systems, proactively intervene when things change, and further develop them as needed.",
+      q: "How much does this cost?",
+      a: "The cost per call varies depending on your target market and deal size. The tech fee scales with sending volume. We'll figure out the exact numbers on the call — there's no one-size-fits-all pricing.",
     },
   ];
 
@@ -61,11 +57,11 @@ const FAQ = () => {
       className="py-32 px-6 md:px-12 lg:px-24 bg-background border-t border-borderLight"
     >
       <div className="max-w-4xl mx-auto">
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans mb-4 pb-2">
+        <div className="mb-16 flex flex-col items-center text-center gap-4">
+          <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans pb-2">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-muted font-medium">
+          <p className="text-lg text-muted font-medium max-w-md">
             Clear answers to the most important questions.
           </p>
         </div>

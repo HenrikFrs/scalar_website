@@ -9,7 +9,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Lenis from "lenis";
 import { Navbar, Hero } from "./components/Header";
-import Features from "./components/Features";
+import CampaignResults from "./components/CampaignResults";
+import Offer from "./components/Offer";
+import Advantage from "./components/Advantage";
+// import Features from "./components/Features"; // hidden
 import Protocol from "./components/Protocol";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
@@ -22,8 +25,9 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => (
   <>
     <Hero />
-    <Features />
-    <Protocol />
+    <CampaignResults />
+    <Advantage />
+    <Offer />
     <Testimonials />
     <FAQ />
   </>
