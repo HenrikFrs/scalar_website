@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Database, PenLine, MessageCircleReply } from "lucide-react";
+import { Database, PenLine, Server } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -15,7 +15,10 @@ const ProspectScorer = () => {
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setIdx((p) => (p + 1) % prospects.length), 2800);
+    const t = setInterval(
+      () => setIdx((p) => (p + 1) % prospects.length),
+      2800,
+    );
     return () => clearInterval(t);
   }, []);
 
@@ -25,7 +28,9 @@ const ProspectScorer = () => {
     <div className="h-48 w-full bg-surface2 rounded-xl border border-borderLight p-5 flex flex-col justify-between overflow-hidden relative">
       <div className="flex items-center gap-2 mb-2">
         <span className="w-1.5 h-1.5 rounded-full bg-[#5b8dee] animate-pulse"></span>
-        <span className="text-[10px] font-mono text-muted tracking-wider uppercase">AI Scoring</span>
+        <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
+          AI Scoring
+        </span>
       </div>
 
       <div className="flex flex-col gap-2 transition-all duration-500">
@@ -37,7 +42,9 @@ const ProspectScorer = () => {
               style={{ width: `${current.score}%` }}
             />
           </div>
-          <span className="text-[10px] font-mono text-[#5b8dee] w-6 text-right">{current.score}</span>
+          <span className="text-[10px] font-mono text-[#5b8dee] w-6 text-right">
+            {current.score}
+          </span>
         </div>
         <span className="self-start text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#14349D]/20 border border-[#14349D]/30 text-[#5b8dee]">
           {current.fit}
@@ -45,8 +52,12 @@ const ProspectScorer = () => {
       </div>
 
       <div className="flex justify-between items-center border-t border-borderLight pt-3 mt-2">
-        <span className="text-[10px] font-mono text-muted uppercase">Prospect visited</span>
-        <span className="text-[10px] font-mono text-foreground">LinkedIn + Website ✓</span>
+        <span className="text-[10px] font-mono text-muted uppercase">
+          Prospect visited
+        </span>
+        <span className="text-[10px] font-mono text-foreground">
+          LinkedIn + Website ✓
+        </span>
       </div>
     </div>
   );
@@ -62,7 +73,8 @@ const CopyTypewriter = () => {
     { text: " consistently.", variable: false },
   ];
 
-  const fullText = "Hey {first_name}, saw that {company} recently expanded into {market} — we help teams like yours book {value_prop} consistently.";
+  const fullText =
+    "Hey {first_name}, saw that {company} recently expanded into {market} — we help teams like yours book {value_prop} consistently.";
   const [displayed, setDisplayed] = useState("");
   const [typing, setTyping] = useState(true);
 
@@ -70,7 +82,10 @@ const CopyTypewriter = () => {
     let timeout;
     if (typing) {
       if (displayed.length < fullText.length) {
-        timeout = setTimeout(() => setDisplayed(fullText.slice(0, displayed.length + 1)), 35 + Math.random() * 30);
+        timeout = setTimeout(
+          () => setDisplayed(fullText.slice(0, displayed.length + 1)),
+          35 + Math.random() * 30,
+        );
       } else {
         timeout = setTimeout(() => setTyping(false), 2500);
       }
@@ -88,9 +103,13 @@ const CopyTypewriter = () => {
   const renderHighlighted = () => {
     const parts = displayed.split(/(\{[^}]+\})/g);
     return parts.map((part, i) =>
-      /^\{[^}]+\}$/.test(part)
-        ? <span key={i} className="text-[#5b8dee] bg-[#14349D]/20 rounded px-0.5">{part}</span>
-        : <span key={i}>{part}</span>
+      /^\{[^}]+\}$/.test(part) ? (
+        <span key={i} className="text-[#5b8dee] bg-[#14349D]/20 rounded px-0.5">
+          {part}
+        </span>
+      ) : (
+        <span key={i}>{part}</span>
+      ),
     );
   };
 
@@ -98,7 +117,9 @@ const CopyTypewriter = () => {
     <div className="h-48 w-full bg-surface2 rounded-xl border border-borderLight p-5 flex flex-col overflow-hidden">
       <div className="flex items-center gap-2 mb-3">
         <span className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse"></span>
-        <span className="text-[10px] font-mono text-muted tracking-wider uppercase">Live Copy</span>
+        <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
+          Live Copy
+        </span>
       </div>
       <p className="font-mono text-xs text-foreground leading-relaxed flex-1">
         <span className="text-muted mr-1">›</span>
@@ -107,51 +128,76 @@ const CopyTypewriter = () => {
       </p>
       <div className="flex gap-2 mt-3 flex-wrap">
         {["{first_name}", "{company}", "{market}", "{value_prop}"].map((v) => (
-          <span key={v} className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#14349D]/20 border border-[#14349D]/30 text-[#5b8dee]">{v}</span>
+          <span
+            key={v}
+            className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#14349D]/20 border border-[#14349D]/30 text-[#5b8dee]"
+          >
+            {v}
+          </span>
         ))}
       </div>
     </div>
   );
 };
 
-// Card 3 — Reply handling: simulated reply → AI response flow
-const ReplyFlow = () => {
-  const [step, setStep] = useState(0);
+// Card 3 — Infrastructure: deliverability monitor cycling through domains
+const DeliverabilityMonitor = () => {
+  const domains = [
+    "outreach-hq.com",
+    "get-scalar.com",
+    "scalar-mail.com",
+    "grow-scalar.com",
+  ];
+  const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
-    const steps = [0, 1, 2, 3];
-    let i = 0;
-    const advance = () => {
-      i = (i + 1) % steps.length;
-      setStep(i);
-    };
-    const t = setInterval(advance, 1800);
+    const t = setInterval(
+      () => setActiveIdx((p) => (p + 1) % domains.length),
+      1100,
+    );
     return () => clearInterval(t);
   }, []);
 
-  const messages = [
-    { label: "Prospect", text: "Hey, this looks interesting. What does pricing look like?", active: step >= 0 },
-    { label: "AI Analysis", text: "Detected intent: interested. Generating contextual reply...", active: step >= 1, mono: true, accent: true },
-    { label: "Draft ready", text: "Hi — happy to walk you through it. Are you free for a quick call this week?", active: step >= 2 },
-    { label: "Notified", text: "🔔 You've been notified. Review & send in 1 click.", active: step >= 3, mono: true },
-  ];
-
   return (
-    <div className="h-48 w-full bg-surface2 rounded-xl border border-borderLight p-4 flex flex-col gap-2 overflow-hidden">
-      <div className="flex items-center gap-2 mb-1">
-        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
-        <span className="text-[10px] font-mono text-muted tracking-wider uppercase">Reply System</span>
-      </div>
-      {messages.map((m, i) => (
-        <div
-          key={i}
-          className={`transition-all duration-500 ${m.active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"}`}
-        >
-          <p className={`text-[10px] leading-snug ${m.mono ? "font-mono" : ""} ${m.accent ? "text-[#5b8dee]" : "text-foreground/80"}`}>
-            <span className="text-muted mr-1">{m.label}:</span>{m.text}
-          </p>
+    <div className="h-48 w-full bg-surface2 rounded-xl border border-borderLight p-5 flex flex-col overflow-hidden">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+          <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
+            Delivery Monitor
+          </span>
         </div>
-      ))}
+        <span className="text-[10px] font-mono text-green-400">98.4% inbox</span>
+      </div>
+
+      <div className="flex-1 flex flex-col gap-2">
+        {domains.map((domain, i) => (
+          <div
+            key={domain}
+            className={`flex items-center justify-between transition-all duration-400 ${
+              i <= activeIdx ? "opacity-100" : "opacity-20"
+            }`}
+          >
+            <span className="text-[10px] font-mono text-muted">{domain}</span>
+            <span
+              className={`text-[9px] font-mono px-1.5 py-0.5 rounded-full transition-all duration-400 ${
+                i <= activeIdx
+                  ? "bg-green-950/40 border border-green-900/40 text-green-400"
+                  : "bg-surface border border-borderLight text-muted"
+              }`}
+            >
+              {i <= activeIdx ? "✓ Primary Inbox" : "— pending"}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-between border-t border-borderLight pt-3 mt-1">
+        <span className="text-[10px] font-mono text-muted">
+          10 domains · 100 inboxes
+        </span>
+        <span className="text-[10px] font-mono text-[#5b8dee]">2,000 / day</span>
+      </div>
     </div>
   );
 };
@@ -182,7 +228,7 @@ const Advantage = () => {
       icon: <Database size={20} className="text-foreground" />,
       title: "List Building",
       description:
-        "Our AI visits the website and LinkedIn of every prospect to score them based on your ideal customer profile and make sure they are the right fit before a single message is sent.",
+        "Our system scores every prospect based on your ideal customer profile and make sure they are the right fit before a single message is sent.",
       widget: <ProspectScorer />,
     },
     {
@@ -193,11 +239,11 @@ const Advantage = () => {
       widget: <CopyTypewriter />,
     },
     {
-      icon: <MessageCircleReply size={20} className="text-foreground" />,
-      title: "Reply Handling & Follow-Ups",
+      icon: <Server size={20} className="text-foreground" />,
+      title: "Infrastructure that Scales",
       description:
-        "Our reply-to-call system notifies you on every interested reply and generates an AI response based on your offer, your tone, and the conversation context — bridging the gap between interest and booked call.",
-      widget: <ReplyFlow />,
+        "Our infrastructure is designed to handle high volumes of messages that consistently land in the main inbox so you can scale your outreach without compromising performance.",
+      widget: <DeliverabilityMonitor />,
     },
   ];
 
@@ -215,7 +261,8 @@ const Advantage = () => {
             </h2>
           </div>
           <p className="text-lg text-muted max-w-md font-medium">
-            Here's how we leverage AI to stand out and outperform everything your competitors are sending.
+            Here's how we stand out and outperform anything your competitors are
+            sending.
           </p>
         </div>
 

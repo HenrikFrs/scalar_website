@@ -315,9 +315,9 @@ export const Hero = () => {
 
         {/* Sub-headline */}
         <p className="hero-element text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
-          We build and deploy an AI-leveraged cold outreach engine for your
-          business that consistently generates meetings with your ideal
-          prospects - you only pay for calls that show up.
+          We build and deploy a cold outreach engine for your business that
+          consistently generates meetings with your ideal prospects - you only
+          pay for calls that show up.
         </p>
 
         {/* Wistia Video */}

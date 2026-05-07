@@ -11,7 +11,6 @@ const deliverables = [
   "2,000 personalized messages sent per day",
   "20,000 double-verified, AI-scored leads",
   "5+ messaging angles tested",
-  "Reply-to-call system",
 ];
 
 const Offer = () => {
@@ -36,7 +35,11 @@ const Offer = () => {
   }, []);
 
   return (
-    <section id="offer" ref={sectionRef} className="w-full bg-background py-24 px-6">
+    <section
+      id="offer"
+      ref={sectionRef}
+      className="w-full bg-background py-24 px-6"
+    >
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* Section header */}
         <div className="mb-16 flex flex-col items-center text-center gap-4">
