@@ -17,7 +17,7 @@ const ResultCard = ({ chip, title }) => (
 
     <div
       className="w-full rounded-[1.25rem] overflow-hidden border border-borderLight"
-      style={{ aspectRatio: "1344 / 241" }}
+      style={{ aspectRatio: "1344 / 235" }}
     >
       <img
         src={`${import.meta.env.BASE_URL}campaign_result1.png`}
@@ -50,7 +50,11 @@ const CampaignResults = () => {
   }, []);
 
   return (
-    <section id="results" ref={sectionRef} className="w-full bg-background py-24 px-6">
+    <section
+      id="results"
+      ref={sectionRef}
+      className="w-full bg-background py-24 px-6"
+    >
       <div className="max-w-6xl mx-auto">
         <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-xl">

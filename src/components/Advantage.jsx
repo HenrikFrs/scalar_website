@@ -29,7 +29,7 @@ const ProspectScorer = () => {
       <div className="flex items-center gap-2 mb-2">
         <span className="w-1.5 h-1.5 rounded-full bg-[#5b8dee] animate-pulse"></span>
         <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
-          AI Scoring
+          Scoring
         </span>
       </div>
 
@@ -63,76 +63,52 @@ const ProspectScorer = () => {
   );
 };
 
-// Card 2 — Copywriting: typewriter with variable highlights
+// Card 2 — Copywriting: static copy, only variable slots cycle through real values
 const CopyTypewriter = () => {
-  const lines = [
-    { text: "Hey {first_name}, saw that {company} recently ", variable: false },
-    { text: "expanded into {market}", variable: true },
-    { text: " — we help teams like yours book", variable: false },
-    { text: " {value_prop}", variable: true },
-    { text: " consistently.", variable: false },
-  ];
-
-  const fullText =
-    "Hey {first_name}, saw that {company} recently expanded into {market} — we help teams like yours book {value_prop} consistently.";
-  const [displayed, setDisplayed] = useState("");
-  const [typing, setTyping] = useState(true);
+  const variables = {
+    first_name: ["Sarah", "James", "Lena", "Marcus"],
+    company: ["Notion", "Stripe", "Linear", "Vercel"],
+    trigger: ["hiring 3 AEs", "expanding to EU", "just raised Series B", "rebranding"],
+  };
+  const [idx, setIdx] = useState(0);
 
   useEffect(() => {
-    let timeout;
-    if (typing) {
-      if (displayed.length < fullText.length) {
-        timeout = setTimeout(
-          () => setDisplayed(fullText.slice(0, displayed.length + 1)),
-          35 + Math.random() * 30,
-        );
-      } else {
-        timeout = setTimeout(() => setTyping(false), 2500);
-      }
-    } else {
-      if (displayed.length > 0) {
-        timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 12);
-      } else {
-        setTyping(true);
-      }
-    }
-    return () => clearTimeout(timeout);
-  }, [displayed, typing]);
-
-  // Highlight variables in the displayed text
-  const renderHighlighted = () => {
-    const parts = displayed.split(/(\{[^}]+\})/g);
-    return parts.map((part, i) =>
-      /^\{[^}]+\}$/.test(part) ? (
-        <span key={i} className="text-[#5b8dee] bg-[#14349D]/20 rounded px-0.5">
-          {part}
-        </span>
-      ) : (
-        <span key={i}>{part}</span>
-      ),
+    const t = setInterval(
+      () => setIdx((p) => (p + 1) % variables.first_name.length),
+      2200,
     );
-  };
+    return () => clearInterval(t);
+  }, []);
+
+  const Var = ({ name }) => (
+    <span
+      key={`${name}-${idx}`}
+      className="text-[#5b8dee] bg-[#14349D]/20 rounded px-0.5 transition-all duration-300"
+    >
+      {variables[name][idx]}
+    </span>
+  );
 
   return (
     <div className="h-48 w-full bg-surface2 rounded-xl border border-borderLight p-5 flex flex-col overflow-hidden">
       <div className="flex items-center gap-2 mb-3">
-        <span className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse"></span>
+        <span className="w-1.5 h-1.5 rounded-full bg-[#5b8dee] animate-pulse"></span>
         <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
           Live Copy
         </span>
       </div>
-      <p className="font-mono text-xs text-foreground leading-relaxed flex-1">
-        <span className="text-muted mr-1">›</span>
-        {renderHighlighted()}
-        <span className="inline-block w-1.5 h-3 bg-foreground ml-0.5 animate-pulse align-middle"></span>
+      <p className="text-xs text-foreground leading-relaxed flex-1">
+        Hey <Var name="first_name" />, noticed{" "}
+        <Var name="company" /> is{" "}
+        <Var name="trigger" /> — thought it might be a good time to chat about adding qualified meetings to the pipeline. Worth a quick call?
       </p>
-      <div className="flex gap-2 mt-3 flex-wrap">
-        {["{first_name}", "{company}", "{market}", "{value_prop}"].map((v) => (
+      <div className="flex gap-2 mt-3 flex-wrap border-t border-borderLight pt-3">
+        {["first_name", "company", "trigger"].map((v) => (
           <span
             key={v}
             className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#14349D]/20 border border-[#14349D]/30 text-[#5b8dee]"
           >
-            {v}
+            {`{${v}}`}
           </span>
         ))}
       </div>
@@ -167,7 +143,9 @@ const DeliverabilityMonitor = () => {
             Delivery Monitor
           </span>
         </div>
-        <span className="text-[10px] font-mono text-green-400">98.4% inbox</span>
+        <span className="text-[10px] font-mono text-green-400">
+          98.4% inbox
+        </span>
       </div>
 
       <div className="flex-1 flex flex-col gap-2">
@@ -196,7 +174,9 @@ const DeliverabilityMonitor = () => {
         <span className="text-[10px] font-mono text-muted">
           10 domains · 100 inboxes
         </span>
-        <span className="text-[10px] font-mono text-[#5b8dee]">2,000 / day</span>
+        <span className="text-[10px] font-mono text-[#5b8dee]">
+          2,000 / day
+        </span>
       </div>
     </div>
   );
@@ -226,23 +206,23 @@ const Advantage = () => {
   const cards = [
     {
       icon: <Database size={20} className="text-foreground" />,
-      title: "List Building",
+      title: "Prospects That Fit",
       description:
-        "Our system scores every prospect based on your ideal customer profile and make sure they are the right fit before a single message is sent.",
+        "We score every prospect based on your ideal customer profile and make sure they are the right fit before a single message is sent.",
       widget: <ProspectScorer />,
     },
     {
       icon: <PenLine size={20} className="text-foreground" />,
-      title: "Copywriting",
+      title: "Copy That Feels Genuine",
       description:
-        "We use AI-filled variables in our copy that make the messaging feel personal and natural, while keeping the core components static so we can test, iterate, and improve results over time.",
+        "We write copy that feels genuine and not like an advertisement. Every Message is deeply personalized with dynamic variables that are proven to increase response rates.",
       widget: <CopyTypewriter />,
     },
     {
       icon: <Server size={20} className="text-foreground" />,
-      title: "Infrastructure that Scales",
+      title: "Infrastructure That Scales",
       description:
-        "Our infrastructure is designed to handle high volumes of messages that consistently land in the main inbox so you can scale your outreach without compromising performance.",
+        "Our infrastructure is designed so that messages consistently land in main inboxes where they actually get seen. Your domain and inboxes remain untouched.",
       widget: <DeliverabilityMonitor />,
     },
   ];
@@ -257,7 +237,7 @@ const Advantage = () => {
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-xl">
             <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans mb-4 leading-tight pb-2">
-              Our Advantage
+              Why It Works
             </h2>
           </div>
           <p className="text-lg text-muted max-w-md font-medium">

@@ -38,7 +38,7 @@ const Testimonials = () => {
             </h2>
           </div>
           <p className="text-lg text-muted max-w-md font-medium">
-            A few words from satisfied clients already working with our systems.
+            A few words from satisfied clients already working with us.
           </p>
         </div>
 

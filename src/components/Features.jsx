@@ -167,7 +167,9 @@ const ChartAnimation = () => {
       </div>
 
       <div className="flex justify-between items-center mt-2 border-t border-borderLight pt-2">
-        <div className="text-[10px] font-mono text-muted">REVENUE POTENTIAL</div>
+        <div className="text-[10px] font-mono text-muted">
+          REVENUE POTENTIAL
+        </div>
         <div className="text-[10px] font-mono font-bold text-foreground">
           +340%
         </div>
@@ -199,7 +201,7 @@ const Features = () => {
             </h2>
           </div>
           <p className="text-lg text-muted max-w-md font-medium">
-            Scalar AI builds AI-driven systems that generate leads, convert
+            Scalar builds AI-driven systems that generate leads, convert
             inquiries into customers, and scale processes for B2B companies.
           </p>
         </div>

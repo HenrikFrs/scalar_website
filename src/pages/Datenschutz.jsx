@@ -27,18 +27,16 @@ const Datenschutz = () => {
           </p>
 
           <p>
-            Scalar AI respects your privacy and is committed to protecting your
-            personal data. This privacy policy explains what types of information
-            we collect, how we use it, and what rights you have regarding your
-            data.
+            Scalar respects your privacy and is committed to protecting your
+            personal data. This privacy policy explains what types of
+            information we collect, how we use it, and what rights you have
+            regarding your data.
           </p>
 
           <h3 className="text-2xl font-medium text-white mt-12 mb-4">
             1. Collection of Information
           </h3>
-          <p>
-            We may collect various types of information, including:
-          </p>
+          <p>We may collect various types of information, including:</p>
           <ul className="list-disc pl-6 space-y-2 mt-4">
             <li>
               <strong>Personal data:</strong> For example, name, email address,
@@ -73,9 +71,7 @@ const Datenschutz = () => {
             <li>
               Communicating with you, directly or through authorized partners
             </li>
-            <li>
-              Processing transactions and sending related information
-            </li>
+            <li>Processing transactions and sending related information</li>
             <li>Fulfilling legal obligations</li>
           </ul>
 
@@ -184,7 +180,8 @@ const Datenschutz = () => {
             11. Contact
           </h3>
           <p className="mb-4">
-            If you have questions about this privacy policy, you can reach us at:
+            If you have questions about this privacy policy, you can reach us
+            at:
           </p>
           <div className="text-white/70">
             <p className="mb-1">Henrik Freisleben</p>

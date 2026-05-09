@@ -113,9 +113,9 @@ const Footer = () => {
         <div className="relative overflow-hidden rounded-[3rem] p-12 md:p-24 mb-20 border border-white/10 flex flex-col items-center text-center gap-8 bg-white/5 backdrop-blur-2xl shadow-2xl">
           <div className="relative z-10 flex flex-col items-center">
             <h2 className="text-4xl md:text-6xl font-medium tracking-normal mb-4 font-sans text-white pb-2">
-              10+ qualified sales calls.
+              10+ qualified meetings consistently.
               <br />
-              <span className="text-white/60">In the next 60 days.</span>
+              <span className="text-white/60">Pay after they show up.</span>
             </h2>
             <p className="text-white/70 text-lg md:text-xl font-medium max-w-lg">
               Two weeks of warmup. Then interested replies start coming in.
@@ -148,7 +148,7 @@ const Footer = () => {
                 className="h-10 brightness-0 invert"
               />
               <span className="text-xl font-medium tracking-tight font-sans text-white">
-                Scalar AI
+                Scalar
               </span>
             </div>
             <p className="text-white/40 text-sm font-medium">
@@ -172,7 +172,7 @@ const Footer = () => {
                 Privacy Policy
               </Link>
             </div>
-            <p>&copy; {new Date().getFullYear()} Scalar AI.</p>
+            <p>&copy; {new Date().getFullYear()} Scalar.</p>
           </div>
         </div>
       </div>

@@ -123,7 +123,7 @@ export const Navbar = () => {
               <span
                 className={`text-xl md:text-[1.35rem] font-regular tracking-tight font-sans transition-colors duration-300 text-white`}
               >
-                Scalar AI
+                Scalar
               </span>
             </a>
 
@@ -310,14 +310,14 @@ export const Hero = () => {
       <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center gap-6">
         {/* Headline near top */}
         <h1 className="pt-10 hero-element text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-regular tracking-wide leading-[1.05] text-white">
-          Book 10+ Qualified Sales Meetings In The Next 60 Days
+          Book 10+ Qualified Meetings Per Month - Don't Pay Until They Show Up
         </h1>
 
         {/* Sub-headline */}
         <p className="hero-element text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
-          We build and deploy a cold outreach engine for your business that
-          consistently generates meetings with your ideal prospects - you only
-          pay for calls that show up.
+          We send deeply personalized outbound messages to prospects matching
+          your ideal customer profile - and we only charge for the meetings that
+          actually show up.
         </p>
 
         {/* Wistia Video */}

@@ -7,10 +7,11 @@ import { MagneticButton } from "./Header";
 gsap.registerPlugin(ScrollTrigger);
 
 const deliverables = [
-  "Full infrastructure setup (10 domains, 100 inboxes, fully configured and ready to send)",
-  "2,000 personalized messages sent per day",
-  "20,000 double-verified, AI-scored leads",
-  "5+ messaging angles tested",
+  "Full sending infrastructure setup (20 domains, 100 inboxes), ready to send",
+  "5 hand-crafted email copy sequences tailored to your offer & ICP",
+  "List of 12,000 email-verified leads matching your ICP",
+  "12,000 leads reached with deeply personalized messages",
+  "5 messaging angles tested (real data on how to position your offer)",
 ];
 
 const Offer = () => {
@@ -47,8 +48,8 @@ const Offer = () => {
             60-Day Pilot
           </h2>
           <p className="offer-element text-lg text-muted max-w-md font-medium">
-            Everything you need to generate consistent, qualified sales meetings
-            — done for you.
+            Get started with a 60-day pilot program to see how we can fill your
+            calendar with qualified meetings.
           </p>
         </div>
 
