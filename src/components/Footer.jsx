@@ -112,12 +112,12 @@ const Footer = () => {
         {/* Massive Footer CTA */}
         <div className="relative overflow-hidden rounded-[3rem] p-12 md:p-24 mb-20 border border-white/10 flex flex-col items-center text-center gap-8 bg-white/5 backdrop-blur-2xl shadow-2xl">
           <div className="relative z-10 flex flex-col items-center">
-            <h2 className="text-4xl md:text-5xl font-medium tracking-normal mb-4 font-sans text-white pb-2">
+            <h2 className="text-4xl md:text-5xl font-regular tracking-normal mb-4 font-sans text-white pb-2">
               10+ qualified meetings consistently.
               <br />
               <span className="text-white/60">Pay after they show up.</span>
             </h2>
-            <p className="text-white/70 text-lg md:text-xl font-medium max-w-lg">
+            <p className="text-white/70 text-lg md:text-xl max-w-lg">
               Two weeks of warmup. Then interested replies start coming in.
             </p>
           </div>
@@ -147,11 +147,11 @@ const Footer = () => {
                 alt="ScalarAI Logo"
                 className="h-10 brightness-0 invert"
               />
-              <span className="text-xl font-medium tracking-tight font-sans text-white">
+              <span className="text-xl tracking-tight font-sans text-white">
                 Scalar AI
               </span>
             </div>
-            <p className="text-white/40 text-sm font-medium">
+            <p className="text-white/40 text-sm">
               More revenue through automation and AI
             </p>
           </div>

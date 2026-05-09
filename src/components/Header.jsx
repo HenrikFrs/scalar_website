@@ -311,7 +311,7 @@ export const Hero = () => {
         {/* Headline near top */}
         <h1 className="pt-10 hero-element text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-regular tracking-wide leading-[1.05] text-white">
           Book 10+ Qualified Meetings Per Month.{" "}
-          <span className="text-white/50">Don't Pay Until They Show Up.</span>
+          <span className="text-white/60">Don't Pay Until They Show Up.</span>
         </h1>
 
         {/* Sub-headline */}
