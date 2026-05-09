@@ -31,12 +31,10 @@ const Testimonials = () => {
       className="py-32 px-6 md:px-12 lg:px-24 bg-background border-t border-borderLight"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="max-w-xl">
-            <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans mb-4 pb-2">
-              What our partners say
-            </h2>
-          </div>
+        <div className="mb-20 flex flex-col items-center text-center gap-4">
+          <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-foreground font-sans pb-2">
+            What our partners say
+          </h2>
           <p className="text-lg text-muted max-w-md font-medium">
             A few words from satisfied clients already working with us.
           </p>

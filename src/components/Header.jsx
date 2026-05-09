@@ -123,7 +123,7 @@ export const Navbar = () => {
               <span
                 className={`text-xl md:text-[1.35rem] font-regular tracking-tight font-sans transition-colors duration-300 text-white`}
               >
-                Scalar
+                Scalar AI
               </span>
             </a>
 
@@ -242,7 +242,7 @@ export const Hero = () => {
       });
 
       // Background Scroll Animation
-      const scrollTl = gsap.timeline({
+      /* const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
@@ -273,7 +273,7 @@ export const Hero = () => {
           ease: "none",
         },
         0,
-      );
+      ); */
     }, containerRef);
 
     return () => ctx.revert();
@@ -309,8 +309,9 @@ export const Hero = () => {
 
       <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center gap-6">
         {/* Headline near top */}
-        <h1 className="pt-10 hero-element text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-regular tracking-wide leading-[1.05] text-white">
-          Book 10+ Qualified Meetings Per Month - Don't Pay Until They Show Up
+        <h1 className="pt-10 hero-element text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-regular tracking-wide leading-[1.05] text-white">
+          Book 10+ Qualified Meetings Per Month.{" "}
+          <span className="text-white/50">Don't Pay Until They Show Up.</span>
         </h1>
 
         {/* Sub-headline */}
@@ -332,7 +333,7 @@ export const Hero = () => {
         {/* CTA below video */}
         <MagneticButton
           variant="heroPrimary"
-          className="hero-element text-base py-4 px-20 w-full sm:w-auto justify-center"
+          className="hero-element text-base py-4 px-28 w-full sm:w-auto justify-center"
           onClick={() =>
             window.open(
               "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",

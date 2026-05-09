@@ -39,12 +39,12 @@ const Offer = () => {
     <section
       id="offer"
       ref={sectionRef}
-      className="w-full bg-background py-24 px-6"
+      className="w-full bg-background py-24 px-6 border-t border-borderLight"
     >
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* Section header */}
         <div className="mb-16 flex flex-col items-center text-center gap-4">
-          <h2 className="offer-element text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans leading-tight pb-2">
+          <h2 className="offer-element text-4xl md:text-5xl font-medium tracking-normal text-foreground font-sans leading-tight pb-2">
             60-Day Pilot
           </h2>
           <p className="offer-element text-lg text-muted max-w-md font-medium">

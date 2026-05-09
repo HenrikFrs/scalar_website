@@ -58,7 +58,7 @@ const FAQ = () => {
     >
       <div className="max-w-4xl mx-auto">
         <div className="mb-16 flex flex-col items-center text-center gap-4">
-          <h2 className="text-4xl md:text-6xl font-medium tracking-normal text-foreground font-sans pb-2">
+          <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-foreground font-sans pb-2">
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted font-medium max-w-md">

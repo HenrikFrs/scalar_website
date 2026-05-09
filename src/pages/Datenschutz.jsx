@@ -27,7 +27,7 @@ const Datenschutz = () => {
           </p>
 
           <p>
-            Scalar respects your privacy and is committed to protecting your
+            Scalar AI respects your privacy and is committed to protecting your
             personal data. This privacy policy explains what types of
             information we collect, how we use it, and what rights you have
             regarding your data.

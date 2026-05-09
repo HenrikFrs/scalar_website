@@ -13,7 +13,7 @@ const Footer = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
+      /* const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
           start: "top 80%", // Starts animating when footer is 20% into the viewport
@@ -78,7 +78,7 @@ const Footer = () => {
           ease: "none",
         },
         0,
-      );
+      ); */
     }, footerRef);
 
     return () => ctx.revert();
@@ -95,13 +95,13 @@ const Footer = () => {
         {/* Left: Massive ambient blue glow resting in the bottom left corner, stretched higher */}
         <div
           ref={bgBlueLeftRef}
-          className="absolute w-[100vw] sm:w-[100vw] h-[80vh] rounded-[100%] bg-[#14349D] blur-[140px] opacity-0 -bottom-[40vh]"
+          className="absolute w-[100vw] sm:w-[100vw] h-[80vh] rounded-[100%] bg-[#14349D] blur-[140px] opacity-70 -bottom-[40vh]"
         ></div>
 
         {/* Left Core: The bright "weiß unten" glow, shorter and very blurry for smooth transition */}
         <div
           ref={bgWhiteRef}
-          className="absolute w-[70vw] sm:w-[90vw] h-[10vh] rounded-[100%] bg-[rgba(200,230,255,1)] blur-[120px] opacity-0 -bottom-[20vh]"
+          className="absolute w-[70vw] sm:w-[90vw] h-[10vh] rounded-[100%] bg-[rgba(200,230,255,1)] blur-[120px] opacity-90 -bottom-[20vh]"
         ></div>
       </div>
 
@@ -112,7 +112,7 @@ const Footer = () => {
         {/* Massive Footer CTA */}
         <div className="relative overflow-hidden rounded-[3rem] p-12 md:p-24 mb-20 border border-white/10 flex flex-col items-center text-center gap-8 bg-white/5 backdrop-blur-2xl shadow-2xl">
           <div className="relative z-10 flex flex-col items-center">
-            <h2 className="text-4xl md:text-6xl font-medium tracking-normal mb-4 font-sans text-white pb-2">
+            <h2 className="text-4xl md:text-5xl font-medium tracking-normal mb-4 font-sans text-white pb-2">
               10+ qualified meetings consistently.
               <br />
               <span className="text-white/60">Pay after they show up.</span>
@@ -148,7 +148,7 @@ const Footer = () => {
                 className="h-10 brightness-0 invert"
               />
               <span className="text-xl font-medium tracking-tight font-sans text-white">
-                Scalar
+                Scalar AI
               </span>
             </div>
             <p className="text-white/40 text-sm font-medium">
@@ -172,7 +172,7 @@ const Footer = () => {
                 Privacy Policy
               </Link>
             </div>
-            <p>&copy; {new Date().getFullYear()} Scalar.</p>
+            <p>&copy; {new Date().getFullYear()} Scalar AI.</p>
           </div>
         </div>
       </div>
