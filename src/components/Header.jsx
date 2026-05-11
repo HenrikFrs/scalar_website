@@ -325,7 +325,7 @@ export const Hero = () => {
         <div className="hero-element w-full max-w-4xl mt-4 rounded-[1.5rem] overflow-hidden shadow-2xl">
           {/* @ts-ignore — wistia-player is a custom element */}
           <wistia-player
-            media-id="0hefil3c8d"
+            media-id="263tbx9r5k"
             aspect="1.7777777777777777"
           ></wistia-player>
         </div>
