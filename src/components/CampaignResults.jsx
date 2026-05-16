@@ -68,7 +68,7 @@ const CampaignResults = () => {
 
         <ResultCard
           chip="Software & Mixed-Market Campaigns"
-          title="10 sales meetings booked in 60 days"
+          title="10% reply rate. 13 sales meetings booked."
         />
       </div>
     </section>
