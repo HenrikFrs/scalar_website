@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Datenschutz = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-32 pb-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
@@ -23,7 +20,7 @@ const Datenschutz = () => {
 
         <div className="prose prose-invert prose-lg text-white/70 max-w-none mt-12 space-y-8">
           <p className="text-sm text-white/40">
-            Last updated September 13, 2025
+            Last updated May 25, 2026
           </p>
 
           <p>
@@ -111,6 +108,52 @@ const Datenschutz = () => {
             You can disable cookies through your browser settings. Please note
             that this may limit the functionality of certain areas of the
             website.
+          </p>
+          <p>
+            For visitors in the European Union, we display a cookie consent
+            banner before any tracking is activated. You may accept or decline
+            tracking at any time. Your choice is stored locally in your browser
+            and respected on subsequent visits.
+          </p>
+
+          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+            4a. Google Tag Manager
+          </h3>
+          <p>
+            This website uses Google Tag Manager (GTM), a tag management service
+            provided by Google Ireland Limited, Gordon House, Barrow Street,
+            Dublin 4, Ireland. GTM itself does not set cookies or collect
+            personal data; it is a framework that loads other tracking scripts
+            ("tags") only after you have given your consent.
+          </p>
+          <p>
+            The tags currently deployed via GTM may include analytics tools
+            (e.g. Google Analytics) that collect usage data such as pages
+            visited, session duration, approximate location derived from IP
+            address, and device information. This data is processed by Google on
+            servers that may be located outside the European Economic Area. Data
+            transfers to the USA are carried out on the basis of the EU Standard
+            Contractual Clauses.
+          </p>
+          <p>
+            Legal basis for processing: Art. 6(1)(a) GDPR (consent). EU
+            visitors can withdraw consent at any time by contacting us or
+            clearing their browser's local storage for this site. Withdrawal
+            does not affect the lawfulness of processing carried out prior to
+            withdrawal.
+          </p>
+          <p>
+            For more information on how Google handles data, please refer to
+            Google's privacy policy at{" "}
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-white transition-colors"
+            >
+              policies.google.com/privacy
+            </a>
+            .
           </p>
 
           <h3 className="text-2xl font-medium text-white mt-12 mb-4">

@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Impressum = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-32 pb-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">

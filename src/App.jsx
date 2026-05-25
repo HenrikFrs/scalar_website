@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useLocation,
 } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
@@ -19,8 +18,11 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import CookieBanner from "./components/CookieBanner";
 
 gsap.registerPlugin(ScrollTrigger);
+
+export const lenisRef = { current: null };
 
 const Home = () => (
   <>
@@ -34,8 +36,6 @@ const Home = () => (
 );
 
 function App() {
-  const lenisRef = useRef(null);
-
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -58,28 +58,19 @@ function App() {
     };
   }, []);
 
-  const ScrollToTop = () => {
-    const { pathname } = useLocation();
-    useEffect(() => {
-      lenisRef.current?.scrollTo(0, { immediate: true });
-      setTimeout(() => ScrollTrigger.refresh(), 50);
-    }, [pathname]);
-    return null;
-  };
-
   return (
     <Router basename="/">
-      <ScrollToTop />
       <div className="min-h-screen bg-background text-foreground relative selection:bg-foreground selection:text-background overflow-x-hidden">
         <Navbar />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/impressum" element={<Impressum />} />
-            <Route path="/datenschutz" element={<Datenschutz />} />
+            <Route path="/imprint" element={<Impressum />} />
+            <Route path="/privacy-policy" element={<Datenschutz />} />
           </Routes>
         </main>
         <Footer />
+        <CookieBanner />
       </div>
     </Router>
   );

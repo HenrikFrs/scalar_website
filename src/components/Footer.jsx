@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ArrowUpRight } from "lucide-react";
 import { MagneticButton } from "./Header";
@@ -159,18 +158,18 @@ const Footer = () => {
           {/* Right: Legal Links & Copyright */}
           <div className="flex flex-col items-center md:items-end gap-2 text-xs font-mono text-white/40 mt-4 md:mt-0">
             <div className="flex gap-6 mb-2">
-              <Link
-                to="/impressum"
+              <a
+                href="/imprint"
                 className="hover:text-white transition-colors"
               >
                 Imprint
-              </Link>
-              <Link
-                to="/datenschutz"
+              </a>
+              <a
+                href="/privacy-policy"
                 className="hover:text-white transition-colors"
               >
                 Privacy Policy
-              </Link>
+              </a>
             </div>
             <p>&copy; {new Date().getFullYear()} Scalar AI.</p>
           </div>
