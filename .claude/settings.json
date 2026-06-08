@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5174/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5200/)",
+      "PowerShell(netsh int ipv4 show excludedportrange protocol=tcp)",
+      "Bash(npm list *)",
+      "Bash(npm install *)",
+      "Bash(node -e \"const tw = require\\('./node_modules/tailwindcss/package.json'\\); console.log\\(tw.version\\)\")",
+      "Bash(node -e \"require\\('./node_modules/autoprefixer'\\)\")",
+      "Bash(not exist *)",
+      "PowerShell(New-Item -ItemType Directory -Force \"f:\\\\scalar_website\\\\src\\\\components\\\\ui\")",
+      "Bash(node -e ' *)"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Check, ArrowUpRight, Shield, Unlock } from "lucide-react";
+import { Check, Shield, Unlock } from "lucide-react";
 import { MagneticButton } from "./Header";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -39,12 +39,12 @@ const Offer = () => {
     <section
       id="offer"
       ref={sectionRef}
-      className="w-full bg-background py-24 px-6 border-t border-borderLight"
+      className="w-full bg-background py-16 md:py-24 px-4 md:px-16 lg:px-96"
     >
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
+      <div className="flex flex-col items-center">
         {/* Section header */}
-        <div className="mb-16 flex flex-col items-center text-center gap-4">
-          <h2 className="offer-element text-4xl md:text-5xl font-medium tracking-normal text-foreground font-sans leading-tight pb-2">
+        <div className="mb-16 flex flex-col items-start text-left gap-4">
+          <h2 className="offer-element text-4xl md:text-5xl font-medium tracking-normal text-foreground font-serif leading-tight pb-2">
             60-Day Pilot
           </h2>
           <p className="offer-element text-lg text-muted max-w-md font-medium">
@@ -54,7 +54,7 @@ const Offer = () => {
         </div>
 
         {/* Card */}
-        <div className="offer-element w-full max-w-5xl bg-surface border border-borderLight rounded-[2rem] p-8 md:p-12 flex flex-col gap-8">
+        <div className="offer-element w-full max-w-5xl bg-surface rounded-[2rem] p-8 md:p-12 flex flex-col gap-8">
           {/* Guarantee */}
           <div className="flex flex-col sm:flex-row sm:items-start gap-4">
             <span className="flex-shrink-0 w-10 h-10 rounded-full bg-green-950/40 border border-green-900/40 flex items-center justify-center">
@@ -100,7 +100,7 @@ const Offer = () => {
           {/* After 60 days */}
           <div className="bg-surface2 rounded-[1.25rem] p-6 flex flex-col gap-3">
             <div className="flex items-center gap-3">
-              <span className="flex-shrink-0 w-8 h-8 rounded-full bg-background border border-borderLight flex items-center justify-center">
+              <span className="flex-shrink-0 w-8 h-8 rounded-full bg-background flex items-center justify-center">
                 <Unlock size={15} className="text-muted" />
               </span>
               <p className="text-xs font-mono uppercase tracking-[0.18em] text-muted">
@@ -118,8 +118,8 @@ const Offer = () => {
 
           {/* CTA */}
           <MagneticButton
-            variant="primary"
-            className="w-full justify-center text-base py-4 px-8"
+            variant="heroPrimary"
+            className="w-full justify-center text-sm py-3 px-8"
             onClick={() =>
               window.open(
                 "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
@@ -127,7 +127,7 @@ const Offer = () => {
               )
             }
           >
-            See If You Qualify <ArrowUpRight size={20} className="ml-1" />
+            Get Qualified Calls on a Performance Basis
           </MagneticButton>
         </div>
       </div>

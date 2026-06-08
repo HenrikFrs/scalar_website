@@ -54,7 +54,7 @@ const Pricing = () => {
     }, []);
 
     return (
-        <section id="pricing" ref={containerRef} className="py-32 px-6 md:px-12 lg:px-24 bg-surface border-t border-borderLight selection:bg-dark selection:text-white">
+        <section id="pricing" ref={containerRef} className="py-20 md:py-32 px-6 md:px-12 lg:px-24 bg-surface selection:bg-dark selection:text-white">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-20 max-w-3xl mx-auto">
                     <h2 className="text-4xl md:text-5xl font-sans tracking-normal font-bold mb-6 text-dark leading-[1.1]">

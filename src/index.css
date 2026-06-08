@@ -1,14 +1,57 @@
+@font-face {
+  font-family: 'Francisco Serial';
+  src: url('/francisco serial.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* ── Global section side padding — change here to affect all sections ── */
+  .section-x {
+    @apply px-4 md:px-16 lg:px-96;
+  }
+
+  /* ROI Calculator slider thumb */
+  input[type="range"].roi-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #FAFAFA;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
+  }
+  input[type="range"].roi-slider::-moz-range-thumb {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #FAFAFA;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
+  }
+
+  .pill-badge {
+    @apply inline-flex items-center px-3 py-1 text-[10px] font-mono uppercase tracking-[0.16em] rounded-lg;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #888888;
   }
 }
 

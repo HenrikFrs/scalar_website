@@ -54,7 +54,7 @@ const Protocol = () => {
   return (
     <section
       id="process"
-      className="bg-background py-32 px-6 md:px-12 lg:px-24 border-t border-borderLight"
+      className="bg-background py-20 md:py-32 px-6 md:px-12 lg:px-24"
       ref={containerRef}
     >
       <div className="max-w-6xl mx-auto">
@@ -71,7 +71,7 @@ const Protocol = () => {
           {steps.map((step, idx) => (
             <div
               key={idx}
-              className="prozess-card bg-surface p-8 md:p-12 rounded-[2rem] border border-borderLight flex flex-col items-start gap-8 relative overflow-hidden group hover:border-foreground/20 transition-colors shadow-sm"
+              className="prozess-card bg-surface p-8 md:p-12 rounded-[2rem] flex flex-col items-start gap-8 relative overflow-hidden group shadow-sm"
             >
               <div
                 className={`flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center transition-colors duration-500 ${step.bg}`}
@@ -84,7 +84,7 @@ const Protocol = () => {
               </div>
 
               <div className="flex-1">
-                <div className="font-mono text-[10px] text-muted mb-4 tracking-widest border border-borderLight bg-surface2 px-2 py-1 rounded-sm w-max uppercase">
+                <div className="font-mono text-[10px] text-muted mb-4 tracking-widest bg-surface2 px-2 py-1 rounded-sm w-max uppercase">
                   Phase {step.num}
                 </div>
                 <h3 className="font-medium text-2xl text-foreground mb-4">

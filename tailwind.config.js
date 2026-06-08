@@ -7,16 +7,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#050505', // Pure Dark
-        surface: '#0f0f0f', // Ultra Dark Gray
-        surface2: '#1a1a1a', // Dark Gray Border/Surface
-        accent: '#ffffff', // Pure White for primary elements
-        foreground: '#fafafa', // Bright text
-        muted: '#a3a3a3', // Medium Gray for secondary text
-        borderLight: '#262626' // Clean subtle dark borders
+        background: '#0D0D0D',
+        surface:    '#111111',
+        surface2:   '#1a1a1a',
+        surface3:   '#222222',
+        border:     'rgba(255,255,255,0.08)',
+        borderLight: 'rgba(255,255,255,0.06)',
+        pillBorder:  '#1C1C1C',
+        foreground: '#FAFAFA',
+        muted:      '#5C5C5C',
+        accent:     '#FAFAFA',
       },
       fontFamily: {
-        sans: ['"DM Sans"', 'sans-serif'],
+        sans: ['"Hedvig Letters Sans"', '"DM Sans"', 'sans-serif'],
+        serif: ['"Hedvig Letters Serif"', 'serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
     },

@@ -25,7 +25,7 @@ const ProspectScorer = () => {
   const current = prospects[idx];
 
   return (
-    <div className="h-48 w-full bg-surface2 rounded-xl border border-borderLight p-5 flex flex-col justify-between overflow-hidden relative">
+    <div className="h-48 w-full bg-surface2 p-5 flex flex-col justify-between overflow-hidden relative border border-pillBorder">
       <div className="flex items-center gap-2 mb-2">
         <span className="w-1.5 h-1.5 rounded-full bg-[#5b8dee] animate-pulse"></span>
         <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
@@ -51,7 +51,7 @@ const ProspectScorer = () => {
         </span>
       </div>
 
-      <div className="flex justify-between items-center border-t border-borderLight pt-3 mt-2">
+      <div className="flex justify-between items-center pt-3 mt-2">
         <span className="text-[10px] font-mono text-muted uppercase">
           Prospect visited
         </span>
@@ -90,7 +90,7 @@ const CopyTypewriter = () => {
   );
 
   return (
-    <div className="h-48 w-full bg-surface2 rounded-xl border border-borderLight p-5 flex flex-col overflow-hidden">
+    <div className="h-48 w-full bg-surface2 p-5 flex flex-col overflow-hidden border border-pillBorder">
       <div className="flex items-center gap-2 mb-3">
         <span className="w-1.5 h-1.5 rounded-full bg-[#5b8dee] animate-pulse"></span>
         <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
@@ -102,7 +102,7 @@ const CopyTypewriter = () => {
         <Var name="company" /> is{" "}
         <Var name="trigger" /> — thought it might be a good time to chat about adding qualified meetings to the pipeline. Worth a quick call?
       </p>
-      <div className="flex gap-2 mt-3 flex-wrap border-t border-borderLight pt-3">
+      <div className="flex gap-2 mt-3 flex-wrap pt-3">
         {["first_name", "company", "trigger"].map((v) => (
           <span
             key={v}
@@ -135,7 +135,7 @@ const DeliverabilityMonitor = () => {
   }, []);
 
   return (
-    <div className="h-48 w-full bg-surface2 rounded-xl border border-borderLight p-5 flex flex-col overflow-hidden">
+    <div className="h-48 w-full bg-surface2 p-5 flex flex-col overflow-hidden border border-pillBorder">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
@@ -161,7 +161,7 @@ const DeliverabilityMonitor = () => {
               className={`text-[9px] font-mono px-1.5 py-0.5 rounded-full transition-all duration-400 ${
                 i <= activeIdx
                   ? "bg-green-950/40 border border-green-900/40 text-green-400"
-                  : "bg-surface border border-borderLight text-muted"
+                  : "bg-surface text-muted"
               }`}
             >
               {i <= activeIdx ? "✓ Primary Inbox" : "— pending"}
@@ -170,7 +170,7 @@ const DeliverabilityMonitor = () => {
         ))}
       </div>
 
-      <div className="flex items-center justify-between border-t border-borderLight pt-3 mt-1">
+      <div className="flex items-center justify-between pt-3 mt-1">
         <span className="text-[10px] font-mono text-muted">
           10 domains · 100 inboxes
         </span>
@@ -231,11 +231,11 @@ const Advantage = () => {
     <section
       id="advantage"
       ref={sectionRef}
-      className="py-24 px-6 md:px-12 lg:px-24 bg-background relative z-10 border-t border-borderLight/50"
+      className="py-16 md:py-24 px-4 md:px-16 lg:px-96 bg-background relative z-10/50"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-16 md:mb-24 flex flex-col items-center text-center gap-4">
-          <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-foreground font-sans leading-tight pb-2">
+      <div>
+        <div className="mb-16 md:mb-24 flex flex-col items-start text-left gap-4">
+          <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-foreground font-serif leading-tight pb-2">
             Why It Works
           </h2>
           <p className="text-lg text-muted max-w-md font-medium">
@@ -248,7 +248,7 @@ const Advantage = () => {
           {cards.map((card) => (
             <div
               key={card.title}
-              className="adv-card bg-surface rounded-3xl p-8 md:p-10 flex flex-col border border-borderLight hover:border-foreground/20 transition-colors"
+              className="adv-card bg-surface rounded-3xl p-8 md:p-10 flex flex-col"
             >
               <h3 className="font-medium text-xl mb-3 text-foreground flex items-center gap-3 pb-1">
                 <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">

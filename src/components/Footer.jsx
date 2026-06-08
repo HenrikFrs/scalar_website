@@ -1,172 +1,66 @@
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
+import React, { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { MagneticButton } from "./Header";
 
 const Footer = () => {
   const footerRef = useRef(null);
-  const bgBlueLeftRef = useRef(null);
-  const bgWhiteRef = useRef(null);
-  const bgBlueRightRef = useRef(null);
-  const contentRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      /* const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 80%", // Starts animating when footer is 20% into the viewport
-          end: "bottom bottom", // Ends exactly when scrolled to max bottom
-          scrub: 1,
-        },
-      });
-
-      // The wide blue halo left fades in and moves slightly up
-      tl.fromTo(
-        bgBlueLeftRef.current,
-        {
-          opacity: 0,
-          y: "10vh",
-        },
-        {
-          opacity: 0.7,
-          y: "0vh",
-          ease: "none",
-        },
-        0,
-      );
-
-      // The bright white/cyan core at the bottom fades in intensely
-      tl.fromTo(
-        bgWhiteRef.current,
-        {
-          opacity: 0,
-          y: "15vh",
-        },
-        {
-          opacity: 0.9,
-          y: "0vh",
-          ease: "none",
-        },
-        0,
-      );
-
-      // The secondary blue glow right fades in and moves in from the edge
-      tl.fromTo(
-        bgBlueRightRef.current,
-        {
-          opacity: 0,
-          x: "5vw",
-        },
-        {
-          opacity: 0.6,
-          x: "0vw",
-          ease: "none",
-        },
-        0,
-      );
-
-      // The CTA card floats lightly
-      tl.fromTo(
-        contentRef.current,
-        {
-          y: "5vh",
-        },
-        {
-          y: "0vh",
-          ease: "none",
-        },
-        0,
-      ); */
-    }, footerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Outer container is purely black
   return (
     <footer
       ref={footerRef}
-      className="relative bg-black text-foreground pt-24 pb-32 overflow-hidden border-t border-white/5"
+      className="relative text-white pt-24 pb-16 overflow-hidden bg-background"
     >
-      {/* Background Layers Container (1:1 with Target Image) */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Left: Massive ambient blue glow resting in the bottom left corner, stretched higher */}
+      <div className="relative z-10 px-4 md:px-16 lg:px-96">
+        {/* CTA card */}
         <div
-          ref={bgBlueLeftRef}
-          className="absolute w-[100vw] sm:w-[100vw] h-[80vh] rounded-[100%] bg-[#14349D] blur-[140px] opacity-70 -bottom-[40vh]"
-        ></div>
-
-        {/* Left Core: The bright "weiß unten" glow, shorter and very blurry for smooth transition */}
-        <div
-          ref={bgWhiteRef}
-          className="absolute w-[70vw] sm:w-[90vw] h-[10vh] rounded-[100%] bg-[rgba(200,230,255,1)] blur-[120px] opacity-90 -bottom-[20vh]"
-        ></div>
-      </div>
-
-      <div
-        ref={contentRef}
-        className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 lg:px-24"
-      >
-        {/* Massive Footer CTA */}
-        <div className="relative overflow-hidden rounded-[3rem] p-12 md:p-24 mb-20 border border-white/10 flex flex-col items-center text-center gap-8 bg-white/5 backdrop-blur-2xl shadow-2xl">
-          <div className="relative z-10 flex flex-col items-center">
-            <h2 className="text-4xl md:text-5xl font-regular tracking-normal mb-4 font-sans text-white pb-2">
-              10+ qualified meetings consistently.
-              <br />
-              <span className="text-white/60">Pay after they show up.</span>
-            </h2>
-            <p className="text-white/70 text-lg md:text-xl max-w-lg">
-              Two weeks of warmup. Then interested replies start coming in.
-            </p>
-          </div>
-
-          <div className="relative z-10 w-full sm:w-auto mt-2">
-            <MagneticButton
-              variant="heroPrimary"
-              className="w-full sm:w-auto text-base py-4 px-8 shadow-xl"
-              onClick={() =>
-                window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
-                  "_blank",
-                )
-              }
-            >
-              Claim Your Spot <ArrowUpRight size={22} className="ml-1" />
-            </MagneticButton>
-          </div>
+          className="mb-24 overflow-hidden flex flex-col items-center text-center gap-8 py-20 px-8"
+          style={{
+            backgroundImage: `url(${import.meta.env.BASE_URL}bg3.png)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <h2 className="text-3xl md:text-5xl font-medium tracking-normal font-serif text-foreground max-w-2xl leading-tight">
+            Ready to book qualified calls on a performance basis?
+          </h2>
+          <MagneticButton
+            variant="heroPrimary"
+            className="text-base py-4 px-8"
+            onClick={() =>
+              window.open(
+                "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
+                "_blank",
+              )
+            }
+          >
+            Get Qualified Calls
+          </MagneticButton>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 border-t border-white/10 pt-8">
-          {/* Left: Brand Identity */}
-          <div className="flex flex-col items-center md:items-start">
-            <div className="flex items-center gap-2 mb-2">
-              <img
-                src={`${import.meta.env.BASE_URL}ScalarAI.png`}
-                alt="ScalarAI Logo"
-                className="h-10 brightness-0 invert"
-              />
-              <span className="text-xl tracking-tight font-sans text-white">
-                Scalar AI
-              </span>
-            </div>
-            <p className="text-white/40 text-sm">
-              More revenue through automation and AI
-            </p>
+        {/* Bottom bar */}
+        <div className="border-t border-borderLight pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2">
+            <img
+              src={`${import.meta.env.BASE_URL}ScalarAI.png`}
+              alt="ScalarAI Logo"
+              className="h-10 brightness-0 invert"
+            />
+            <span className="text-xl tracking-tight font-sans text-foreground">
+              Scalar AI
+            </span>
           </div>
 
-          {/* Right: Legal Links & Copyright */}
-          <div className="flex flex-col items-center md:items-end gap-2 text-xs font-mono text-white/40 mt-4 md:mt-0">
-            <div className="flex gap-6 mb-2">
+          <div className="flex flex-col items-center md:items-end gap-2 text-xs font-mono text-muted">
+            <div className="flex gap-6 mb-1">
               <a
                 href="/imprint"
-                className="hover:text-white transition-colors"
+                className="hover:text-foreground transition-colors"
               >
                 Imprint
               </a>
               <a
                 href="/privacy-policy"
-                className="hover:text-white transition-colors"
+                className="hover:text-foreground transition-colors"
               >
                 Privacy Policy
               </a>

@@ -5,18 +5,21 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const ResultCard = ({ chip, title }) => (
-  <div className="cr-element bg-surface border border-borderLight rounded-[2rem] p-8 md:p-10 flex flex-col gap-6">
-    <span className="self-start inline-flex items-center gap-1.5 bg-surface2 border border-borderLight text-muted text-xs font-mono px-3 py-1.5 rounded-full">
-      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
-      {chip}
-    </span>
-
-    <h3 className="text-2xl md:text-3xl font-semibold text-foreground leading-tight tracking-tight">
-      {title}
-    </h3>
+  <div className="cr-element flex flex-col gap-0 bg-surface rounded-none overflow-hidden border border-pillBorder">
+    <div
+      className="flex flex-col gap-3 px-8 md:px-10 py-8"
+      style={{ backgroundColor: "#111111" }}
+    >
+      <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-muted">
+        {chip}
+      </span>
+      <h3 className="text-2xl md:text-3xl font-semibold text-foreground leading-tight tracking-tight">
+        {title}
+      </h3>
+    </div>
 
     <div
-      className="w-full rounded-[1.25rem] overflow-hidden border border-borderLight"
+      className="w-full overflow-hidden"
       style={{ aspectRatio: "1344 / 235" }}
     >
       <img
@@ -53,22 +56,22 @@ const CampaignResults = () => {
     <section
       id="results"
       ref={sectionRef}
-      className="w-full bg-background py-24 px-6"
+      className="w-full bg-background py-16 md:py-24 px-4 md:px-16 lg:px-96"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-16 flex flex-col items-center text-center gap-4">
-          <h2 className="cr-element text-4xl md:text-5xl font-medium tracking-normal text-foreground font-sans leading-tight pb-2">
-            Client Results
+      <div>
+        <div className="cr-element mb-10 flex flex-col items-start text-left gap-4">
+          <div className="flex items-center px-4 py-1.5 rounded-full border border-pillBorder">
+            <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted">
+              Client Results
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-medium text-foreground font-serif leading-tight">
+            Our clients are booking calls and closing deals
           </h2>
-          <p className="cr-element text-lg text-muted max-w-md font-medium">
-            Here's what happens when you combine AI with proven cold email
-            systems.
-          </p>
         </div>
-
         <ResultCard
           chip="Software & Mixed-Market Campaigns"
-          title="10% reply rate. 13 sales meetings booked."
+          title="26 sales meetings booked - $218,400 pipeline created"
         />
       </div>
     </section>

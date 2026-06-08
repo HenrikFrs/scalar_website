@@ -43,7 +43,7 @@ const Philosophy = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-40 px-6 md:px-12 lg:px-24 bg-white border-t border-borderLight overflow-hidden flex justify-center w-full">
+        <section ref={sectionRef} className="py-40 px-6 md:px-12 lg:px-24 bg-white overflow-hidden flex justify-center w-full">
             <div className="max-w-5xl w-full">
                 <div className="flex flex-col gap-12 md:gap-24 items-center">
 
@@ -56,8 +56,8 @@ const Philosophy = () => {
 
                     <div ref={textRef2} className="w-full text-right max-w-4xl self-end">
                         <h2 className="text-4xl md:text-6xl lg:text-[5rem] text-dark tracking-tight leading-[1.05] overflow-hidden">
-                            <span className="reveal-line block font-sans font-medium mb-2 text-white pb-1">We deliver systems</span>
-                            <span className="reveal-line block font-sans font-medium text-white/50 pb-2">that directly generate revenue.</span>
+                            <span className="reveal-line block font-sans font-medium mb-2 text-foreground pb-1">We deliver systems</span>
+                            <span className="reveal-line block font-sans font-medium text-muted pb-2">that directly generate revenue.</span>
                         </h2>
                     </div>
 

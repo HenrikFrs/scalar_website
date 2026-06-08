@@ -1,15 +1,16 @@
 import React, { useEffect, useRef } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
-import Lenis from "lenis";
 import { Navbar, Hero } from "./components/Header";
 import CampaignResults from "./components/CampaignResults";
+import Problem from "./components/Problem";
+import Process from "./components/Process";
+import Deliverables from "./components/Deliverables";
+import Comparison from "./components/Comparison";
+import Timeline from "./components/Timeline";
 import Offer from "./components/Offer";
+import ROICalculator from "./components/ROICalculator";
 import Advantage from "./components/Advantage";
 // import Features from "./components/Features"; // hidden
 import Protocol from "./components/Protocol";
@@ -22,45 +23,24 @@ import CookieBanner from "./components/CookieBanner";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const lenisRef = { current: null };
-
 const Home = () => (
   <>
     <Hero />
     <CampaignResults />
-    <Advantage />
-    <Offer />
+    <Problem />
+    <Process />
+    <Comparison />
+    <ROICalculator />
     <Testimonials />
     <FAQ />
   </>
 );
 
 function App() {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-    });
-    lenisRef.current = lenis;
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-      lenisRef.current = null;
-    };
-  }, []);
 
   return (
     <Router basename="/">
-      <div className="min-h-screen bg-background text-foreground relative selection:bg-foreground selection:text-background overflow-x-hidden">
+      <div className="min-h-screen bg-background text-foreground relative selection:bg-foreground selection:text-white overflow-x-hidden">
         <Navbar />
         <main>
           <Routes>

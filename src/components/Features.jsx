@@ -108,7 +108,7 @@ const Typewriter = () => {
   }, [text, isTyping, msgIdx, messages]);
 
   return (
-    <div className="h-48 w-full bg-surface2 rounded-xl flex flex-col p-4 relative overflow-hidden border border-borderLight shadow-inner">
+    <div className="h-48 w-full bg-surface2 rounded-xl flex flex-col p-4 relative overflow-hidden shadow-inner">
       <div className="flex items-center gap-2 mb-3">
         <span className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse"></span>
         <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
@@ -127,7 +127,7 @@ const Typewriter = () => {
 // --- SCHEDULER (KI- und Automatisierungsberatung) ---
 const ChartAnimation = () => {
   return (
-    <div className="h-48 w-full bg-surface rounded-xl border border-borderLight p-5 relative overflow-hidden flex flex-col justify-end gap-2">
+    <div className="h-48 w-full bg-surface rounded-xl p-5 relative overflow-hidden flex flex-col justify-end gap-2">
       <div className="absolute top-4 left-4 text-[10px] font-mono text-muted uppercase">
         Revenue Impact
       </div>
@@ -166,7 +166,7 @@ const ChartAnimation = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center mt-2 border-t border-borderLight pt-2">
+      <div className="flex justify-between items-center mt-2 pt-2">
         <div className="text-[10px] font-mono text-muted">
           REVENUE POTENTIAL
         </div>
@@ -190,11 +190,11 @@ const Features = () => {
   return (
     <section
       id="features"
-      className="py-24 px-6 md:px-12 lg:px-24 bg-background relative z-10 border-t border-borderLight/50"
+      className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-background relative z-10/50"
     >
       <div className="max-w-6xl mx-auto">
         <div className="mb-16 md:mb-24 flex flex-col items-center text-center gap-4">
-          <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-foreground font-sans leading-tight pb-2">
+          <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-foreground font-serif leading-tight pb-2">
             What we <span className="text-muted/80">specialize in</span>
           </h2>
           <p className="text-lg text-muted max-w-md font-medium">
@@ -204,7 +204,7 @@ const Features = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="bg-surface rounded-3xl p-8 md:p-10 flex flex-col border border-borderLight hover:border-foreground/20 transition-colors">
+          <div className="bg-surface rounded-3xl p-8 md:p-10 flex flex-col">
             <h3 className="font-medium text-xl mb-3 text-foreground flex items-center gap-3 pb-1">
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Network size={20} className="text-foreground" />
@@ -218,7 +218,7 @@ const Features = () => {
             <Shuffler />
           </div>
 
-          <div className="bg-surface rounded-3xl p-8 md:p-10 flex flex-col border border-borderLight hover:border-foreground/20 transition-colors">
+          <div className="bg-surface rounded-3xl p-8 md:p-10 flex flex-col">
             <h3 className="font-medium text-xl mb-3 text-foreground flex items-center gap-3 pb-1">
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Activity size={20} className="text-foreground" />
@@ -233,7 +233,7 @@ const Features = () => {
             <Typewriter />
           </div>
 
-          <div className="bg-surface rounded-3xl p-8 md:p-10 flex flex-col border border-borderLight hover:border-foreground/20 transition-colors">
+          <div className="bg-surface rounded-3xl p-8 md:p-10 flex flex-col">
             <h3 className="font-medium text-xl mb-3 text-foreground flex items-center gap-3 pb-1">
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Presentation size={20} className="text-foreground" />
