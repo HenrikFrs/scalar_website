@@ -54,17 +54,17 @@ const Timeline = () => {
     <section
       id="timeline"
       ref={sectionRef}
-      className="py-16 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
+      className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
       <div>
         {/* Header */}
         <div className="tl-header mb-16 flex flex-col items-start text-left gap-4">
-          <div className="flex items-center px-4 py-1.5 rounded-full border border-pillBorder">
-            <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted">
+          <div className="flex items-center px-4 py-2" style={{ backgroundColor: "rgba(59,130,246,0.1)", backdropFilter: "blur(8px)", borderRadius: "9999px" }}>
+            <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.16em] leading-none translate-y-px" style={{ color: "#3b82f6" }}>
               Timeline
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground font-serif leading-tight">
+          <h2 className="text-3xl md:text-5xl font-medium text-foreground font-serif leading-tight">
             A Clear Timeline to Your
             <br />
             First Qualified Meeting

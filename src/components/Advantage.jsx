@@ -231,11 +231,11 @@ const Advantage = () => {
     <section
       id="advantage"
       ref={sectionRef}
-      className="py-16 md:py-24 px-4 md:px-16 lg:px-96 bg-background relative z-10/50"
+      className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background relative z-10/50"
     >
       <div>
         <div className="mb-16 md:mb-24 flex flex-col items-start text-left gap-4">
-          <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-foreground font-serif leading-tight pb-2">
+          <h2 className="text-3xl md:text-5xl font-medium tracking-normal text-foreground font-serif leading-tight pb-2">
             Why It Works
           </h2>
           <p className="text-lg text-muted max-w-md font-medium">

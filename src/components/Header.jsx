@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { BGPattern } from "./ui/bg-pattern";
 
 export const MagneticButton = ({
   children,
@@ -53,15 +52,18 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-[60] w-full backdrop-blur-xl bg-background/60">
-        <nav className="flex items-center w-full px-6 md:px-12 py-2 md:py-2">
-          <a href="/" className="flex items-center gap-3 flex-shrink-0">
+      <header className="fixed top-0 left-0 right-0 z-[60] w-full bg-background border-b border-pillBorder">
+        <nav className="flex items-center w-full px-4 md:px-8 py-1">
+          <a
+            href="/"
+            className="flex items-center align-middle gap-1 md:gap-2 flex-shrink-0"
+          >
             <img
               src={`${import.meta.env.BASE_URL}ScalarAI.png`}
               alt="ScalarAI Logo"
               className="h-10 brightness-0 invert"
             />
-            <span className="hidden md:inline text-xl md:text-lg font-regular tracking-tight font-sans text-white">
+            <span className="text-sm md:text-lg font-regular tracking-tight font-sans text-white">
               Scalar AI
             </span>
           </a>
@@ -213,42 +215,35 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-start px-4 md:px-16 lg:px-96 pt-20 md:pt-32 pb-16 md:pb-24 text-white overflow-hidden"
+      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-start px-4 md:px-16 lg:px-96 pt-24 md:pb-24 text-white overflow-hidden"
     >
-      <BGPattern variant="grid" mask="fade-edges" size={72} fill="#2a2a2a" />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle 1300px at 50% -400px, rgba(29,78,216,0.45) 0%, transparent 70%)",
-          filter: "blur(100px)",
-          zIndex: 1,
-        }}
-      />
       <div className="relative z-10 w-full flex flex-col items-center gap-8">
         <div className="w-full max-w-5xl flex flex-col items-center text-center gap-8">
           <div
-            className="hero-element flex items-center px-4 py-1.5 rounded-full border"
+            className="hero-element flex items-center px-4 py-2"
             style={{
-              borderColor: "rgba(255,255,255,0.1)",
-              backgroundColor: "rgba(255,255,255,0.03)",
+              backgroundColor: "rgba(59,130,246,0.1)",
               backdropFilter: "blur(8px)",
+              borderRadius: "9999px",
             }}
           >
-            <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-white">
+            <span
+              className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.16em] leading-none translate-y-px"
+              style={{ color: "#3b82f6" }}
+            >
               Pure Performance Basis
             </span>
           </div>
 
           <h1
-            className="hero-element text-4xl md:text-7xl tracking-tight leading-[1.05] text-white"
+            className="hero-element text-3xl md:text-6xl tracking-tight leading-[1.05] text-white"
             style={{ fontFamily: "'Hedvig Letters Serif', serif" }}
           >
             10 to 30+ qualified sales calls per month - pay per attended call
           </h1>
 
           <p
-            className="hero-element text-lg leading-relaxed max-w-3xl"
+            className="hero-element text-md md:text-lg leading-relaxed max-w-3xl"
             style={{ color: "#5C5C5C" }}
           >
             We identify your ideal prospects and reach out with deeply

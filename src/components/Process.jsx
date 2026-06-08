@@ -69,15 +69,25 @@ const Process = () => {
     <section
       id="process"
       ref={sectionRef}
-      className="py-16 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
+      className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
       <div className="process-header mb-20 flex flex-col items-start text-left gap-4">
-        <div className="flex items-center px-4 py-1.5 rounded-full border border-pillBorder">
-          <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted">
+        <div
+          className="flex items-center px-4 py-2"
+          style={{
+            backgroundColor: "rgba(59,130,246,0.1)",
+            backdropFilter: "blur(8px)",
+            borderRadius: "9999px",
+          }}
+        >
+          <span
+            className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.16em] leading-none translate-y-px"
+            style={{ color: "#3b82f6" }}
+          >
             The Solution
           </span>
         </div>
-        <h2 className="text-4xl md:text-5xl font-medium text-foreground font-serif leading-tight">
+        <h2 className="text-3xl md:text-5xl font-medium text-foreground font-serif leading-tight">
           One System Designed For Consistent Pipeline
         </h2>
       </div>
@@ -101,7 +111,7 @@ const Process = () => {
             <div
               className={`flex flex-col gap-3 ${index < steps.length - 1 ? "pb-16" : ""}`}
             >
-              <p className="font-medium text-foreground text-2xl md:text-3xl leading-snug">
+              <p className="font-medium text-foreground text-xl md:text-2xl leading-snug">
                 {step.title}
               </p>
               <ul className="flex flex-col gap-2">

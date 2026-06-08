@@ -190,11 +190,11 @@ const Features = () => {
   return (
     <section
       id="features"
-      className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-background relative z-10/50"
+      className="py-12 md:py-24 px-6 md:px-12 lg:px-24 bg-background relative z-10/50"
     >
       <div className="max-w-6xl mx-auto">
         <div className="mb-16 md:mb-24 flex flex-col items-center text-center gap-4">
-          <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-foreground font-serif leading-tight pb-2">
+          <h2 className="text-3xl md:text-5xl font-medium tracking-normal text-foreground font-serif leading-tight pb-2">
             What we <span className="text-muted/80">specialize in</span>
           </h2>
           <p className="text-lg text-muted max-w-md font-medium">

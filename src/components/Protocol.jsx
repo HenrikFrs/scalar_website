@@ -54,12 +54,12 @@ const Protocol = () => {
   return (
     <section
       id="process"
-      className="bg-background py-20 md:py-32 px-6 md:px-12 lg:px-24"
+      className="bg-background py-12 md:py-32 px-6 md:px-12 lg:px-24"
       ref={containerRef}
     >
       <div className="max-w-6xl mx-auto">
         <div className="mb-20 text-center">
-          <h2 className="text-4xl md:text-5xl font-medium font-sans tracking-normal text-foreground mb-6 pb-2">
+          <h2 className="text-3xl md:text-5xl font-medium font-sans tracking-normal text-foreground mb-6 pb-2">
             How we <span className="text-muted">work</span>
           </h2>
           <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
