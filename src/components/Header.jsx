@@ -148,7 +148,7 @@ export const Navbar = () => {
                 )
               }
             >
-              See If You Qualify
+              Schedule a Call
             </MagneticButton>
           </div>
         </div>
@@ -212,12 +212,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-start px-4 md:px-16 lg:px-96 pt-28 md:pt-32 pb-16 md:pb-24 text-white overflow-hidden"
-      style={{
-        backgroundImage: `url(${import.meta.env.BASE_URL}bg3.png)`,
-        backgroundSize: "cover",
-        backgroundPosition: "75% center",
-      }}
+      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-start px-4 md:px-16 lg:px-96 pt-16 md:pt-32 pb-16 md:pb-24 text-white overflow-hidden"
     >
       <div className="relative z-10 w-full flex flex-col items-center gap-8">
         <div className="w-full max-w-5xl flex flex-col items-center text-center gap-8">
@@ -234,7 +229,7 @@ export const Hero = () => {
             className="hero-element text-4xl md:text-7xl tracking-tight leading-[1.05] text-white"
             style={{ fontFamily: "'Hedvig Letters Serif', serif" }}
           >
-            10 to 30+ qualified sales calls per month - Pay per attended call
+            10 to 30+ qualified sales calls per month - pay per attended call
           </h1>
 
           <p

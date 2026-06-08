@@ -12,14 +12,7 @@ const Footer = () => {
     >
       <div className="relative z-10 px-4 md:px-16 lg:px-96">
         {/* CTA card */}
-        <div
-          className="mb-24 overflow-hidden flex flex-col items-center text-center gap-8 py-20 px-8"
-          style={{
-            backgroundImage: `url(${import.meta.env.BASE_URL}bg3.png)`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
+        <div className="mb-24 overflow-hidden flex flex-col items-center text-center gap-8 py-20 px-8">
           <h2 className="text-3xl md:text-5xl font-medium tracking-normal font-serif text-foreground max-w-2xl leading-tight">
             Ready to book qualified calls on a performance basis?
           </h2>
