@@ -7,19 +7,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 const cards = [
   {
-    icon: <Unplug size={22} className="text-foreground" />,
+    icon: <Unplug size={22} className="text-lt-foreground" />,
     title: "No serious outbound motion",
     description:
       "Relying on referrals and inbound leads makes you dependent on external factors - you can't plan around them and you can't scale them. There's an entire market of qualified prospects that need your exact solution but will never find you on their own. Outbound is the way to reach them.",
   },
   {
-    icon: <MessageSquareX size={22} className="text-foreground" />,
+    icon: <MessageSquareX size={22} className="text-lt-foreground" />,
     title: "Outreach that doesn't convert",
     description:
       "The reason most outreach gets ignored is not because it doesn't work, but because it's done poorly. Either the targeting is off and they're reaching people the offer simply isn't relevant to, or the messaging fails to build enough curiosity and trust to get replies. Generic templates that could have been sent to anyone don't feel specific or relevant, and prospects can tell immediately.",
   },
   {
-    icon: <TrendingDown size={22} className="text-foreground" />,
+    icon: <TrendingDown size={22} className="text-lt-foreground" />,
     title: "Not reaching enough prospects",
     description:
       "Even when outreach is done well, most companies simply don't do enough volume to generate consistent pipeline. The reason is that manually researched and personalized outreach is slow and expensive. Without the right systems, you can't have both quality and scale the same time and the math doesn't work.",
@@ -47,18 +47,18 @@ const Problem = () => {
     <section
       id="problem"
       ref={sectionRef}
-      className="py-16 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
+      className="py-16 md:py-24 px-4 md:px-16 lg:px-96 bg-lt-background"
     >
       <div className="prob-element mb-12 flex flex-col items-start text-left gap-4">
-        <div className="flex items-center px-4 py-1.5 rounded-full border border-pillBorder">
-          <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted">
+        <div className="flex items-center px-4 py-1.5 rounded-full border border-lt-pillBorder">
+          <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-lt-muted">
             The Problem
           </span>
         </div>
-        <h2 className="text-4xl md:text-5xl font-medium text-foreground font-serif leading-tight">
+        <h2 className="text-4xl md:text-5xl font-medium text-lt-foreground font-serif leading-tight">
           The Problem With Most Growth Strategies
         </h2>
-        <p className="text-lg text-muted">
+        <p className="text-lg text-lt-muted">
           If your pipeline isn't where you want it to be, one or more of these
           is probably why.
         </p>
@@ -68,18 +68,18 @@ const Problem = () => {
         {cards.map((card) => (
           <div
             key={card.title}
-            className="prob-element bg-surface rounded-none p-8 flex flex-col gap-4 border border-pillBorder"
+            className="prob-element bg-lt-surface rounded-none p-8 flex flex-col gap-4 border border-lt-pillBorder"
           >
             <div
               className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: "#0d0d0d" }}
+              style={{ backgroundColor: "#E8E8E8" }}
             >
               {card.icon}
             </div>
-            <p className="font-medium text-foreground text-base leading-snug">
+            <p className="font-medium text-lt-foreground text-base leading-snug">
               {card.title}
             </p>
-            <p className="text-muted text-sm leading-relaxed">
+            <p className="text-lt-muted text-sm leading-relaxed">
               {card.description}
             </p>
           </div>

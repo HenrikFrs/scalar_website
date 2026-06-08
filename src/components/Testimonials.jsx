@@ -38,13 +38,11 @@ const TestimonialCard = ({ highlight, quote, author, role, image }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-surface p-8 md:p-10 flex flex-col border border-pillBorder h-full">
-      {/* Highlight quote */}
-      <p className="text-foreground font-medium text-lg leading-snug mb-4">
+    <div className="bg-lt-surface p-8 md:p-10 flex flex-col border border-lt-pillBorder h-full">
+      <p className="text-lt-foreground font-medium text-lg leading-snug mb-4">
         {highlight}
       </p>
 
-      {/* Expandable full quote */}
       <div
         className="overflow-hidden transition-all duration-500 ease-in-out"
         style={{
@@ -52,20 +50,18 @@ const TestimonialCard = ({ highlight, quote, author, role, image }) => {
           opacity: expanded ? 1 : 0,
         }}
       >
-        <p className="text-muted text-sm leading-relaxed mb-4">{quote}</p>
+        <p className="text-lt-muted text-sm leading-relaxed mb-4">{quote}</p>
       </div>
 
-      {/* Read more toggle */}
       <button
         onClick={() => setExpanded((e) => !e)}
-        className="text-xs text-muted/60 hover:text-muted transition-colors duration-150 text-left mb-6 underline underline-offset-2 decoration-dotted w-fit"
+        className="text-xs text-lt-muted/60 hover:text-lt-muted transition-colors duration-150 text-left mb-6 underline underline-offset-2 decoration-dotted w-fit"
       >
         {expanded ? "Read less" : "Read full testimonial"}
       </button>
 
-      {/* Author */}
       <div className="mt-auto flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-surface2 flex-shrink-0 overflow-hidden flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full bg-lt-surface2 flex-shrink-0 overflow-hidden flex items-center justify-center">
           {image ? (
             <img
               src={image}
@@ -73,7 +69,7 @@ const TestimonialCard = ({ highlight, quote, author, role, image }) => {
               className="w-full h-full object-cover"
             />
           ) : (
-            <span className="text-xs font-medium text-muted font-sans">
+            <span className="text-xs font-medium text-lt-muted font-sans">
               {author
                 .split(" ")
                 .map((n) => n[0])
@@ -82,8 +78,8 @@ const TestimonialCard = ({ highlight, quote, author, role, image }) => {
           )}
         </div>
         <div>
-          <p className="font-medium text-foreground font-sans">{author}</p>
-          <p className="text-sm text-muted">{role}</p>
+          <p className="font-medium text-lt-foreground font-sans">{author}</p>
+          <p className="text-sm text-lt-muted">{role}</p>
         </div>
       </div>
     </div>
@@ -111,15 +107,15 @@ const Testimonials = () => {
     <section
       id="testimonials"
       ref={sectionRef}
-      className="py-20 md:py-32 px-4 md:px-16 lg:px-96 bg-background"
+      className="py-20 md:py-32 px-4 md:px-16 lg:px-96 bg-lt-background"
     >
       <div className="test-header mb-20 flex flex-col items-start text-left gap-4">
-        <div className="flex items-center px-4 py-1.5 rounded-full border border-pillBorder">
-          <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted">
+        <div className="flex items-center px-4 py-1.5 rounded-full border border-lt-pillBorder">
+          <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-lt-muted">
             Testimonials
           </span>
         </div>
-        <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-foreground font-serif pb-2">
+        <h2 className="text-4xl md:text-5xl font-medium tracking-normal text-lt-foreground font-serif pb-2">
           Our Clients Don't Just Get Results But Also Enjoy The Process.
         </h2>
       </div>

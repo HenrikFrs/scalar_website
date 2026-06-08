@@ -5,15 +5,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const ResultCard = ({ chip, title }) => (
-  <div className="cr-element flex flex-col gap-0 bg-surface rounded-none overflow-hidden border border-pillBorder">
-    <div
-      className="flex flex-col gap-3 px-8 md:px-10 py-8"
-      style={{ backgroundColor: "#111111" }}
-    >
-      <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-muted">
+  <div className="cr-element flex flex-col gap-0 bg-lt-surface rounded-none overflow-hidden border border-lt-pillBorder">
+    <div className="flex flex-col gap-3 px-8 md:px-10 py-8 bg-lt-surface">
+      <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-lt-muted">
         {chip}
       </span>
-      <h3 className="text-2xl md:text-3xl font-semibold text-foreground leading-tight tracking-tight">
+      <h3 className="text-2xl md:text-3xl font-semibold text-lt-foreground leading-tight tracking-tight">
         {title}
       </h3>
     </div>
@@ -56,16 +53,16 @@ const CampaignResults = () => {
     <section
       id="results"
       ref={sectionRef}
-      className="w-full bg-background py-16 md:py-24 px-4 md:px-16 lg:px-96"
+      className="w-full bg-lt-background py-16 md:py-24 px-4 md:px-16 lg:px-96"
     >
       <div>
         <div className="cr-element mb-10 flex flex-col items-start text-left gap-4">
-          <div className="flex items-center px-4 py-1.5 rounded-full border border-pillBorder">
-            <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted">
+          <div className="flex items-center px-4 py-1.5 rounded-full border border-lt-pillBorder">
+            <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-lt-muted">
               Client Results
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground font-serif leading-tight">
+          <h2 className="text-4xl md:text-5xl font-medium text-lt-foreground font-serif leading-tight">
             Our clients are booking calls and closing deals
           </h2>
         </div>

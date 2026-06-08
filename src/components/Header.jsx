@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { BGPattern } from "./ui/bg-pattern";
 
 export const MagneticButton = ({
   children,
@@ -212,15 +213,29 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-start px-4 md:px-16 lg:px-96 pt-16 md:pt-32 pb-16 md:pb-24 text-white overflow-hidden"
+      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-start px-4 md:px-16 lg:px-96 pt-20 md:pt-32 pb-16 md:pb-24 text-white overflow-hidden"
     >
+      <BGPattern variant="grid" mask="fade-edges" size={72} fill="#2a2a2a" />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle 1300px at 50% -400px, rgba(29,78,216,0.45) 0%, transparent 70%)",
+          filter: "blur(100px)",
+          zIndex: 1,
+        }}
+      />
       <div className="relative z-10 w-full flex flex-col items-center gap-8">
         <div className="w-full max-w-5xl flex flex-col items-center text-center gap-8">
           <div
             className="hero-element flex items-center px-4 py-1.5 rounded-full border"
-            style={{ borderColor: "#1C1C1C" }}
+            style={{
+              borderColor: "rgba(255,255,255,0.1)",
+              backgroundColor: "rgba(255,255,255,0.03)",
+              backdropFilter: "blur(8px)",
+            }}
           >
-            <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted">
+            <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-white">
               Pure Performance Basis
             </span>
           </div>

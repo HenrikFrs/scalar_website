@@ -8,9 +8,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Tooltip = ({ text }) => (
   <div className="relative group">
-    <Info size={13} className="text-muted/60 cursor-default" />
+    <Info size={13} className="text-lt-muted/60 cursor-default" />
     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
-      <div className="bg-surface3 border border-white/[0.10] rounded-2xl px-4 py-3 text-xs text-foreground leading-relaxed">
+      <div className="bg-lt-surface3 border border-lt-pillBorder rounded-2xl px-4 py-3 text-xs text-lt-foreground leading-relaxed">
         {text}
       </div>
     </div>
@@ -29,16 +29,16 @@ const SliderField = ({
 }) => {
   const pct = ((value - min) / (max - min)) * 100;
   const trackStyle = {
-    background: `linear-gradient(to right, #FAFAFA ${pct}%, #1a1a1a ${pct}%)`,
+    background: `linear-gradient(to right, #1A1A1A ${pct}%, #DEDEDE ${pct}%)`,
   };
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <label className="text-base font-sans text-foreground">{label}</label>
+          <label className="text-base font-sans text-lt-foreground">{label}</label>
           {tooltip && <Tooltip text={tooltip} />}
         </div>
-        <span className="text-sm font-sans text-foreground tabular-nums">
+        <span className="text-sm font-sans text-lt-foreground tabular-nums">
           {display}
         </span>
       </div>
@@ -56,7 +56,6 @@ const SliderField = ({
   );
 };
 
-// Fully custom dropdown — no native <select>
 const DropdownField = ({ label, value, options, onChange, tooltip }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -73,24 +72,24 @@ const DropdownField = ({ label, value, options, onChange, tooltip }) => {
   return (
     <div className="flex flex-col gap-4" ref={ref}>
       <div className="flex items-center gap-2">
-        <label className="text-base font-sans text-foreground">{label}</label>
+        <label className="text-base font-sans text-lt-foreground">{label}</label>
         {tooltip && <Tooltip text={tooltip} />}
       </div>
       <div className="relative">
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
-          className="w-full bg-surface2 rounded-xl px-4 py-3 text-sm font-sans text-foreground text-left flex items-center justify-between"
+          className="w-full bg-lt-surface2 rounded-xl px-4 py-3 text-sm font-sans text-lt-foreground text-left flex items-center justify-between"
         >
           <span>{selected?.label}</span>
           <ChevronDown
             size={14}
-            className="text-muted flex-shrink-0 transition-transform duration-200"
+            className="text-lt-muted flex-shrink-0 transition-transform duration-200"
             style={{ transform: open ? "scaleY(-1)" : "scaleY(1)" }}
           />
         </button>
         {open && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-surface2 rounded-xl overflow-hidden z-20 border border-white/[0.06]">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-lt-surface2 rounded-xl overflow-hidden z-20 border border-lt-pillBorder">
             {options.map((o) => (
               <button
                 key={o.value}
@@ -99,7 +98,7 @@ const DropdownField = ({ label, value, options, onChange, tooltip }) => {
                   onChange(o.value);
                   setOpen(false);
                 }}
-                className="w-full px-4 py-3 text-sm font-sans text-left text-muted hover:text-foreground hover:bg-white/[0.04] transition-colors duration-150"
+                className="w-full px-4 py-3 text-sm font-sans text-left text-lt-muted hover:text-lt-foreground hover:bg-black/[0.04] transition-colors duration-150"
               >
                 {o.label}
               </button>
@@ -111,7 +110,6 @@ const DropdownField = ({ label, value, options, onChange, tooltip }) => {
   );
 };
 
-// Fully custom number input with +/- buttons
 const NumberField = ({
   label,
   value,
@@ -130,37 +128,37 @@ const NumberField = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-2">
-        <label className="text-base font-sans text-foreground">{label}</label>
+        <label className="text-base font-sans text-lt-foreground">{label}</label>
         {tooltip && <Tooltip text={tooltip} />}
       </div>
-      <div className="flex items-center bg-surface2 rounded-xl overflow-hidden">
+      <div className="flex items-center bg-lt-surface2 rounded-xl overflow-hidden">
         <div className="flex-1 flex items-center px-4 py-3">
           {prefix && (
-            <span className="text-sm font-sans text-muted mr-1">{prefix}</span>
+            <span className="text-sm font-sans text-lt-muted mr-1">{prefix}</span>
           )}
           <input
             type="text"
             inputMode="numeric"
             value={value.toLocaleString("en-US")}
             onChange={(e) => handleChange(e.target.value.replace(/,/g, ""))}
-            className="bg-transparent text-sm font-sans text-foreground focus:outline-none w-full"
+            className="bg-transparent text-sm font-sans text-lt-foreground focus:outline-none w-full"
           />
           {suffix && (
-            <span className="text-sm font-sans text-muted ml-1">{suffix}</span>
+            <span className="text-sm font-sans text-lt-muted ml-1">{suffix}</span>
           )}
         </div>
         <div className="flex items-center flex-shrink-0">
           <button
             type="button"
             onClick={() => handleChange(value - step)}
-            className="px-3 py-3 text-muted hover:text-foreground transition-colors duration-150"
+            className="px-3 py-3 text-lt-muted hover:text-lt-foreground transition-colors duration-150"
           >
             <Minus size={14} />
           </button>
           <button
             type="button"
             onClick={() => handleChange(value + step)}
-            className="pl-3 pr-4 py-3 text-muted hover:text-foreground transition-colors duration-150"
+            className="pl-3 pr-4 py-3 text-lt-muted hover:text-lt-foreground transition-colors duration-150"
           >
             <Plus size={14} />
           </button>
@@ -174,17 +172,17 @@ const OutputRow = ({ label, value, highlight }) => (
   <div
     className={`flex items-center justify-between py-3 px-4 rounded-xl transition-colors duration-200 ${
       highlight
-        ? "bg-surface2 border border-white/[0.08]"
+        ? "bg-lt-surface2 border border-lt-pillBorder"
         : "border border-transparent"
     }`}
   >
     <span
-      className={`text-sm ${highlight ? "text-foreground font-medium" : "text-muted"}`}
+      className={`text-sm ${highlight ? "text-lt-foreground font-medium" : "text-lt-muted"}`}
     >
       {label}
     </span>
     <span
-      className={`font-sans tabular-nums ${highlight ? "text-foreground font-bold text-base" : "text-sm text-foreground/70"}`}
+      className={`font-sans tabular-nums ${highlight ? "text-lt-foreground font-bold text-base" : "text-sm text-lt-foreground/70"}`}
     >
       {value}
     </span>
@@ -246,27 +244,27 @@ const ROICalculator = () => {
     <section
       id="roi-calculator"
       ref={sectionRef}
-      className="w-full bg-background py-16 md:py-24 px-4 md:px-16 lg:px-96 section-border"
+      className="w-full bg-lt-background py-16 md:py-24 px-4 md:px-16 lg:px-96 section-border"
     >
       <div className="flex flex-col items-start">
         {/* Header */}
         <div className="roi-element mb-16 flex flex-col items-start text-left gap-4">
-          <div className="flex items-center px-4 py-1.5 rounded-full border border-pillBorder">
-            <span className="text-[11px] font-sans uppercase tracking-[0.16em] text-muted">
+          <div className="flex items-center px-4 py-1.5 rounded-full border border-lt-pillBorder">
+            <span className="text-[11px] font-sans uppercase tracking-[0.16em] text-lt-muted">
               ROI Calculator
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground font-serif leading-tight pb-2">
+          <h2 className="text-4xl md:text-5xl font-medium text-lt-foreground font-serif leading-tight pb-2">
             See it in Numbers
           </h2>
-          <p className="text-lg text-muted">
+          <p className="text-lg text-lt-muted">
             Plug in your campaign parameters and business economics to project
             your monthly return.
           </p>
         </div>
 
         {/* Calculator card */}
-        <div className="roi-element w-full bg-surface p-8 md:p-10 flex flex-col gap-8 border border-pillBorder">
+        <div className="roi-element w-full bg-lt-surface p-8 md:p-10 flex flex-col gap-8 border border-lt-pillBorder">
           <div className="flex flex-col gap-7">
             <SliderField
               label="Leads Reached / Month"
@@ -348,8 +346,8 @@ const ROICalculator = () => {
                 { label: "Closed Clients", value: fmt(closed) },
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-col gap-1">
-                  <span className="text-xs font-sans text-muted">{label}</span>
-                  <span className="text-xl font-sans font-light text-foreground tabular-nums leading-none">
+                  <span className="text-xs font-sans text-lt-muted">{label}</span>
+                  <span className="text-xl font-sans font-light text-lt-foreground tabular-nums leading-none">
                     {value}
                   </span>
                 </div>
@@ -358,25 +356,25 @@ const ROICalculator = () => {
 
             {/* Pipeline sentence + subline */}
             <div className="flex flex-col gap-10">
-              <p className="text-4xl md:text-5xl font-sans font-light text-foreground leading-tight">
+              <p className="text-4xl md:text-5xl font-sans font-light text-lt-foreground leading-tight">
                 Your projected pipeline value is{" "}
                 <span className="font-normal">{fmtMoney(totalPipeline)}</span>{" "}
                 per month.
               </p>
               <div className="flex items-center justify-between gap-4">
-                <p className="text-md font-sans text-muted leading-relaxed">
+                <p className="text-md font-sans text-lt-muted leading-relaxed">
                   Net ROI after fees:{" "}
-                  <span className="text-foreground/70">{fmtMoney(roi)}</span>
+                  <span className="text-lt-foreground/70">{fmtMoney(roi)}</span>
                   {" · "}
                   Return multiple:{" "}
-                  <span className="text-foreground/70">{roiMultiple}×</span>
+                  <span className="text-lt-foreground/70">{roiMultiple}×</span>
                 </p>
                 <div className="relative group flex-shrink-0">
-                  <span className="text-xs font-sans text-muted/60 cursor-default underline underline-offset-2 decoration-dotted">
+                  <span className="text-xs font-sans text-lt-muted/60 cursor-default underline underline-offset-2 decoration-dotted">
                     How is this calculated?
                   </span>
                   <div className="absolute bottom-full right-0 mb-2 w-80 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
-                    <div className="bg-surface3 border border-white/[0.10] rounded-2xl px-4 py-3 text-xs text-foreground leading-relaxed">
+                    <div className="bg-lt-surface3 border border-lt-pillBorder rounded-2xl px-4 py-3 text-xs text-lt-foreground leading-relaxed">
                       {leadsReached.toLocaleString()} leads ÷ {msgPerResponse} ={" "}
                       {fmt(interestedLeads)} interested leads → ×{bookingPct}%
                       booking = {fmt(bookedCalls)} booked calls → ×{showRate}%
@@ -396,7 +394,7 @@ const ROICalculator = () => {
 
           <div className="flex justify-center mt-4">
             <MagneticButton
-              variant="heroPrimary"
+              variant="dark"
               className="text-sm py-3 px-8"
               onClick={() =>
                 window.open(
