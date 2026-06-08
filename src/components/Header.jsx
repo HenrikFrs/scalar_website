@@ -212,7 +212,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-start px-4 md:px-16 lg:px-96 pt-44 md:pt-32 pb-16 md:pb-24 text-white overflow-hidden"
+      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-start px-4 md:px-16 lg:px-96 pt-28 md:pt-32 pb-16 md:pb-24 text-white overflow-hidden"
       style={{
         backgroundImage: `url(${import.meta.env.BASE_URL}bg3.png)`,
         backgroundSize: "cover",
