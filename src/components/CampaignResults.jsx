@@ -1,8 +1,4 @@
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import React from "react";
 
 const ResultCard = ({ chip, title }) => (
   <div className="cr-element flex flex-col gap-0 bg-surface rounded-none overflow-hidden border border-pillBorder">
@@ -29,31 +25,9 @@ const ResultCard = ({ chip, title }) => (
 );
 
 const CampaignResults = () => {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".cr-element", {
-        y: 30,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.12,
-        ease: "power3.out",
-        immediateRender: false,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
       id="results"
-      ref={sectionRef}
       className="w-full bg-background py-12 md:py-24 px-4 md:px-16 lg:px-96"
     >
       <div>
