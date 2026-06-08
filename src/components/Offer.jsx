@@ -122,7 +122,7 @@ const Offer = () => {
             className="w-full justify-center text-sm py-3 px-8"
             onClick={() =>
               window.open(
-                "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
+                "https://cal.com/henrik-freisleben-3prokl/outbound-system",
                 "_blank",
               )
             }

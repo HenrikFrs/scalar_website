@@ -8,11 +8,11 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="relative text-white pt-24 pb-16 overflow-hidden bg-background"
+      className="relative text-white pt-12 pb-16 overflow-hidden bg-background"
     >
       <div className="relative z-10 px-4 md:px-16 lg:px-96">
         {/* CTA card */}
-        <div className="mb-24 overflow-hidden flex flex-col items-center text-center gap-8 py-20 px-8">
+        <div className="mb-12 overflow-hidden flex flex-col items-center text-center gap-8 pb-12 px-8">
           <h2 className="text-3xl md:text-5xl font-medium tracking-normal font-serif text-foreground max-w-2xl leading-tight">
             Ready to book qualified calls on a performance basis?
           </h2>
@@ -21,12 +21,12 @@ const Footer = () => {
             className="text-base py-4 px-8"
             onClick={() =>
               window.open(
-                "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
+                "https://cal.com/henrik-freisleben-3prokl/outbound-system",
                 "_blank",
               )
             }
           >
-            Get Qualified Calls
+            Get Started
           </MagneticButton>
         </div>
 

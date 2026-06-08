@@ -63,7 +63,7 @@ export const Navbar = () => {
               alt="ScalarAI Logo"
               className="h-10 brightness-0 invert"
             />
-            <span className="text-sm md:text-lg font-regular tracking-tight font-sans text-white">
+            <span className="text-sm md:text-lg font-regular tracking-tight font-sans text-white translate-y-px">
               Scalar AI
             </span>
           </a>
@@ -90,7 +90,7 @@ export const Navbar = () => {
               className="px-0 py-3 text-sm"
               onClick={() =>
                 window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
+                  "https://cal.com/henrik-freisleben-3prokl/outbound-system",
                   "_blank",
                 )
               }
@@ -104,10 +104,10 @@ export const Navbar = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span
-              className={`w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileMenuOpen ? "rotate-45 translate-y-[4px]" : ""}`}
+              className={`w-6 h-[2px] rounded-full transition-all duration-300 bg-muted ${mobileMenuOpen ? "rotate-45 translate-y-[4px]" : ""}`}
             ></span>
             <span
-              className={`w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileMenuOpen ? "-rotate-45 -translate-y-[4px]" : ""}`}
+              className={`w-6 h-[2px] rounded-full transition-all duration-300 bg-muted ${mobileMenuOpen ? "-rotate-45 -translate-y-[4px]" : ""}`}
             ></span>
           </button>
         </nav>
@@ -128,7 +128,7 @@ export const Navbar = () => {
             <a
               key={label}
               href={`#${href}`}
-              className={`text-lg font-medium py-2 transition-all duration-300 text-white hover:text-white/60 w-full text-center ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              className={`text-lg font-medium py-2 transition-all duration-300 text-muted hover:text-foreground w-full text-center ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
               style={{
                 transitionDelay: mobileMenuOpen ? `${i * 50}ms` : "0ms",
               }}
@@ -146,7 +146,7 @@ export const Navbar = () => {
               className="w-full justify-center text-sm py-3.5 px-6"
               onClick={() =>
                 window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
+                  "https://cal.com/henrik-freisleben-3prokl/outbound-system",
                   "_blank",
                 )
               }
@@ -256,7 +256,7 @@ export const Hero = () => {
             className="hero-element text-sm py-3 px-8"
             onClick={() =>
               window.open(
-                "https://cal.com/henrik-freisleben-3prokl/ai-cold-outbound",
+                "https://cal.com/henrik-freisleben-3prokl/outbound-system",
                 "_blank",
               )
             }

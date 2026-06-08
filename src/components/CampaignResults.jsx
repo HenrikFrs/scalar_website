@@ -39,6 +39,7 @@ const CampaignResults = () => {
         duration: 0.9,
         stagger: 0.12,
         ease: "power3.out",
+        immediateRender: false,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
