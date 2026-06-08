@@ -60,7 +60,7 @@ export const Navbar = () => {
               alt="ScalarAI Logo"
               className="h-10 brightness-0 invert"
             />
-            <span className="text-xl md:text-lg font-regular tracking-tight font-sans text-white">
+            <span className="hidden md:inline text-xl md:text-lg font-regular tracking-tight font-sans text-white">
               Scalar AI
             </span>
           </a>
