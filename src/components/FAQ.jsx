@@ -58,11 +58,11 @@ const FAQ = () => {
     const ctx = gsap.context(() => {
       gsap.from(".faq-header", {
         y: 30, opacity: 0, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
       gsap.from(".faq-item", {
         y: 20, opacity: 0, duration: 0.6, stagger: 0.08, ease: "power3.out",
-        scrollTrigger: { trigger: ".faq-list", start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
     }, sectionRef);
     return () => ctx.revert();

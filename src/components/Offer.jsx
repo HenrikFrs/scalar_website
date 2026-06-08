@@ -28,6 +28,7 @@ const Offer = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
+            once: true,
         },
       });
     }, sectionRef);

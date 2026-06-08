@@ -51,7 +51,7 @@ const Process = () => {
         opacity: 0,
         duration: 0.9,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
       gsap.from(".process-step", {
         y: 30,
@@ -59,7 +59,7 @@ const Process = () => {
         duration: 0.7,
         stagger: 0.15,
         ease: "power3.out",
-        scrollTrigger: { trigger: ".process-list", start: "top 75%" },
+        scrollTrigger: { trigger: ".process-list", start: "top 75%", once: true },
       });
     }, sectionRef);
     return () => ctx.revert();

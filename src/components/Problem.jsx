@@ -37,7 +37,7 @@ const Problem = () => {
         duration: 0.9,
         stagger: 0.12,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
     }, sectionRef);
     return () => ctx.revert();

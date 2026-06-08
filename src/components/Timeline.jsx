@@ -36,7 +36,7 @@ const Timeline = () => {
         opacity: 0,
         duration: 0.9,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
       gsap.from(".tl-card", {
         y: 30,
@@ -44,7 +44,7 @@ const Timeline = () => {
         duration: 0.7,
         stagger: 0.15,
         ease: "power3.out",
-        scrollTrigger: { trigger: ".tl-track", start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
     }, sectionRef);
     return () => ctx.revert();

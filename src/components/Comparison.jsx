@@ -41,7 +41,7 @@ const Comparison = () => {
         opacity: 0,
         duration: 0.9,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
       gsap.from(".comp-card", {
         y: 30,
@@ -49,7 +49,7 @@ const Comparison = () => {
         duration: 0.8,
         stagger: 0.15,
         ease: "power3.out",
-        scrollTrigger: { trigger: ".comp-grid", start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
     }, sectionRef);
     return () => ctx.revert();

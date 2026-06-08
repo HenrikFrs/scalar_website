@@ -83,11 +83,11 @@ const Testimonials = () => {
     const ctx = gsap.context(() => {
       gsap.from(".test-header", {
         y: 30, opacity: 0, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
       gsap.from(".test-card", {
         y: 30, opacity: 0, duration: 0.7, stagger: 0.15, ease: "power3.out",
-        scrollTrigger: { trigger: ".test-grid", start: "top 80%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
     }, sectionRef);
     return () => ctx.revert();
