@@ -53,22 +53,19 @@ export const Navbar = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-[60] w-full bg-background border-b border-pillBorder">
-        <nav className="flex items-center w-full px-4 md:px-8 py-1">
-          <a
-            href="/"
-            className="flex items-center align-middle gap-1 md:gap-2 flex-shrink-0"
-          >
+        <nav className="flex items-center w-full px-4 md:px-16 lg:px-96 py-2">
+          <a href="/" className="flex items-center gap-2 flex-shrink-0">
             <img
               src={`${import.meta.env.BASE_URL}ScalarAI.png`}
               alt="ScalarAI Logo"
               className="h-10 brightness-0 invert"
             />
-            <span className="text-sm md:text-lg font-regular tracking-tight font-sans text-white translate-y-px">
+            <span className="text-base font-regular tracking-tight font-sans text-white translate-y-px">
               Scalar AI
             </span>
           </a>
 
-          <div className="hidden md:flex items-center gap-5 ml-auto">
+          <div className="hidden md:flex items-center justify-center gap-6 absolute left-1/2 -translate-x-1/2">
             {[
               { label: "Results", href: "results" },
               { label: "Features", href: "advantage" },
@@ -84,10 +81,12 @@ export const Navbar = () => {
                 {label}
               </a>
             ))}
-            <div className="w-px h-4 bg-white/10" />
+          </div>
+
+          <div className="hidden md:flex ml-auto">
             <MagneticButton
               variant="navCta"
-              className="px-0 py-3 text-sm"
+              className="px-0 py-3 text-base"
               onClick={() =>
                 window.open(
                   "https://cal.com/henrik-freisleben-3prokl/outbound-system",
@@ -104,10 +103,10 @@ export const Navbar = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span
-              className={`w-6 h-[2px] rounded-full transition-all duration-300 bg-muted ${mobileMenuOpen ? "rotate-45 translate-y-[4px]" : ""}`}
+              className={`w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileMenuOpen ? "rotate-45 translate-y-[4px]" : ""}`}
             ></span>
             <span
-              className={`w-6 h-[2px] rounded-full transition-all duration-300 bg-muted ${mobileMenuOpen ? "-rotate-45 -translate-y-[4px]" : ""}`}
+              className={`w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileMenuOpen ? "-rotate-45 -translate-y-[4px]" : ""}`}
             ></span>
           </button>
         </nav>
@@ -244,7 +243,7 @@ export const Hero = () => {
 
           <p
             className="hero-element text-md md:text-lg leading-relaxed max-w-3xl"
-            style={{ color: "#5C5C5C" }}
+            style={{ color: "#737373" }}
           >
             We identify your ideal prospects and reach out with deeply
             personalized emails through AI. You just focus on closing interested

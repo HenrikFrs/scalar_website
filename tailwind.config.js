@@ -8,15 +8,15 @@ export default {
     extend: {
       colors: {
         // Dark mode tokens
-        background: '#080808',
-        surface:    '#0D0D0D',
-        surface2:   '#131313',
-        surface3:   '#1a1a1a',
-        border:     'rgba(255,255,255,0.07)',
-        borderLight: 'rgba(255,255,255,0.05)',
-        pillBorder:  '#161616',
+        background: '#0D0D0D',
+        surface:    '#111111',
+        surface2:   '#1a1a1a',
+        surface3:   '#222222',
+        border:     'rgba(255,255,255,0.09)',
+        borderLight: 'rgba(255,255,255,0.06)',
+        pillBorder:  '#1E1E1E',
         foreground: '#FAFAFA',
-        muted:      '#5C5C5C',
+        muted:      '#737373',
         accent:     '#FAFAFA',
         // Light mode tokens (lt- prefix avoids conflict with Tailwind's border-l-, text-l- directional utilities)
         'lt-background': '#FAFAFA',
