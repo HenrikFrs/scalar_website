@@ -254,14 +254,14 @@ export const Hero = () => {
       <div className="relative z-10 w-full flex flex-col items-center gap-10 pt-12 text-center">
         {/* Title + Subtitle + CTA group */}
         <div className="flex flex-col items-center gap-6">
-          <h1 className="mt-12 md_mt-0 hero-element font-serif text-4xl md:text-6xl tracking-tight leading-[1.05] text-white max-w-4xl">
+          <h1 className="hero-element font-serif text-4xl md:text-6xl tracking-tight leading-[1.05] text-white max-w-4xl">
             AI Outbound Architecture To Access Your Entire Market
           </h1>
 
           <p className="hero-element font-medium text-base text-muted leading-relaxed max-w-3xl">
-            We build and operate an AI outbound system that identifies all of your
-            ideal prospects and engages them with personalized outreach at scale —
-            you only pay per qualified meeting.
+            We build and operate an AI outbound system that identifies all of
+            your ideal prospects and engages them with personalized outreach at
+            scale — you only pay per qualified meeting.
           </p>
 
           <MagneticButton
