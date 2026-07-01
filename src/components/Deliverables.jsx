@@ -72,23 +72,14 @@ const Deliverables = () => {
       ref={sectionRef}
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
-      <div className="deliv-header mb-12 flex flex-col items-start text-left gap-4">
-        <div
-          className="flex items-center px-4 py-2"
-          style={{
-            backgroundColor: "rgba(59,130,246,0.1)",
-            backdropFilter: "blur(8px)",
-            borderRadius: "9999px",
-          }}
+      <div className="deliv-header mb-12 flex flex-col items-start text-left gap-6">
+        <span
+          className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]"
+          
         >
-          <span
-            className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.16em] leading-none translate-y-px"
-            style={{ color: "#3b82f6" }}
-          >
-            What You Get
-          </span>
-        </div>
-        <h2 className="text-3xl md:text-5xl font-medium text-foreground font-serif leading-tight">
+          What You Get
+        </span>
+        <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
           We handle everything.
         </h2>
       </div>
@@ -97,7 +88,7 @@ const Deliverables = () => {
         {phases.map((phase) => (
           <div
             key={phase.title}
-            className="deliv-card bg-surface p-8 flex flex-col gap-6 border border-pillBorder"
+            className="deliv-card bg-surface p-8 flex flex-col gap-6"
           >
             <div className="flex flex-col gap-1">
               <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-muted">

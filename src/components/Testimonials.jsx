@@ -38,16 +38,21 @@ const TestimonialCard = ({ highlight, quote, author, role, image }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-surface p-8 md:p-10 flex flex-col border border-pillBorder h-full">
+    <div className="bg-surface p-8 md:p-10 flex flex-col rounded-xl h-full">
       <p className="text-foreground font-medium text-lg leading-snug mb-4">
         {highlight}
       </p>
 
       <div
         className="overflow-hidden transition-all duration-500 ease-in-out"
-        style={{ maxHeight: expanded ? "400px" : "0", opacity: expanded ? 1 : 0 }}
+        style={{
+          maxHeight: expanded ? "400px" : "0",
+          opacity: expanded ? 1 : 0,
+        }}
       >
-        <p className="text-muted text-sm leading-relaxed mb-4">{quote}</p>
+        <p className="text-base font-medium text-muted leading-relaxed mb-4">
+          {quote}
+        </p>
       </div>
 
       <button
@@ -60,10 +65,17 @@ const TestimonialCard = ({ highlight, quote, author, role, image }) => {
       <div className="mt-auto flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-surface2 flex-shrink-0 overflow-hidden flex items-center justify-center">
           {image ? (
-            <img src={image} alt={author} className="w-full h-full object-cover" />
+            <img
+              src={image}
+              alt={author}
+              className="w-full h-full object-cover"
+            />
           ) : (
             <span className="text-xs font-medium text-muted font-sans">
-              {author.split(" ").map((n) => n[0]).join("")}
+              {author
+                .split(" ")
+                .map((n) => n[0])
+                .join("")}
             </span>
           )}
         </div>
@@ -82,12 +94,27 @@ const Testimonials = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".test-header", {
-        y: 30, opacity: 0, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+        y: 30,
+        opacity: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
       });
       gsap.from(".test-card", {
-        y: 30, opacity: 0, duration: 0.7, stagger: 0.15, ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -97,16 +124,14 @@ const Testimonials = () => {
     <section
       id="testimonials"
       ref={sectionRef}
-      className="py-12 md:py-32 px-4 md:px-16 lg:px-96 bg-background"
+      className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
-      <div className="test-header mb-20 flex flex-col items-start text-left gap-4">
-        <div className="flex items-center px-4 py-2" style={{ backgroundColor: "rgba(59,130,246,0.1)", backdropFilter: "blur(8px)", borderRadius: "9999px" }}>
-          <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.16em] leading-none translate-y-px" style={{ color: "#3b82f6" }}>
-            Testimonials
-          </span>
-        </div>
-        <h2 className="text-3xl md:text-5xl font-medium tracking-normal text-foreground font-serif pb-2">
-          Our Clients Don't Just Get Results But Also Enjoy The Process.
+      <div className="test-header mb-16 flex flex-col items-start text-left gap-6">
+        <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
+          Testimonials
+        </span>
+        <h2 className="text-3xl md:text-4xl font-medium tracking-normal text-foreground font-serif max-w-3xl">
+          Our Clients Get Results And Also Enjoy The Process
         </h2>
       </div>
 

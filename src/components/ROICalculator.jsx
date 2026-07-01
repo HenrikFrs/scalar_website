@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronDown, Info, Plus, Minus } from "lucide-react";
-import { MagneticButton } from "./Header";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -177,8 +176,8 @@ const fmtMoney = (n) =>
   "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
 const campaignOptions = [
-  { value: 150, label: "Top Performing — 1 interested lead / 150 contacts" },
-  { value: 325, label: "Average — 1 interested lead / 325 contacts" },
+  { value: 100, label: "Top Performing — 1 interested lead / 100 contacts" },
+  { value: 300, label: "Average — 1 interested lead / 300 contacts" },
   { value: 500, label: "Conservative — 1 interested lead / 500 contacts" },
 ];
 
@@ -186,7 +185,7 @@ const ROICalculator = () => {
   const sectionRef = useRef(null);
 
   const [leadsReached, setLeadsReached] = useState(15000);
-  const [msgPerResponse, setMsgPerResponse] = useState(325);
+  const [msgPerResponse, setMsgPerResponse] = useState(300);
   const [feePerCall, setFeePerCall] = useState(250);
   const [bookingPct, setBookingPct] = useState(25);
   const [showRate, setShowRate] = useState(80);
@@ -213,7 +212,11 @@ const ROICalculator = () => {
         duration: 0.9,
         stagger: 0.1,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -226,32 +229,20 @@ const ROICalculator = () => {
       className="w-full bg-background py-12 md:py-24 px-4 md:px-16 lg:px-96 section-border"
     >
       <div className="flex flex-col items-start">
-        <div className="roi-element mb-16 flex flex-col items-start text-left gap-4">
-          <div
-            className="flex items-center px-4 py-2"
-            style={{
-              backgroundColor: "rgba(59,130,246,0.1)",
-              backdropFilter: "blur(8px)",
-              borderRadius: "9999px",
-            }}
-          >
-            <span
-              className="text-[9px] md:text-[11px] font-sans uppercase tracking-[0.16em] leading-none translate-y-px"
-              style={{ color: "#3b82f6" }}
-            >
-              ROI Calculator
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-medium text-foreground font-serif leading-tight pb-2">
-            See it in Numbers
+        <div className="roi-element mb-16 flex flex-col items-start text-left gap-6">
+          <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
+            ROI Calculator
+          </span>
+          <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
+            See It In Numbers
           </h2>
-          <p className="text-base md:text-lg text-muted">
+          <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
             Plug in your campaign parameters and business economics to project
             your monthly return.
           </p>
         </div>
 
-        <div className="roi-element w-full bg-surface p-8 md:p-10 flex flex-col gap-8 border border-pillBorder">
+        <div className="roi-element w-full bg-surface p-8 md:p-10 flex flex-col gap-8 rounded-xl">
           <div className="flex flex-col gap-7">
             <SliderField
               label="Leads Reached / Month"
@@ -268,7 +259,7 @@ const ROICalculator = () => {
               value={msgPerResponse}
               options={campaignOptions}
               onChange={setMsgPerResponse}
-              tooltip="How many contacts it takes to generate one interested lead. Top performing campaigns see 1 in 150; conservative estimates use 1 in 500. Performance is influenced by various factors like: strength of product-market fit, availability of strong case studies, whether the offer includes specific and measurable claims, whether there is a guarantee or risk reversal in place and many more."
+              tooltip="How many contacts it takes to generate one interested lead. Top performing campaigns see 1 in 100; average campaigns see 1 in 300; conservative estimates use 1 in 500. Performance is influenced by various factors like: strength of product-market fit, availability of strong case studies, whether the offer includes specific and measurable claims, whether there is a guarantee or risk reversal in place and many more."
             />
             <SliderField
               label="Fee Per Attended Call"
@@ -318,7 +309,7 @@ const ROICalculator = () => {
               step={500}
               onChange={setLtv}
               prefix="$"
-              tooltip="The average total revenue you generate from a single client over the entire time they work with you — including all payments across the engagement. Also factor in referrals: if 1 in 4 clients refers another client, add 25% of your average contract value on top."
+              tooltip="The average total gross profit you generate from a single client over the entire time they work with you — including all payments across the engagement. Also factor in referrals: if 1 in 4 clients refers another client, add 25% of your average contract value on top."
             />
           </div>
 
@@ -332,7 +323,7 @@ const ROICalculator = () => {
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-col gap-1">
                   <span className="text-xs font-sans text-muted">{label}</span>
-                  <span className="text-xl font-sans font-light text-foreground tabular-nums leading-none">
+                  <span className="text-xl font-sans font-normal text-foreground tabular-nums leading-none">
                     {value}
                   </span>
                 </div>
@@ -340,13 +331,13 @@ const ROICalculator = () => {
             </div>
 
             <div className="flex flex-col gap-10">
-              <p className="text-3xl md:text-5xl font-sans font-light text-foreground leading-tight">
-                Your projected pipeline value is{" "}
+              <p className="text-3xl md:text-4xl font-sans font-normal text-foreground leading-tight">
+                Your projected return is{" "}
                 <span className="font-normal">{fmtMoney(totalPipeline)}</span>{" "}
                 per month.
               </p>
               <div className="flex items-center justify-between gap-4">
-                <p className="text-md font-sans text-muted leading-relaxed">
+                <p className="text-base font-semibold font-sans text-muted leading-relaxed">
                   Net ROI after fees:{" "}
                   <span className="text-foreground/70">{fmtMoney(roi)}</span>
                   {" · "}
@@ -374,21 +365,6 @@ const ROICalculator = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="flex justify-center mt-4">
-            <MagneticButton
-              variant="heroPrimary"
-              className="text-sm py-3 px-8"
-              onClick={() =>
-                window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/outbound-system",
-                  "_blank",
-                )
-              }
-            >
-              Let's Walk Through The Numbers Together
-            </MagneticButton>
           </div>
         </div>
       </div>

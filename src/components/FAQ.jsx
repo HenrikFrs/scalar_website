@@ -8,11 +8,10 @@ import { ChevronDown } from "lucide-react";
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
   return (
     <div
-      className="overflow-hidden"
+      className="overflow-hidden rounded-xl"
       style={{
         backgroundColor: isOpen ? "transparent" : "#111111",
-        border: isOpen ? "1px solid transparent" : "1px solid #1C1C1C",
-        transition: "background-color 0.25s ease, border-color 0.25s ease",
+        transition: "background-color 0.25s ease",
       }}
     >
       <button
@@ -44,7 +43,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
           transition: "max-height 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.2s ease",
         }}
       >
-        <div className="px-5 pb-4 text-muted leading-relaxed">{answer}</div>
+        <div className="px-5 pb-4 text-base font-medium text-muted leading-relaxed">{answer}</div>
       </div>
     </div>
   );
@@ -97,18 +96,20 @@ const FAQ = () => {
       q: "What do I actually own at the end of this?",
       a: "Everything. You own all of the contact data we built for you, all of the copy we wrote, and all of the infrastructure — including the domains, inboxes, sending tool, and calendar booking system. There's no lock-in. If you ever want to take it in-house or work with someone else, it's all yours.",
     },
+    {
+      q: "What counts as a qualified call?",
+      a: "You're in full control of who you speak with. If an interested prospect replies but doesn't match your ICP, you simply choose not to book a call with them — and you won't be charged. You only pay for calls you decide to take.",
+    },
   ];
 
   return (
-    <section id="faq" ref={sectionRef} className="py-12 md:py-32 px-4 md:px-16 lg:px-96 bg-background">
+    <section id="faq" ref={sectionRef} className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-16 items-start">
-        <div className="faq-header md:col-span-2 flex flex-col items-start text-left gap-4 md:sticky md:top-32">
-          <div className="flex items-center px-4 py-2" style={{ backgroundColor: "rgba(59,130,246,0.1)", backdropFilter: "blur(8px)", borderRadius: "9999px" }}>
-            <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.16em] leading-none translate-y-px" style={{ color: "#3b82f6" }}>
-              FAQ
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-medium tracking-normal text-foreground font-serif">
+        <div className="faq-header md:col-span-2 flex flex-col items-start text-left gap-6 md:sticky md:top-32">
+          <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
+            FAQ
+          </span>
+          <h2 className="text-3xl md:text-4xl font-medium tracking-normal text-foreground font-serif">
             Frequently Asked Questions
           </h2>
         </div>

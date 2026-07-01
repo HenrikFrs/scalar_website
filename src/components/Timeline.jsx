@@ -58,13 +58,11 @@ const Timeline = () => {
     >
       <div>
         {/* Header */}
-        <div className="tl-header mb-16 flex flex-col items-start text-left gap-4">
-          <div className="flex items-center px-4 py-2" style={{ backgroundColor: "rgba(59,130,246,0.1)", backdropFilter: "blur(8px)", borderRadius: "9999px" }}>
-            <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.16em] leading-none translate-y-px" style={{ color: "#3b82f6" }}>
-              Timeline
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-medium text-foreground font-serif leading-tight">
+        <div className="tl-header mb-16 flex flex-col items-start text-left gap-6">
+          <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
+            Timeline
+          </span>
+          <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
             A Clear Timeline to Your
             <br />
             First Qualified Meeting
@@ -107,7 +105,7 @@ const Timeline = () => {
                         size={14}
                         className="mt-1 flex-shrink-0 text-foreground/50"
                       />
-                      <p className="text-sm text-muted leading-relaxed">
+                      <p className="text-base font-medium text-muted leading-relaxed">
                         {item}
                       </p>
                     </li>
@@ -137,7 +135,7 @@ const Timeline = () => {
                         size={14}
                         className="mt-1 flex-shrink-0 text-foreground/50"
                       />
-                      <p className="text-sm text-muted leading-relaxed">
+                      <p className="text-base font-medium text-muted leading-relaxed">
                         {item}
                       </p>
                     </li>

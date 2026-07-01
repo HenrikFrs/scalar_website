@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -7,36 +6,35 @@ gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    number: "01",
-    title: "Precise Targeting",
+    title: "Day 1 — Onboarding & Setup",
     bullets: [
-      "Analyzing your existing customer base to identify what your best customers have in common",
-      "Building segmented lists of contacts that match that profile",
-      "Reviewing each company's website and LinkedIn profile with AI to filter out anyone that doesn't fit",
+      "You complete a short onboarding form covering everything we need to know to get started",
+      "Sending infrastructure is configured and the 14-day inbox warmup period begins",
+      "All domains, inboxes, and accounts are registered under your company name from day one",
     ],
   },
   {
-    number: "02",
-    title: "Messaging That Gets Replies",
+    title: "Day 1–14 — Build-Out",
     bullets: [
-      "Writing copy that communicates your value proposition in a compelling and professional way",
-      "Tailoring each message to the prospect's unique situation with AI to maximize relevance and build trust",
+      "Prospect lists are built, double-verified and AI-qualified",
+      "Multiple email sequences are written and every prospect is run through AI personalization",
+      "A pre-launch alignment call ensures you approve everything before campaigns go live",
     ],
   },
   {
-    number: "03",
-    title: "Infrastructure That Scales",
+    title: "Day 14 — Launch",
     bullets: [
-      "Setting up dedicated sending infrastructure that allows us to send enough volume",
-      "Configuring and warming up infrastructure cleanly so emails consistently land in primary inboxes",
+      "Campaigns go live — interested replies typically appear within the first few days",
+      "Sending volume ramp-up begins, starting with a small number of emails per day and gradually increasing to full capacity",
+      "The controlled ramp maximises deliverability and keeps messages out of spam",
     ],
   },
   {
-    number: "04",
-    title: "Meetings That Actually Show Up",
+    title: "Day 42 — Full Capacity",
     bullets: [
-      "Instant notifications for interested replies so the response comes when they're most engaged",
-      "Automated pre-call sequence that keeps prospects committed and increases show rates",
+      "Inboxes reach full sending capacity and the pipeline runs at scale",
+      "New leads are continuously sourced, qualified, and added to active campaigns",
+      "Inbox reputation, domain health, and A/B results are monitored and optimised weekly",
     ],
   },
 ];
@@ -46,20 +44,24 @@ const Process = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".process-header", {
+      gsap.from(".proc-header", {
         y: 30,
         opacity: 0,
         duration: 0.9,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
       });
-      gsap.from(".process-step", {
+      gsap.from(".proc-step", {
         y: 30,
         opacity: 0,
         duration: 0.7,
         stagger: 0.15,
         ease: "power3.out",
-        scrollTrigger: { trigger: ".process-list", start: "top 75%", once: true },
+        scrollTrigger: { trigger: ".proc-list", start: "top 75%", once: true },
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -71,60 +73,42 @@ const Process = () => {
       ref={sectionRef}
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
-      <div className="process-header mb-20 flex flex-col items-start text-left gap-4">
-        <div
-          className="flex items-center px-4 py-2"
-          style={{
-            backgroundColor: "rgba(59,130,246,0.1)",
-            backdropFilter: "blur(8px)",
-            borderRadius: "9999px",
-          }}
-        >
-          <span
-            className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.16em] leading-none translate-y-px"
-            style={{ color: "#3b82f6" }}
-          >
-            The Solution
-          </span>
-        </div>
-        <h2 className="text-3xl md:text-5xl font-medium text-foreground font-serif leading-tight">
-          One System Designed For Consistent Pipeline
+      <div className="proc-header mb-16 flex flex-col items-start text-left gap-6">
+        <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
+          The Process
+        </span>
+        <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
+          From Kickoff To Full Pipeline
         </h2>
       </div>
 
-      <div className="process-list flex flex-col">
+      <div className="proc-list flex flex-col">
         {steps.map((step, index) => (
-          <div key={step.number} className="process-step flex gap-8 md:gap-12">
-            {/* Left: number + connector line */}
+          <div key={step.title} className="proc-step flex gap-8 md:gap-12">
+            {/* Left: dot + connector line */}
             <div className="flex flex-col items-center flex-shrink-0">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-surface">
-                <span className="text-xs font-mono text-foreground tabular-nums">
-                  {step.number}
-                </span>
-              </div>
+              <div className="w-2.5 h-2.5 rounded-sm bg-white flex-shrink-0 mt-1 md:mt-2" />
               {index < steps.length - 1 && (
-                <div className="w-px flex-1 bg-borderLight mt-3 mb-3" />
+                <div className="w-0.5 flex-1 bg-borderLight mt-1" />
               )}
             </div>
 
-            {/* Right: content */}
+            {/* Right: two-column grid — title left (1/3), bullets bottom-right (2/3) */}
             <div
-              className={`flex flex-col gap-3 ${index < steps.length - 1 ? "pb-16" : ""}`}
+              className={`flex-1 grid md:grid-cols-[1fr_2fr] content-start ${index < steps.length - 1 ? "pb-12" : ""}`}
             >
-              <p className="font-medium text-foreground text-xl md:text-2xl leading-snug">
+              <p className="font-bold text-foreground text-base md:text-lg leading-snug">
                 {step.title}
               </p>
-              <ul className="flex flex-col gap-2">
-                {step.bullets.map((b, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <ArrowRight
-                      size={14}
-                      className="mt-1 flex-shrink-0 text-foreground/50"
-                    />
-                    <p className="text-muted text-sm leading-relaxed">{b}</p>
-                  </li>
-                ))}
-              </ul>
+              <div className="md:row-start-2 md:col-start-2 mt-3 bg-surface rounded-xl p-6 md:p-8">
+                <ul className="flex flex-col gap-3.5">
+                  {step.bullets.map((b, i) => (
+                    <li key={i}>
+                      <p className="text-base font-medium text-muted leading-relaxed">{b}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         ))}

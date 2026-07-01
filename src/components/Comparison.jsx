@@ -62,13 +62,11 @@ const Comparison = () => {
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
       <div>
-        <div className="comp-header mb-16 flex flex-col items-start text-left gap-4">
-          <div className="flex items-center px-4 py-2" style={{ backgroundColor: "rgba(59,130,246,0.1)", backdropFilter: "blur(8px)", borderRadius: "9999px" }}>
-            <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.16em] leading-none translate-y-px" style={{ color: "#3b82f6" }}>
-              The Difference
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-medium text-foreground font-serif leading-tight pb-2">
+        <div className="comp-header mb-16 flex flex-col items-start text-left gap-6">
+          <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
+            The Difference
+          </span>
+          <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
             We Optimize For The Right Results and Only Charge For What We
             Deliver
           </h2>
@@ -88,7 +86,7 @@ const Comparison = () => {
                   <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center">
                     <X size={10} className="text-white/30" strokeWidth={2.5} />
                   </span>
-                  <p className="text-sm text-muted leading-relaxed">
+                  <p className="text-base font-medium text-muted leading-relaxed">
                     {row.agency}
                   </p>
                 </li>
@@ -97,7 +95,7 @@ const Comparison = () => {
           </div>
 
           {/* Scalar AI card */}
-          <div className="comp-card bg-surface overflow-hidden pb-3 border border-pillBorder">
+          <div className="comp-card bg-surface rounded-xl overflow-hidden pb-3">
             <div className="px-8 pt-8 pb-2">
               <div className="flex items-center gap-2 mb-3">
                 <img
@@ -105,7 +103,7 @@ const Comparison = () => {
                   alt="Scalar AI"
                   className="h-10 brightness-0 invert"
                 />
-                <p className="text-xl font-medium text-foreground font-sans">
+                <p className="text-xl font-medium text-foreground">
                   Scalar AI
                 </p>
               </div>

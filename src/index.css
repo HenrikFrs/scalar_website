@@ -11,8 +11,8 @@
 
 @layer base {
   html {
-    scroll-behavior: auto;
-    --background: #0D0D0D;
+    scroll-behavior: smooth;
+    --background: #000000;
   }
 
   body {

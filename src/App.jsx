@@ -2,9 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import Lenis from "lenis";
 import { Navbar, Hero } from "./components/Header";
 import CampaignResults from "./components/CampaignResults";
 import Problem from "./components/Problem";
+import System from "./components/System";
 import Process from "./components/Process";
 import Deliverables from "./components/Deliverables";
 import Comparison from "./components/Comparison";
@@ -28,8 +30,9 @@ const Home = () => (
     <Hero />
     <CampaignResults />
     <Problem />
+    <System />
+    <Offer />
     <Process />
-    <Comparison />
     <ROICalculator />
     <Testimonials />
     <FAQ />
@@ -37,6 +40,25 @@ const Home = () => (
 );
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 0.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+    };
+  }, []);
 
   return (
     <Router basename="/">
