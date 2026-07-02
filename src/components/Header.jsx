@@ -65,13 +65,13 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-[60] w-full flex justify-center pointer-events-none">
+      <header className="fixed top-0 left-0 right-0 z-[60] w-full flex justify-center pointer-events-none md:bg-transparent bg-black/30 backdrop-blur-md md:[backdrop-filter:none]">
         <nav
           className={`pointer-events-auto relative flex items-center transition-all duration-300 ease-in-out
             ${
               scrolled
-                ? "md:mt-5 md:rounded-xl md:bg-black/80 md:backdrop-blur-md md:shadow-lg md:shadow-black/40 md:px-3 md:py-2 md:w-[780px] md:max-w-[calc(100vw-32px)] px-4 py-4 w-full"
-                : "px-4 md:px-16 lg:px-96 py-4 w-full"
+                ? "md:mt-5 md:rounded-xl md:bg-black/80 md:backdrop-blur-md md:shadow-lg md:shadow-black/40 md:px-3 md:py-2 md:w-[780px] md:max-w-[calc(100vw-32px)] px-4 py-2 w-full"
+                : "px-4 md:px-16 lg:px-96 py-2 md:py-4 w-full"
             }`}
         >
           {/* Logo */}
@@ -243,7 +243,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] w-full flex flex-col justify-start px-4 md:px-16 lg:px-96 pt-24 md:pb-24 text-white overflow-hidden"
+      className="relative min-h-[100svh] w-full flex flex-col justify-start px-4 md:px-16 lg:px-96 pt-24 md:pb-24 text-white overflow-hidden"
       style={{
         backgroundImage: `url('${import.meta.env.BASE_URL}Frame 18.png')`,
         backgroundSize: "cover",
@@ -251,7 +251,7 @@ export const Hero = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="relative z-10 w-full flex flex-col items-center gap-10 pt-12 text-center">
+      <div className="relative z-10 w-full flex flex-col items-center gap-10 pt-6 md:pt-12 text-center">
         {/* Title + Subtitle + CTA group */}
         <div className="flex flex-col items-center gap-6">
           <h1 className="hero-element font-serif text-4xl md:text-6xl tracking-tight leading-[1.05] text-white max-w-4xl">
