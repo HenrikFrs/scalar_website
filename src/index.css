@@ -18,6 +18,11 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
+
+  ::selection {
+    background-color: #3799f7;
+    color: #ffffff;
+  }
 }
 
 @layer components {

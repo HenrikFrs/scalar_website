@@ -62,7 +62,7 @@ function App() {
 
   return (
     <Router basename="/">
-      <div className="min-h-screen bg-background text-foreground relative selection:bg-foreground selection:text-white overflow-x-hidden">
+      <div className="min-h-screen bg-background text-foreground relative selection:bg-pillAccent selection:text-white overflow-x-hidden">
         <Navbar />
         <main>
           <Routes>

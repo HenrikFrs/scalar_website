@@ -243,7 +243,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] w-full flex flex-col justify-center px-4 md:px-16 lg:px-96 pt-24 pb-32 text-white overflow-hidden"
+      className="relative min-h-[100svh] w-full flex flex-col justify-center px-4 md:px-16 lg:px-96 pt-24 pb-48 text-white overflow-hidden"
       style={{
         backgroundImage: `url('${import.meta.env.BASE_URL}Frame 18.png')`,
         backgroundSize: "cover",
@@ -253,7 +253,7 @@ export const Hero = () => {
     >
       <div className="relative z-10 w-full flex flex-col items-center gap-10 pt-6 md:pt-12 text-center">
         {/* Title + Subtitle + CTA group */}
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-8">
           <h1 className="hero-element font-serif text-4xl md:text-6xl tracking-tight leading-[1.05] text-white max-w-4xl">
             AI Outbound Architecture To Access Your Entire Market
           </h1>
