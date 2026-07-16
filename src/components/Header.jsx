@@ -243,7 +243,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] w-full flex flex-col justify-start px-4 md:px-16 lg:px-96 pt-24 md:pb-24 text-white overflow-hidden"
+      className="relative min-h-[100svh] w-full flex flex-col justify-center px-4 md:px-16 lg:px-96 pt-24 pb-32 text-white overflow-hidden"
       style={{
         backgroundImage: `url('${import.meta.env.BASE_URL}Frame 18.png')`,
         backgroundSize: "cover",
@@ -276,15 +276,6 @@ export const Hero = () => {
           >
             Book Your Strategy Call
           </MagneticButton>
-        </div>
-
-        {/* Video */}
-        <div className="hero-element w-full md:w-2/3 overflow-hidden shadow-2xl">
-          {/* @ts-ignore — wistia-player is a custom element */}
-          <wistia-player
-            media-id="263tbx9r5k"
-            aspect="1.7777777777777777"
-          ></wistia-player>
         </div>
       </div>
     </section>
