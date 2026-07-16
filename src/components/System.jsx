@@ -9,9 +9,9 @@ const steps = [
     number: "01",
     title: "Precise Targeting",
     bullets: [
-      "Analyze your best customers' attributes across hundreds of data points to find lookalike companies across the market",
-      "Layer in intent signals to surface companies actively searching for your solution (new hires, headcount growth, leadership changes, job postings)",
-      "Run every prospect through AI qualification to remove anyone who doesn't fit your ideal customer profile",
+      "Start with companies you've already approved as a fit, then expand into a broad list of similar lookalike companies",
+      "Extract data from every prospect's website and LinkedIn to build a full picture of who they are",
+      "Run each company through a custom AI prompt that evaluates them against your ideal customer profile, removing anyone who isn't a fit",
     ],
   },
   {

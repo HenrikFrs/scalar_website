@@ -8,7 +8,7 @@ const steps = [
   {
     title: "Day 1 — Onboarding & Setup",
     bullets: [
-      "You complete a short onboarding form covering everything we need to know to get started",
+      "We conduct a short onboarding call covering everything we need to know to get started",
       "Sending infrastructure is configured and the 14-day inbox warmup period begins",
       "All domains, inboxes, and accounts are registered under your company name from day one",
     ],
@@ -104,7 +104,9 @@ const Process = () => {
                 <ul className="flex flex-col gap-3.5">
                   {step.bullets.map((b, i) => (
                     <li key={i}>
-                      <p className="text-base font-medium text-muted leading-relaxed">{b}</p>
+                      <p className="text-base font-medium text-muted leading-relaxed">
+                        {b}
+                      </p>
                     </li>
                   ))}
                 </ul>
