@@ -22,7 +22,7 @@ const Footer = () => {
         >
           <div className="absolute inset-0 bg-black/40" />
           <h2 className="relative z-10 text-3xl md:text-4xl font-medium tracking-normal font-serif text-foreground max-w-3xl leading-tight">
-            Ready to book qualified calls on a performance basis?
+            Get your qualified calls on a pay-per-call basis.
           </h2>
           <MagneticButton
             variant="heroPrimary"
@@ -55,14 +55,31 @@ const Footer = () => {
               </div>
               {/* Mobile-only links */}
               <div className="flex flex-col gap-3 text-xs font-mono text-muted md:hidden">
-                <a href="/imprint" className="hover:text-foreground transition-colors">Imprint</a>
-                <a href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</a>
+                <a
+                  href="/imprint"
+                  className="hover:text-foreground transition-colors"
+                >
+                  Imprint
+                </a>
+                <a
+                  href="/privacy-policy"
+                  className="hover:text-foreground transition-colors"
+                >
+                  Privacy Policy
+                </a>
               </div>
             </div>
             {/* Mobile: copyright + LinkedIn on same row */}
             <div className="flex items-center justify-between mt-6 md:mt-24">
-              <p className="text-xs font-mono text-muted">&copy; {new Date().getFullYear()} Scalar AI.</p>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground transition-colors md:hidden">
+              <p className="text-xs font-mono text-muted">
+                &copy; {new Date().getFullYear()} Scalar AI.
+              </p>
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted hover:text-foreground transition-colors md:hidden"
+              >
                 <Linkedin size={18} />
               </a>
             </div>
@@ -71,10 +88,25 @@ const Footer = () => {
           {/* Right col — desktop only */}
           <div className="hidden md:flex flex-col justify-between items-end">
             <div className="flex gap-6 text-xs font-mono text-muted">
-              <a href="/imprint" className="hover:text-foreground transition-colors">Imprint</a>
-              <a href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</a>
+              <a
+                href="/imprint"
+                className="hover:text-foreground transition-colors"
+              >
+                Imprint
+              </a>
+              <a
+                href="/privacy-policy"
+                className="hover:text-foreground transition-colors"
+              >
+                Privacy Policy
+              </a>
             </div>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground transition-colors">
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted hover:text-foreground transition-colors"
+            >
               <Linkedin size={18} />
             </a>
           </div>
