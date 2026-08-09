@@ -10,19 +10,19 @@ const problems = [
     icon: <Target size={22} style={{ color: "#89c4ff" }} />,
     title: "Targeting",
     description:
-      "The right companies match your ideal customer profile and genuinely need your offer. Most people trying to run outreach at scale rely on basic LinkedIn filters, which are notoriously inaccurate at finding them. The result is outreach that's just spam, not a viable growth channel.",
+      "The right companies match your ideal customer profile and genuinely need your offer. Most people trying to run outreach at scale rely on basic LinkedIn filters, which are notoriously inaccurate at finding them. Their offer isn't relevant to who they're reaching, which makes their outreach ineffective and effectively spam.",
   },
   {
     icon: <MessageSquareText size={22} style={{ color: "#89c4ff" }} />,
     title: "Messaging",
     description:
-      "The right message is personalized to each prospect's specific situation. Most people running high volume outreach rely on generic templates that are obviously mass-sent, which prospects recognize and ignore. The result is outreach that gets reported instead of replied to, damaging sender reputation.",
+      "The right message is personalized to each prospect's specific situation. Most people running high volume outreach rely on generic templates that are clearly mass-sent, which prospects recognize and ignore. The result is outreach that gets reported instead of replied to.",
   },
   {
     icon: <Radio size={22} style={{ color: "#89c4ff" }} />,
     title: "Scale",
     description:
-      "To hit your goals, you need to send enough volume, without sacrificing targeting or messaging quality. Without the right systems, that's only possible by adding proportional headcount, which is expensive and doesn't scale.",
+      "To hit your outreach goals, you need to send enough volume. The hard part isn't sending a lot of messages, but doing so without sacrificing targeting or message quality. Without the right systems, the only way to get there is by adding proportional headcount — which is expensive and doesn't scale.",
   },
 ];
 
@@ -69,8 +69,8 @@ const Problem = () => {
         </h2>
         <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
           The success of any outreach system depends on these three variables.
-          Without the right systems, most companies are missing at least one of
-          them, which is why they struggle to hit their goals.
+          Most companies are missing at least one, which is why they struggle to
+          hit their goals.
         </p>
       </div>
 

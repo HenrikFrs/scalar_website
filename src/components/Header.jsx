@@ -261,7 +261,7 @@ export const Hero = () => {
           <p className="hero-element font-medium text-base text-muted leading-relaxed max-w-3xl">
             We build and operate an AI outbound system that identifies all of
             your ideal prospects and engages them with personalized outreach at
-            scale — you only pay per qualified meeting.
+            scale — you only pay per qualified meeting
           </p>
 
           <MagneticButton
