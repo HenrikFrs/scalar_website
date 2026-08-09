@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { UserX, MessageSquareX, TrendingDown } from "lucide-react";
+import { Target, MessageSquareText, Radio } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -7,22 +7,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const problems = [
   {
-    icon: <UserX size={22} style={{ color: "#89c4ff" }} />,
-    title: "Reaching the wrong prospects",
+    icon: <Target size={22} style={{ color: "#89c4ff" }} />,
+    title: "Targeting",
     description:
-      "Most people use the same basic LinkedIn filters like industry, location, and company size. Since everyone uses the same filters, they're reaching the exact same hammered contacts as their competitors. Plus those filters are self-reported and largely inaccurate, so they're not even reaching who they think they are.",
+      "The right companies match your ideal customer profile and genuinely need your offer. Most people trying to run outreach at scale rely on basic LinkedIn filters, which are notoriously inaccurate at finding them. The result is outreach that's just spam, not a viable growth channel.",
   },
   {
-    icon: <MessageSquareX size={22} style={{ color: "#89c4ff" }} />,
-    title: "Sending messages that get ignored",
+    icon: <MessageSquareText size={22} style={{ color: "#89c4ff" }} />,
+    title: "Messaging",
     description:
-      "In the current landscape, good copywriting alone doesn't cut it anymore. People immediately recognize generic messages and ignore them or even report you. Not only does that kill response rates, but it damages the sender reputation, which means future messages land in spam.",
+      "The right message is personalized to each prospect's specific situation. Most people running high volume outreach rely on generic templates that are obviously mass-sent, which prospects recognize and ignore. The result is outreach that gets reported instead of replied to, damaging sender reputation.",
   },
   {
-    icon: <TrendingDown size={22} style={{ color: "#89c4ff" }} />,
-    title: "Not doing enough volume",
+    icon: <Radio size={22} style={{ color: "#89c4ff" }} />,
+    title: "Scale",
     description:
-      "When you put enough effort into it, targeting and messaging is good. But scaling that effort is way too expensive. You're forced to choose between quality work that doesn't reach enough people or cutting corners to achieve volume, which kills your results anyway.",
+      "To hit your goals, you need to send enough volume, without sacrificing targeting or messaging quality. Without the right systems, that's only possible by adding proportional headcount, which is expensive and doesn't scale.",
   },
 ];
 
@@ -65,15 +65,12 @@ const Problem = () => {
           The Problem
         </span>
         <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
-          The Problem With Most Growth Strategies
+          The Three Variables That Determine Outbound Success
         </h2>
         <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
-          The success of any outreach system can be broken down to a simple
-          formula:{" "}
-          <span className="italic">
-            Pipeline = Targeting * Messaging * Scale
-          </span>
-          . Most companies completely miss one or more of these factors.
+          The success of any outreach system depends on these three variables.
+          Without the right systems, most companies are missing at least one of
+          them, which is why they struggle to hit their goals.
         </p>
       </div>
 

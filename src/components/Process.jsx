@@ -8,33 +8,25 @@ const steps = [
   {
     title: "Day 1 — Onboarding & Setup",
     bullets: [
-      "We conduct a short onboarding call covering everything we need to know to get started",
-      "Sending infrastructure is configured and the 14-day inbox warmup period begins",
-      "All domains, inboxes, and accounts are registered under your company name from day one",
+      "Onboarding call to gather info on your offer & target market",
+      "Domains & inboxes registered under your company",
+      "Sending infrastructure configured, 14-day warmup begins",
     ],
   },
   {
     title: "Day 1–14 — Build-Out",
     bullets: [
-      "Prospect lists are built, double-verified and AI-qualified",
-      "Multiple email sequences are written and every prospect is run through AI personalization",
-      "A pre-launch alignment call ensures you approve everything before campaigns go live",
+      "Prospect lists built, verified, and AI-qualified",
+      "Sequences written, every prospect AI-personalized",
+      "Pre-launch alignment for your final approval",
     ],
   },
   {
     title: "Day 14 — Launch",
     bullets: [
-      "Campaigns go live — interested replies typically appear within the first few days",
-      "Sending volume ramp-up begins, starting with a small number of emails per day and gradually increasing to full capacity",
-      "The controlled ramp maximises deliverability and keeps messages out of spam",
-    ],
-  },
-  {
-    title: "Day 42 — Full Capacity",
-    bullets: [
-      "Inboxes reach full sending capacity and the pipeline runs at scale",
-      "New leads are continuously sourced, qualified, and added to active campaigns",
-      "Inbox reputation, domain health, and A/B results are monitored and optimised weekly",
+      "Campaigns go live",
+      "Sending volume ramps up gradually to full capacity",
+      "First interested replies start coming in within days",
     ],
   },
 ];
@@ -75,7 +67,7 @@ const Process = () => {
     >
       <div className="proc-header mb-16 flex flex-col items-start text-left gap-6">
         <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
-          The Process
+          The Timeline
         </span>
         <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
           From Kickoff To Full Pipeline

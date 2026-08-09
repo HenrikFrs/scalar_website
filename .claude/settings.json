@@ -13,7 +13,11 @@
       "Bash(node -e \"require\\('./node_modules/autoprefixer'\\)\")",
       "Bash(not exist *)",
       "PowerShell(New-Item -ItemType Directory -Force \"f:\\\\scalar_website\\\\src\\\\components\\\\ui\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Read(//tmp/**)",
+      "PowerShell(Start-Process npm -ArgumentList \"run\",\"dev\",\"--\",\"--port\",\"5183\" -WorkingDirectory \"f:\\\\scalar_website\" -RedirectStandardOutput \"f:\\\\scalar_website\\\\vite-out.log\" -RedirectStandardError \"f:\\\\scalar_website\\\\vite-err.log\" -WindowStyle Hidden)",
+      "PowerShell(Start-Process cmd -ArgumentList \"/c\",\"npm run dev -- --port 5183 > vite-out.log 2>&1\" -WorkingDirectory \"f:\\\\scalar_website\" -WindowStyle Hidden)",
+      "Bash(npm ls *)"
     ]
   }
 }
