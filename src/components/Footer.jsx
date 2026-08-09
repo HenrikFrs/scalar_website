@@ -22,7 +22,7 @@ const Footer = () => {
         >
           <div className="absolute inset-0 bg-black/40" />
           <h2 className="relative z-10 text-3xl md:text-4xl font-medium tracking-normal font-serif text-foreground max-w-3xl leading-tight">
-            Get qualified calls on a pay-per-call basis.
+            Get qualified calls on a pay-per-call basis
           </h2>
           <MagneticButton
             variant="heroPrimary"
