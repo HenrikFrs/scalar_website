@@ -165,7 +165,7 @@ const System = () => {
             <h3 className="text-lg md:text-xl font-semibold font-sans text-foreground">
               {lane.label}
             </h3>
-            <div className="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-0 lg:overflow-x-auto pb-2 lg:pb-0 w-full">
+            <div className="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-0 lg:overflow-x-auto lg:overflow-y-hidden pb-2 lg:pb-0 w-full">
               {lane.steps.map((step, i) => (
                 <React.Fragment key={i}>
                   <Box>{step}</Box>
