@@ -87,15 +87,30 @@ const System = () => {
         },
       });
 
+      gsap.from(".process-mobile-card", {
+        y: 20,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".process-mobile-list",
+          start: "top 85%",
+          once: true,
+        },
+      });
+
       // Scroll-driven step advance: pin the panel and step through
-      // tabs as the user scrolls past the section, on both desktop
-      // and mobile.
+      // tabs as the user scrolls past the section. Desktop only —
+      // on mobile every step is shown at once instead (see
+      // .process-mobile-list below).
       const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-      const scrollPerStep = isDesktop ? 500 : 750;
+      if (!isDesktop) return;
+
       const st = ScrollTrigger.create({
         trigger: pinRef.current,
-        start: isDesktop ? "center center" : "bottom bottom",
-        end: () => `+=${(steps.length - 1) * scrollPerStep}`,
+        start: "center center",
+        end: () => `+=${(steps.length - 1) * 500}`,
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
@@ -164,7 +179,7 @@ const System = () => {
           </p>
         </div>
 
-        <div className="process-panel grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-0 overflow-hidden">
+        <div className="process-panel hidden lg:grid lg:grid-cols-[1fr_1.3fr] gap-0 overflow-hidden">
           {/* Left: step list */}
           <div className="flex flex-col lg:h-[420px]">
             {steps.map((step, i) => (
@@ -219,6 +234,43 @@ const System = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Mobile: every step shown at once, no tabs */}
+        <div className="process-mobile-list flex flex-col gap-6 lg:hidden">
+          {steps.map((step, i) => (
+            <div
+              key={step.label}
+              className="process-mobile-card bg-surface border border-borderLight px-6 py-8 flex flex-col gap-6"
+            >
+              <span className="font-mono text-xs text-pillAccentText">
+                [{String(i + 1).padStart(2, "0")}]
+              </span>
+              <h3 className="font-serif text-2xl text-foreground leading-tight">
+                {step.label}
+              </h3>
+              <p className="text-base leading-relaxed text-muted">
+                <span className="font-semibold text-foreground">
+                  {step.lead}
+                </span>{" "}
+                {step.description}
+              </p>
+
+              <div className="border-t border-borderLight pt-6 flex flex-col gap-3">
+                {step.checklist.map((item, j) => (
+                  <p
+                    key={j}
+                    className="font-mono text-sm text-muted leading-relaxed flex gap-2"
+                  >
+                    <span className="text-pillAccentText flex-shrink-0">
+                      ✓
+                    </span>
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
