@@ -46,6 +46,7 @@ function App() {
       smoothWheel: true,
     });
 
+    window.lenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
@@ -55,6 +56,7 @@ function App() {
 
     return () => {
       lenis.destroy();
+      window.lenis = null;
       gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
   }, []);
