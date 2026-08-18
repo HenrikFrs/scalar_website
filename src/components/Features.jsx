@@ -198,7 +198,7 @@ const Features = () => {
             What we <span className="text-muted/80">specialize in</span>
           </h2>
           <p className="text-lg text-muted max-w-md font-medium">
-            Scalar AI builds AI-driven systems that generate leads, convert
+            Scalar builds AI-driven systems that generate leads, convert
             inquiries into customers, and scale processes for B2B companies.
           </p>
         </div>
@@ -209,7 +209,7 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Network size={20} className="text-foreground" />
               </span>
-              Sales Systems
+              Sales systems
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
               AI Agents respond to leads in seconds, automatically book
@@ -223,7 +223,7 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Activity size={20} className="text-foreground" />
               </span>
-              Lead Gen Systems
+              Lead gen systems
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
               AI-driven automated outbound systems that send personalized
@@ -238,7 +238,7 @@ const Features = () => {
               <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">
                 <Presentation size={20} className="text-foreground" />
               </span>
-              Backend Systems
+              Backend systems
             </h3>
             <p className="text-muted mb-8 text-sm leading-relaxed flex-1">
               Customized automated systems for more output and less overhead.

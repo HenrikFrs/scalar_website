@@ -41,7 +41,11 @@ const Comparison = () => {
         opacity: 0,
         duration: 0.9,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
       });
       gsap.from(".comp-card", {
         y: 30,
@@ -49,7 +53,11 @@ const Comparison = () => {
         duration: 0.8,
         stagger: 0.15,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -63,21 +71,21 @@ const Comparison = () => {
     >
       <div>
         <div className="comp-header mb-16 flex flex-col items-start text-left gap-6">
-          <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
+          <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
             The Difference
           </span>
-          <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
-            We Optimize For The Right Results and Only Charge For What We
-            Deliver
+          <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
+            We optimize for the right results and only charge for what we
+            deliver
           </h2>
         </div>
 
         <div className="comp-grid grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Typical Agency card */}
-          <div className="pb-3">
+          <div className="bg-surface border border-borderLight overflow-hidden pb-3">
             <div className="px-8 pt-8 pb-2">
               <p className="text-xl font-medium text-muted font-sans mb-3">
-                Typical Agency
+                Typical agency
               </p>
             </div>
             <ul className="flex flex-col">
@@ -94,18 +102,16 @@ const Comparison = () => {
             </ul>
           </div>
 
-          {/* Scalar AI card */}
-          <div className="comp-card bg-surface rounded-xl overflow-hidden pb-3">
+          {/* Scalar card */}
+          <div className="comp-card bg-surface border border-borderLight overflow-hidden pb-3">
             <div className="px-8 pt-8 pb-2">
               <div className="flex items-center gap-2 mb-3">
                 <img
                   src={`${import.meta.env.BASE_URL}ScalarAI.png`}
-                  alt="Scalar AI"
+                  alt="Scalar"
                   className="h-10 brightness-0 invert"
                 />
-                <p className="text-xl font-medium text-foreground">
-                  Scalar AI
-                </p>
+                <p className="text-xl font-medium text-foreground">Scalar</p>
               </div>
             </div>
             <ul className="flex flex-col">

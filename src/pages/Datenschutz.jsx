@@ -3,7 +3,6 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Datenschutz = () => {
-
   return (
     <div className="min-h-screen bg-background text-foreground pt-32 pb-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
       <div className="max-w-3xl mx-auto relative z-10">
@@ -19,12 +18,10 @@ const Datenschutz = () => {
         </h1>
 
         <div className="prose prose-invert prose-lg text-white/70 max-w-none mt-12 space-y-8">
-          <p className="text-sm text-white/40">
-            Last updated May 25, 2026
-          </p>
+          <p className="text-sm text-white/40">Last updated May 25, 2026</p>
 
           <p>
-            Scalar AI respects your privacy and is committed to protecting your
+            Scalar respects your privacy and is committed to protecting your
             personal data. This privacy policy explains what types of
             information we collect, how we use it, and what rights you have
             regarding your data.
@@ -136,11 +133,10 @@ const Datenschutz = () => {
             Contractual Clauses.
           </p>
           <p>
-            Legal basis for processing: Art. 6(1)(a) GDPR (consent). EU
-            visitors can withdraw consent at any time by contacting us or
-            clearing their browser's local storage for this site. Withdrawal
-            does not affect the lawfulness of processing carried out prior to
-            withdrawal.
+            Legal basis for processing: Art. 6(1)(a) GDPR (consent). EU visitors
+            can withdraw consent at any time by contacting us or clearing their
+            browser's local storage for this site. Withdrawal does not affect
+            the lawfulness of processing carried out prior to withdrawal.
           </p>
           <p>
             For more information on how Google handles data, please refer to

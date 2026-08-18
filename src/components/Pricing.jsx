@@ -4,9 +4,9 @@ import gsap from 'gsap';
 
 const PricingCard = ({ title, price, desc, features, isPopular }) => {
     return (
-        <div className={`relative flex flex-col p-8 md:p-10 rounded-3xl border ${isPopular ? 'bg-dark text-white border-dark transform md:-translate-y-4 shadow-xl z-10' : 'bg-white text-dark border-borderLight'} transition-all duration-300 hover:border-dark/30`}>
+        <div className={`relative flex flex-col p-8 md:p-10 border ${isPopular ? 'bg-dark text-white border-dark transform md:-translate-y-4 shadow-xl z-10' : 'bg-white text-dark border-borderLight'} transition-all duration-300 hover:border-dark/30`}>
             {isPopular && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-white text-dark border border-dark text-[10px] font-mono font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-white text-dark border border-dark text-[10px] font-mono font-bold px-3 py-1 tracking-widest shadow-sm">
                     Recommended
                 </div>
             )}
@@ -29,8 +29,8 @@ const PricingCard = ({ title, price, desc, features, isPopular }) => {
                 ))}
             </ul>
 
-            <button className={`w-full py-4 rounded-full font-medium transition-transform duration-300 hover:scale-[1.02] flex justify-center items-center gap-2 ${isPopular ? 'bg-white text-dark hover:bg-surface border border-transparent' : 'bg-surface text-dark border border-borderLight hover:border-dark/50'}`}>
-                Get in Touch <ArrowRight size={16} />
+            <button className={`w-full py-5 font-medium transition-transform duration-300 hover:scale-[1.02] flex justify-center items-center gap-2 ${isPopular ? 'bg-white text-dark hover:bg-surface border border-transparent' : 'bg-surface text-dark border border-borderLight hover:border-dark/50'}`}>
+                Get in touch <ArrowRight size={16} />
             </button>
         </div>
     );
@@ -58,7 +58,7 @@ const Pricing = () => {
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-20 max-w-3xl mx-auto">
                     <h2 className="text-4xl md:text-5xl font-sans tracking-normal font-bold mb-6 text-dark leading-[1.1]">
-                        Predictable Investment. <span className="text-muted/80">Measurable Return.</span>
+                        Predictable investment. <span className="text-muted/80">Measurable return.</span>
                     </h2>
                     <p className="text-lg text-muted font-medium">
                         No consulting reports, no concepts. Only systems that directly generate revenue.

@@ -19,7 +19,7 @@ const Protocol = () => {
   const steps = [
     {
       num: "01",
-      title: "Strategy Call",
+      title: "Strategy call",
       desc: "Together we analyze your business and identify where AI systems can create the biggest lever for growth — clearly, concretely, without detours.",
       icon: Users,
       color: "text-blue-400",
@@ -27,7 +27,7 @@ const Protocol = () => {
     },
     {
       num: "02",
-      title: "Kickoff & Onboarding",
+      title: "Kickoff & onboarding",
       desc: "Structured exchange of required credentials (API keys, access) and definition of exact specifications for the integration.",
       icon: KeyRound,
       color: "text-green-400",
@@ -43,7 +43,7 @@ const Protocol = () => {
     },
     {
       num: "04",
-      title: "Testing & Rollout",
+      title: "Testing & rollout",
       desc: "Intensive QA phase before going live. We validate every data point before the system is handed over to your production environment.",
       icon: ShieldCheck,
       color: "text-pink-400",
@@ -71,7 +71,7 @@ const Protocol = () => {
           {steps.map((step, idx) => (
             <div
               key={idx}
-              className="prozess-card bg-surface p-8 md:p-12 rounded-[2rem] flex flex-col items-start gap-8 relative overflow-hidden group shadow-sm"
+              className="prozess-card bg-surface border border-borderLight p-8 md:p-12 flex flex-col items-start gap-8 relative overflow-hidden group shadow-sm"
             >
               <div
                 className={`flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center transition-colors duration-500 ${step.bg}`}

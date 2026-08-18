@@ -6,11 +6,11 @@ export default {
       colors: {
         // Dark mode tokens
         background: "#000000",
-        surface: "#111111",
+        surface: "#07090b",
         surface2: "#1a1a1a",
         surface3: "#222222",
-        border: "rgba(255,255,255,0.09)",
-        borderLight: "rgba(255,255,255,0.06)",
+        border: "#1c1e1f",
+        borderLight: "#1c1e1f",
         pillBorder: "#1E1E1E",
         pillAccent: "#3799f7",
         pillAccentText: "#60aeff",

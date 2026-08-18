@@ -1,44 +1,60 @@
 import React, { useEffect, useRef } from "react";
-import { Check, ArrowUpRight } from "lucide-react";
+import {
+  Rocket,
+  ListChecks,
+  PenLine,
+  Mail,
+  BarChart3,
+  RefreshCcw,
+  UsersRound,
+} from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MagneticButton } from "./Header";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const phases = [
+const deliverables = [
   {
-    label: "Phase 1",
-    title: "Setup",
+    icon: Rocket,
+    title: "Infrastructure setup",
     description:
-      "Everything built and configured before a single email goes out.",
-    items: [
-      "Full infrastructure setup — configured domains, inboxes, and sending tool",
-      "14-day inbox warmup period",
-      "Contact lists built, pulled, and double-verified",
-      "Calendar booking system with automated reminders and pre-call sequence",
-    ],
+      "Buying domains and inboxes, configuring them correctly, and warming them for two weeks to build a strong reputation before launch.",
   },
   {
-    label: "Phase 2",
-    title: "Launch",
-    description: "Targeting, messaging, and campaigns go live.",
-    items: [
-      "AI prompt built to score and filter contacts by ICP fit",
-      "Multiple copy variants written with dynamic variables tailored to your offer",
-      "AI prompt built to personalize each email based on each prospect's digital footprint",
-      "Everything assembled in the sending tool and campaigns launched",
-    ],
+    icon: ListChecks,
+    title: "List-building and verification",
+    description:
+      "Scraping contact data from multiple sources, filtering every contact for ICP fit, and verifying every email address to ensure deliverability.",
   },
   {
-    label: "Phase 3",
-    title: "Ongoing",
-    description: "We keep it running, optimizing, and scaling.",
-    items: [
-      "Campaign performance and deliverability monitored daily",
-      "Copy and AI prompts iterated based on A/B test learnings",
-      "Enough new contacts pushed through the pipeline to always run at full capacity",
-    ],
+    icon: PenLine,
+    title: "Offer-positioning and copywriting",
+    description:
+      "Positioning your offer for maximum effectiveness with cold prospects, and writing sequences with multiple variants to test and optimize for the best results.",
+  },
+  {
+    icon: Mail,
+    title: "Reply management and scheduling",
+    description:
+      "Handling every reply within 30 minutes, and following up with every interested prospect at least 4 times on a set cadence to maximize the chance of booking a meeting.",
+  },
+  {
+    icon: BarChart3,
+    title: "Deliverability monitoring and troubleshooting",
+    description:
+      "Daily monitoring of your sending reputation and deliverability, and troubleshooting any issues that arise to keep sending at full capacity.",
+  },
+  {
+    icon: RefreshCcw,
+    title: "Messaging angle and copy iteration",
+    description:
+      "Adapting your messaging as soon as a test hits statistical signficance or a new insight lands.",
+  },
+  {
+    icon: UsersRound,
+    title: "Continuous contact-sourcing",
+    description:
+      "Continuously preparing new contacts and keeping existing data up to date to keep your campaigns running at full capacity.",
   },
 ];
 
@@ -52,15 +68,19 @@ const Deliverables = () => {
         opacity: 0,
         duration: 0.9,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
       });
-      gsap.from(".deliv-card", {
-        y: 30,
+      gsap.from(".deliv-item", {
+        y: 20,
         opacity: 0,
-        duration: 0.7,
-        stagger: 0.15,
+        duration: 0.6,
+        stagger: 0.08,
         ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+        scrollTrigger: { trigger: ".deliv-grid", start: "top 80%", once: true },
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -72,67 +92,42 @@ const Deliverables = () => {
       ref={sectionRef}
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
-      <div className="deliv-header mb-12 flex flex-col items-start text-left gap-6">
-        <span
-          className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]"
-          
-        >
+      <div className="deliv-header mb-16 flex flex-col items-start text-left gap-6">
+        <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
           What You Get
         </span>
-        <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
-          We handle everything.
+        <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
+          We handle everything
         </h2>
+        <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
+          We own the whole process until the first meeting is attended. Your
+          team only needs to show up and close.
+        </p>
       </div>
 
-      <div className="deliv-grid grid grid-cols-1 md:grid-cols-3 gap-6">
-        {phases.map((phase) => (
-          <div
-            key={phase.title}
-            className="deliv-card bg-surface p-8 flex flex-col gap-6"
-          >
-            <div className="flex flex-col gap-1">
-              <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-muted">
-                {phase.label}
-              </span>
-              <p className="text-lg font-medium text-foreground">
-                {phase.title}
-              </p>
-              <p className="text-sm text-muted leading-relaxed">
-                {phase.description}
-              </p>
+      <div className="deliv-grid grid grid-cols-1 md:grid-cols-2 gap-x-12">
+        {deliverables.map((item) => {
+          const Icon = item.icon;
+          return (
+            <div
+              key={item.title}
+              className="deliv-item flex items-start gap-4 py-6 border-t border-borderLight"
+            >
+              <Icon
+                size={18}
+                className="mt-0.5 flex-shrink-0 text-pillAccentText"
+              />
+              <div className="flex flex-col gap-1.5">
+                <p className="font-semibold text-foreground text-base leading-snug">
+                  {item.title}
+                </p>
+                <p className="text-sm font-medium text-muted leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
             </div>
-            <div className="border-t border-borderLight" />
-            <ul className="flex flex-col gap-3">
-              {phase.items.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center">
-                    <Check
-                      size={9}
-                      className="text-white/60"
-                      strokeWidth={2.5}
-                    />
-                  </span>
-                  <p className="text-sm text-muted leading-relaxed">{item}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-12 flex flex-col items-start gap-3">
-        <MagneticButton
-          variant="heroPrimary"
-          className="text-sm py-3 px-8"
-          onClick={() =>
-            window.open(
-              "https://cal.com/henrik-freisleben-3prokl/outbound-system",
-              "_blank",
-            )
-          }
-        >
-          Learn How It Works For You <ArrowUpRight size={16} className="ml-1" />
-        </MagneticButton>
+          );
+        })}
       </div>
     </section>
   );

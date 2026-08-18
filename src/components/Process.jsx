@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    title: "Day 1 — Onboarding & Setup",
+    title: "Day 1 — Onboarding & setup",
     bullets: [
       "Onboarding call to gather info on your offer & target market",
       "Domains & inboxes registered under your company",
@@ -14,7 +14,7 @@ const steps = [
     ],
   },
   {
-    title: "Day 1–14 — Build-Out",
+    title: "Day 10 — Build-out",
     bullets: [
       "Prospect lists built, verified, and AI-qualified",
       "Sequences written, every prospect AI-personalized",
@@ -48,12 +48,12 @@ const Process = () => {
         },
       });
       gsap.from(".proc-step", {
-        y: 30,
+        y: 20,
         opacity: 0,
         duration: 0.7,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: "power3.out",
-        scrollTrigger: { trigger: ".proc-list", start: "top 75%", once: true },
+        scrollTrigger: { trigger: ".proc-list", start: "top 78%", once: true },
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -66,44 +66,32 @@ const Process = () => {
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
       <div className="proc-header mb-16 flex flex-col items-start text-left gap-6">
-        <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
+        <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
           The Timeline
         </span>
-        <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
-          From Kickoff To Full Pipeline
+        <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
+          From kickoff to booked meetings
         </h2>
       </div>
 
-      <div className="proc-list flex flex-col">
-        {steps.map((step, index) => (
-          <div key={step.title} className="proc-step flex gap-8 md:gap-12">
-            {/* Left: dot + connector line */}
-            <div className="flex flex-col items-center flex-shrink-0">
-              <div className="w-2.5 h-2.5 rounded-sm bg-white flex-shrink-0 mt-1 md:mt-2" />
-              {index < steps.length - 1 && (
-                <div className="w-0.5 flex-1 bg-borderLight mt-1" />
-              )}
-            </div>
-
-            {/* Right: two-column grid — title left (1/3), bullets bottom-right (2/3) */}
-            <div
-              className={`flex-1 grid md:grid-cols-[1fr_2fr] content-start ${index < steps.length - 1 ? "pb-12" : ""}`}
-            >
-              <p className="font-bold text-foreground text-base md:text-lg leading-snug">
-                {step.title}
-              </p>
-              <div className="md:row-start-2 md:col-start-2 mt-3 bg-surface rounded-xl p-6 md:p-8">
-                <ul className="flex flex-col gap-3.5">
-                  {step.bullets.map((b, i) => (
-                    <li key={i}>
-                      <p className="text-base font-medium text-muted leading-relaxed">
-                        {b}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+      <div className="proc-list grid grid-cols-1 md:grid-cols-3 gap-6">
+        {steps.map((step) => (
+          <div
+            key={step.title}
+            className="proc-step bg-surface border border-borderLight p-8 flex flex-col gap-4"
+          >
+            <p className="font-bold text-foreground text-base md:text-lg leading-snug">
+              {step.title}
+            </p>
+            <ul className="flex flex-col gap-3">
+              {step.bullets.map((b, i) => (
+                <li key={i}>
+                  <p className="text-base font-medium text-muted leading-relaxed">
+                    {b}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>

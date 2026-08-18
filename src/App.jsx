@@ -11,7 +11,6 @@ import Process from "./components/Process";
 import Deliverables from "./components/Deliverables";
 import Comparison from "./components/Comparison";
 import Timeline from "./components/Timeline";
-import Offer from "./components/Offer";
 import ROICalculator from "./components/ROICalculator";
 import Advantage from "./components/Advantage";
 // import Features from "./components/Features"; // hidden
@@ -31,8 +30,8 @@ const Home = () => (
     <CampaignResults />
     <Problem />
     <System />
-    <Offer />
     <Process />
+    <Deliverables />
     <ROICalculator />
     <Testimonials />
     <FAQ />

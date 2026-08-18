@@ -8,11 +8,8 @@ import { ChevronDown } from "lucide-react";
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
   return (
     <div
-      className="overflow-hidden rounded-xl"
-      style={{
-        backgroundColor: isOpen ? "transparent" : "#111111",
-        transition: "background-color 0.25s ease",
-      }}
+      className={`overflow-hidden border ${isOpen ? "bg-transparent border-transparent" : "bg-surface border-borderLight"}`}
+      style={{ transition: "background-color 0.25s ease, border-color 0.25s ease" }}
     >
       <button
         className="w-full px-5 py-3 flex items-center justify-between text-left group"
@@ -106,11 +103,11 @@ const FAQ = () => {
     <section id="faq" ref={sectionRef} className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-16 items-start">
         <div className="faq-header md:col-span-2 flex flex-col items-start text-left gap-6 md:sticky md:top-32">
-          <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
+          <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
             FAQ
           </span>
-          <h2 className="text-3xl md:text-4xl font-medium tracking-normal text-foreground font-serif">
-            Frequently Asked Questions
+          <h2 className="text-[33px] md:text-[42px] font-medium tracking-normal text-foreground font-serif">
+            Frequently asked questions
           </h2>
         </div>
 

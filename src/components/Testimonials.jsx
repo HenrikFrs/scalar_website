@@ -38,7 +38,7 @@ const TestimonialCard = ({ highlight, quote, author, role, image }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-surface p-8 md:p-10 flex flex-col rounded-xl h-full">
+    <div className="bg-surface border border-borderLight p-8 md:p-10 flex flex-col h-full">
       <p className="text-foreground font-medium text-lg leading-snug mb-4">
         {highlight}
       </p>
@@ -127,11 +127,11 @@ const Testimonials = () => {
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
       <div className="test-header mb-16 flex flex-col items-start text-left gap-6">
-        <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
+        <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
           Testimonials
         </span>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-normal text-foreground font-serif max-w-3xl">
-          Our Clients Get Results And Also Enjoy The Process
+        <h2 className="text-[33px] md:text-[42px] font-medium tracking-normal text-foreground font-serif max-w-2xl">
+          Our clients get results and also enjoy the process
         </h2>
       </div>
 

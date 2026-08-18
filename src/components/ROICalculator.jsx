@@ -9,7 +9,7 @@ const Tooltip = ({ text }) => (
   <div className="relative group">
     <Info size={13} className="text-muted/60 cursor-default" />
     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
-      <div className="bg-surface3 border border-white/[0.10] rounded-2xl px-4 py-3 text-xs text-foreground leading-relaxed">
+      <div className="bg-surface3 border border-white/[0.10] px-4 py-3 text-xs text-foreground leading-relaxed">
         {text}
       </div>
     </div>
@@ -78,7 +78,7 @@ const DropdownField = ({ label, value, options, onChange, tooltip }) => {
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
-          className="w-full bg-surface2 rounded-xl px-4 py-3 text-sm font-sans text-foreground text-left flex items-center justify-between"
+          className="w-full bg-surface2 px-4 py-3 text-sm font-sans text-foreground text-left flex items-center justify-between"
         >
           <span>{selected?.label}</span>
           <ChevronDown
@@ -88,7 +88,7 @@ const DropdownField = ({ label, value, options, onChange, tooltip }) => {
           />
         </button>
         {open && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-surface2 rounded-xl overflow-hidden z-20 border border-white/[0.06]">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-surface2 overflow-hidden z-20 border border-white/[0.06]">
             {options.map((o) => (
               <button
                 key={o.value}
@@ -130,7 +130,7 @@ const NumberField = ({
         <label className="text-base font-sans text-foreground">{label}</label>
         {tooltip && <Tooltip text={tooltip} />}
       </div>
-      <div className="flex items-center bg-surface2 rounded-xl overflow-hidden">
+      <div className="flex items-center bg-surface2 overflow-hidden">
         <div className="flex-1 flex items-center px-4 py-3">
           {prefix && (
             <span className="text-sm font-sans text-muted mr-1">{prefix}</span>
@@ -230,11 +230,11 @@ const ROICalculator = () => {
     >
       <div className="flex flex-col items-start">
         <div className="roi-element mb-16 flex flex-col items-start text-left gap-6">
-          <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
+          <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
             ROI Calculator
           </span>
-          <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
-            See It In Numbers
+          <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
+            See it in numbers
           </h2>
           <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
             Plug in your campaign parameters and business economics to project
@@ -242,7 +242,7 @@ const ROICalculator = () => {
           </p>
         </div>
 
-        <div className="roi-element w-full bg-surface p-8 md:p-10 flex flex-col gap-8 rounded-xl">
+        <div className="roi-element w-full bg-surface border border-borderLight p-8 md:p-10 flex flex-col gap-8">
           <div className="flex flex-col gap-7">
             <SliderField
               label="Leads Reached / Month"
@@ -331,7 +331,7 @@ const ROICalculator = () => {
             </div>
 
             <div className="flex flex-col gap-10">
-              <p className="text-3xl md:text-4xl font-sans font-normal text-foreground leading-tight">
+              <p className="text-2xl md:text-3xl font-sans font-normal text-foreground leading-tight">
                 Your projected return is{" "}
                 <span className="font-normal">{fmtMoney(totalPipeline)}</span>{" "}
                 per month.
@@ -349,7 +349,7 @@ const ROICalculator = () => {
                     How is this calculated?
                   </span>
                   <div className="absolute bottom-full right-0 mb-2 w-80 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
-                    <div className="bg-surface3 border border-white/[0.10] rounded-2xl px-4 py-3 text-xs text-foreground leading-relaxed">
+                    <div className="bg-surface3 border border-white/[0.10] px-4 py-3 text-xs text-foreground leading-relaxed">
                       {leadsReached.toLocaleString()} leads ÷ {msgPerResponse} ={" "}
                       {fmt(interestedLeads)} interested leads → ×{bookingPct}%
                       booking = {fmt(bookedCalls)} booked calls → ×{showRate}%

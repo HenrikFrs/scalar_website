@@ -59,13 +59,13 @@ const Timeline = () => {
       <div>
         {/* Header */}
         <div className="tl-header mb-16 flex flex-col items-start text-left gap-6">
-          <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
+          <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
             Timeline
           </span>
-          <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
-            A Clear Timeline to Your
+          <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
+            A clear timeline to your
             <br />
-            First Qualified Meeting
+            first qualified meeting
           </h2>
           <p className="text-lg text-muted max-w-md font-medium">
             From signed agreement to interested leads in 14 days.
@@ -96,7 +96,7 @@ const Timeline = () => {
             {milestones.map((m) => (
               <div
                 key={m.day}
-                className="tl-card bg-surface rounded-2xl p-8 flex flex-col gap-4"
+                className="tl-card bg-surface border border-borderLight p-8 flex flex-col gap-4"
               >
                 <ul className="flex flex-col gap-3">
                   {m.items.map((item, j) => (
@@ -126,7 +126,7 @@ const Timeline = () => {
                   <div className="w-px flex-1 bg-black/15 mt-2 min-h-[2rem]" />
                 )}
               </div>
-              <div className="bg-surface rounded-2xl p-6 flex flex-col gap-3 flex-1 mb-2">
+              <div className="bg-surface border border-borderLight p-6 flex flex-col gap-3 flex-1 mb-2">
                 <p className="text-base font-medium text-foreground">{m.day}</p>
                 <ul className="flex flex-col gap-2">
                   {m.items.map((item, j) => (

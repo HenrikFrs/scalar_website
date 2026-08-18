@@ -207,21 +207,21 @@ const Advantage = () => {
   const cards = [
     {
       icon: <Database size={20} className="text-foreground" />,
-      title: "Prospects That Fit",
+      title: "Prospects that fit",
       description:
         "We score every prospect based on your ideal customer profile and make sure they are the right fit before a single message is sent.",
       widget: <ProspectScorer />,
     },
     {
       icon: <PenLine size={20} className="text-foreground" />,
-      title: "Copy That Feels Genuine",
+      title: "Copy that feels genuine",
       description:
         "We write copy that feels genuine and not like an advertisement. Every Message is deeply personalized with dynamic variables that are proven to increase response rates.",
       widget: <CopyTypewriter />,
     },
     {
       icon: <Server size={20} className="text-foreground" />,
-      title: "Infrastructure That Scales",
+      title: "Infrastructure that scales",
       description:
         "Our infrastructure is designed so that messages consistently land in main inboxes where they actually get seen. Your domain and inboxes remain untouched.",
       widget: <DeliverabilityMonitor />,
@@ -237,7 +237,7 @@ const Advantage = () => {
       <div>
         <div className="mb-16 md:mb-24 flex flex-col items-start text-left gap-4">
           <h2 className="text-3xl md:text-5xl font-medium tracking-normal text-foreground font-serif leading-tight pb-2">
-            Why It Works
+            Why it works
           </h2>
           <p className="text-lg text-muted max-w-md font-medium">
             Here's how we stand out and outperform anything your competitors are
@@ -249,7 +249,7 @@ const Advantage = () => {
           {cards.map((card) => (
             <div
               key={card.title}
-              className="adv-card bg-surface rounded-3xl p-8 md:p-10 flex flex-col"
+              className="adv-card bg-surface border border-borderLight p-8 md:p-10 flex flex-col"
             >
               <h3 className="font-medium text-xl mb-3 text-foreground flex items-center gap-3 pb-1">
                 <span className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center flex-shrink-0">

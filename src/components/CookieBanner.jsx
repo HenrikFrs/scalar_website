@@ -120,7 +120,7 @@ export default function CookieBanner() {
           </button>
           <button
             onClick={accept}
-            className="bg-white text-black text-sm font-sans font-medium px-4 py-2 rounded-xl transition-transform duration-300 hover:scale-[1.03] active:scale-[0.97]"
+            className="bg-white text-black text-sm font-sans font-medium px-4 py-2.5 transition-transform duration-300 hover:scale-[1.03] active:scale-[0.97]"
             style={{ transition: "transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}
           >
             Accept

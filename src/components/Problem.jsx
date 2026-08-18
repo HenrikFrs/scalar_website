@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Target, MessageSquareText, Radio } from "lucide-react";
+import { Users, MessageSquareText, MailQuestion } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -7,22 +7,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const problems = [
   {
-    icon: <Target size={22} style={{ color: "#89c4ff" }} />,
-    title: "Targeting",
+    icon: <Users size={22} style={{ color: "#89c4ff" }} />,
+    title: "Only reaching a fraction of their market",
     description:
-      "The right companies match your ideal customer profile and genuinely need your offer. Most people trying to run outreach at scale rely on basic LinkedIn filters, which are notoriously inaccurate at finding them. Their offer isn't relevant to who they're reaching, which makes their outreach ineffective and effectively spam.",
+      "Most teams cap themselves at the few hundred contacts they can manually research and reach. Whole segments of their addressable market go untouched, not because those companies aren't a fit, but because nobody ever got in front of them.",
   },
   {
     icon: <MessageSquareText size={22} style={{ color: "#89c4ff" }} />,
-    title: "Messaging",
+    title: "Messaging that isn't optimized for a cold audience",
     description:
-      "The right message is personalized to each prospect's specific situation. Most people running high volume outreach rely on generic templates that are clearly mass-sent, which prospects recognize and ignore. The result is outreach that gets reported instead of replied to.",
+      "Copy written for warm leads falls flat on people who've never heard of you. Most outreach skips the context a cold prospect actually needs, so it reads as generic, gets ignored, and never earns the reply.",
   },
   {
-    icon: <Radio size={22} style={{ color: "#89c4ff" }} />,
-    title: "Scale",
+    icon: <MailQuestion size={22} style={{ color: "#89c4ff" }} />,
+    title: "Replies that go nowhere",
     description:
-      "To hit your outreach goals, you need to send enough volume. The hard part isn't sending a lot of messages, but doing so without sacrificing targeting or message quality. Without the right systems, the only way to get there is by adding proportional headcount — which is expensive and doesn't scale.",
+      "An interested reply is only worth something if someone follows up fast and keeps at it. Most teams respond late, skip a real follow-up cadence, and give up on interested prospects long before they've actually lost interest.",
   },
 ];
 
@@ -61,16 +61,15 @@ const Problem = () => {
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
       <div className="prob-header mb-16 flex flex-col items-start text-left gap-6">
-        <span className="text-[9px] md:text-[11px] font-mono font-semibold uppercase tracking-[0.16em] leading-none px-3 py-2 rounded-full bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
+        <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
           The Problem
         </span>
-        <h2 className="text-3xl md:text-4xl font-medium text-foreground font-serif leading-tight max-w-3xl">
-          The Three Variables That Determine Outbound Success
+        <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
+          Why outbound has not worked yet
         </h2>
         <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
-          The success of any outreach system depends on these three variables.
-          Most companies are missing at least one, which is why they struggle to
-          hit their goals.
+          Most companies run into the same three walls when they try to grow
+          through outbound. And any one of them is enough to stall pipeline.
         </p>
       </div>
 
@@ -78,9 +77,9 @@ const Problem = () => {
         {problems.map((item) => (
           <div
             key={item.title}
-            className="prob-item bg-surface rounded-xl p-8 flex flex-col gap-4"
+            className="prob-item bg-surface border border-borderLight p-8 flex flex-col gap-4"
           >
-            <div className="w-14 h-14 rounded-full bg-surface2 flex items-center justify-center">
+            <div className="w-14 h-14 flex items-center justify-center">
               {item.icon}
             </div>
             <p className="font-medium text-foreground text-base md:text-xl leading-snug mt-4">

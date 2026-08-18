@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="relative z-10 px-4 md:px-16 lg:px-96">
         {/* CTA card */}
         <div
-          className="mb-12 overflow-hidden rounded-xl border border-pillBorder flex flex-col items-start text-left gap-8 py-16 px-12 relative"
+          className="mb-12 overflow-hidden border border-pillBorder flex flex-col items-start text-left gap-8 py-16 px-12 relative"
           style={{
             backgroundImage: `url('${import.meta.env.BASE_URL}Frame 18.png')`,
             backgroundSize: "cover",
@@ -21,12 +21,12 @@ const Footer = () => {
           }}
         >
           <div className="absolute inset-0 bg-black/40" />
-          <h2 className="relative z-10 text-3xl md:text-4xl font-medium tracking-normal font-serif text-foreground max-w-3xl leading-tight">
-            Get Qualified Calls On A Pay-Per-Call Basis
+          <h2 className="relative z-10 text-[33px] md:text-[42px] font-medium tracking-normal font-serif text-foreground leading-tight">
+            Get qualified calls on a pay-per-call basis.
           </h2>
           <MagneticButton
             variant="heroPrimary"
-            className="relative z-10 text-sm py-2 px-5 rounded-lg"
+            className="relative z-10 text-sm py-2.5 px-5"
             onClick={() =>
               window.open(
                 "https://cal.com/henrik-freisleben-3prokl/outbound-system",
@@ -34,7 +34,7 @@ const Footer = () => {
               )
             }
           >
-            Get Started
+            Get started
           </MagneticButton>
         </div>
 
@@ -50,7 +50,7 @@ const Footer = () => {
                   className="h-10 brightness-0 invert"
                 />
                 <span className="text-lg tracking-tight font-medium text-foreground">
-                  Scalar AI
+                  Scalar
                 </span>
               </div>
               {/* Mobile-only links */}
@@ -72,7 +72,7 @@ const Footer = () => {
             {/* Mobile: copyright + LinkedIn on same row */}
             <div className="flex items-center justify-between mt-6 md:mt-24">
               <p className="text-xs font-mono text-muted">
-                &copy; {new Date().getFullYear()} Scalar AI.
+                &copy; {new Date().getFullYear()} Scalar.
               </p>
               <a
                 href="https://www.linkedin.com"

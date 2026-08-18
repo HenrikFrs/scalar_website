@@ -35,45 +35,18 @@ export const MagneticButton = ({
 };
 
 export const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    let lastY = window.scrollY;
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (currentY <= 0) {
-        setScrolled(false);
-      } else if (currentY > lastY) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-      lastY = currentY;
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const navLinks = [
-    { label: "How It Works", href: "system" },
-    { label: "Offer", href: "offer" },
+    { label: "How it works", href: "system" },
     { label: "Process", href: "process" },
     { label: "FAQ", href: "faq" },
   ];
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-[60] w-full flex justify-center pointer-events-none md:bg-transparent bg-black/30 backdrop-blur-md md:[backdrop-filter:none]">
-        <nav
-          className={`pointer-events-auto relative flex items-center transition-all duration-300 ease-in-out
-            ${
-              scrolled
-                ? "md:mt-5 md:rounded-xl md:bg-black/80 md:backdrop-blur-md md:shadow-lg md:shadow-black/40 md:px-3 md:py-2 md:w-[780px] md:max-w-[calc(100vw-32px)] px-4 py-2 w-full"
-                : "px-4 md:px-16 lg:px-96 py-2 md:py-4 w-full"
-            }`}
-        >
+      <header className="fixed top-0 left-0 right-0 z-[60] w-full flex justify-center items-stretch pointer-events-none bg-black md:border-b md:border-borderLight">
+        <nav className="pointer-events-auto relative flex items-center px-4 md:px-16 lg:px-96 py-2 w-full">
           {/* Logo */}
           <div className="flex-1 flex items-center">
             <a href="/" className="flex items-center gap-2 flex-shrink-0">
@@ -83,7 +56,7 @@ export const Navbar = () => {
                 className="h-11 brightness-0 invert"
               />
               <span className="mt-0.5 text-base font-medium tracking-tight text-white">
-                Scalar AI
+                Scalar
               </span>
             </a>
           </div>
@@ -104,8 +77,9 @@ export const Navbar = () => {
           {/* CTA */}
           <div className="flex-1 hidden md:flex justify-end">
             <MagneticButton
-              variant="dark"
-              className="px-5 py-2 text-sm rounded-lg border-white/15"
+              variant="ghost"
+              className="px-5 py-2.5 text-sm text-white border-transparent hover:border-transparent"
+              style={{ backgroundColor: "#1C1E1F" }}
               onClick={() =>
                 window.open(
                   "https://cal.com/henrik-freisleben-3prokl/outbound-system",
@@ -113,7 +87,7 @@ export const Navbar = () => {
                 )
               }
             >
-              Schedule a Call
+              Schedule a call
             </MagneticButton>
           </div>
 
@@ -144,43 +118,44 @@ export const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`fixed top-0 left-0 right-0 z-40 pt-[72px] bg-background flex flex-col justify-start px-6 pb-8 md:hidden transition-opacity duration-300 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        className={`fixed top-[60px] left-0 right-0 z-40 bg-background overflow-hidden md:hidden border-b border-borderLight transition-[max-height] duration-300 ease-in-out ${mobileMenuOpen ? "max-h-[420px] pointer-events-auto" : "max-h-0 pointer-events-none"}`}
       >
-        <div className="flex flex-col gap-4 items-start w-full pt-16 md:pt-6">
-          {[
-            { label: "How It Works", href: "system" },
-            { label: "Offer", href: "offer" },
-            { label: "Process", href: "process" },
-            { label: "FAQ", href: "faq" },
-          ].map(({ label, href }, i) => (
-            <a
-              key={label}
-              href={`#${href}`}
-              className={`py-1 text-lg font-medium transition-all duration-300 text-white hover:text-white/70 w-full text-left ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-              style={{
-                transitionDelay: mobileMenuOpen ? `${i * 50}ms` : "0ms",
-              }}
-              onClick={() => setMobileMenuOpen(false)}
+        <div className="flex flex-col justify-start px-6 pb-8">
+          <div className="flex flex-col gap-4 items-start w-full pt-16 md:pt-6">
+            {[
+              { label: "How it works", href: "system" },
+              { label: "Process", href: "process" },
+              { label: "FAQ", href: "faq" },
+            ].map(({ label, href }, i) => (
+              <a
+                key={label}
+                href={`#${href}`}
+                className={`py-1 text-lg font-medium transition-all duration-300 text-white hover:text-white/70 w-full text-left ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                style={{
+                  transitionDelay: mobileMenuOpen ? `${i * 50}ms` : "0ms",
+                }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {label}
+              </a>
+            ))}
+            <div
+              className={`mt-2 transition-all duration-300 ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              style={{ transitionDelay: mobileMenuOpen ? "250ms" : "0ms" }}
             >
-              {label}
-            </a>
-          ))}
-          <div
-            className={`mt-2 transition-all duration-300 ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-            style={{ transitionDelay: mobileMenuOpen ? "250ms" : "0ms" }}
-          >
-            <MagneticButton
-              variant="heroPrimary"
-              className="text-sm py-2 px-5 rounded-lg"
-              onClick={() =>
-                window.open(
-                  "https://cal.com/henrik-freisleben-3prokl/outbound-system",
-                  "_blank",
-                )
-              }
-            >
-              Schedule a Call
-            </MagneticButton>
+              <MagneticButton
+                variant="heroPrimary"
+                className="text-sm py-2.5 px-5"
+                onClick={() =>
+                  window.open(
+                    "https://cal.com/henrik-freisleben-3prokl/outbound-system",
+                    "_blank",
+                  )
+                }
+              >
+                Schedule a call
+              </MagneticButton>
+            </div>
           </div>
         </div>
       </div>
@@ -254,19 +229,19 @@ export const Hero = () => {
       <div className="relative z-10 w-full flex flex-col items-center gap-10 pt-6 md:pt-12 text-center">
         {/* Title + Subtitle + CTA group */}
         <div className="flex flex-col items-center gap-8">
-          <h1 className="hero-element font-serif text-4xl md:text-6xl tracking-tight leading-[1.05] text-white max-w-4xl">
-            AI Outbound Architecture To Access Your Entire Market
+          <h1 className="hero-element font-serif text-4xl md:text-7xl tracking-tight leading-[1.05] text-white max-w-4xl">
+            Done-for-you outbound. Pay per qualified sales call.
           </h1>
 
           <p className="hero-element font-medium text-base text-muted leading-relaxed max-w-3xl">
-            We build and operate an AI outbound system that identifies all of
-            your ideal prospects and engages them with personalized outreach at
-            scale — you only pay per qualified meeting
+            We identify all of your ideal prospects, engage them with
+            personalized outreach, and book qualified meetings directly into
+            your calendar. You only pay per qualified call that is attended.
           </p>
 
           <MagneticButton
             variant="heroPrimary"
-            className="hero-element text-sm py-2 px-5 rounded-lg"
+            className="hero-element text-sm py-2.5 px-5"
             onClick={() =>
               window.open(
                 "https://cal.com/henrik-freisleben-3prokl/outbound-system",
@@ -274,7 +249,7 @@ export const Hero = () => {
               )
             }
           >
-            Book Your Strategy Call
+            Book your strategy call
           </MagneticButton>
         </div>
       </div>
