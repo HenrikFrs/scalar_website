@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -51,16 +51,37 @@ const steps = [
   },
 ];
 
+const StepCard = ({ step, index, className }) => (
+  <div
+    className={`bg-surface border border-borderLight px-6 py-8 flex flex-col gap-6 ${className}`}
+  >
+    <span className="font-mono text-xs text-pillAccentText">
+      [{String(index + 1).padStart(2, "0")}]
+    </span>
+    <h3 className="font-serif text-2xl text-foreground leading-tight">
+      {step.label}
+    </h3>
+    <p className="text-base leading-relaxed text-muted">
+      <span className="font-semibold text-foreground">{step.lead}</span>{" "}
+      {step.description}
+    </p>
+
+    <div className="border-t border-borderLight pt-6 flex flex-col gap-3">
+      {step.checklist.map((item, j) => (
+        <p
+          key={j}
+          className="font-mono text-sm text-muted leading-relaxed flex gap-2"
+        >
+          <span className="text-pillAccentText flex-shrink-0">✓</span>
+          {item}
+        </p>
+      ))}
+    </div>
+  </div>
+);
+
 const System = () => {
   const sectionRef = useRef(null);
-  const pinRef = useRef(null);
-  const [active, setActive] = useState(0);
-  const activeRef = useRef(0);
-  const isClickScroll = useRef(false);
-
-  useEffect(() => {
-    activeRef.current = active;
-  }, [active]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -75,89 +96,22 @@ const System = () => {
           once: true,
         },
       });
-      gsap.from(".process-panel", {
-        y: 20,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-          once: true,
-        },
-      });
 
-      gsap.from(".process-mobile-card", {
+      gsap.from(".process-step-card", {
         y: 20,
         opacity: 0,
         duration: 0.7,
         stagger: 0.12,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: ".process-mobile-list",
+          trigger: ".process-step-list",
           start: "top 85%",
           once: true,
         },
       });
-
-      // Scroll-driven step advance: pin the panel and step through
-      // tabs as the user scrolls past the section. Desktop only —
-      // on mobile every step is shown at once instead (see
-      // .process-mobile-list below).
-      const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-      if (!isDesktop) return;
-
-      const st = ScrollTrigger.create({
-        trigger: pinRef.current,
-        start: "center center",
-        end: () => `+=${(steps.length - 1) * 500}`,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          if (isClickScroll.current) return;
-          const idx = Math.min(
-            steps.length - 1,
-            Math.floor(self.progress * steps.length),
-          );
-          if (idx !== activeRef.current) {
-            setActive(idx);
-          }
-        },
-      });
-
-      return () => st.kill();
     }, sectionRef);
     return () => ctx.revert();
   }, []);
-
-  const panelRef = useRef(null);
-  useEffect(() => {
-    if (!panelRef.current) return;
-    gsap.fromTo(
-      panelRef.current,
-      { opacity: 0, y: 10 },
-      { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
-    );
-  }, [active]);
-
-  const handleStepClick = (i) => {
-    setActive(i);
-    const st = ScrollTrigger.getAll().find((t) => t.trigger === pinRef.current);
-    if (st && window.lenis) {
-      isClickScroll.current = true;
-      const targetProgress = (i + 0.5) / steps.length;
-      const targetScroll = st.start + targetProgress * (st.end - st.start);
-      window.lenis.scrollTo(targetScroll, {
-        duration: 0.9,
-        onComplete: () => {
-          isClickScroll.current = false;
-        },
-      });
-    }
-  };
-
-  const current = steps[active];
 
   return (
     <section
@@ -165,113 +119,28 @@ const System = () => {
       ref={sectionRef}
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background overflow-hidden"
     >
-      <div ref={pinRef}>
-        <div className="process-header mb-16 flex flex-col items-start text-left gap-6 max-w-3xl">
-          <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
-            The Solution
-          </span>
-          <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
-            A clear process for quality outbound at scale
-          </h2>
-          <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
-            Our process ensures that we cover your entire target market while
-            every message stays relevant and results stay consistent.
-          </p>
-        </div>
+      <div className="process-header mb-16 flex flex-col items-start text-left gap-6 max-w-3xl">
+        <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
+          The Solution
+        </span>
+        <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
+          A clear process for quality outbound at scale
+        </h2>
+        <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
+          Our process ensures that we cover your entire target market while
+          every message stays relevant and results stay consistent.
+        </p>
+      </div>
 
-        <div className="process-panel hidden lg:grid lg:grid-cols-[1fr_1.3fr] gap-0 overflow-hidden">
-          {/* Left: step list */}
-          <div className="flex flex-col lg:h-[420px]">
-            {steps.map((step, i) => (
-              <button
-                key={step.label}
-                onClick={() => handleStepClick(i)}
-                className="text-left px-6 md:px-8 py-6 flex-1 flex items-center justify-between gap-4 border-b border-borderLight last:border-b-0 transition-colors duration-200"
-              >
-                <span className="flex items-baseline gap-3">
-                  <span className="font-mono text-xs text-muted">
-                    [{String(i + 1).padStart(2, "0")}]
-                  </span>
-                  <span
-                    className={`font-serif text-lg md:text-xl leading-snug transition-colors duration-200 ${
-                      active === i ? "text-foreground" : "text-muted"
-                    }`}
-                  >
-                    {step.label}
-                  </span>
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* Right: detail panel */}
-          <div
-            ref={panelRef}
-            className="px-6 md:px-10 py-8 md:py-10 flex flex-col gap-6 bg-background/40"
-          >
-            <span className="font-mono text-xs text-pillAccentText">
-              [{String(active + 1).padStart(2, "0")}]
-            </span>
-            <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-tight">
-              {current.label}
-            </h3>
-            <p className="text-base leading-relaxed text-muted">
-              <span className="font-semibold text-foreground">
-                {current.lead}
-              </span>{" "}
-              {current.description}
-            </p>
-
-            <div className="border-t border-borderLight pt-6 flex flex-col gap-3">
-              {current.checklist.map((item, i) => (
-                <p
-                  key={i}
-                  className="font-mono text-sm text-muted leading-relaxed flex gap-2"
-                >
-                  <span className="text-pillAccentText flex-shrink-0">✓</span>
-                  {item}
-                </p>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile: every step shown at once, no tabs */}
-        <div className="process-mobile-list flex flex-col gap-6 lg:hidden">
-          {steps.map((step, i) => (
-            <div
-              key={step.label}
-              className="process-mobile-card bg-surface border border-borderLight px-6 py-8 flex flex-col gap-6"
-            >
-              <span className="font-mono text-xs text-pillAccentText">
-                [{String(i + 1).padStart(2, "0")}]
-              </span>
-              <h3 className="font-serif text-2xl text-foreground leading-tight">
-                {step.label}
-              </h3>
-              <p className="text-base leading-relaxed text-muted">
-                <span className="font-semibold text-foreground">
-                  {step.lead}
-                </span>{" "}
-                {step.description}
-              </p>
-
-              <div className="border-t border-borderLight pt-6 flex flex-col gap-3">
-                {step.checklist.map((item, j) => (
-                  <p
-                    key={j}
-                    className="font-mono text-sm text-muted leading-relaxed flex gap-2"
-                  >
-                    <span className="text-pillAccentText flex-shrink-0">
-                      ✓
-                    </span>
-                    {item}
-                  </p>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="process-step-list flex flex-col gap-6">
+        {steps.map((step, i) => (
+          <StepCard
+            key={step.label}
+            step={step}
+            index={i}
+            className="process-step-card"
+          />
+        ))}
       </div>
     </section>
   );
