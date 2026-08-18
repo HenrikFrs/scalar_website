@@ -131,7 +131,7 @@ const Testimonials = () => {
           Testimonials
         </span>
         <h2 className="text-[33px] md:text-[42px] font-medium tracking-normal text-foreground font-serif max-w-2xl">
-          Our clients get results and also enjoy the process
+          Our clients get results and enjoy the process
         </h2>
       </div>
 
