@@ -6,17 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    label: "Targeting",
-    lead: "We map your whole addressable market, not a sliver of it.",
-    description:
-      "We pull a broad list of potential prospects from multiple sources to cover your entire market, then analyze every single one to filter out prospects that don't fit your ideal customer profile (ICP).",
-    checklist: [
-      "Broad prospect list pulled to cover your whole market",
-      "Every prospect analyzed to filter out bad fits",
-      "Do-not-contact list enforced to avoid reaching out to known contacts",
-    ],
-  },
-  {
     label: "Messaging",
     lead: "Every message is personalized and optimized for a cold audience.",
     description:
@@ -25,6 +14,17 @@ const steps = [
       "Your offer is positioned to convert cold prospects",
       "Every message personalized to the prospect's context",
       "Multiple message variants tested to find the best performer",
+    ],
+  },
+  {
+    label: "Targeting",
+    lead: "We map your whole addressable market, not a sliver of it.",
+    description:
+      "We pull a broad list of potential prospects from multiple sources to cover your entire market, then analyze every single one to filter out prospects that don't fit your ideal customer profile (ICP).",
+    checklist: [
+      "Broad prospect list pulled to cover your whole market",
+      "Every prospect analyzed to filter out bad fits",
+      "Do-not-contact list enforced to avoid reaching out to known contacts",
     ],
   },
   {
