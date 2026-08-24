@@ -6,17 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    label: "Messaging",
-    lead: "Every message is personalized and optimized for a cold audience.",
-    description:
-      "We position your offer to consistently convert completely cold prospects. Every message is deeply personalized to the prospect's unique context, and multiple variants are tested to find your best-performing message.",
-    checklist: [
-      "Your offer is positioned to convert cold prospects",
-      "Every message personalized to the prospect's context",
-      "Multiple message variants tested to find the best performer",
-    ],
-  },
-  {
     label: "Targeting",
     lead: "We map your whole addressable market, not a sliver of it.",
     description:
@@ -25,6 +14,17 @@ const steps = [
       "Broad prospect list pulled to cover your whole market",
       "Every prospect analyzed to filter out bad fits",
       "Do-not-contact list enforced to avoid reaching out to known contacts",
+    ],
+  },
+  {
+    label: "Messaging",
+    lead: "Every message is personalized and optimized for a cold audience.",
+    description:
+      "We position your offer to consistently convert completely cold prospects. Every message is deeply personalized to the prospect's unique context, and multiple variants are tested to find your best-performing message.",
+    checklist: [
+      "Your offer is positioned to convert cold prospects",
+      "Every message personalized to the prospect's context",
+      "Multiple message variants tested to find the best performer",
     ],
   },
   {
