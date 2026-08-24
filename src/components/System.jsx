@@ -42,9 +42,9 @@ const steps = [
     label: "Reply handling",
     lead: "We reply fast and follow up consistently.",
     description:
-      "We reply to prospects within 30 minutes of their reply, and follow up on a defined cadence to maximize the chance of booking a meeting. Every meeting lands straight on your team's calendar.",
+      "We reply to prospects while your offer is still top of mind, and follow up on a defined cadence to maximize the chance of booking a meeting. Every meeting lands straight on your team's calendar.",
     checklist: [
-      "Fast reply to every prospect within 30 minutes",
+      "Fast reply to every prospect while your offer is still fresh",
       "Defined follow-up cadence to maximize bookings",
       "Meetings booked directly on your team's calendar",
     ],

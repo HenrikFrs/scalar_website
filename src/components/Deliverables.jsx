@@ -36,7 +36,7 @@ const deliverables = [
     icon: Mail,
     title: "Reply management and scheduling",
     description:
-      "Handling every reply within 30 minutes, and following up with every interested prospect at least 4 times on a set cadence to maximize the chance of booking a meeting.",
+      "Handling every reply fast, while your offer is still top of mind, and following up with every interested prospect at least 4 times on a set cadence to maximize the chance of booking a meeting.",
   },
   {
     icon: BarChart3,
