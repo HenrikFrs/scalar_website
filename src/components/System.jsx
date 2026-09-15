@@ -6,17 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    label: "Infrastructure",
-    lead: "A clean sending setup that scales and stays reliable.",
-    description:
-      "Dedicated sending domains and inboxes are secured, configured, and warmed for 14 days to ensure deliverability. Back-up infrastructure is set up to keep running at the same capacity in case of any issues.",
-    checklist: [
-      "Dedicated domains and inboxes",
-      "14-day warm-up phase builds reputation before launch",
-      "Back-up infrastructure provides redundancy",
-    ],
-  },
-  {
     label: "Targeting",
     lead: "We map your whole addressable market, not a sliver of it.",
     description:
@@ -36,6 +25,17 @@ const steps = [
       "Your offer is positioned to convert cold prospects",
       "Every message personalized to the prospect's context",
       "Multiple message variants tested to find the best performer",
+    ],
+  },
+  {
+    label: "Infrastructure",
+    lead: "A clean sending setup that scales and stays reliable.",
+    description:
+      "Dedicated sending domains and inboxes are secured, configured, and warmed for 14 days to ensure deliverability. Back-up infrastructure is set up to keep running at the same capacity in case of any issues.",
+    checklist: [
+      "Dedicated domains and inboxes",
+      "14-day warm-up phase builds reputation before launch",
+      "Back-up infrastructure provides redundancy",
     ],
   },
   {
