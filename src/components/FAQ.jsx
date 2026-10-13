@@ -101,8 +101,8 @@ const FAQ = () => {
 
   return (
     <section id="faq" ref={sectionRef} className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background">
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-16 items-start">
-        <div className="faq-header md:col-span-2 flex flex-col items-start text-left gap-6 md:sticky md:top-32">
+      <div className="flex flex-col">
+        <div className="faq-header mb-16 flex flex-col items-center text-center gap-6">
           <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
             FAQ
           </span>
@@ -111,7 +111,7 @@ const FAQ = () => {
           </h2>
         </div>
 
-        <div className="faq-list md:col-span-3 flex flex-col gap-3">
+        <div className="faq-list flex flex-col gap-3">
           {faqs.map((faq, idx) => (
             <div key={idx} className="faq-item">
               <FAQItem

@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="relative z-10 px-4 md:px-16 lg:px-96">
         {/* CTA card */}
         <div
-          className="mb-12 overflow-hidden border border-pillBorder flex flex-col items-start text-left gap-8 py-16 px-12 relative"
+          className="mb-12 overflow-hidden border border-pillBorder flex flex-col items-center text-center gap-8 py-16 px-12 relative"
           style={{
             backgroundImage: `url('${import.meta.env.BASE_URL}Frame 18.png')`,
             backgroundSize: "cover",

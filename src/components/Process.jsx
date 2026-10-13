@@ -65,7 +65,7 @@ const Process = () => {
       ref={sectionRef}
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
-      <div className="proc-header mb-16 flex flex-col items-start text-left gap-6">
+      <div className="proc-header mb-16 flex flex-col items-center text-center gap-6">
         <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
           The Timeline
         </span>

@@ -58,7 +58,7 @@ const Timeline = () => {
     >
       <div>
         {/* Header */}
-        <div className="tl-header mb-16 flex flex-col items-start text-left gap-6">
+        <div className="tl-header mb-16 flex flex-col items-center text-center gap-6">
           <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
             Timeline
           </span>

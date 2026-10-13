@@ -60,14 +60,16 @@ const Problem = () => {
       ref={sectionRef}
       className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
     >
-      <div className="prob-header mb-16 flex flex-col items-start text-left gap-6">
+      <div className="prob-header mb-16 flex flex-col items-center text-center gap-6">
         <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
           The Problem
         </span>
         <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
-          Why outbound has not worked yet
+          Why outbound has not
+          <br />
+          worked yet
         </h2>
-        <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
+        <p className="text-base font-medium text-muted leading-relaxed max-w-2xl">
           Most companies run into the same three walls when they try to grow
           through outbound. And any one of them is enough to stall pipeline.
         </p>

@@ -8,7 +8,6 @@ import CampaignResults from "./components/CampaignResults";
 import Problem from "./components/Problem";
 import System from "./components/System";
 import Process from "./components/Process";
-import Deliverables from "./components/Deliverables";
 import Comparison from "./components/Comparison";
 import Timeline from "./components/Timeline";
 import ROICalculator from "./components/ROICalculator";
@@ -31,7 +30,6 @@ const Home = () => (
     <Problem />
     <System />
     <Process />
-    <Deliverables />
     <ROICalculator />
     <Testimonials />
     <FAQ />

@@ -229,14 +229,14 @@ const ROICalculator = () => {
       className="w-full bg-background py-12 md:py-24 px-4 md:px-16 lg:px-96 section-border"
     >
       <div className="flex flex-col items-start">
-        <div className="roi-element mb-16 flex flex-col items-start text-left gap-6">
+        <div className="roi-element mb-16 w-full flex flex-col items-center text-center gap-6">
           <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
             ROI Calculator
           </span>
           <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
             See it in numbers
           </h2>
-          <p className="text-base font-medium text-muted leading-relaxed max-w-3xl">
+          <p className="text-base font-medium text-muted leading-relaxed max-w-2xl">
             Plug in your campaign parameters and business economics to project
             your monthly return.
           </p>
