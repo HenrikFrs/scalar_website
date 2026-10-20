@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Users, MessageSquareText, MailQuestion } from "lucide-react";
+import { Users, MailWarning, Clock } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -8,21 +8,21 @@ gsap.registerPlugin(ScrollTrigger);
 const problems = [
   {
     icon: <Users size={22} style={{ color: "#89c4ff" }} />,
-    title: "Only reaching a fraction of their market",
+    title: "Not enough volume",
     description:
-      "Most teams cap themselves at the few hundred contacts they can manually research and reach. Whole segments of their addressable market go untouched, not because those companies aren't a fit, but because nobody ever got in front of them.",
+      "Cold email is a numbers game. Most teams only reach a few hundred prospects a month, which is far too few to produce a steady flow of sales calls. The companies winning with outbound reach thousands.",
   },
   {
-    icon: <MessageSquareText size={22} style={{ color: "#89c4ff" }} />,
-    title: "Messaging that isn't optimized for a cold audience",
+    icon: <MailWarning size={22} style={{ color: "#89c4ff" }} />,
+    title: "Not landing in the inbox",
     description:
-      "Copy written for warm leads falls flat on people who've never heard of you. Most outreach skips the context a cold prospect actually needs, so it reads as generic, gets ignored, and never earns the reply.",
+      "Running high volume outreach the wrong way gets you flagged by Google and Microsoft. Without the right sending infrastructure, warmup, monitoring, and rotation, your emails end up in spam and nobody ever reads them.",
   },
   {
-    icon: <MailQuestion size={22} style={{ color: "#89c4ff" }} />,
-    title: "Replies that go nowhere",
+    icon: <Clock size={22} style={{ color: "#89c4ff" }} />,
+    title: "No time to run the channel",
     description:
-      "An interested reply is only worth something if someone follows up fast and keeps at it. Most teams respond late, skip a real follow-up cadence, and give up on interested prospects long before they've actually lost interest.",
+      "Outbound needs constant attention: building lists, testing copy, watching deliverability, and handling replies. Most teams are busy running their business, so the channel never gets the time it needs to work.",
   },
 ];
 

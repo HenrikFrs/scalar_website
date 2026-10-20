@@ -1,7 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ChevronDown, Info, Plus, Minus } from "lucide-react";
+import { Info, Plus, Minus } from "lucide-react";
+import {
+  ACTIVE_DOMAIN_MONTHLY_COST,
+  BACKUP_DOMAIN_MONTHLY_COST,
+  BACKUP_DOMAIN_RATIO,
+  DOMAIN_PRICE,
+  DOMAIN_ROTATION_MONTHS,
+  EMAILS_PER_DOMAIN,
+  EMAILS_PER_INBOX_PER_DAY,
+  EMAILS_PER_LEAD,
+  INBOXES_PER_DOMAIN,
+  INBOX_COST_PER_DOMAIN,
+  SENDING_DAYS,
+  DATA_MONTHLY_COST,
+  getInfra,
+} from "../lib/infra";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,60 +66,6 @@ const SliderField = ({
         className="roi-slider w-full h-1.5 rounded-full appearance-none cursor-pointer"
         style={trackStyle}
       />
-    </div>
-  );
-};
-
-const DropdownField = ({ label, value, options, onChange, tooltip }) => {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-  const selected = options.find((o) => o.value === value);
-
-  useEffect(() => {
-    const handler = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
-  return (
-    <div className="flex flex-col gap-4" ref={ref}>
-      <div className="flex items-center gap-2">
-        <label className="text-base font-sans text-foreground">{label}</label>
-        {tooltip && <Tooltip text={tooltip} />}
-      </div>
-      <div className="relative">
-        <button
-          type="button"
-          onClick={() => setOpen((o) => !o)}
-          className="w-full bg-surface2 px-4 py-3 text-sm font-sans text-foreground text-left flex items-center justify-between"
-        >
-          <span>{selected?.label}</span>
-          <ChevronDown
-            size={14}
-            className="text-muted flex-shrink-0 transition-transform duration-200"
-            style={{ transform: open ? "scaleY(-1)" : "scaleY(1)" }}
-          />
-        </button>
-        {open && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-surface2 overflow-hidden z-20 border border-white/[0.06]">
-            {options.map((o) => (
-              <button
-                key={o.value}
-                type="button"
-                onClick={() => {
-                  onChange(o.value);
-                  setOpen(false);
-                }}
-                className="w-full px-4 py-3 text-sm font-sans text-left text-muted hover:text-foreground hover:bg-white/[0.04] transition-colors duration-150"
-              >
-                {o.label}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
     </div>
   );
 };
@@ -175,21 +136,56 @@ const fmt = (n) =>
 const fmtMoney = (n) =>
   "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
-const campaignOptions = [
-  { value: 100, label: "Top Performing — 1 interested lead / 100 contacts" },
-  { value: 300, label: "Average — 1 interested lead / 300 contacts" },
-  { value: 500, label: "Conservative — 1 interested lead / 500 contacts" },
+// Leads per positive reply, upper bound of each tier (lower is better)
+const performanceTiers = [
+  { max: 500, label: "Top-performing" },
+  { max: 850, label: "Strong" },
+  { max: 1150, label: "Average" },
+  { max: 1500, label: "Below average" },
+  { max: Infinity, label: "Conservative" },
 ];
+const getPerformanceTier = (leadsPerReply) =>
+  performanceTiers.find(({ max }) => leadsPerReply <= max).label;
+
+const BreakdownSection = ({ title, children }) => (
+  <div className="flex flex-col gap-1.5">
+    <p className="text-[10px] uppercase tracking-[0.14em] text-muted/60 mb-0.5">
+      {title}
+    </p>
+    {children}
+  </div>
+);
+
+const BreakdownRow = ({ label, detail, value, strong = false }) => (
+  <div
+    className={`flex items-baseline justify-between gap-4 ${
+      strong ? "border-t border-white/[0.08] pt-1.5 mt-0.5" : ""
+    }`}
+  >
+    <span className={strong ? "text-foreground font-medium" : "text-muted"}>
+      {label}
+      {detail && <span className="text-muted/60"> {detail}</span>}
+    </span>
+    <span
+      className={`tabular-nums flex-shrink-0 ${
+        strong ? "text-foreground font-medium" : "text-foreground/80"
+      }`}
+    >
+      {value}
+    </span>
+  </div>
+);
 
 const ROICalculator = () => {
   const sectionRef = useRef(null);
 
-  const [leadsReached, setLeadsReached] = useState(15000);
-  const [msgPerResponse, setMsgPerResponse] = useState(300);
-  const [feePerCall, setFeePerCall] = useState(250);
-  const [bookingPct, setBookingPct] = useState(25);
-  const [showRate, setShowRate] = useState(80);
-  const [closeRate, setCloseRate] = useState(20);
+  const [messagesSent, setMessagesSent] = useState(22000);
+  const leadsReached = messagesSent / EMAILS_PER_LEAD;
+  const [msgPerResponse, setMsgPerResponse] = useState(1000);
+  const [feePerCall, setFeePerCall] = useState(350);
+  const [bookingPct, setBookingPct] = useState(60);
+  const [showRate, setShowRate] = useState(85);
+  const [closeRate, setCloseRate] = useState(25);
   const [ltv, setLtv] = useState(50000);
 
   const interestedLeads = leadsReached / Math.max(msgPerResponse, 1);
@@ -198,7 +194,12 @@ const ROICalculator = () => {
   const closed = adherentCalls * (closeRate / 100);
   const totalPipeline = closed * ltv;
   const totalFees = adherentCalls * feePerCall;
-  const infraCost = Math.ceil(leadsReached / 1000) * 50;
+  const {
+    emailsSent,
+    activeDomains,
+    backupDomains,
+    monthlyCost: infraCost,
+  } = getInfra(leadsReached);
   const totalCost = totalFees + infraCost;
   const roi = totalPipeline - totalCost;
   const roiMultiple =
@@ -238,35 +239,40 @@ const ROICalculator = () => {
           </h2>
           <p className="text-base font-medium text-muted leading-relaxed max-w-2xl">
             Plug in your campaign parameters and business economics to project
-            your monthly return.
+            the long-term profit from one month of campaigns.
           </p>
         </div>
 
         <div className="roi-element w-full bg-surface border border-borderLight p-8 md:p-10 flex flex-col gap-8">
           <div className="flex flex-col gap-7">
             <SliderField
-              label="Leads Reached / Month"
-              value={leadsReached}
-              display={leadsReached.toLocaleString("en-US")}
-              min={5000}
-              max={30000}
-              step={1000}
-              onChange={setLeadsReached}
-              tooltip="The total number of prospects your campaign reaches per month via cold email."
+              label="Messages Sent"
+              value={messagesSent}
+              display={`${messagesSent.toLocaleString("en-US")} / month · ${Math.round(
+                messagesSent / SENDING_DAYS,
+              ).toLocaleString("en-US")} / day`}
+              min={10000}
+              max={50000}
+              step={2000}
+              onChange={setMessagesSent}
+              tooltip={`The total number of cold emails your campaign sends. Each lead gets ${EMAILS_PER_LEAD} messages, so this reaches ${leadsReached.toLocaleString("en-US")} leads per month.`}
             />
-            <DropdownField
+            <SliderField
               label="Campaign Performance"
               value={msgPerResponse}
-              options={campaignOptions}
+              display={`${getPerformanceTier(msgPerResponse)} · 1 reply / ${msgPerResponse.toLocaleString("en-US")} leads`}
+              min={250}
+              max={2000}
+              step={50}
               onChange={setMsgPerResponse}
-              tooltip="How many contacts it takes to generate one interested lead. Top performing campaigns see 1 in 100; average campaigns see 1 in 300; conservative estimates use 1 in 500. Performance is influenced by various factors like: strength of product-market fit, availability of strong case studies, whether the offer includes specific and measurable claims, whether there is a guarantee or risk reversal in place and many more."
+              tooltip="How many leads it takes to generate one positive reply. Top-performing campaigns see 1 in 500 or better; average campaigns see around 1 in 1,000; conservative estimates use 1 in 1,500 or more. Performance is influenced by various factors like: strength of product-market fit, availability of strong case studies, whether the offer includes specific and measurable claims, whether there is a guarantee or risk reversal in place and many more."
             />
             <SliderField
               label="Fee Per Attended Call"
               value={feePerCall}
               display={`$${feePerCall}`}
-              min={150}
-              max={350}
+              min={250}
+              max={500}
               step={10}
               onChange={setFeePerCall}
               tooltip="The fee charged per attended discovery call. The final fee depends on factors like your target audience and what your own deal structure looks like."
@@ -332,34 +338,115 @@ const ROICalculator = () => {
 
             <div className="flex flex-col gap-10">
               <p className="text-2xl md:text-3xl font-sans font-normal text-foreground leading-tight">
-                Your projected return is{" "}
-                <span className="font-normal">{fmtMoney(totalPipeline)}</span>{" "}
-                per month.
+                Every dollar returns{" "}
+                <span className="font-normal">{roiMultiple}×</span>
               </p>
               <div className="flex items-center justify-between gap-4">
                 <p className="text-base font-semibold font-sans text-muted leading-relaxed">
-                  Net ROI after fees:{" "}
-                  <span className="text-foreground/70">{fmtMoney(roi)}</span>
-                  {" · "}
-                  Return multiple:{" "}
-                  <span className="text-foreground/70">{roiMultiple}×</span>
+                  Each month you invest{" "}
+                  <span className="text-foreground/70">{fmtMoney(totalCost)}</span>{" "}
+                  ({fmtMoney(totalFees)} in call fees + {fmtMoney(infraCost)} in
+                  tech), you win clients worth{" "}
+                  <span className="text-foreground/70">
+                    {fmtMoney(totalPipeline)}
+                  </span>{" "}
+                  over their lifetime.
                 </p>
                 <div className="relative group flex-shrink-0">
                   <span className="text-xs font-sans text-muted/60 cursor-default underline underline-offset-2 decoration-dotted">
                     How is this calculated?
                   </span>
-                  <div className="absolute bottom-full right-0 mb-2 w-80 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
-                    <div className="bg-surface3 border border-white/[0.10] px-4 py-3 text-xs text-foreground leading-relaxed">
-                      {leadsReached.toLocaleString()} leads ÷ {msgPerResponse} ={" "}
-                      {fmt(interestedLeads)} interested leads → ×{bookingPct}%
-                      booking = {fmt(bookedCalls)} booked calls → ×{showRate}%
-                      show rate = {fmt(adherentCalls)} attended → ×{closeRate}%
-                      close rate = {fmt(closed)} clients × $
-                      {ltv.toLocaleString()} LTV = {fmtMoney(totalPipeline)}.
-                      Fees: {fmt(adherentCalls)} calls × ${feePerCall} ={" "}
-                      {fmtMoney(totalFees)}. Infrastructure: $50 ×{" "}
-                      {Math.ceil(leadsReached / 1000)} (per 1,000 contacts) ={" "}
-                      {fmtMoney(infraCost)}. Total cost: {fmtMoney(totalCost)}.
+                  <div className="absolute bottom-full right-0 mb-2 w-[22rem] max-w-[calc(100vw-2rem)] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
+                    <div className="bg-surface3 border border-white/[0.10] px-4 py-4 text-xs leading-relaxed flex flex-col gap-4">
+                      <BreakdownSection title="Pipeline">
+                        <BreakdownRow
+                          label="Messages sent"
+                          value={messagesSent.toLocaleString("en-US")}
+                        />
+                        <BreakdownRow
+                          label="Leads reached"
+                          detail={`÷ ${EMAILS_PER_LEAD} per lead`}
+                          value={leadsReached.toLocaleString("en-US")}
+                        />
+                        <BreakdownRow
+                          label="Interested leads"
+                          detail={`1 per ${msgPerResponse.toLocaleString("en-US")}`}
+                          value={fmt(interestedLeads)}
+                        />
+                        <BreakdownRow
+                          label="Booked calls"
+                          detail={`× ${bookingPct}%`}
+                          value={fmt(bookedCalls)}
+                        />
+                        <BreakdownRow
+                          label="Attended calls"
+                          detail={`× ${showRate}%`}
+                          value={fmt(adherentCalls)}
+                        />
+                        <BreakdownRow
+                          label="Closed clients"
+                          detail={`× ${closeRate}%`}
+                          value={fmt(closed)}
+                        />
+                        <BreakdownRow
+                          label="Long-term revenue"
+                          detail={`× ${fmtMoney(ltv)} LTV`}
+                          value={fmtMoney(totalPipeline)}
+                          strong
+                        />
+                      </BreakdownSection>
+
+                      <BreakdownSection title="Costs">
+                        <BreakdownRow
+                          label="Call fees"
+                          detail={`${fmt(adherentCalls)} × $${feePerCall}`}
+                          value={fmtMoney(totalFees)}
+                        />
+                        <BreakdownRow
+                          label="Active domains"
+                          detail={`${activeDomains} × $${ACTIVE_DOMAIN_MONTHLY_COST.toFixed(2)}`}
+                          value={fmtMoney(activeDomains * ACTIVE_DOMAIN_MONTHLY_COST)}
+                        />
+                        <BreakdownRow
+                          label="Backup domains"
+                          detail={`${backupDomains} × $${BACKUP_DOMAIN_MONTHLY_COST.toFixed(2)}`}
+                          value={fmtMoney(backupDomains * BACKUP_DOMAIN_MONTHLY_COST)}
+                        />
+                        <BreakdownRow
+                          label="Contact data"
+                          value={fmtMoney(DATA_MONTHLY_COST)}
+                        />
+                        <BreakdownRow
+                          label="Total cost"
+                          value={fmtMoney(totalCost)}
+                          strong
+                        />
+                      </BreakdownSection>
+
+                      <BreakdownSection title="Result">
+                        <BreakdownRow
+                          label="Long-term profit"
+                          value={fmtMoney(roi)}
+                          strong
+                        />
+                        <BreakdownRow
+                          label="Return multiple"
+                          value={`${roiMultiple}×`}
+                        />
+                      </BreakdownSection>
+
+                      <p className="text-[11px] text-muted/70 leading-relaxed border-t border-white/[0.08] pt-3">
+                        Each domain has {INBOXES_PER_DOMAIN} inboxes sending{" "}
+                        {EMAILS_PER_INBOX_PER_DAY} emails/day over{" "}
+                        {SENDING_DAYS} days ={" "}
+                        {EMAILS_PER_DOMAIN.toLocaleString("en-US")} emails/month,
+                        so {emailsSent.toLocaleString("en-US")} emails need{" "}
+                        {activeDomains} active domains, plus{" "}
+                        {Math.round(BACKUP_DOMAIN_RATIO * 100)}% as backups. A
+                        domain costs ${INBOX_COST_PER_DOMAIN} for inboxes + $
+                        {DOMAIN_PRICE} ÷ {DOMAIN_ROTATION_MONTHS} months
+                        (rotation).
+                      </p>
                     </div>
                   </div>
                 </div>

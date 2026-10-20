@@ -6,27 +6,26 @@ gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    title: "Day 1 — Onboarding & setup",
+    title: "Day 1 — Build-out & onboarding",
     bullets: [
-      "Onboarding call to gather info on your offer & target market",
-      "Domains & inboxes registered under your company",
-      "Sending infrastructure configured, 14-day warmup begins",
-    ],
-  },
-  {
-    title: "Day 10 — Build-out",
-    bullets: [
-      "Prospect lists built, verified, and AI-qualified",
-      "Sequences written, every prospect AI-personalized",
-      "Pre-launch alignment for your final approval",
+      "Infrastructure set up, 14 day warmup begins",
+      "Onboarding call on positioning & target market",
     ],
   },
   {
     title: "Day 14 — Launch",
     bullets: [
-      "Campaigns go live",
-      "Sending volume ramps up gradually to full capacity",
-      "First interested replies start coming in within days",
+      "Lead lists & sequences approved, campaigns go live",
+      "First deliverability & response metrics",
+      "Volume ramps up week by week",
+    ],
+  },
+  {
+    title: "Day 30 — Sales conversations",
+    bullets: [
+      "Qualified calls on your calendar",
+      "Refining copy & lead lists",
+      "Scaling what works",
     ],
   },
 ];
