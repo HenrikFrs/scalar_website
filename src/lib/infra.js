@@ -1,6 +1,6 @@
 // Sending infrastructure and contact data needed for a monthly lead volume,
 // and what it costs.
-// Shared by the ROI calculator and the deal builder.
+// Used by the ROI calculator.
 
 export const EMAILS_PER_LEAD = 2;
 export const INBOXES_PER_DOMAIN = 25;

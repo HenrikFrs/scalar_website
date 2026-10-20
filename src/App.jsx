@@ -1,10 +1,5 @@
-import React, { Suspense, lazy, useEffect, useRef } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Lenis from "lenis";
@@ -25,11 +20,6 @@ import Footer from "./components/Footer";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
 import CookieBanner from "./components/CookieBanner";
-
-// Private closing-call page: unlisted, and loaded as its own chunk so its code
-// is not part of the main bundle
-const DealBuilder = lazy(() => import("./pages/DealBuilder"));
-const DEAL_BUILDER_PATH = "/deal-builder";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,37 +61,20 @@ function App() {
 
   return (
     <Router basename="/">
-      <Layout />
+      <div className="min-h-screen bg-background text-foreground relative selection:bg-pillAccent selection:text-white overflow-x-hidden">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/imprint" element={<Impressum />} />
+            <Route path="/privacy-policy" element={<Datenschutz />} />
+          </Routes>
+        </main>
+        <Footer />
+        <CookieBanner />
+      </div>
     </Router>
   );
 }
-
-const Layout = () => {
-  const { pathname } = useLocation();
-  const isPrivate = pathname === DEAL_BUILDER_PATH;
-
-  return (
-    <div className="min-h-screen bg-background text-foreground relative selection:bg-pillAccent selection:text-white overflow-x-hidden">
-      {!isPrivate && <Navbar />}
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/imprint" element={<Impressum />} />
-          <Route path="/privacy-policy" element={<Datenschutz />} />
-          <Route
-            path={DEAL_BUILDER_PATH}
-            element={
-              <Suspense fallback={null}>
-                <DealBuilder />
-              </Suspense>
-            }
-          />
-        </Routes>
-      </main>
-      {!isPrivate && <Footer />}
-      {!isPrivate && <CookieBanner />}
-    </div>
-  );
-};
 
 export default App;
