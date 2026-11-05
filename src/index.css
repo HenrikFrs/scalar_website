@@ -1,86 +1,370 @@
-@font-face {
-  font-family: 'Francisco Serial';
-  src: url('/francisco serial.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* Values are "R G B" so Tailwind's alpha modifiers work */
+  /* .theme-dark keeps a block dark while the rest of the page is light */
+  :root,
+  .theme-dark {
+    --background: 10 10 11;
+    --surface: 17 17 19;
+    --surface2: 23 23 26;
+    --border: 28 28 29;
+    --border-mid: 44 44 45;
+    --border-light: rgb(237 237 234 / 0.08);
+    --foreground: 255 255 255;
+    --body: 182 182 182; /* White at 70% */
+    --muted: 133 133 133; /* White at 50% */
+    --title-accent: 108 108 108; /* White at 40% */
+    --accent: 255 255 255;
+    --accent-soft: 23 23 26;
+    --warn: 255 107 53;
+    --brand: 85 139 251;
+    --guide: rgb(255 255 255 / 0.1);
+    --btn: 237 237 234;
+    --btn-text: 14 11 10;
+    --btn-hover: 213 213 210;
+    --logo-filter: brightness(0) invert(1);
+    color-scheme: dark;
+  }
+
+  /* The site's theme, set on <html> in index.html */
+  :root[data-theme="light"] {
+    --background: 250 250 250;
+    --surface: 255 255 255;
+    --surface2: 236 236 236;
+    --border: 226 226 226;
+    --border-mid: 208 208 208;
+    --border-light: rgb(17 17 19 / 0.1);
+    --foreground: 14 11 10;
+    --body: 14 11 10;
+    --muted: 14 11 10;
+    --title-accent: 14 11 10;
+    --accent: 14 11 10;
+    --accent-soft: 232 232 232;
+    --warn: 255 107 53;
+    --brand: 37 99 235; /* Deeper than the dark value so small text stays legible */
+    --guide: rgb(230 230 230);
+    --btn: 17 17 19;
+    --btn-text: 255 255 255;
+    --btn-hover: 58 58 62;
+    --logo-filter: brightness(0);
+    color-scheme: light;
+  }
+
   html {
     scroll-behavior: smooth;
-    --background: #000000;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-body font-sans antialiased;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    font-feature-settings: "cv03", "cv04", "cv09", "cv11";
+  }
+
+  section[id] {
+    scroll-margin-top: 58px;
   }
 
   ::selection {
-    background-color: #3799f7;
-    color: #ffffff;
+    background-color: rgb(var(--foreground));
+    color: rgb(var(--background));
   }
 }
 
 @layer components {
-  /* ── Global section side padding — change here to affect all sections ── */
+  /* Dashed guide lines just outside the content column. They sit behind the
+     content, so dark sections draw their own copy in the dark --guide colour
+     (those sections need `relative isolate`). */
+  .page-guides {
+    --guide-dash: repeating-linear-gradient(
+      to bottom,
+      var(--guide) 0 12px,
+      transparent 12px 18px
+    );
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: min(100% - 16px, 1270px);
+    z-index: -1;
+    pointer-events: none;
+    background:
+      var(--guide-dash) left top / 1px 100% no-repeat,
+      var(--guide-dash) right top / 1px 100% no-repeat;
+  }
+
+  @media (max-width: 767px) {
+    .page-guides {
+      display: none;
+    }
+  }
+
+  /* Dashed top edge of a section; ends at the vertical guide lines */
+  .section-line {
+    background: repeating-linear-gradient(
+        to right,
+        var(--guide) 0 12px,
+        transparent 12px 18px
+      )
+      center top / min(100% - 16px, 1270px) 1px no-repeat;
+  }
+
+  /* Dashed bottom edge of the navbar */
+  .nav-guide::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: repeating-linear-gradient(
+      to right,
+      var(--guide) 0 12px,
+      transparent 12px 18px
+    );
+  }
+
+  /* The centered content column shared by every section */
+  .shell {
+    width: 100%;
+    max-width: 1142px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 1200px) {
+    .shell {
+      padding-inline: 0;
+    }
+  }
+
   .section-x {
     @apply px-4 md:px-16 lg:px-96;
+  }
+
+  /* Vertical breathing room shared by every section */
+  .section-y {
+    @apply py-28 md:py-40;
+  }
+
+  /* Type scale. Headings step down at 1200px and 810px */
+  .type-h1,
+  .type-h2,
+  .type-h3,
+  .type-stat {
+    @apply font-serif font-normal;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .type-h1 {
+    font-size: 36px;
+  }
+  .type-h2 {
+    font-size: 30px;
+  }
+  .type-h3 {
+    font-size: 24px;
+    line-height: 38px;
+  }
+  .type-stat {
+    font-size: 28px;
+    letter-spacing: 0;
+  }
+  @media (min-width: 810px) {
+    .type-h1 {
+      font-size: 42px;
+    }
+    .type-h2 {
+      font-size: 36px;
+    }
+    .type-h3 {
+      font-size: 26px;
+    }
+    .type-stat {
+      font-size: 32px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .type-h1 {
+      font-size: 56px;
+    }
+    .type-h2 {
+      font-size: 44px;
+    }
+    .type-h3 {
+      font-size: 32px;
+    }
+    .type-stat {
+      font-size: 40px;
+    }
+  }
+
+  .type-title-lg {
+    @apply font-medium;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.5px;
+  }
+  .type-title {
+    @apply font-medium;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.5px;
+  }
+  .type-lead {
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.5px;
+  }
+  .type-body {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+  }
+  .type-small {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0;
+  }
+
+  /* Mono used for buttons and nav links */
+  .btn-label {
+    @apply font-mono font-normal;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+  }
+
+  /* Pill buttons */
+  .btn {
+    @apply btn-label inline-flex items-center justify-center gap-2 rounded-full h-[48px] px-6 cursor-pointer;
+  }
+
+  /* Soft shadow at rest; the whole surface shifts one shade on hover */
+  .btn-primary {
+    @apply bg-btn text-btnText hover:bg-btnHover;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+    box-shadow:
+      2px 2px 8px rgb(55 55 55 / 0.15),
+      inset 1px 1px 9px rgb(255 255 255 / 0.1);
+  }
+  /* Diagram parts for the "How it works" visuals */
+  .flow-node,
+  .flow-node-dim {
+    border-radius: 6px;
+    border: 1px solid rgb(var(--brand) / 0.5);
+    background: linear-gradient(
+      to bottom,
+      rgb(var(--brand) / 0.14),
+      rgb(var(--brand) / 0.02)
+    );
+  }
+  .flow-node-dim {
+    border-color: rgb(var(--foreground) / 0.1);
+    background: rgb(var(--foreground) / 0.02);
+  }
+  .flow-line {
+    display: block;
+    width: 1px;
+    height: 10px;
+    margin-inline: auto;
+    background: rgb(var(--brand) / 0.6);
+  }
+  .fade-y {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 18%,
+      #000 82%,
+      transparent
+    );
+  }
+  @media (max-width: 559px) {
+    .fade-x {
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        #000 8%,
+        #000 92%,
+        transparent
+      );
+    }
+  }
+
+  .btn-secondary {
+    @apply bg-surface2 text-foreground border border-borderMid transition-colors duration-200 hover:bg-borderMid/60;
+  }
+
+  /* Greyed-out part of a title */
+  .title-accent {
+    color: rgb(var(--title-accent));
+  }
+
+  /* Small secondary label */
+  .ui-label {
+    @apply font-mono font-medium;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+
+  /* Labels carry a small blue gradient chip. Buttons stay neutral. */
+  .pill-tag {
+    @apply ui-label inline-flex items-center gap-2 text-foreground uppercase;
+  }
+  .pill-tag::before {
+    content: "";
+    width: 14px;
+    height: 7px;
+    flex-shrink: 0;
+    background: linear-gradient(to right, #c0e2f9, rgb(var(--brand)));
+  }
+
+  /* One hairline box split into three cells */
+  .box-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 border border-borderLight divide-y md:divide-y-0 md:divide-x divide-borderLight;
+  }
+
+  /* The logo image is forced to white, or black in light mode */
+  .brand-logo {
+    filter: var(--logo-filter);
+    transition: filter 0.3s ease;
   }
 
   /* ROI Calculator slider thumb */
   input[type="range"].roi-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    background: #FAFAFA;
+    width: 12px;
+    height: 12px;
+    background: rgb(var(--brand));
     cursor: pointer;
     border: none;
-    box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
   }
   input[type="range"].roi-slider::-moz-range-thumb {
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    background: #FAFAFA;
+    width: 12px;
+    height: 12px;
+    border-radius: 0;
+    background: rgb(var(--brand));
     cursor: pointer;
     border: none;
-    box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
-  }
-
-  .pill-badge {
-    @apply inline-flex items-center px-3 py-1 text-[10px] font-mono uppercase tracking-[0.16em] rounded-lg;
-    background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #888888;
   }
 }
 
 @layer utilities {
-  .noise-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9999;
-    /* Monochrome noise only */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CcolorMatrix type='matrix' values='1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.15;
-    /* Adjusted for B&W matrix */
+  /* Mono never inherits the tighter tracking of the body text */
+  .font-mono {
+    letter-spacing: 0;
   }
 
-  .transition-magnetic {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .transition-spring {
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  .transition-soft {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 }

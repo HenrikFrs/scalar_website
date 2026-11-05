@@ -1,36 +1,59 @@
 /** @type {import('tailwindcss').Config} */
+
+// Palette lives in CSS variables (src/index.css)
+const v = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        // Dark mode tokens
-        background: "#000000",
-        surface: "#07090b",
-        surface2: "#1a1a1a",
-        surface3: "#222222",
-        border: "#1c1e1f",
-        borderLight: "#1c1e1f",
-        pillBorder: "#1E1E1E",
-        pillAccent: "#3799f7",
-        pillAccentText: "#60aeff",
-        foreground: "#FAFAFA",
-        muted: "#7d8080",
-        accent: "#FAFAFA",
-        // Light mode tokens (lt- prefix avoids conflict with Tailwind's border-l-, text-l- directional utilities)
-        "lt-background": "#FAFAFA",
-        "lt-surface": "#F2F2F2",
-        "lt-surface2": "#E8E8E8",
-        "lt-surface3": "#DEDEDE",
-        "lt-borderLight": "rgba(0,0,0,0.12)",
-        "lt-pillBorder": "rgba(0,0,0,0.28)",
-        "lt-foreground": "#1A1A1A",
-        "lt-muted": "#525252",
+        background: v("background"),
+        surface: v("surface"),
+        surface2: v("surface2"),
+        surface3: v("surface2"),
+        border: v("border"),
+        borderLight: "var(--border-light)", // Hairline on every box
+        borderMid: v("border-mid"),
+        pillBorder: v("border"),
+        pillAccent: v("accent"),
+        pillAccentText: v("accent"),
+        foreground: v("foreground"),
+        foregroundHover: v("foreground"),
+        heading: v("foreground"),
+        body: v("body"),
+        muted: v("muted"),
+        accent: v("accent"),
+        accentHover: v("accent"),
+        green: v("accent"),
+        greenLight: v("border-mid"),
+        greenDeep: v("accent-soft"),
+        warn: v("warn"),
+        brand: v("brand"), // The one blue accent
+        btn: v("btn"),
+        btnText: v("btn-text"),
+        btnHover: v("btn-hover"),
+      },
+      // Square corners everywhere; rounded-full stays for dots and badges
+      borderRadius: {
+        DEFAULT: "0",
+        sm: "0",
+        md: "0",
+        lg: "0",
+        xl: "0",
+        "2xl": "0",
       },
       fontFamily: {
-        sans: ['"Hedvig Letters Sans"', '"DM Sans"', "sans-serif"],
-        serif: ['"Hedvig Letters Serif"', "serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        // Title font (font-serif). Helvetica Neue is only used where it's
+        // installed; plain "Helvetica" is left out because Windows maps it to Arial
+        serif: ['"Helvetica Neue"', '"Inter Tight"', "system-ui", "sans-serif"],
+        brand: ["Geist", "Inter", "sans-serif"],
+        ui: ["Inter", "system-ui", "sans-serif"],
+        mono: ['"Geist Mono"', "ui-monospace", "monospace"],
+      },
+      transitionTimingFunction: {
+        soft: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },

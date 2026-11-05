@@ -8,17 +8,17 @@ const Datenschutz = () => {
       <div className="max-w-3xl mx-auto relative z-10">
         <Link
           to="/"
-          className="inline-flex items-center text-white/50 hover:text-white transition-colors mb-12 text-sm font-medium"
+          className="inline-flex items-center ui-label text-muted hover:text-green transition-colors duration-300 mb-12"
         >
-          <ArrowLeft size={16} className="mr-2" /> Back to Home
+          <ArrowLeft size={14} className="mr-2" /> Back to Home
         </Link>
 
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight mb-4 font-sans text-white">
+        <h1 className="type-h1 mb-4 text-heading">
           Privacy Policy
         </h1>
 
-        <div className="prose prose-invert prose-lg text-white/70 max-w-none mt-12 space-y-8">
-          <p className="text-sm text-white/40">Last updated May 25, 2026</p>
+        <div className="type-body text-body max-w-none mt-12 space-y-8">
+          <p className="ui-label text-green">Last updated May 25, 2026</p>
 
           <p>
             Scalar respects your privacy and is committed to protecting your
@@ -27,29 +27,29 @@ const Datenschutz = () => {
             regarding your data.
           </p>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             1. Collection of Information
           </h3>
           <p>We may collect various types of information, including:</p>
           <ul className="list-disc pl-6 space-y-2 mt-4">
             <li>
-              <strong>Personal data:</strong> For example, name, email address,
+              <strong className="font-medium text-heading">Personal data:</strong> For example, name, email address,
               phone number, and company name when you fill out forms or contact
               us.
             </li>
             <li>
-              <strong>Usage data:</strong> Information about how you use our
+              <strong className="font-medium text-heading">Usage data:</strong> Information about how you use our
               website, including IP address, browser type, operating system,
               referrer URLs, pages visited, and date and time of access.
             </li>
             <li>
-              <strong>Cookies and tracking technologies:</strong> Small files
+              <strong className="font-medium text-heading">Cookies and tracking technologies:</strong> Small files
               stored on your device to improve your user experience and analyze
               website traffic.
             </li>
           </ul>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             2. Use of Your Information
           </h3>
           <p>
@@ -69,7 +69,7 @@ const Datenschutz = () => {
             <li>Fulfilling legal obligations</li>
           </ul>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             3. Sharing of Information
           </h3>
           <p>
@@ -78,22 +78,22 @@ const Datenschutz = () => {
           </p>
           <ul className="list-disc pl-6 space-y-2 mt-4">
             <li>
-              <strong>With service providers:</strong> Third-party vendors
+              <strong className="font-medium text-heading">With service providers:</strong> Third-party vendors
               providing services on our behalf (e.g. hosting, analytics,
               customer support).
             </li>
             <li>
-              <strong>For legal reasons:</strong> When required to comply with
+              <strong className="font-medium text-heading">For legal reasons:</strong> When required to comply with
               applicable laws, regulatory orders, or legal proceedings.
             </li>
             <li>
-              <strong>In connection with business transfers:</strong> In the
+              <strong className="font-medium text-heading">In connection with business transfers:</strong> In the
               event of mergers, acquisitions, or asset sales, data may be
               transferred.
             </li>
           </ul>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             4. Cookies and Tracking
           </h3>
           <p>
@@ -113,7 +113,7 @@ const Datenschutz = () => {
             and respected on subsequent visits.
           </p>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             4a. Google Tag Manager
           </h3>
           <p>
@@ -145,14 +145,14 @@ const Datenschutz = () => {
               href="https://policies.google.com/privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-2 hover:text-white transition-colors"
+              className="underline underline-offset-2 hover:text-green transition-colors"
             >
               policies.google.com/privacy
             </a>
             .
           </p>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             5. Retention Period
           </h3>
           <p>
@@ -160,7 +160,7 @@ const Datenschutz = () => {
             purposes described in this privacy policy or as required by law.
           </p>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             6. Your Privacy Rights
           </h3>
           <p>
@@ -178,7 +178,7 @@ const Datenschutz = () => {
             </li>
           </ul>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             7. Third-Party Links
           </h3>
           <p>
@@ -187,7 +187,7 @@ const Datenschutz = () => {
             respective privacy policies.
           </p>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             8. Data Security
           </h3>
           <p>
@@ -196,7 +196,7 @@ const Datenschutz = () => {
             electronic storage can guarantee absolute security.
           </p>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             9. Children's Privacy
           </h3>
           <p>
@@ -206,7 +206,7 @@ const Datenschutz = () => {
             us immediately.
           </p>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             10. Changes to This Privacy Policy
           </h3>
           <p>
@@ -215,19 +215,19 @@ const Datenschutz = () => {
             updated" date.
           </p>
 
-          <h3 className="text-2xl font-medium text-white mt-12 mb-4">
+          <h3 className="text-2xl font-normal font-serif text-heading mt-12 mb-4">
             11. Contact
           </h3>
           <p className="mb-4">
             If you have questions about this privacy policy, you can reach us
             at:
           </p>
-          <div className="text-white/70">
+          <div className="type-body text-body">
             <p className="mb-1">Henrik Freisleben</p>
             <p className="mb-1">Ludwig-Finckh-Straße 1D</p>
             <p className="mb-4">78234 Engen</p>
             <p>
-              <span className="text-white">Email:</span> henrik@scalarai.co
+              <span className="text-heading">Email:</span> henrik@scalarai.co
             </p>
           </div>
         </div>

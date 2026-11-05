@@ -9,17 +9,17 @@ const Impressum = () => {
       <div className="max-w-3xl mx-auto relative z-10">
         <Link
           to="/"
-          className="inline-flex items-center text-white/50 hover:text-white transition-colors mb-12 text-sm font-medium"
+          className="inline-flex items-center ui-label text-muted hover:text-green transition-colors duration-300 mb-12"
         >
-          <ArrowLeft size={16} className="mr-2" /> Back to Home
+          <ArrowLeft size={14} className="mr-2" /> Back to Home
         </Link>
 
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight mb-4 font-sans text-white">
+        <h1 className="type-h1 mb-4 text-heading">
           Imprint
         </h1>
 
-        <div className="prose prose-invert prose-lg text-white/70 max-w-none mt-12 space-y-8">
-          <p className="text-sm text-white/40">
+        <div className="type-body text-body max-w-none mt-12 space-y-8">
+          <p className="ui-label text-green">
             Last updated March 25, 2026
           </p>
 
@@ -31,15 +31,15 @@ const Impressum = () => {
 
           <div>
             <p>
-              <span className="text-white">Email:</span> henrik@scalarai.co
+              <span className="text-heading">Email:</span> henrik@scalarai.co
             </p>
             <p>
-              <span className="text-white">Telefon:</span> +49 1590 2239382
+              <span className="text-heading">Telefon:</span> +49 1590 2239382
             </p>
           </div>
           <div>
             <p>
-              <span className="text-white">USt-IdNr.:</span> DE454136928
+              <span className="text-heading">USt-IdNr.:</span> DE454136928
             </p>
           </div>
         </div>

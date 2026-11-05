@@ -3,61 +3,62 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-import { ChevronDown } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
+import { SectionHeader } from "./ui";
+import { MagneticButton } from "./Header";
+import { openCal } from "../lib/cal";
+
+const PANEL_EASE = "0.35s cubic-bezier(0.4, 0, 0.2, 1)";
 
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
+  const Icon = isOpen ? Minus : Plus;
+
   return (
-    <div
-      className={`overflow-hidden border ${isOpen ? "bg-transparent border-transparent" : "bg-surface border-borderLight"}`}
-      style={{ transition: "background-color 0.25s ease, border-color 0.25s ease" }}
-    >
+    <div className="overflow-hidden">
       <button
-        className="w-full px-5 py-3 flex items-center justify-between text-left group"
+        className="w-full py-6 flex items-center justify-between gap-4 text-left"
+        aria-expanded={isOpen}
         onClick={onClick}
       >
-        <span
-          className={`text-base md:text-lg font-medium font-sans pr-6 transition-colors ${isOpen ? "text-foreground" : "text-foreground/80 group-hover:text-foreground"}`}
-        >
-          {question}
-        </span>
-        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-          <ChevronDown
-            size={20}
-            className="text-muted group-hover:text-foreground transition-colors"
-            style={{
-              transform: isOpen ? "scaleY(-1)" : "scaleY(1)",
-              transition: "transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-            }}
-          />
-        </div>
+        <span className="type-title text-heading">{question}</span>
+        <Icon
+          size={18}
+          strokeWidth={1.5}
+          className={`flex-shrink-0 ${isOpen ? "text-brand" : "text-foreground"}`}
+          aria-hidden="true"
+        />
       </button>
 
+      {/* 0fr to 1fr animates the real content height, so opening matches closing */}
       <div
-        className="overflow-hidden"
+        className="grid"
         style={{
-          maxHeight: isOpen ? "500px" : "0",
+          gridTemplateRows: isOpen ? "1fr" : "0fr",
+          marginTop: isOpen ? "-8px" : "0",
           opacity: isOpen ? 1 : 0,
-          transition: "max-height 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.2s ease",
+          transition: `grid-template-rows ${PANEL_EASE}, margin-top ${PANEL_EASE}, opacity ${PANEL_EASE}`,
         }}
       >
-        <div className="px-5 pb-4 text-base font-medium text-muted leading-relaxed">{answer}</div>
+        <div className="min-h-0 overflow-hidden">
+          <div className="pb-6 pr-5 type-body text-body">{answer}</div>
+        </div>
       </div>
     </div>
   );
 };
 
 const FAQ = () => {
-  const [openIdx, setOpenIdx] = useState(null);
+  const [openIdx, setOpenIdx] = useState(0);
   const sectionRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".faq-header", {
-        y: 30, opacity: 0, duration: 0.9, ease: "power3.out",
+        y: 30, opacity: 0, duration: 1.2, ease: "expo.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
       gsap.from(".faq-item", {
-        y: 20, opacity: 0, duration: 0.6, stagger: 0.08, ease: "power3.out",
+        y: 20, opacity: 0, duration: 1, stagger: 0.08, ease: "expo.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
       });
     }, sectionRef);
@@ -100,20 +101,28 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" ref={sectionRef} className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background">
-      <div className="flex flex-col">
-        <div className="faq-header mb-16 flex flex-col items-center text-center gap-6">
-          <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]" >
-            FAQ
-          </span>
-          <h2 className="text-[33px] md:text-[42px] font-medium tracking-normal text-foreground font-serif">
-            Frequently asked questions
-          </h2>
+    <section id="faq" ref={sectionRef} className="section-line">
+      <div className="shell section-y grid grid-cols-1 gap-y-10 min-[810px]:gap-y-16 min-[1200px]:grid-cols-[348px_minmax(0,1fr)] min-[1200px]:gap-x-20">
+        <div className="faq-header flex flex-col items-start gap-8">
+          <SectionHeader
+            eyebrow="FAQ"
+            title="Frequently asked"
+            accent="questions."
+          />
+          <div>
+            <p className="type-title text-heading">Have more questions?</p>
+            <p className="type-body text-body mb-4">
+              We'll walk you through it on a call.
+            </p>
+            <MagneticButton variant="secondary" onClick={openCal}>
+              Book a call
+            </MagneticButton>
+          </div>
         </div>
 
-        <div className="faq-list flex flex-col gap-3">
+        <div className="faq-list flex flex-col min-w-0 border-t border-borderLight">
           {faqs.map((faq, idx) => (
-            <div key={idx} className="faq-item">
+            <div key={idx} className="faq-item border-b border-borderLight">
               <FAQItem
                 question={faq.q}
                 answer={faq.a}

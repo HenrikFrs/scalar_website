@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Lenis from "lenis";
 import { Navbar, Hero } from "./components/Header";
-import CampaignResults from "./components/CampaignResults";
+// import CampaignResults from "./components/CampaignResults"; // hidden for now
 import Problem from "./components/Problem";
 import System from "./components/System";
 import Process from "./components/Process";
@@ -26,7 +26,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => (
   <>
     <Hero />
-    <CampaignResults />
     <Problem />
     <System />
     <Process />
@@ -61,7 +60,9 @@ function App() {
 
   return (
     <Router basename="/">
-      <div className="min-h-screen bg-background text-foreground relative selection:bg-pillAccent selection:text-white overflow-x-hidden">
+      {/* overflow-x-clip, not hidden: hidden would break the sticky sections */}
+      <div className="min-h-screen bg-background text-body relative isolate overflow-x-clip">
+        <div className="page-guides" aria-hidden="true" />
         <Navbar />
         <main>
           <Routes>

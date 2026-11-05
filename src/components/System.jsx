@@ -1,16 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Ban,
-  Building2,
-  CalendarCheck,
-  Check,
-  Clock,
-  Globe,
-  Mail,
-  X,
-} from "lucide-react";
+import { SectionHeader } from "./ui";
+import { ArrowRight, Ban, Building2, Check, X } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,137 +50,179 @@ const steps = [
   },
 ];
 
-const inboxes = ["alex", "alex.r", "a.ryan"];
-const activeDomains = ["getyourbrand.com", "tryyourbrand.com"];
+// A labelled box in a diagram; `dim` is for the steps leading up to the result
+const FlowNode = ({ label, dim = false, className = "", children }) => (
+  <div className={`${dim ? "flow-node-dim" : "flow-node"} px-3 py-1.5 ${className}`}>
+    {label && (
+      <p className="font-mono text-[9px] leading-3 text-muted">{label}</p>
+    )}
+    <p className="text-[11px] leading-4 tracking-normal text-foreground">
+      {children}
+    </p>
+  </div>
+);
 
-// A sending domain with its inboxes; back-ups are still in warm-up
-const DomainBox = ({ domain, backup = false }) => (
+const DomainNode = ({ domain, backup = false }) => (
   <div
-    className={`border border-borderLight bg-background px-3 py-2.5 flex flex-col gap-2 ${
-      backup ? "infra-backup border-dashed" : "infra-domain"
+    className={`h-[46px] px-3 flex flex-col justify-center ${
+      backup ? "flow-node-dim border-dashed" : "flow-node"
     }`}
   >
-    <div className="flex items-center justify-between gap-2">
-      <div className="flex items-center gap-2 min-w-0">
-        <Globe
-          size={13}
-          className={`flex-shrink-0 ${
-            backup ? "text-muted" : "text-pillAccentText"
-          }`}
-        />
-        <span
-          className={`font-mono text-xs truncate ${
-            backup ? "text-muted" : "text-foreground"
-          }`}
-        >
-          {domain}
-        </span>
-      </div>
+    <p className="flex items-center justify-between gap-2 leading-4">
       <span
-        className={`font-mono text-[10px] flex items-center gap-1.5 flex-shrink-0 ${
-          backup ? "text-amber-400" : "text-emerald-400"
+        className={`text-[11px] tracking-normal truncate ${
+          backup ? "text-muted" : "text-foreground"
+        }`}
+      >
+        {domain}
+      </span>
+      <span
+        className={`font-mono text-[9px] flex items-center gap-1 flex-shrink-0 ${
+          backup ? "text-warn" : "text-brand"
         }`}
       >
         <span
-          className={`w-1.5 h-1.5 rounded-full animate-pulse ${
-            backup ? "bg-amber-400" : "bg-emerald-400"
-          }`}
+          className={`w-1 h-1 rounded-full ${backup ? "bg-warn" : "bg-brand"}`}
         />
         {backup ? "Warmup" : "Active"}
       </span>
-    </div>
-
-    <div className="grid grid-cols-3 gap-1.5">
-      {inboxes.map((name) => (
-        <div
-          key={name}
-          className="infra-inbox border border-borderLight px-2 py-1.5 min-w-0"
-        >
-          <span className="flex items-center gap-1 min-w-0">
-            <Mail
-              size={10}
-              className={`flex-shrink-0 ${
-                backup ? "text-muted" : "text-pillAccentText"
-              }`}
-            />
-            <span
-              className={`font-mono text-[10px] truncate ${
-                backup ? "text-muted" : "text-foreground"
-              }`}
-            >
-              {name}@
-            </span>
-          </span>
-        </div>
-      ))}
-    </div>
+    </p>
+    <p className="font-mono text-[9px] leading-3 text-muted">
+      {backup ? "Back-up · 25 inboxes" : "25 inboxes"}
+    </p>
   </div>
 );
 
-// Two active domains, plus a back-up domain still in warm-up
+// Active domains send under daily monitoring, with a back-up on standby.
+// The connector's rows line up with the three 46px nodes and their 8px gaps.
 const InfraIllustration = () => (
   <div
-    className="infra-illustration flex flex-col gap-4 select-none"
+    className="w-full max-w-[460px] grid grid-cols-[minmax(0,1fr)_24px_minmax(0,0.65fr)] items-center select-none"
     aria-hidden="true"
   >
     <div className="flex flex-col gap-2">
-      {activeDomains.map((domain) => (
-        <DomainBox key={domain} domain={domain} />
-      ))}
+      <DomainNode domain="getyourbrand.com" />
+      <DomainNode domain="tryyourbrand.com" />
+      <DomainNode domain="yourbrandhq.com" backup />
     </div>
-    <DomainBox domain="yourbrandhq.com" backup />
+    <svg viewBox="0 0 24 154" className="w-6 h-[154px]">
+      <path d="M0 23H12V77M0 77H24" className="fill-none stroke-brand/60" />
+      <path
+        d="M0 131H12V77"
+        strokeDasharray="3 3"
+        className="fill-none stroke-foreground/25"
+      />
+    </svg>
+    <FlowNode label="Monitored daily">Landing in the inbox</FlowNode>
   </div>
 );
 
+// Five rows in a four-row window, so the outer two fade at the edges
 const prospects = [
-  { company: "Halden Logistics", status: "fit" },
   { company: "Brightpath Dental", status: "bad" },
-  { company: "Corvane Systems", status: "fit" },
+  { company: "Halden Logistics", status: "fit" },
   { company: "Meridian Freight", status: "dnc" },
-  { company: "Ostra Analytics", status: "fit" },
+  { company: "Corvane Systems", status: "fit" },
   { company: "Lumen Café", status: "bad" },
 ];
 
 const PROSPECT_TAGS = {
-  fit: { icon: Check, label: "ICP fit", className: "text-emerald-400" },
+  fit: { icon: Check, label: "ICP fit", className: "text-brand" },
   bad: { icon: X, label: "Bad fit", className: "text-muted" },
-  dnc: { icon: Ban, label: "Do not contact", className: "text-amber-400" },
+  dnc: { icon: Ban, label: "Do not contact", className: "text-warn" },
 };
 
-// Broad prospect list where every row is checked against the ICP and the
-// do-not-contact list
+const ProspectRow = ({ company, status }) => {
+  const tag = PROSPECT_TAGS[status];
+  const Icon = tag.icon;
+  const rejected = status !== "fit";
+  return (
+    <div className="h-8 flex items-center justify-between gap-2 leading-4">
+      <span
+        className={`flex items-center gap-2 min-w-0 ${
+          rejected ? "opacity-50" : ""
+        }`}
+      >
+        <span className="flow-node-dim w-5 h-5 flex items-center justify-center flex-shrink-0">
+          <Building2 size={10} className="text-muted" />
+        </span>
+        <span
+          className={`text-[11px] tracking-normal truncate ${
+            rejected ? "text-muted line-through" : "text-foreground"
+          }`}
+        >
+          {company}
+        </span>
+      </span>
+      <span
+        className={`font-mono text-[10px] flex items-center gap-1 flex-shrink-0 ${tag.className}`}
+      >
+        <Icon size={10} />
+        {tag.label}
+      </span>
+    </div>
+  );
+};
+
+// Every company in the market gets checked against the ICP
 const TargetingIllustration = () => (
-  <div className="targeting-illustration select-none" aria-hidden="true">
-    <div className="border border-borderLight bg-background divide-y divide-borderLight">
-      {prospects.map(({ company, status }) => {
-        const tag = PROSPECT_TAGS[status];
-        const Icon = tag.icon;
-        const rejected = status !== "fit";
+  <div className="w-full max-w-[320px] flex flex-col gap-2 select-none" aria-hidden="true">
+    <FlowNode className="py-2">Analyzing every company</FlowNode>
+    <div className="flow-node-dim fade-y h-[136px] overflow-hidden px-3 flex flex-col justify-center">
+      {prospects.map(({ company, status }) => (
+        <ProspectRow key={company} company={company} status={status} />
+      ))}
+    </div>
+  </div>
+);
+
+const theses = [
+  { angle: "Cost of manual ops", replyRate: "2.6%", status: "testing" },
+  { angle: "Hiring signal", replyRate: "4.1%", status: "scaling" },
+  { angle: "Competitor switch", replyRate: "0.4%", status: "replaced" },
+  { angle: "Recent expansion", replyRate: "–", status: "new" },
+];
+
+const THESIS_TAGS = {
+  scaling: { label: "Scaling", className: "text-brand" },
+  testing: { label: "Testing", className: "text-warn" },
+  replaced: { label: "Replaced", className: "text-muted" },
+  new: { label: "New", className: "text-foreground" },
+};
+
+// Sequences run side by side: the winner scales, the loser is replaced
+const MessagingIllustration = () => (
+  <div className="w-full flex flex-col select-none" aria-hidden="true">
+    <FlowNode dim className="w-fit mx-auto">
+      Hand-written sequences
+    </FlowNode>
+    <span className="flow-line" />
+    <FlowNode className="w-fit mx-auto">Scale the winner</FlowNode>
+    <span className="flow-line" />
+    <div className="fade-x flex justify-center gap-1.5 overflow-hidden">
+      {theses.map(({ angle, replyRate, status }) => {
+        const tag = THESIS_TAGS[status];
+        const replaced = status === "replaced";
         return (
           <div
-            key={company}
-            className="targeting-row px-3 py-2 flex items-center justify-between gap-2"
+            key={angle}
+            className={`${
+              status === "scaling" ? "flow-node" : "flow-node-dim"
+            } w-[116px] flex-shrink-0 px-2.5 py-2`}
           >
-            <span
-              className={`flex items-center gap-2 min-w-0 ${
-                rejected ? "targeting-rejected opacity-40" : ""
+            <p
+              className={`text-[10px] leading-4 tracking-normal truncate ${
+                replaced ? "text-muted line-through" : "text-foreground"
               }`}
             >
-              <Building2 size={12} className="text-muted flex-shrink-0" />
-              <span
-                className={`font-mono text-xs truncate ${
-                  rejected ? "text-muted line-through" : "text-foreground"
-                }`}
-              >
-                {company}
+              {angle}
+            </p>
+            <p className="mt-1 flex items-center justify-between gap-1 font-mono text-[10px] leading-4">
+              <span className={replaced ? "text-muted" : "text-foreground"}>
+                {replyRate}
               </span>
-            </span>
-            <span
-              className={`targeting-tag font-mono text-[10px] flex items-center gap-1 flex-shrink-0 ${tag.className}`}
-            >
-              <Icon size={11} />
-              {tag.label}
-            </span>
+              <span className={tag.className}>{tag.label}</span>
+            </p>
           </div>
         );
       })}
@@ -196,147 +230,22 @@ const TargetingIllustration = () => (
   </div>
 );
 
-const theses = [
-  { id: "A", angle: "Hiring signal", replyRate: "4.1%", status: "scaling" },
-  {
-    id: "B",
-    angle: "Cost of manual ops",
-    replyRate: "2.6%",
-    status: "testing",
-  },
-  {
-    id: "C",
-    angle: "Competitor switch",
-    replyRate: "0.4%",
-    status: "replaced",
-  },
-  { id: "D", angle: "Recent expansion", replyRate: "–", status: "new" },
-];
-
-const THESIS_TAGS = {
-  scaling: { label: "Scaling", className: "text-emerald-400" },
-  testing: { label: "Testing", className: "text-pillAccentText" },
-  replaced: { label: "Replaced", className: "text-muted" },
-  new: { label: "New", className: "text-pillAccentText" },
-};
-
-// Theses run side by side: the winner scales, the loser is replaced
-const MessagingIllustration = () => (
-  <div
-    className="messaging-illustration grid grid-cols-4 gap-2 select-none"
-    aria-hidden="true"
-  >
-    {theses.map(({ id, angle, replyRate, status }) => {
-      const tag = THESIS_TAGS[status];
-      const replaced = status === "replaced";
-      return (
-        <div
-          key={id}
-          className={`messaging-box border bg-background px-2.5 py-3 min-h-[200px] flex flex-col justify-between gap-3 min-w-0 ${
-            status === "scaling"
-              ? "border-emerald-400/40"
-              : status === "new"
-                ? "border-dashed border-borderLight"
-                : "border-borderLight"
-          }`}
-        >
-          <div
-            className={`flex flex-col gap-2 min-w-0 ${
-              replaced ? "messaging-replaced opacity-40" : ""
-            }`}
-          >
-            <span className="font-mono text-[10px] text-muted border border-borderLight w-4 h-4 flex items-center justify-center">
-              {id}
-            </span>
-            <span
-              className={`font-mono text-[11px] leading-snug break-words ${
-                replaced ? "text-muted line-through" : "text-foreground"
-              }`}
-            >
-              {angle}
-            </span>
-          </div>
-
-          <div className="messaging-tag flex flex-col gap-1 font-mono">
-            <span
-              className={`text-base leading-none ${
-                replaced ? "text-muted" : "text-foreground"
-              }`}
-            >
-              {replyRate}
-            </span>
-            <span className="text-[9px] text-muted">reply rate</span>
-            <span className={`text-[10px] mt-1 ${tag.className}`}>
-              {tag.label}
-            </span>
-          </div>
-        </div>
-      );
-    })}
-  </div>
-);
-
-const followUps = ["Day 2", "Day 5", "Day 9"];
-
-// A reply thread from interested prospect to booked meeting (static)
+// One reply followed through to a booked meeting
 const ReplyIllustration = () => (
-  <div className="flex flex-col gap-2 select-none" aria-hidden="true">
-    <div className="border border-borderLight bg-background px-3 py-2.5 flex flex-col gap-1.5">
-      <div className="flex items-center justify-between gap-2 font-mono text-[10px]">
-        <span className="flex items-center gap-1.5 min-w-0 text-muted">
-          <Mail size={10} className="flex-shrink-0" />
-          <span className="truncate">Sarah · Halden Logistics</span>
-        </span>
-        <span className="flex items-center gap-1.5 flex-shrink-0 text-emerald-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          Interested
-        </span>
-      </div>
-      <p className="font-mono text-xs text-foreground leading-relaxed">
-        "Sounds interesting, what does it cost?"
-      </p>
-    </div>
-
-    <div className="border border-borderLight bg-background px-3 py-2.5 flex flex-col gap-1.5 ml-6">
-      <div className="flex items-center justify-between gap-2 font-mono text-[10px]">
-        <span className="flex items-center gap-1.5 min-w-0 text-muted">
-          <Mail size={10} className="text-pillAccentText flex-shrink-0" />
-          <span className="truncate">You</span>
-        </span>
-        <span className="flex items-center gap-1 flex-shrink-0 text-pillAccentText">
-          <Clock size={10} />
-          Replied in 6 min
-        </span>
-      </div>
-      <p className="font-mono text-xs text-foreground leading-relaxed">
-        "Happy to walk you through it. Tue or Wed?"
-      </p>
-    </div>
-
-    <div className="border border-borderLight bg-background px-3 py-2.5 flex items-center justify-between gap-2 font-mono text-[10px]">
-      <span className="text-muted">Follow-up</span>
-      <span className="flex items-center gap-3 flex-shrink-0">
-        {followUps.map((day) => (
-          <span key={day} className="flex items-center gap-1.5 text-muted">
-            <span className="w-1.5 h-1.5 rounded-full bg-pillAccentText" />
-            {day}
-          </span>
-        ))}
-      </span>
-    </div>
-
-    <div className="border border-emerald-400/40 bg-background px-3 py-2.5 flex flex-col gap-1.5">
-      <div className="flex items-center justify-between gap-2 font-mono text-[10px]">
-        <span className="flex items-center gap-1.5 text-emerald-400">
-          <CalendarCheck size={11} />
-          Meeting booked
-        </span>
-        <span className="text-foreground flex-shrink-0">Tue 10:00</span>
-      </div>
-      <p className="font-mono text-xs text-muted">
-        Intro call · Halden Logistics
-      </p>
-    </div>
+  <div className="w-full max-w-[300px] flex flex-col select-none" aria-hidden="true">
+    <FlowNode dim label="Sarah · Halden Logistics">
+      "Sounds interesting, what does it cost?"
+    </FlowNode>
+    <span className="flow-line" />
+    <FlowNode dim label="Replied in 6 min">
+      "Happy to walk you through it. Tue or Wed?"
+    </FlowNode>
+    <span className="flow-line" />
+    <FlowNode label="Meeting booked">Intro call · Tue 10:00</FlowNode>
+    <p className="mt-2 flex items-center justify-center gap-1.5 font-mono text-[9px] leading-3 text-muted">
+      <span className="w-1 h-1 rounded-full bg-brand" />
+      Follow-ups on day 2, 5 and 9
+    </p>
   </div>
 );
 
@@ -347,51 +256,41 @@ const illustrations = {
   reply: ReplyIllustration,
 };
 
-const StepCard = ({ step, index, className }) => (
+// Text beside its illustration; `flipped` swaps the sides on desktop
+const StepRow = ({ step, flipped, className }) => (
   <div
-    className={`bg-surface border border-borderLight px-6 py-8 ${
-      step.illustration
-        ? "grid grid-cols-1 md:grid-cols-2 gap-10 md:items-start"
-        : ""
-    } ${className}`}
+    className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-x-20 lg:items-center ${className}`}
   >
-    <div className="flex flex-col gap-6">
-      <span className="font-mono text-xs text-pillAccentText">
-        [{step.category}]
-      </span>
-      <h3 className="font-serif text-2xl text-foreground leading-tight">
+    <div className={`flex flex-col gap-3 ${flipped ? "lg:order-2" : ""}`}>
+      <span className="pill-tag w-fit">{step.category}</span>
+      <h3 className="type-title text-heading">
         {step.label}
       </h3>
-      {step.description && (
-        <p className="text-base leading-relaxed text-muted">
-          <span className="font-semibold text-foreground">{step.lead}</span>{" "}
-          {step.description}
-        </p>
-      )}
 
-      <div
-        className={`flex flex-col gap-3 ${
-          step.description ? "border-t border-borderLight pt-6" : ""
-        }`}
-      >
-        {step.checklist.map((item, j) => (
+      <div className="flex flex-col gap-2.5 mt-3">
+        {step.checklist.map((item) => (
           <p
-            key={j}
-            className="font-mono text-sm text-muted leading-relaxed flex gap-2"
+            key={item}
+            className="type-small text-body flex gap-2.5"
           >
-            <span className="text-pillAccentText flex-shrink-0">✓</span>
+            <ArrowRight
+              size={14}
+              strokeWidth={1.5}
+              className="mt-1 flex-shrink-0 text-foreground"
+            />
             {item}
           </p>
         ))}
       </div>
     </div>
 
-    {/* Illustrations alternate sides on desktop: right, left, right, ... */}
-    {step.illustration && (
-      <div className={index % 2 === 1 ? "md:order-first" : ""}>
-        {React.createElement(illustrations[step.illustration])}
-      </div>
-    )}
+    <div
+      className={`border border-borderLight h-[216px] p-3 flex items-center justify-center overflow-hidden ${
+        flipped ? "lg:order-1" : ""
+      }`}
+    >
+      {React.createElement(illustrations[step.illustration])}
+    </div>
   </div>
 );
 
@@ -424,103 +323,6 @@ const System = () => {
           once: true,
         },
       });
-
-      const infraTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".infra-illustration",
-          start: "top 80%",
-          once: true,
-        },
-      });
-      infraTl
-        .from(".infra-domain", {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power3.out",
-        })
-        .from(
-          ".infra-inbox",
-          {
-            y: 12,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.08,
-            ease: "power3.out",
-          },
-          "-=0.3",
-        )
-        .from(
-          ".infra-backup",
-          { y: 20, opacity: 0, duration: 0.6, ease: "power3.out" },
-          "-=0.6",
-        );
-
-      const targetingTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".targeting-illustration",
-          start: "top 80%",
-          once: true,
-        },
-      });
-      targetingTl
-        .from(".targeting-row", {
-          y: 12,
-          opacity: 0,
-          duration: 0.5,
-          stagger: 0.08,
-          ease: "power3.out",
-        })
-        .from(".targeting-rejected", {
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power2.inOut",
-        })
-        .from(
-          ".targeting-tag",
-          {
-            opacity: 0,
-            x: 8,
-            duration: 0.4,
-            stagger: 0.08,
-            ease: "power3.out",
-          },
-          "<",
-        );
-
-      const messagingTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".messaging-illustration",
-          start: "top 80%",
-          once: true,
-        },
-      });
-      messagingTl
-        .from(".messaging-box", {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power3.out",
-        })
-        .from(".messaging-replaced", {
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.inOut",
-        })
-        .from(
-          ".messaging-tag",
-          {
-            opacity: 0,
-            y: 8,
-            duration: 0.4,
-            stagger: 0.08,
-            ease: "power3.out",
-          },
-          "<",
-        );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -529,30 +331,30 @@ const System = () => {
     <section
       id="system"
       ref={sectionRef}
-      className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background overflow-hidden"
+      className="theme-dark relative isolate bg-background text-body"
     >
-      <div className="process-header mb-16 flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
-        <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
-          The Solution
-        </span>
-        <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
-          A clear process for quality outbound at scale
-        </h2>
-        <p className="text-base font-medium text-muted leading-relaxed max-w-2xl">
-          Our process ensures that we cover your entire target market while
-          every message stays relevant and results stay consistent.
-        </p>
-      </div>
-
-      <div className="process-step-list flex flex-col gap-6">
-        {steps.map((step, i) => (
-          <StepCard
-            key={step.label}
-            step={step}
-            index={i}
-            className="process-step-card"
+      <div className="page-guides" aria-hidden="true" />
+      <div className="shell">
+        <div className="section-y">
+          <SectionHeader
+            className="process-header mb-16 md:mb-24"
+            eyebrow="The solution"
+            title="A clear process for quality outbound"
+            accent="at scale."
+            description="Our process ensures that we cover your entire target market while every message stays relevant and results stay consistent."
           />
-        ))}
+
+          <div className="process-step-list flex flex-col gap-14 lg:gap-24">
+            {steps.map((step, i) => (
+              <StepRow
+                key={step.label}
+                step={step}
+                flipped={i % 2 === 1}
+                className="process-step-card"
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

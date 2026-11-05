@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SectionHeader } from "./ui";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,55 +35,57 @@ const testimonials = [
   },
 ];
 
+const Avatar = ({ author, image }) => (
+  <div className="w-14 h-14 border border-borderLight flex-shrink-0 overflow-hidden flex items-center justify-center">
+
+    {image ? (
+      <img
+        src={image}
+        alt={author}
+        className="w-full h-full object-cover grayscale"
+      />
+    ) : (
+      <span className="font-serif text-sm text-green">
+        {author
+          .split(" ")
+          .map((n) => n[0])
+          .join("")}
+      </span>
+    )}
+  </div>
+);
+
 const TestimonialCard = ({ highlight, quote, author, role, image }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-surface border border-borderLight p-8 md:p-10 flex flex-col h-full">
-      <p className="text-foreground font-medium text-lg leading-snug mb-4">
-        {highlight}
+    <div className="p-6 md:p-8 flex flex-col h-full">
+      <Avatar author={author} image={image} />
+
+      <p className="type-lead text-body mt-6 mb-4">
+        &ldquo;{highlight}&rdquo;
       </p>
 
       <div
-        className="overflow-hidden transition-all duration-500 ease-in-out"
+        className="overflow-hidden transition-all duration-700 ease-soft"
         style={{
           maxHeight: expanded ? "400px" : "0",
           opacity: expanded ? 1 : 0,
         }}
       >
-        <p className="text-base font-medium text-muted leading-relaxed mb-4">
-          {quote}
-        </p>
+        <p className="type-small text-muted mb-4">{quote}</p>
       </div>
 
       <button
         onClick={() => setExpanded((e) => !e)}
-        className="text-xs text-muted/60 hover:text-muted transition-colors duration-150 text-left mb-6 underline underline-offset-2 decoration-dotted w-fit"
+        className="type-small text-muted underline underline-offset-4 hover:text-foreground transition-colors duration-200 text-left w-fit"
       >
         {expanded ? "Read less" : "Read full testimonial"}
       </button>
 
-      <div className="mt-auto flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-surface2 flex-shrink-0 overflow-hidden flex items-center justify-center">
-          {image ? (
-            <img
-              src={image}
-              alt={author}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <span className="text-xs font-medium text-muted font-sans">
-              {author
-                .split(" ")
-                .map((n) => n[0])
-                .join("")}
-            </span>
-          )}
-        </div>
-        <div>
-          <p className="font-medium text-foreground font-sans">{author}</p>
-          <p className="text-sm text-muted">{role}</p>
-        </div>
+      <div className="mt-auto pt-6">
+        <p className="type-small font-medium text-heading">{author}</p>
+        <p className="type-small text-muted">{role}</p>
       </div>
     </div>
   );
@@ -96,20 +99,19 @@ const Testimonials = () => {
       gsap.from(".test-header", {
         y: 30,
         opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
+        duration: 1.2,
+        ease: "expo.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
           once: true,
         },
       });
-      gsap.from(".test-card", {
+      gsap.from(".test-grid", {
         y: 30,
         opacity: 0,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: "power3.out",
+        duration: 1.1,
+        ease: "expo.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
@@ -121,26 +123,20 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section
-      id="testimonials"
-      ref={sectionRef}
-      className="py-12 md:py-24 px-4 md:px-16 lg:px-96 bg-background"
-    >
-      <div className="test-header mb-16 flex flex-col items-center text-center gap-6">
-        <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
-          Testimonials
-        </span>
-        <h2 className="text-[33px] md:text-[42px] font-medium tracking-normal text-foreground font-serif max-w-2xl">
-          Our clients get results and enjoy the process
-        </h2>
-      </div>
+    <section id="testimonials" ref={sectionRef} className="section-line">
+      <div className="shell section-y">
+        <SectionHeader
+          className="test-header mb-12"
+          eyebrow="Testimonials"
+          title="Our clients get results and"
+          accent="enjoy the process."
+        />
 
-      <div className="test-grid grid grid-cols-1 md:grid-cols-3 gap-6">
-        {testimonials.map((t, idx) => (
-          <div key={idx} className="test-card">
-            <TestimonialCard {...t} />
-          </div>
-        ))}
+        <div className="test-grid box-grid">
+          {testimonials.map((t) => (
+            <TestimonialCard key={t.author} {...t} />
+          ))}
+        </div>
       </div>
     </section>
   );
