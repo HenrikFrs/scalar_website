@@ -70,7 +70,7 @@ const Process = () => {
             className="proc-header mb-12"
             eyebrow="Timeline"
             title="From kickoff to"
-            accent="booked meetings."
+            accent="booked meetings"
           />
 
           <div className="proc-list box-grid">

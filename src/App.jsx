@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Lenis from "lenis";
 import { Navbar, Hero } from "./components/Header";
-// import CampaignResults from "./components/CampaignResults"; // hidden for now
+import CampaignResults from "./components/CampaignResults";
 import Problem from "./components/Problem";
 import System from "./components/System";
 import Process from "./components/Process";
@@ -30,6 +30,7 @@ const Home = () => (
     <System />
     <Process />
     <ROICalculator />
+    <CampaignResults />
     <Testimonials />
     <FAQ />
   </>

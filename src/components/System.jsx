@@ -13,9 +13,8 @@ const steps = [
     illustration: "infrastructure",
     checklist: [
       "Dedicated sending domains with 25 inboxes each",
+      "Enterprise-grade Microsoft Entra infrastructure",
       "Warmed 2 weeks before launch",
-      "Daily deliverability monitoring",
-      "Flagged domains are swapped for back-ups and replaced",
     ],
   },
   {
@@ -30,10 +29,10 @@ const steps = [
   },
   {
     category: "Messaging",
-    label: "Scaling the best message",
+    label: "Scaling what the data proves",
     illustration: "messaging",
     checklist: [
-      "At least two hand-written sequences per segment",
+      "Multiple variants run simultaneously",
       "Winning messages scale, losers get replaced",
       "Every message personalized for maximum relevance",
     ],
@@ -43,16 +42,18 @@ const steps = [
     label: "Turning replies into meetings",
     illustration: "reply",
     checklist: [
+      "Every message read and answered by a real person",
       "Fast reply to every prospect while your offer is still fresh",
-      "Defined follow-up cadence to maximize bookings",
-      "Meetings booked directly on your team's calendar",
+      "Value-driven follow-ups until we get a clear yes or no",
     ],
   },
 ];
 
 // A labelled box in a diagram; `dim` is for the steps leading up to the result
 const FlowNode = ({ label, dim = false, className = "", children }) => (
-  <div className={`${dim ? "flow-node-dim" : "flow-node"} px-3 py-1.5 ${className}`}>
+  <div
+    className={`${dim ? "flow-node-dim" : "flow-node"} px-3 py-1.5 ${className}`}
+  >
     {label && (
       <p className="font-mono text-[9px] leading-3 text-muted">{label}</p>
     )}
@@ -166,7 +167,10 @@ const ProspectRow = ({ company, status }) => {
 
 // Every company in the market gets checked against the ICP
 const TargetingIllustration = () => (
-  <div className="w-full max-w-[320px] flex flex-col gap-2 select-none" aria-hidden="true">
+  <div
+    className="w-full max-w-[320px] flex flex-col gap-2 select-none"
+    aria-hidden="true"
+  >
     <FlowNode className="py-2">Analyzing every company</FlowNode>
     <div className="flow-node-dim fade-y h-[136px] overflow-hidden px-3 flex flex-col justify-center">
       {prospects.map(({ company, status }) => (
@@ -232,7 +236,10 @@ const MessagingIllustration = () => (
 
 // One reply followed through to a booked meeting
 const ReplyIllustration = () => (
-  <div className="w-full max-w-[300px] flex flex-col select-none" aria-hidden="true">
+  <div
+    className="w-full max-w-[300px] flex flex-col select-none"
+    aria-hidden="true"
+  >
     <FlowNode dim label="Sarah · Halden Logistics">
       "Sounds interesting, what does it cost?"
     </FlowNode>
@@ -263,16 +270,11 @@ const StepRow = ({ step, flipped, className }) => (
   >
     <div className={`flex flex-col gap-3 ${flipped ? "lg:order-2" : ""}`}>
       <span className="pill-tag w-fit">{step.category}</span>
-      <h3 className="type-title text-heading">
-        {step.label}
-      </h3>
+      <h3 className="type-title text-heading">{step.label}</h3>
 
       <div className="flex flex-col gap-2.5 mt-3">
         {step.checklist.map((item) => (
-          <p
-            key={item}
-            className="type-small text-body flex gap-2.5"
-          >
+          <p key={item} className="type-small text-body flex gap-2.5">
             <ArrowRight
               size={14}
               strokeWidth={1.5}
@@ -340,7 +342,7 @@ const System = () => {
             className="process-header mb-16 md:mb-24"
             eyebrow="The solution"
             title="A clear process for quality outbound"
-            accent="at scale."
+            accent="at scale"
             description="Our process ensures that we cover your entire target market while every message stays relevant and results stay consistent."
           />
 
@@ -353,6 +355,16 @@ const System = () => {
                 className="process-step-card"
               />
             ))}
+
+            <div className="process-step-card border border-borderLight p-6 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-x-20 lg:items-center">
+              <h3 className="type-title text-heading">
+                You own the entire system
+              </h3>
+              <p className="type-small text-body">
+                The domains, inboxes, contact data and copy all belong to you.
+                Take it in-house any time, or keep us running it.
+              </p>
+            </div>
           </div>
         </div>
       </div>

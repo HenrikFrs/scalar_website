@@ -62,7 +62,7 @@ const Problem = () => {
             className="prob-header mb-12"
             eyebrow="The problem"
             title="Why outbound has not"
-            accent="worked yet."
+            accent="worked yet"
             description="Most companies run into the same three walls when they try to grow through outbound. And any one of them is enough to stall pipeline."
           />
 

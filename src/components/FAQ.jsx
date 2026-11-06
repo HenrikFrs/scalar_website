@@ -107,7 +107,7 @@ const FAQ = () => {
           <SectionHeader
             eyebrow="FAQ"
             title="Frequently asked"
-            accent="questions."
+            accent="questions"
           />
           <div>
             <p className="type-title text-heading">Have more questions?</p>

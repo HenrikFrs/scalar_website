@@ -20,7 +20,9 @@ const linkColumns = [
   },
   {
     title: "Connect",
-    links: [{ label: "LinkedIn", href: "https://www.linkedin.com", external: true }],
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com", external: true },
+    ],
   },
 ];
 
@@ -32,15 +34,10 @@ const Footer = () => (
     <div className="shell">
       <div className="section-y flex flex-col items-start text-left">
         <h2 className="type-h2 text-heading text-balance">
-          Get qualified calls on a{" "}
-          <span className="whitespace-nowrap">pay-per-call</span>{" "}
-          basis.
+          Ready for qualified calls on a{" "}
+          <span className="whitespace-nowrap">pay-per-call</span> basis?
         </h2>
-        <MagneticButton
-          variant="primary"
-          className="mt-7"
-          onClick={openCal}
-        >
+        <MagneticButton variant="primary" className="mt-7" onClick={openCal}>
           Get started
         </MagneticButton>
       </div>

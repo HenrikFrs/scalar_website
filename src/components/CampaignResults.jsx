@@ -1,22 +1,38 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SectionHeader } from "./ui";
 
-const clients = ["Founder Sales", "Kontaktkompass", "Secondcity AI"];
+gsap.registerPlugin(ScrollTrigger);
 
-const ResultRow = ({ label, stat, image }) => (
-  <div className="flex flex-col gap-4 p-4 md:p-6">
-    <div className="flex flex-col gap-2.5">
-      <span className="pill-tag w-fit">{label}</span>
-      <p className="text-lg md:text-xl text-heading leading-snug">{stat}</p>
-    </div>
-    <div
-      className="w-full overflow-hidden border border-border"
-      style={{ aspectRatio: "1469 / 241" }}
-    >
+const campaigns = [
+  {
+    label: "Broad B2B",
+    image: "Kontaktkompass_Campaigns.png",
+    width: 1473,
+    height: 183,
+    alt: "Campaign dashboard: 38,814 emails sent to 20,407 leads, 2,274 replies at an 11.14% reply rate, and 216 positive replies.",
+  },
+  {
+    label: "Finance & SaaS",
+    image: "Scalar_Campaigns.png",
+    width: 1474,
+    height: 183,
+    alt: "Campaign dashboard: 57,660 emails sent to 31,782 leads, 608 replies at a 1.91% reply rate, and 119 positive replies.",
+  },
+];
+
+const CampaignRow = ({ label, image, width, height, alt }) => (
+  <div className="p-6 md:p-8 flex flex-col gap-4">
+    <span className="pill-tag w-fit">{label}</span>
+    <div className="border border-borderLight">
       <img
         src={`${import.meta.env.BASE_URL}${image}`}
-        alt="Campaign result screenshot"
-        className="w-full h-full object-cover"
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        className="block w-full h-auto"
       />
     </div>
   </div>
@@ -27,45 +43,35 @@ const CampaignResults = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".cr-window",
-        { y: 32, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.1, ease: "power3.out", delay: 0.4 },
-      );
+      gsap.from(".cr-element", {
+        y: 30,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="results" ref={sectionRef}>
-      <div className="shell pb-16 md:pb-24">
-        <div className="cr-window max-w-[920px] mx-auto border border-border bg-background">
-          <div className="px-4 md:px-6 py-3.5 border-b border-border">
-            <span className="text-[14px] text-heading">Recent campaigns</span>
-          </div>
-          <div className="divide-y divide-border">
-            <ResultRow
-              label="Broad B2B"
-              stat="42 sales meetings booked across a broad B2B market"
-              image="client_result_kontaktkompass.png"
-            />
-            <ResultRow
-              label="Finance & SaaS"
-              stat="16 sales meetings booked targeting financial services & SaaS"
-              image="client_results_scalar.png"
-            />
-          </div>
-        </div>
+    <section id="campaigns" ref={sectionRef} className="section-line">
+      <div className="shell section-y">
+        <SectionHeader
+          className="cr-element mb-12"
+          eyebrow="Campaign Screenshots"
+          title="Selected client campaigns"
+        />
 
-        <div className="mt-12 flex flex-col items-center gap-4 text-center">
-          <span className="text-[14px] text-muted">Trusted by teams at</span>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
-            {clients.map((client) => (
-              <span key={client} className="text-[15px] text-body">
-                {client}
-              </span>
-            ))}
-          </div>
+        <div className="cr-element border border-borderLight divide-y divide-borderLight">
+          {campaigns.map((campaign) => (
+            <CampaignRow key={campaign.image} {...campaign} />
+          ))}
         </div>
       </div>
     </section>

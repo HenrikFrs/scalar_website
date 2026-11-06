@@ -182,7 +182,7 @@ const ROICalculator = () => {
   const leadsReached = messagesSent / EMAILS_PER_LEAD;
   const [msgPerResponse, setMsgPerResponse] = useState(750);
   const [feePerCall, setFeePerCall] = useState(350);
-  const [bookingPct, setBookingPct] = useState(60);
+  const [bookingPct, setBookingPct] = useState(50);
   const [showRate, setShowRate] = useState(85);
   const [closeRate, setCloseRate] = useState(25);
   const [ltv, setLtv] = useState(50000);
@@ -233,7 +233,7 @@ const ROICalculator = () => {
           className="roi-element w-full mb-12"
           eyebrow="ROI"
           title="See it in"
-          accent="numbers."
+          accent="numbers"
           description="Plug in your campaign parameters and business economics to project the long-term profit from one month of campaigns."
         />
 
@@ -242,11 +242,11 @@ const ROICalculator = () => {
             <SliderField
               label="Messages Sent"
               value={messagesSent}
-              display={`${messagesSent.toLocaleString("en-US")} / month · ${Math.round(
+              display={`${Math.round(
                 messagesSent / SENDING_DAYS,
-              ).toLocaleString("en-US")} / day`}
+              ).toLocaleString("en-US")} / day · ${messagesSent.toLocaleString("en-US")} / month`}
               min={10000}
-              max={50000}
+              max={106000}
               step={2000}
               onChange={setMessagesSent}
               tooltip={`The total number of cold emails your campaign sends. Each lead gets ${EMAILS_PER_LEAD} messages, so this reaches ${leadsReached.toLocaleString("en-US")} leads per month.`}
