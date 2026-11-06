@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const campaigns = [
   {
     label: "Broad B2B",
+    stat: "216 opportunities and 80 sales calls from 20,000 contacts",
     image: "Kontaktkompass_Campaigns.png",
     width: 1473,
     height: 183,
@@ -15,6 +16,7 @@ const campaigns = [
   },
   {
     label: "Finance & SaaS",
+    stat: "119 opportunities and 23 sales calls from 31,000 contacts",
     image: "Scalar_Campaigns.png",
     width: 1474,
     height: 183,
@@ -22,9 +24,12 @@ const campaigns = [
   },
 ];
 
-const CampaignRow = ({ label, image, width, height, alt }) => (
+const CampaignRow = ({ label, stat, image, width, height, alt }) => (
   <div className="p-6 md:p-8 flex flex-col gap-4">
-    <span className="pill-tag w-fit">{label}</span>
+    <div className="flex flex-col gap-3">
+      <span className="pill-tag w-fit">{label}</span>
+      <h3 className="type-title text-heading">{stat}</h3>
+    </div>
     <div className="border border-borderLight">
       <img
         src={`${import.meta.env.BASE_URL}${image}`}
