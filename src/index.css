@@ -130,11 +130,6 @@
       width: min(100% - 16px, 1400px);
     }
   }
-  /* The footer's huge wordmark fades from the top down */
-  .footer-wordmark {
-    mask-image: linear-gradient(to bottom, #000 10%, transparent 95%);
-  }
-
   /* Solid bottom edge of the navbar */
   .nav-guide::after {
     content: "";

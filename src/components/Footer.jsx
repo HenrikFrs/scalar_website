@@ -27,8 +27,7 @@ const linkColumns = [
 ];
 
 // Laid out like the reference footer: a centred CTA band, then a lined grid
-// (brand left, link columns right), then a huge faded wordmark that runs off
-// the bottom of the page. Every band sits inside the page guides.
+// (brand left, link columns right). Every band sits inside the page guides.
 const Footer = () => (
   // At least one screen tall, so the navbar is over the footer at the page's end
   <footer className="theme-dark section-line relative isolate overflow-hidden bg-background text-body min-h-[100dvh] flex flex-col">
@@ -97,20 +96,6 @@ const Footer = () => (
           <p className="mt-auto text-[12px] leading-[18px] text-body">
             &copy; {new Date().getFullYear()} Scalar. All rights reserved.
           </p>
-        </div>
-      </div>
-    </div>
-
-    {/* Giant wordmark, fading out and cut off by the page's end */}
-    <div className="section-line h-[19vw] max-h-[270px] min-h-[72px] overflow-hidden" aria-hidden="true">
-      <div className="footer-box mx-auto h-full px-4 md:px-6 pt-6 md:pt-8 footer-wordmark">
-        <div className="flex items-start justify-center gap-[0.12em] text-foreground text-[clamp(80px,23vw,330px)] leading-[0.8]">
-          <img
-            src={`${import.meta.env.BASE_URL}logo_black_transparent.png`}
-            alt=""
-            className="brand-logo h-[0.78em] w-auto mt-[0.04em]"
-          />
-          <span className="font-brand font-[450] tracking-[-0.05em]">Scalar</span>
         </div>
       </div>
     </div>
