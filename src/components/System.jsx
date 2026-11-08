@@ -275,12 +275,12 @@ const illustrations = {
   reply: ReplyIllustration,
 };
 
-// One row of the lined grid: text on the page background, its diagram in a
-// surface cell. `flipped` swaps the sides on desktop, so rows alternate
+// Text on the page background beside its diagram, which is the only part in
+// an outlined box. `flipped` swaps the sides on desktop, so rows alternate
 const StepRow = ({ step, flipped }) => (
-  <div className="grid grid-cols-1 lg:grid-cols-2">
+  <div className="w-full max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-x-12 lg:items-center">
     <div
-      className={`p-6 md:p-8 flex flex-col gap-3 lg:justify-center ${
+      className={`flex flex-col gap-3 ${
         flipped ? "lg:order-2" : ""
       }`}
     >
@@ -302,8 +302,8 @@ const StepRow = ({ step, flipped }) => (
     </div>
 
     <div
-      className={`bg-surface border-t lg:border-t-0 border-borderLight min-h-[240px] lg:min-h-[280px] p-6 md:p-8 flex items-center justify-center overflow-hidden ${
-        flipped ? "lg:order-1 lg:border-r" : "lg:border-l"
+      className={`bg-surface border border-borderLight min-h-[240px] lg:min-h-[280px] p-6 md:p-8 flex items-center justify-center overflow-hidden ${
+        flipped ? "lg:order-1" : ""
       }`}
     >
       {React.createElement(illustrations[step.illustration])}
@@ -324,12 +324,12 @@ const System = () => (
         description="Our process ensures that we cover your entire target market while every message stays relevant and results stay consistent."
       />
 
-      <div className="border border-borderLight divide-y divide-borderLight">
+      <div className="flex flex-col gap-16 lg:gap-24">
         {steps.map((step, i) => (
           <StepRow key={step.label} step={step} flipped={i % 2 === 1} />
         ))}
 
-        <div className="p-6 md:p-10 flex flex-col items-center gap-2 text-center">
+        <div className="flex flex-col items-center gap-2 text-center">
           <h3 className="type-title-lg text-heading">
             You own the entire system
           </h3>
