@@ -1,10 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
 import { SectionHeader } from "./ui";
 import { ArrowRight, Ban, Building2, Check, X } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -55,66 +52,81 @@ const FlowNode = ({ label, dim = false, className = "", children }) => (
     className={`${dim ? "flow-node-dim" : "flow-node"} px-3 py-1.5 ${className}`}
   >
     {label && (
-      <p className="font-mono text-[9px] leading-3 text-muted">{label}</p>
+      <p className="font-mono text-[11px] leading-4 text-muted">{label}</p>
     )}
-    <p className="text-[11px] leading-4 tracking-normal text-foreground">
+    <p className="text-[13px] leading-5 tracking-normal text-foreground">
       {children}
     </p>
   </div>
 );
 
-const DomainNode = ({ domain, backup = false }) => (
+// A fixed-height box, so the connectors line up with the rows
+const InfraNode = ({ label, dim = false, dashed = false, children }) => (
   <div
-    className={`h-[46px] px-3 flex flex-col justify-center ${
-      backup ? "flow-node-dim border-dashed" : "flow-node"
-    }`}
+    className={`h-10 px-3 flex flex-col justify-center min-w-0 ${
+      dim ? "flow-node-dim" : "flow-node"
+    } ${dashed ? "border-dashed" : ""}`}
   >
-    <p className="flex items-center justify-between gap-2 leading-4">
-      <span
-        className={`text-[11px] tracking-normal truncate ${
-          backup ? "text-muted" : "text-foreground"
-        }`}
-      >
-        {domain}
-      </span>
-      <span
-        className={`font-mono text-[9px] flex items-center gap-1 flex-shrink-0 ${
-          backup ? "text-warn" : "text-brand"
-        }`}
-      >
-        <span
-          className={`w-1 h-1 rounded-full ${backup ? "bg-warn" : "bg-brand"}`}
-        />
-        {backup ? "Warmup" : "Active"}
-      </span>
-    </p>
-    <p className="font-mono text-[9px] leading-3 text-muted">
-      {backup ? "Back-up · 25 inboxes" : "25 inboxes"}
+    {label && (
+      <p className="font-mono text-[11px] leading-[14px] text-muted truncate">
+        {label}
+      </p>
+    )}
+    <p
+      className={`text-[12px] leading-4 tracking-normal truncate ${
+        dim ? "text-muted" : "text-foreground"
+      }`}
+    >
+      {children}
     </p>
   </div>
 );
 
-// Active domains send under daily monitoring, with a back-up on standby.
-// The connector's rows line up with the three 46px nodes and their 8px gaps.
+// One domain holds many inboxes, and one inbox sends a few messages.
+// Rows are 40px with 8px gaps, so row centres sit at 20, 68, 116 and 164.
 const InfraIllustration = () => (
   <div
-    className="w-full max-w-[460px] grid grid-cols-[minmax(0,1fr)_24px_minmax(0,0.65fr)] items-center select-none"
+    className="w-full max-w-[520px] grid grid-cols-[minmax(0,1fr)_20px_minmax(0,1.1fr)_20px_minmax(0,1fr)] items-center select-none"
     aria-hidden="true"
   >
-    <div className="flex flex-col gap-2">
-      <DomainNode domain="getyourbrand.com" />
-      <DomainNode domain="tryyourbrand.com" />
-      <DomainNode domain="yourbrandhq.com" backup />
-    </div>
-    <svg viewBox="0 0 24 154" className="w-6 h-[154px]">
-      <path d="M0 23H12V77M0 77H24" className="fill-none stroke-brand/60" />
+    {/* Domain */}
+    <InfraNode label="Domain · 25 inboxes">getyourbrand.com</InfraNode>
+
+    <svg viewBox="0 0 20 184" className="w-5 h-[184px]">
       <path
-        d="M0 131H12V77"
+        d="M10 92V164M10 68H20M10 116H20"
+        className="fill-none stroke-foreground/25"
+      />
+      <path
+        d="M10 164H20"
         strokeDasharray="3 3"
         className="fill-none stroke-foreground/25"
       />
+      <path d="M0 92H10V20H20" className="fill-none stroke-brand/60" />
     </svg>
-    <FlowNode label="Monitored daily">Landing in the inbox</FlowNode>
+
+    {/* Inboxes on that domain */}
+    <div className="flex flex-col gap-2 min-w-0">
+      <InfraNode label="Inbox">anna@getyourbrand.com</InfraNode>
+      <InfraNode label="Inbox" dim>ben@getyourbrand.com</InfraNode>
+      <InfraNode label="Inbox" dim>clara@getyourbrand.com</InfraNode>
+      <InfraNode dim dashed>+ 22 more inboxes</InfraNode>
+    </div>
+
+    <svg viewBox="0 0 20 184" className="w-5 h-[184px]">
+      <path
+        d="M0 20H20M10 20V116M10 68H20M10 116H20"
+        className="fill-none stroke-brand/60"
+      />
+    </svg>
+
+    {/* A few messages from one inbox */}
+    <div className="flex flex-col gap-2 min-w-0">
+      <InfraNode label="Sent 09:12">Halden Logistics</InfraNode>
+      <InfraNode label="Sent 10:47">Corvane Systems</InfraNode>
+      <InfraNode label="Sent 13:05">Northgate Supply</InfraNode>
+      <span className="h-10" />
+    </div>
   </div>
 );
 
@@ -148,7 +160,7 @@ const ProspectRow = ({ company, status }) => {
           <Building2 size={10} className="text-muted" />
         </span>
         <span
-          className={`text-[11px] tracking-normal truncate ${
+          className={`text-[13px] tracking-normal truncate ${
             rejected ? "text-muted line-through" : "text-foreground"
           }`}
         >
@@ -156,7 +168,7 @@ const ProspectRow = ({ company, status }) => {
         </span>
       </span>
       <span
-        className={`font-mono text-[10px] flex items-center gap-1 flex-shrink-0 ${tag.className}`}
+        className={`font-mono text-[12px] flex items-center gap-1 flex-shrink-0 ${tag.className}`}
       >
         <Icon size={10} />
         {tag.label}
@@ -168,7 +180,7 @@ const ProspectRow = ({ company, status }) => {
 // Every company in the market gets checked against the ICP
 const TargetingIllustration = () => (
   <div
-    className="w-full max-w-[320px] flex flex-col gap-2 select-none"
+    className="w-full max-w-[360px] flex flex-col gap-2 select-none"
     aria-hidden="true"
   >
     <FlowNode className="py-2">Analyzing every company</FlowNode>
@@ -212,16 +224,16 @@ const MessagingIllustration = () => (
             key={angle}
             className={`${
               status === "scaling" ? "flow-node" : "flow-node-dim"
-            } w-[116px] flex-shrink-0 px-2.5 py-2`}
+            } w-[140px] flex-shrink-0 px-2.5 py-2`}
           >
             <p
-              className={`text-[10px] leading-4 tracking-normal truncate ${
+              className={`text-[12px] leading-5 tracking-normal truncate ${
                 replaced ? "text-muted line-through" : "text-foreground"
               }`}
             >
               {angle}
             </p>
-            <p className="mt-1 flex items-center justify-between gap-1 font-mono text-[10px] leading-4">
+            <p className="mt-1 flex items-center justify-between gap-1 font-mono text-[12px] leading-5">
               <span className={replaced ? "text-muted" : "text-foreground"}>
                 {replyRate}
               </span>
@@ -237,7 +249,7 @@ const MessagingIllustration = () => (
 // One reply followed through to a booked meeting
 const ReplyIllustration = () => (
   <div
-    className="w-full max-w-[300px] flex flex-col select-none"
+    className="w-full max-w-[340px] flex flex-col select-none"
     aria-hidden="true"
   >
     <FlowNode dim label="Sarah · Halden Logistics">
@@ -249,7 +261,7 @@ const ReplyIllustration = () => (
     </FlowNode>
     <span className="flow-line" />
     <FlowNode label="Meeting booked">Intro call · Tue 10:00</FlowNode>
-    <p className="mt-2 flex items-center justify-center gap-1.5 font-mono text-[9px] leading-3 text-muted">
+    <p className="mt-2 flex items-center justify-center gap-1.5 font-mono text-[11px] leading-4 text-muted">
       <span className="w-1 h-1 rounded-full bg-brand" />
       Follow-ups on day 2, 5 and 9
     </p>
@@ -263,22 +275,25 @@ const illustrations = {
   reply: ReplyIllustration,
 };
 
-// Text beside its illustration; `flipped` swaps the sides on desktop
-const StepRow = ({ step, flipped, className }) => (
-  <div
-    className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-x-20 lg:items-center ${className}`}
-  >
-    <div className={`flex flex-col gap-3 ${flipped ? "lg:order-2" : ""}`}>
+// One row of the lined grid: text on the page background, its diagram in a
+// surface cell. `flipped` swaps the sides on desktop, so rows alternate
+const StepRow = ({ step, flipped }) => (
+  <div className="grid grid-cols-1 lg:grid-cols-2">
+    <div
+      className={`p-6 md:p-8 flex flex-col gap-3 lg:justify-center ${
+        flipped ? "lg:order-2" : ""
+      }`}
+    >
       <span className="pill-tag w-fit">{step.category}</span>
-      <h3 className="type-title text-heading">{step.label}</h3>
+      <h3 className="type-title-lg text-heading">{step.label}</h3>
 
-      <div className="flex flex-col gap-2.5 mt-3">
+      <div className="flex flex-col gap-2.5 mt-2">
         {step.checklist.map((item) => (
-          <p key={item} className="type-small text-body flex gap-2.5">
+          <p key={item} className="type-body text-body flex gap-2.5">
             <ArrowRight
               size={14}
               strokeWidth={1.5}
-              className="mt-1 flex-shrink-0 text-foreground"
+              className="mt-[5px] flex-shrink-0 text-foreground"
             />
             {item}
           </p>
@@ -287,8 +302,8 @@ const StepRow = ({ step, flipped, className }) => (
     </div>
 
     <div
-      className={`border border-borderLight h-[216px] p-3 flex items-center justify-center overflow-hidden ${
-        flipped ? "lg:order-1" : ""
+      className={`bg-surface border-t lg:border-t-0 border-borderLight min-h-[240px] lg:min-h-[280px] p-6 md:p-8 flex items-center justify-center overflow-hidden ${
+        flipped ? "lg:order-1 lg:border-r" : "lg:border-l"
       }`}
     >
       {React.createElement(illustrations[step.illustration])}
@@ -296,80 +311,36 @@ const StepRow = ({ step, flipped, className }) => (
   </div>
 );
 
-const System = () => {
-  const sectionRef = useRef(null);
+// Static on purpose: no sticky step list or scroll-driven reveals
+const System = () => (
+  <section id="system" className="section-line text-body">
+    <div className="shell section-y">
+      <SectionHeader
+        align="center"
+        className="mb-12"
+        eyebrow="The solution"
+        title="A clear process for quality outbound"
+        accent="at scale"
+        description="Our process ensures that we cover your entire target market while every message stays relevant and results stay consistent."
+      />
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".process-header", {
-        y: 30,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          once: true,
-        },
-      });
+      <div className="border border-borderLight divide-y divide-borderLight">
+        {steps.map((step, i) => (
+          <StepRow key={step.label} step={step} flipped={i % 2 === 1} />
+        ))}
 
-      gsap.from(".process-step-card", {
-        y: 20,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".process-step-list",
-          start: "top 85%",
-          once: true,
-        },
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section
-      id="system"
-      ref={sectionRef}
-      className="theme-dark relative isolate bg-background text-body"
-    >
-      <div className="page-guides" aria-hidden="true" />
-      <div className="shell">
-        <div className="section-y">
-          <SectionHeader
-            className="process-header mb-16 md:mb-24"
-            eyebrow="The solution"
-            title="A clear process for quality outbound"
-            accent="at scale"
-            description="Our process ensures that we cover your entire target market while every message stays relevant and results stay consistent."
-          />
-
-          <div className="process-step-list flex flex-col gap-14 lg:gap-24">
-            {steps.map((step, i) => (
-              <StepRow
-                key={step.label}
-                step={step}
-                flipped={i % 2 === 1}
-                className="process-step-card"
-              />
-            ))}
-
-            <div className="process-step-card border border-borderLight p-6 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-x-20 lg:items-center">
-              <h3 className="type-title text-heading">
-                You own the entire system
-              </h3>
-              <p className="type-small text-body">
-                The domains, inboxes, contact data and copy all belong to you.
-                Take it in-house any time, or keep us running it.
-              </p>
-            </div>
-          </div>
+        <div className="p-6 md:p-10 flex flex-col items-center gap-2 text-center">
+          <h3 className="type-title-lg text-heading">
+            You own the entire system
+          </h3>
+          <p className="type-body text-body max-w-xl">
+            The domains, inboxes, contact data and copy all belong to you.
+            Take it in-house any time, or keep us running it.
+          </p>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default System;

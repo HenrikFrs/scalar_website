@@ -59,6 +59,7 @@ const Problem = () => {
       <div className="shell">
         <div className="section-y">
           <SectionHeader
+            align="center"
             className="prob-header mb-12"
             eyebrow="The problem"
             title="Why outbound has not"

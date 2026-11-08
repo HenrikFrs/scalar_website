@@ -32,7 +32,7 @@ const navLinks = [
   { label: "FAQ", href: "faq" },
 ];
 
-const NAV_MIDPOINT = 28; // Half the 56px bar: where it switches over a dark section
+const NAV_MIDPOINT = 36; // Half the 73px bar: where it switches over a dark section
 
 export const Navbar = () => {
   const [overDark, setOverDark] = useState(false);
@@ -72,37 +72,37 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`${navTheme} nav-guide fixed top-0 left-0 right-0 z-[60] w-full bg-background transition-colors duration-300`}
+      className={`${navTheme} nav-guide fixed top-0 left-0 right-0 z-[60] w-full bg-background bg-noise transition-colors duration-300`}
     >
-      <nav className="shell relative flex items-center justify-between h-14">
-        <div className="flex items-center gap-[46px]">
-          <a href="/" className="flex items-center gap-2 flex-shrink-0">
-            <img
-              src={`${import.meta.env.BASE_URL}logo2-white-transparent.svg`}
-              alt="Scalar logo"
-              className="brand-logo h-9 -mx-1"
-            />
-            <span className="font-brand font-[450] text-[20px] tracking-[-0.02em] text-foreground transition-colors duration-300">
-              Scalar
-            </span>
-          </a>
+      {/* Same box as the page guides, so their lines run through the bar.
+          Logo left, links centred on the page, CTA right */}
+      <nav className="nav-box relative mx-auto grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-[73px] px-4 md:px-10">
+        <a href="/" className="flex items-center gap-2 w-fit">
+          <img
+            src={`${import.meta.env.BASE_URL}logo_black_transparent.png`}
+            alt="Scalar logo"
+            className="brand-logo h-7"
+          />
+          <span className="font-brand font-[450] text-[20px] tracking-[-0.02em] text-foreground transition-colors duration-300">
+            Scalar
+          </span>
+        </a>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(({ label, href }) => (
-              <a
-                key={label}
-                href={`/#${href}`}
-                className="btn-label text-body transition-colors duration-200 hover:text-foreground"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map(({ label, href }) => (
+            <a
+              key={label}
+              href={`/#${href}`}
+              className="type-small text-body transition-colors duration-200 hover:text-foreground"
+            >
+              {label}
+            </a>
+          ))}
         </div>
 
         <MagneticButton
           variant="primary"
-          className="h-9 px-4"
+          className="h-[41px] px-5 justify-self-end"
           onClick={openCal}
         >
           Schedule a call
@@ -125,10 +125,7 @@ const HeroVideo = () => (
         type="module"
       />
       <style>{`wistia-player[media-id='${WISTIA_MEDIA_ID}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${WISTIA_MEDIA_ID}/swatch'); display: block; filter: blur(5px); padding-top: 56.25%; }`}</style>
-      <wistia-player
-        media-id={WISTIA_MEDIA_ID}
-        aspect="1.7777777777777777"
-      />
+      <wistia-player media-id={WISTIA_MEDIA_ID} aspect="1.7777777777777777" />
     </div>
   </div>
 );
@@ -157,9 +154,9 @@ export const Hero = () => {
       className="relative overflow-hidden min-h-[78dvh] flex"
     >
       {/* Top padding clears the navbar, so the content centers in the space below it */}
-      <div className="shell relative z-10 flex flex-col items-center justify-center text-center pt-24 pb-10">
+      <div className="shell relative z-10 flex flex-col items-center justify-center text-center pt-28 pb-10">
         <span className="hero-element pill-tag mb-5">Performance-based</span>
-        <h1 className="type-h1 text-[36px] md:text-[56px] lg:text-[68px] leading-[1.05] text-heading">
+        <h1 className="type-h1 text-[40px] md:text-[52px] lg:text-[64px] leading-none text-heading">
           <span className="hero-element block text-balance">
             <span className="whitespace-nowrap">Done-for-you</span> outbound.
           </span>

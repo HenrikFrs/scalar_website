@@ -4,39 +4,44 @@
 
 @layer base {
   /* Values are "R G B" so Tailwind's alpha modifiers work */
-  /* .theme-dark keeps a block dark while the rest of the page is light */
+  /* Dark mode, taken from the reference site's dark sections. It's the
+     palette for data-theme="dark", and .theme-dark keeps a block (the
+     footer) dark while the rest of the page is light */
   :root,
   .theme-dark {
-    --background: 10 10 11;
-    --surface: 17 17 19;
-    --surface2: 23 23 26;
-    --border: 28 28 29;
-    --border-mid: 44 44 45;
-    --border-light: rgb(237 237 234 / 0.08);
-    --foreground: 255 255 255;
-    --body: 182 182 182; /* White at 70% */
-    --muted: 133 133 133; /* White at 50% */
-    --title-accent: 108 108 108; /* White at 40% */
-    --accent: 255 255 255;
-    --accent-soft: 23 23 26;
+    --background: 21 21 21; /* #151515 */
+    --surface: 21 21 21; /* #151515, same as the page: reference panels are set apart only by their lines */
+    --surface2: 38 38 38;
+    --border: 46 46 46;
+    --border-mid: 60 60 60;
+    --border-light: rgb(46 46 46); /* #2E2E2E hairline */
+    --foreground: 231 234 221; /* #E7EADD, warm off-white headings */
+    --body: 150 150 150; /* #969696 */
+    --muted: 150 150 150;
+    --title-accent: 231 234 221;
+    --accent: 231 234 221;
+    --accent-soft: 31 31 31;
     --warn: 255 107 53;
     --brand: 85 139 251;
-    --guide: rgb(255 255 255 / 0.1);
-    --btn: 237 237 234;
-    --btn-text: 14 11 10;
-    --btn-hover: 213 213 210;
+    --guide: rgb(46 46 46);
+    --btn: 255 254 250; /* Light pill with dark text, as on the reference */
+    --btn-text: 21 21 21;
+    --btn-hover: 222 222 216;
     --logo-filter: brightness(0) invert(1);
+    /* Fine grain over the page, as on the reference's dark sections */
+    --noise: url("./assets/noise.png");
     color-scheme: dark;
   }
 
-  /* The site's theme, set on <html> in index.html */
+  /* Light palette. Not in use: the site is dark only (data-theme="dark" on
+     <html> in index.html). Kept so a light mode can be switched back on */
   :root[data-theme="light"] {
-    --background: 250 250 250;
-    --surface: 255 255 255;
+    --background: 248 246 240; /* Soft warm off-white (#F8F6F0), easy on the eye */
+    --surface: 255 254 250; /* Barely warm white (#FFFEFA), well above the background */
     --surface2: 236 236 236;
-    --border: 226 226 226;
+    --border: 227 225 218;
     --border-mid: 208 208 208;
-    --border-light: rgb(17 17 19 / 0.1);
+    --border-light: rgb(227 225 218); /* Soft warm hairline */
     --foreground: 14 11 10;
     --body: 14 11 10;
     --muted: 14 11 10;
@@ -45,11 +50,12 @@
     --accent-soft: 232 232 232;
     --warn: 255 107 53;
     --brand: 37 99 235; /* Deeper than the dark value so small text stays legible */
-    --guide: rgb(230 230 230);
+    --guide: rgb(227 225 218);
     --btn: 17 17 19;
     --btn-text: 255 255 255;
     --btn-hover: 58 58 62;
     --logo-filter: brightness(0);
+    --noise: none;
     color-scheme: light;
   }
 
@@ -61,12 +67,11 @@
     @apply bg-background text-body font-sans antialiased;
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: -0.02em;
-    font-feature-settings: "cv03", "cv04", "cv09", "cv11";
+    letter-spacing: 0.02em;
   }
 
   section[id] {
-    scroll-margin-top: 58px;
+    scroll-margin-top: 74px;
   }
 
   ::selection {
@@ -76,27 +81,20 @@
 }
 
 @layer components {
-  /* Dashed guide lines just outside the content column. They sit behind the
+  /* Solid guide lines just outside the content column. They sit behind the
      content, so dark sections draw their own copy in the dark --guide colour
      (those sections need `relative isolate`). */
   .page-guides {
-    --guide-dash: repeating-linear-gradient(
-      to bottom,
-      var(--guide) 0 12px,
-      transparent 12px 18px
-    );
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin-inline: auto;
-    width: min(100% - 16px, 1270px);
+    width: min(100% - 16px, 1400px);
     z-index: -1;
     pointer-events: none;
-    background:
-      var(--guide-dash) left top / 1px 100% no-repeat,
-      var(--guide-dash) right top / 1px 100% no-repeat;
+    border-inline: 1px solid var(--guide);
   }
 
   @media (max-width: 767px) {
@@ -105,17 +103,39 @@
     }
   }
 
-  /* Dashed top edge of a section; ends at the vertical guide lines */
+  /* Solid top edge of a section; ends at the vertical guide lines */
   .section-line {
-    background: repeating-linear-gradient(
-        to right,
-        var(--guide) 0 12px,
-        transparent 12px 18px
-      )
-      center top / min(100% - 16px, 1270px) 1px no-repeat;
+    background: linear-gradient(var(--guide), var(--guide)) center top /
+      min(100% - 16px, 1400px) 1px no-repeat;
   }
 
-  /* Dashed bottom edge of the navbar */
+  /* The navbar's inner box lines up with the page guides */
+  .nav-box {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    .nav-box {
+      width: min(100% - 16px, 1400px);
+      border-inline: 1px solid var(--guide);
+    }
+  }
+
+  /* Footer bands share the guides' box, so their inner lines meet the
+     vertical guides */
+  .footer-box {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    .footer-box {
+      width: min(100% - 16px, 1400px);
+    }
+  }
+  /* The footer's huge wordmark fades from the top down */
+  .footer-wordmark {
+    mask-image: linear-gradient(to bottom, #000 10%, transparent 95%);
+  }
+
+  /* Solid bottom edge of the navbar */
   .nav-guide::after {
     content: "";
     position: absolute;
@@ -123,23 +143,20 @@
     right: 0;
     bottom: 0;
     height: 1px;
-    background: repeating-linear-gradient(
-      to right,
-      var(--guide) 0 12px,
-      transparent 12px 18px
-    );
+    background: var(--guide);
   }
 
-  /* The centered content column shared by every section */
+  /* The centered content column shared by every section. From 768px it
+     shares the guides' box and sits 40px inside the lines (1320px max), as on the reference */
   .shell {
     width: 100%;
-    max-width: 1142px;
     margin-inline: auto;
     padding-inline: 1rem;
   }
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     .shell {
-      padding-inline: 0;
+      width: min(100% - 16px, 1400px);
+      padding-inline: 40px;
     }
   }
 
@@ -152,32 +169,34 @@
     @apply py-28 md:py-40;
   }
 
-  /* Type scale. Headings step down at 1200px and 810px */
+  /* Type scale, after the reference site. Ovo titles step down at 1200px
+     and 810px; everything else is Instrument Sans */
   .type-h1,
   .type-h2,
   .type-h3,
   .type-stat {
     @apply font-serif font-normal;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
   }
   .type-h1 {
-    font-size: 36px;
+    font-size: 40px;
   }
   .type-h2 {
-    font-size: 30px;
+    font-size: 32px;
   }
   .type-h3 {
     font-size: 24px;
-    line-height: 38px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
   .type-stat {
     font-size: 28px;
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
   }
   @media (min-width: 810px) {
     .type-h1 {
-      font-size: 42px;
+      font-size: 52px;
     }
     .type-h2 {
       font-size: 36px;
@@ -191,52 +210,48 @@
   }
   @media (min-width: 1200px) {
     .type-h1 {
-      font-size: 56px;
+      font-size: 64px;
     }
     .type-h2 {
-      font-size: 44px;
+      font-size: 40px;
     }
     .type-h3 {
-      font-size: 32px;
+      font-size: 28px;
     }
     .type-stat {
       font-size: 40px;
     }
   }
 
-  .type-title-lg {
-    @apply font-medium;
-    font-size: 20px;
-    line-height: 28px;
-    letter-spacing: -0.5px;
-  }
+  /* Card titles and FAQ questions */
+  .type-title-lg,
   .type-title {
     @apply font-medium;
     font-size: 18px;
-    line-height: 26px;
-    letter-spacing: -0.5px;
+    line-height: 27px;
+    letter-spacing: 0;
   }
   .type-lead {
     font-size: 18px;
-    line-height: 26px;
-    letter-spacing: -0.5px;
+    line-height: 27px;
+    letter-spacing: 0;
   }
   .type-body {
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.02em;
   }
   .type-small {
     font-size: 14px;
-    line-height: 22px;
+    line-height: 22.4px;
     letter-spacing: 0;
   }
 
-  /* Mono used for buttons and nav links */
+  /* Button text */
   .btn-label {
-    @apply font-mono font-normal;
+    @apply font-sans font-medium;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 16.8px;
     letter-spacing: 0;
   }
 
@@ -255,27 +270,24 @@
       2px 2px 8px rgb(55 55 55 / 0.15),
       inset 1px 1px 9px rgb(255 255 255 / 0.1);
   }
-  /* Diagram parts for the "How it works" visuals */
+  /* Diagram parts for the "How it works" visuals: square hairline boxes on
+     the page background, like the rest of the site. The highlighted step
+     gets a blue edge instead of a fill */
   .flow-node,
   .flow-node-dim {
-    border-radius: 6px;
-    border: 1px solid rgb(var(--brand) / 0.5);
-    background: linear-gradient(
-      to bottom,
-      rgb(var(--brand) / 0.14),
-      rgb(var(--brand) / 0.02)
-    );
+    border: 1px solid var(--border-light);
+    background: rgb(var(--background));
   }
-  .flow-node-dim {
-    border-color: rgb(var(--foreground) / 0.1);
-    background: rgb(var(--foreground) / 0.02);
+  .flow-node {
+    border-color: rgb(var(--brand) / 0.45);
+    box-shadow: inset 2px 0 0 rgb(var(--brand));
   }
   .flow-line {
     display: block;
     width: 1px;
-    height: 10px;
+    height: 12px;
     margin-inline: auto;
-    background: rgb(var(--brand) / 0.6);
+    background: var(--guide);
   }
   .fade-y {
     mask-image: linear-gradient(
@@ -309,27 +321,20 @@
 
   /* Small secondary label */
   .ui-label {
-    @apply font-mono font-medium;
-    font-size: 12px;
-    line-height: 16px;
+    @apply font-mono font-normal;
+    font-size: 14px;
+    line-height: 1.2;
     letter-spacing: 0;
   }
 
-  /* Labels carry a small blue gradient chip. Buttons stay neutral. */
+  /* Labels are set in the brand blue. Buttons stay neutral. */
   .pill-tag {
-    @apply ui-label inline-flex items-center gap-2 text-foreground uppercase;
-  }
-  .pill-tag::before {
-    content: "";
-    width: 14px;
-    height: 7px;
-    flex-shrink: 0;
-    background: linear-gradient(to right, #c0e2f9, rgb(var(--brand)));
+    @apply ui-label inline-flex items-center gap-2 text-brand uppercase;
   }
 
   /* One hairline box split into three cells */
   .box-grid {
-    @apply grid grid-cols-1 md:grid-cols-3 border border-borderLight divide-y md:divide-y-0 md:divide-x divide-borderLight;
+    @apply grid grid-cols-1 md:grid-cols-3 bg-surface border border-borderLight divide-y md:divide-y-0 md:divide-x divide-borderLight;
   }
 
   /* The logo image is forced to white, or black in light mode */
@@ -359,6 +364,20 @@
 }
 
 @layer utilities {
+  /* Page grain (dark mode only). Grey specks at 10% opacity, one per
+     screen pixel, so the grain stays as fine as possible. Boxes keep a
+     solid bg-surface, so they sit clean on top of it */
+  .bg-noise {
+    background-image: var(--noise);
+    background-size: 256px 256px;
+    background-repeat: repeat;
+  }
+  /* On high-resolution screens, one speck per device pixel: half the size */
+  @media (min-resolution: 2dppx) {
+    .bg-noise {
+      background-size: 128px 128px;
+    }
+  }
   /* Mono never inherits the tighter tracking of the body text */
   .font-mono {
     letter-spacing: 0;

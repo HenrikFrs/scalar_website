@@ -63,10 +63,11 @@ const Process = () => {
   }, []);
 
   return (
-    <section id="process" ref={sectionRef}>
+    <section id="process" ref={sectionRef} className="section-line">
       <div className="shell">
         <div className="section-y">
           <SectionHeader
+            align="center"
             className="proc-header mb-12"
             eyebrow="Timeline"
             title="From kickoff to"

@@ -5,8 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import { Minus, Plus } from "lucide-react";
 import { SectionHeader } from "./ui";
-import { MagneticButton } from "./Header";
-import { openCal } from "../lib/cal";
 
 const PANEL_EASE = "0.35s cubic-bezier(0.4, 0, 0.2, 1)";
 
@@ -40,7 +38,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
         }}
       >
         <div className="min-h-0 overflow-hidden">
-          <div className="pb-6 pr-5 type-body text-body">{answer}</div>
+          <div className="pb-6 max-w-[600px] type-body text-body">{answer}</div>
         </div>
       </div>
     </div>
@@ -102,25 +100,18 @@ const FAQ = () => {
 
   return (
     <section id="faq" ref={sectionRef} className="section-line">
-      <div className="shell section-y grid grid-cols-1 gap-y-10 min-[810px]:gap-y-16 min-[1200px]:grid-cols-[348px_minmax(0,1fr)] min-[1200px]:gap-x-20">
-        <div className="faq-header flex flex-col items-start gap-8">
-          <SectionHeader
-            eyebrow="FAQ"
-            title="Frequently asked"
-            accent="questions"
-          />
-          <div>
-            <p className="type-title text-heading">Have more questions?</p>
-            <p className="type-body text-body mb-4">
-              We'll walk you through it on a call.
-            </p>
-            <MagneticButton variant="secondary" onClick={openCal}>
-              Book a call
-            </MagneticButton>
-          </div>
-        </div>
+      {/* As on the reference: a wide title column (title on one line), a
+          140px gap, then the list */}
+      <div className="shell section-y grid grid-cols-1 gap-y-12 min-[810px]:gap-y-16 min-[1200px]:grid-cols-[minmax(0,520px)_minmax(0,1fr)] min-[1200px]:gap-x-[140px]">
+        <SectionHeader
+          className="faq-header"
+          eyebrow="FAQ"
+          title="Frequently asked"
+          accent="questions"
+          description="Everything you need to know to get started."
+        />
 
-        <div className="faq-list flex flex-col min-w-0 border-t border-borderLight">
+        <div className="faq-list flex flex-col min-w-0">
           {faqs.map((faq, idx) => (
             <div key={idx} className="faq-item border-b border-borderLight">
               <FAQItem

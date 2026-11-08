@@ -44,12 +44,11 @@ export default {
         "2xl": "0",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        // Title font (font-serif). Helvetica Neue is only used where it's
-        // installed; plain "Helvetica" is left out because Windows maps it to Arial
-        serif: ['"Helvetica Neue"', '"Inter Tight"', "system-ui", "sans-serif"],
+        sans: ['"Instrument Sans"', "system-ui", "sans-serif"],
+        // Title font (font-serif): Ovo, as on the reference site
+        serif: ["Ovo", "Georgia", '"Times New Roman"', "serif"],
         brand: ["Geist", "Inter", "sans-serif"],
-        ui: ["Inter", "system-ui", "sans-serif"],
+        ui: ['"Instrument Sans"', "system-ui", "sans-serif"],
         mono: ['"Geist Mono"', "ui-monospace", "monospace"],
       },
       transitionTimingFunction: {

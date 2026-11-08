@@ -26,63 +26,91 @@ const linkColumns = [
   },
 ];
 
+// Laid out like the reference footer: a centred CTA band, then a lined grid
+// (brand left, link columns right), then a huge faded wordmark that runs off
+// the bottom of the page. Every band sits inside the page guides.
 const Footer = () => (
   // At least one screen tall, so the navbar is over the footer at the page's end
-  <footer className="theme-dark relative isolate overflow-hidden bg-background text-body min-h-[100dvh] flex flex-col">
+  <footer className="theme-dark section-line relative isolate overflow-hidden bg-background text-body min-h-[100dvh] flex flex-col">
+    {/* Grain on its own layer, since the footer's background draws the divider */}
+    <div className="absolute inset-0 -z-10 bg-noise pointer-events-none" aria-hidden="true" />
     <div className="page-guides" aria-hidden="true" />
+
     {/* CTA */}
     <div className="shell">
-      <div className="section-y flex flex-col items-start text-left">
+      <div className="py-28 md:py-36 flex flex-col items-center text-center">
         <h2 className="type-h2 text-heading text-balance">
           Ready for qualified calls on a{" "}
           <span className="whitespace-nowrap">pay-per-call</span> basis?
         </h2>
-        <MagneticButton variant="primary" className="mt-7" onClick={openCal}>
+        <p className="mt-5 type-body text-body max-w-xl">
+          You only pay for the qualified calls you decide to take.
+        </p>
+        <MagneticButton variant="primary" className="mt-9" onClick={openCal}>
           Get started
         </MagneticButton>
       </div>
     </div>
 
-    {/* Links; this section takes up the footer's spare height */}
-    <div className="section-line flex-1">
-      <div className="shell py-12 grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div className="flex flex-col gap-4">
+    {/* Brand and links */}
+    <div className="section-line flex-1 flex">
+      <div className="footer-box mx-auto grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+        <div className="p-6 md:p-10 border-b md:border-b-0 md:border-r border-borderLight flex flex-col gap-4">
           <a href="/" className="flex items-center gap-2 w-fit">
             <img
-              src={`${import.meta.env.BASE_URL}logo2-white-transparent.svg`}
+              src={`${import.meta.env.BASE_URL}logo_black_transparent.png`}
               alt="Scalar logo"
-              className="brand-logo h-9 -mx-1"
+              className="brand-logo h-7"
             />
-            <span className="font-brand font-[450] text-[16px] tracking-[-0.02em] text-foreground">
+            <span className="font-brand font-[450] text-[20px] tracking-[-0.02em] text-foreground">
               Scalar
             </span>
           </a>
-          <p className="type-body text-body max-w-sm">
+          <p className="type-body text-body max-w-md">
             Done-for-you outbound. Pay per qualified sales call.
-          </p>
-          <p className="ui-label text-muted">
-            &copy; {new Date().getFullYear()} Scalar. All rights reserved.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-x-14 gap-y-8 md:justify-end">
-          {linkColumns.map(({ title, links }) => (
-            <div key={title} className="flex flex-col gap-2.5">
-              <p className="ui-label text-foreground mb-1">{title}</p>
-              {links.map(({ label, href, external }) => (
-                <a
-                  key={label}
-                  href={href}
-                  {...(external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  className="type-small text-muted hover:text-foreground transition-colors duration-200"
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-          ))}
+        <div className="p-6 md:p-10 flex flex-col gap-16 md:min-h-[376px]">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-10">
+            {linkColumns.map(({ title, links }) => (
+              <div key={title} className="flex flex-col">
+                <p className="type-body text-heading mb-6">{title}</p>
+                <div className="flex flex-col gap-4">
+                  {links.map(({ label, href, external }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      {...(external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="type-small text-body w-fit transition-[color,transform] duration-200 hover:text-foreground hover:-translate-y-px"
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-auto text-[12px] leading-[18px] text-body">
+            &copy; {new Date().getFullYear()} Scalar. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Giant wordmark, fading out and cut off by the page's end */}
+    <div className="section-line h-[19vw] max-h-[270px] min-h-[72px] overflow-hidden" aria-hidden="true">
+      <div className="footer-box mx-auto h-full px-4 md:px-6 pt-6 md:pt-8 footer-wordmark">
+        <div className="flex items-start justify-center gap-[0.12em] text-foreground text-[clamp(80px,23vw,330px)] leading-[0.8]">
+          <img
+            src={`${import.meta.env.BASE_URL}logo_black_transparent.png`}
+            alt=""
+            className="brand-logo h-[0.78em] w-auto mt-[0.04em]"
+          />
+          <span className="font-brand font-[450] tracking-[-0.05em]">Scalar</span>
         </div>
       </div>
     </div>

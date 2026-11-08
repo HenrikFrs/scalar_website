@@ -62,7 +62,7 @@ function App() {
   return (
     <Router basename="/">
       {/* overflow-x-clip, not hidden: hidden would break the sticky sections */}
-      <div className="min-h-screen bg-background text-body relative isolate overflow-x-clip">
+      <div className="min-h-screen bg-background bg-noise text-body relative isolate overflow-x-clip">
         <div className="page-guides" aria-hidden="true" />
         <Navbar />
         <main>

@@ -72,6 +72,7 @@ const Testimonials = () => {
     <section id="testimonials" ref={sectionRef} className="section-line">
       <div className="shell section-y">
         <SectionHeader
+            align="center"
           className="test-header mb-12"
           eyebrow="Testimonials"
           title="Our clients get results and"

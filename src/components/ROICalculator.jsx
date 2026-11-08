@@ -92,7 +92,7 @@ const NumberField = ({
         <label className="type-small font-medium text-heading">{label}</label>
         {tooltip && <Tooltip text={tooltip} />}
       </div>
-      <div className="flex items-center border border-borderLight overflow-hidden focus-within:border-brand/50 transition-colors duration-300">
+      <div className="flex items-center bg-surface border border-borderLight overflow-hidden focus-within:border-brand/50 transition-colors duration-300">
         <div className="flex-1 flex items-center px-4 py-3">
           {prefix && (
             <span className="font-mono text-sm text-muted mr-1">{prefix}</span>
@@ -230,6 +230,7 @@ const ROICalculator = () => {
     >
       <div className="shell section-y">
         <SectionHeader
+            align="center"
           className="roi-element w-full mb-12"
           eyebrow="ROI"
           title="See it in"
@@ -237,7 +238,7 @@ const ROICalculator = () => {
           description="Plug in your campaign parameters and business economics to project the long-term profit from one month of campaigns."
         />
 
-        <div className="roi-element border border-borderLight w-full grid grid-cols-1 lg:grid-cols-2">
+        <div className="roi-element bg-surface border border-borderLight w-full grid grid-cols-1 lg:grid-cols-2">
           <div className="flex flex-col gap-7 p-6 md:p-8 lg:border-r border-borderLight">
             <SliderField
               label="Messages Sent"

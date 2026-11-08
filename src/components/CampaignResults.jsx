@@ -30,7 +30,7 @@ const CampaignRow = ({ label, stat, image, width, height, alt }) => (
       <span className="pill-tag w-fit">{label}</span>
       <h3 className="type-title text-heading">{stat}</h3>
     </div>
-    <div className="border border-borderLight">
+    <div className="bg-surface border border-borderLight">
       <img
         src={`${import.meta.env.BASE_URL}${image}`}
         alt={alt}
@@ -68,12 +68,14 @@ const CampaignResults = () => {
     <section id="campaigns" ref={sectionRef} className="section-line">
       <div className="shell section-y">
         <SectionHeader
+            align="center"
           className="cr-element mb-12"
           eyebrow="Campaign Screenshots"
           title="Selected client campaigns"
         />
 
-        <div className="cr-element border border-borderLight divide-y divide-borderLight">
+        {/* Narrower than the page column, so the screenshots don't get too wide */}
+        <div className="cr-element mx-auto max-w-[1100px] bg-surface border border-borderLight divide-y divide-borderLight">
           {campaigns.map((campaign) => (
             <CampaignRow key={campaign.image} {...campaign} />
           ))}

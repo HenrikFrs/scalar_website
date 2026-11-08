@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Datenschutz = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground pt-32 pb-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+    <div className="min-h-screen bg-background bg-noise text-foreground pt-32 pb-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
       <div className="max-w-3xl mx-auto relative z-10">
         <Link
           to="/"
