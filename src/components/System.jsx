@@ -224,7 +224,7 @@ const MessagingIllustration = () => (
             key={angle}
             className={`${
               status === "scaling" ? "flow-node" : "flow-node-dim"
-            } w-[140px] flex-shrink-0 px-2.5 py-2`}
+            } w-[130px] flex-shrink-0 px-2.5 py-2`}
           >
             <p
               className={`text-[12px] leading-5 tracking-normal truncate ${
@@ -278,7 +278,13 @@ const illustrations = {
 // Text on the page background beside its diagram, which is the only part in
 // an outlined box. `flipped` swaps the sides on desktop, so rows alternate
 const StepRow = ({ step, flipped }) => (
-  <div className="w-full max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-x-12 lg:items-center">
+  <div
+    className={`w-full max-w-[1100px] mx-auto grid grid-cols-1 gap-8 lg:gap-x-12 lg:items-center ${
+      flipped
+        ? "lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]"
+        : "lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]"
+    }`}
+  >
     <div
       className={`flex flex-col gap-3 ${
         flipped ? "lg:order-2" : ""

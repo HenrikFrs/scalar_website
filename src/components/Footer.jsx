@@ -1,6 +1,7 @@
 import React from "react";
 import { MagneticButton } from "./Header";
 import { openCal } from "../lib/cal";
+import HeroContours from "./HeroContours";
 
 const linkColumns = [
   {
@@ -31,16 +32,18 @@ const linkColumns = [
 const Footer = () => (
   // At least one screen tall, so the navbar is over the footer at the page's end
   <footer className="theme-dark section-line relative isolate overflow-hidden bg-background text-body min-h-[100dvh] flex flex-col">
-    {/* Grain on its own layer, since the footer's background draws the divider */}
-    <div className="absolute inset-0 -z-10 bg-noise pointer-events-none" aria-hidden="true" />
     <div className="page-guides" aria-hidden="true" />
 
-    {/* CTA */}
-    <div className="shell">
+    {/* CTA, over the same drifting contours as the hero (in the dark line
+        colour here), kept between the vertical guide lines */}
+    <div className="relative">
+      <div className="footer-box absolute inset-y-0 left-0 right-0 mx-auto overflow-hidden pointer-events-none">
+        <HeroContours />
+      </div>
+    <div className="shell relative">
       <div className="py-28 md:py-36 flex flex-col items-center text-center">
-        <h2 className="type-h2 text-heading text-balance">
-          Ready for qualified calls on a{" "}
-          <span className="whitespace-nowrap">pay-per-call</span> basis?
+        <h2 className="type-h1 text-heading text-balance max-w-4xl">
+          See if Scalar makes sense for your business.
         </h2>
         <p className="mt-5 type-body text-body max-w-xl">
           You only pay for the qualified calls you decide to take.
@@ -49,6 +52,7 @@ const Footer = () => (
           Get started
         </MagneticButton>
       </div>
+    </div>
     </div>
 
     {/* Brand and links */}

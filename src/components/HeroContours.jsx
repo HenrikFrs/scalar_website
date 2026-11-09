@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from "react";
 
 const CELL = 14; // Grid size in CSS px; smaller is smoother but slower
-const LEVELS = [-1.2, -0.6, 0, 0.6, 1.2];
-const LINE_COLOR = "#ebebec"; // Only just darker than the page background
+const LEVELS = [-1.4, -0.7, 0, 0.7, 1.4];
+const SCALE = 1.2; // Higher packs the contours tighter
 const FRAME_MS = 1000 / 30;
-const SPEED = 0.35; // Lower is slower; about 1px of drift per second
+const SPEED = 4.2; // Lower is slower
 
 // A smooth height field that changes slowly over time. Its contour lines are
 // what gets drawn, so slow phase changes make the lines drift and reshape.
 const height = (x, y, t) => {
-  const wx = x + 70 * Math.sin(y * 0.0037 + t * 0.011 + 1.3);
-  const wy = y + 70 * Math.sin(x * 0.0029 - t * 0.009 + 4.1);
+  const wx = x + 120 * Math.sin(y * 0.0037 + t * 0.018 + 1.3);
+  const wy = y + 120 * Math.sin(x * 0.0029 - t * 0.015 + 4.1);
   return (
     Math.sin(wx * 0.0031 + wy * 0.0017 + t * 0.013) +
     0.7 * Math.sin(wx * -0.0019 + wy * 0.0043 - t * 0.01 + 2.1) +
@@ -109,8 +109,8 @@ const HeroContours = () => {
       for (let row = 0; row <= rows; row++) {
         for (let col = 0; col <= cols; col++) {
           values[row * (cols + 1) + col] = height(
-            col * CELL,
-            row * CELL,
+            col * CELL * SCALE,
+            row * CELL * SCALE,
             t * SPEED,
           );
         }
@@ -131,7 +131,10 @@ const HeroContours = () => {
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height_ * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.strokeStyle = LINE_COLOR;
+      // The site's own line colour, so the contours match the page guides
+      ctx.strokeStyle =
+        getComputedStyle(canvas).getPropertyValue("--guide").trim() ||
+        "rgb(227 225 218)";
       ctx.lineWidth = 1;
       cols = Math.ceil(width / CELL);
       rows = Math.ceil(height_ / CELL);
@@ -182,7 +185,7 @@ const HeroContours = () => {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none"
+      className="absolute inset-0 w-full h-full pointer-events-none opacity-70"
     />
   );
 };

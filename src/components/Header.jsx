@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useLocation } from "react-router-dom";
 import { openCal } from "../lib/cal";
+import HeroContours from "./HeroContours";
 
 export const MagneticButton = ({
   children,
@@ -72,7 +73,7 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`${navTheme} nav-guide fixed top-0 left-0 right-0 z-[60] w-full bg-background bg-noise transition-colors duration-300`}
+      className={`${navTheme} nav-guide fixed top-0 left-0 right-0 z-[60] w-full bg-background transition-colors duration-300`}
     >
       {/* Same box as the page guides, so their lines run through the bar.
           Logo left, links centred on the page, CTA right */}
@@ -102,7 +103,7 @@ export const Navbar = () => {
 
         <MagneticButton
           variant="primary"
-          className="h-[41px] px-5 justify-self-end"
+          className="h-8 px-3.5 text-[13px] md:h-[41px] md:px-5 md:text-[14px] justify-self-end"
           onClick={openCal}
         >
           Schedule a call
@@ -151,12 +152,17 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden min-h-[78dvh] flex"
+      className="relative overflow-hidden min-h-[100svh] flex"
     >
+      {/* Very subtle drifting contour lines, behind the content and kept
+          between the vertical guide lines */}
+      <div className="footer-box absolute inset-y-0 left-0 right-0 mx-auto overflow-hidden pointer-events-none">
+        <HeroContours />
+      </div>
       {/* Top padding clears the navbar, so the content centers in the space below it */}
       <div className="shell relative z-10 flex flex-col items-center justify-center text-center pt-28 pb-10">
         <span className="hero-element pill-tag mb-5">Performance-based</span>
-        <h1 className="type-h1 text-[40px] md:text-[52px] lg:text-[64px] leading-none text-heading">
+        <h1 className="type-h1 text-[44px] md:text-[60px] lg:text-[76px] leading-none text-heading">
           <span className="hero-element block text-balance">
             <span className="whitespace-nowrap">Done-for-you</span> outbound.
           </span>

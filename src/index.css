@@ -22,7 +22,7 @@
     --accent: 231 234 221;
     --accent-soft: 31 31 31;
     --warn: 255 107 53;
-    --brand: 85 139 251;
+    --brand: 25 117 110; /* #19756E, the reference site's dark green accent */
     --guide: rgb(46 46 46);
     --btn: 255 254 250; /* Light pill with dark text, as on the reference */
     --btn-text: 21 21 21;
@@ -33,11 +33,11 @@
     color-scheme: dark;
   }
 
-  /* Light palette. Not in use: the site is dark only (data-theme="dark" on
-     <html> in index.html). Kept so a light mode can be switched back on */
+  /* Light mode, the site's theme (data-theme="light" on <html> in
+     index.html). The dark palette above stays for .theme-dark blocks */
   :root[data-theme="light"] {
-    --background: 248 246 240; /* Soft warm off-white (#F8F6F0), easy on the eye */
-    --surface: 255 254 250; /* Barely warm white (#FFFEFA), well above the background */
+    --background: 255 254 250; /* #FFFEFA, the reference site's page white */
+    --surface: 255 255 255; /* #FFFFFF, the reference's box white */
     --surface2: 236 236 236;
     --border: 227 225 218;
     --border-mid: 208 208 208;
@@ -49,7 +49,7 @@
     --accent: 14 11 10;
     --accent-soft: 232 232 232;
     --warn: 255 107 53;
-    --brand: 37 99 235; /* Deeper than the dark value so small text stays legible */
+    --brand: 25 117 110; /* #19756E, the reference site's dark green accent */
     --guide: rgb(227 225 218);
     --btn: 17 17 19;
     --btn-text: 255 255 255;

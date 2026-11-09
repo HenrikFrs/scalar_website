@@ -29,7 +29,7 @@ export default {
         greenLight: v("border-mid"),
         greenDeep: v("accent-soft"),
         warn: v("warn"),
-        brand: v("brand"), // The one blue accent
+        brand: v("brand"), // The one accent: dark green
         btn: v("btn"),
         btnText: v("btn-text"),
         btnHover: v("btn-hover"),
