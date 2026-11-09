@@ -61,11 +61,11 @@ const Footer = () => (
         <div className="p-6 md:p-10 border-b md:border-b-0 md:border-r border-borderLight flex flex-col gap-4">
           <a href="/" className="flex items-center gap-2 w-fit">
             <img
-              src={`${import.meta.env.BASE_URL}logo_black_transparent.png`}
+              src={`${import.meta.env.BASE_URL}logo4-black.svg`}
               alt="Scalar logo"
-              className="brand-logo h-7"
+              className="brand-logo h-5"
             />
-            <span className="font-brand font-[450] text-[20px] tracking-[-0.02em] text-foreground">
+            <span className="font-serif font-normal text-[22px] tracking-[-0.02em] translate-y-[2px] text-foreground">
               Scalar
             </span>
           </a>
