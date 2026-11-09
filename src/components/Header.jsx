@@ -80,9 +80,9 @@ export const Navbar = () => {
       <nav className="nav-box relative mx-auto grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-[66px] md:h-[73px] px-4 md:px-10">
         <a href="/" className="flex items-center gap-2 w-fit">
           <img
-            src={`${import.meta.env.BASE_URL}logo4-black.svg`}
+            src={`${import.meta.env.BASE_URL}logo_black_transparent_old.png`}
             alt="Scalar logo"
-            className="brand-logo h-5"
+            className="brand-logo h-7"
           />
           <span className="font-serif font-normal text-[22px] tracking-[-0.02em] translate-y-[2px] text-foreground transition-colors duration-300">
             Scalar
