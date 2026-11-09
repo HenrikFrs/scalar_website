@@ -185,7 +185,7 @@ const HeroContours = () => {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-70"
+      className="absolute inset-0 w-full h-full pointer-events-none opacity-45"
     />
   );
 };
