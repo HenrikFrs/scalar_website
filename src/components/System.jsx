@@ -291,7 +291,7 @@ const StepRow = ({ step, flipped }) => (
       }`}
     >
       <span className="pill-tag w-fit">{step.category}</span>
-      <h3 className="type-title-lg text-heading">{step.label}</h3>
+      <h3 className="type-title-lg md:text-[21px] md:leading-[29px] text-heading">{step.label}</h3>
 
       <div className="flex flex-col gap-2.5 mt-2">
         {step.checklist.map((item) => (
@@ -336,7 +336,7 @@ const System = () => (
         ))}
 
         <div className="flex flex-col items-center gap-2 text-center">
-          <h3 className="type-title-lg text-heading">
+          <h3 className="type-title-lg md:text-[21px] md:leading-[29px] text-heading">
             You own the entire system
           </h3>
           <p className="type-body text-body max-w-xl">

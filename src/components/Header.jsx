@@ -77,7 +77,7 @@ export const Navbar = () => {
     >
       {/* Same box as the page guides, so their lines run through the bar.
           Logo left, links centred on the page, CTA right */}
-      <nav className="nav-box relative mx-auto grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-[73px] px-4 md:px-10">
+      <nav className="nav-box relative mx-auto grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-[66px] md:h-[73px] px-4 md:px-10">
         <a href="/" className="flex items-center gap-2 w-fit">
           <img
             src={`${import.meta.env.BASE_URL}logo4-black.svg`}
