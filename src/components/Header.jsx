@@ -94,7 +94,7 @@ export const Navbar = () => {
             <a
               key={label}
               href={`/#${href}`}
-              className="type-small text-body transition-colors duration-200 hover:text-foreground"
+              className="type-small text-body transition-colors duration-200 hover:text-brand"
             >
               {label}
             </a>
@@ -157,16 +157,16 @@ export const Hero = () => {
       {/* Very subtle drifting contour lines, behind the content and kept
           between the vertical guide lines */}
       <div className="footer-box absolute inset-y-0 left-0 right-0 mx-auto overflow-hidden pointer-events-none">
-        <HeroContours />
+        <HeroContours opacity="opacity-[0.55]" />
       </div>
       {/* Top padding clears the navbar, so the content centers in the space below it */}
-      <div className="shell relative z-10 flex flex-col items-center justify-center text-center pt-28 pb-10">
+      <div className="shell relative z-10 flex flex-col items-center justify-center text-center pt-28 pb-28 md:pb-36">
         <span className="hero-element pill-tag mb-5">Performance-based</span>
         <h1 className="type-h1 text-[44px] md:text-[60px] lg:text-[76px] leading-none text-heading">
           <span className="hero-element block text-balance">
             <span className="whitespace-nowrap">Done-for-you</span> outbound.
           </span>
-          <span className="hero-element block text-balance">
+          <span className="hero-element block text-balance italic text-brand">
             Pay per qualified sales call.
           </span>
         </h1>

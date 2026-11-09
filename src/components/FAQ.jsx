@@ -106,8 +106,7 @@ const FAQ = () => {
         <SectionHeader
           className="faq-header"
           eyebrow="FAQ"
-          title="Frequently asked"
-          accent="questions"
+          title="Frequently asked questions"
           description="Everything you need to know to get started."
         />
 

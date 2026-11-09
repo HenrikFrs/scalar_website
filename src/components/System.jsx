@@ -299,7 +299,7 @@ const StepRow = ({ step, flipped }) => (
             <ArrowRight
               size={14}
               strokeWidth={1.5}
-              className="mt-[5px] flex-shrink-0 text-foreground"
+              className="mt-[5px] flex-shrink-0 text-brand"
             />
             {item}
           </p>

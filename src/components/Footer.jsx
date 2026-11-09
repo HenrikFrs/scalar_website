@@ -43,7 +43,7 @@ const Footer = () => (
     <div className="shell relative">
       <div className="py-28 md:py-36 flex flex-col items-center text-center">
         <h2 className="type-h1 text-heading text-balance max-w-4xl">
-          See if Scalar makes sense for your business.
+          See if Scalar makes sense for <span className="italic text-brand">your business.</span>
         </h2>
         <p className="mt-5 type-body text-body max-w-xl">
           You only pay for the qualified calls you decide to take.
@@ -87,7 +87,7 @@ const Footer = () => (
                       {...(external
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
-                      className="type-small text-body w-fit transition-[color,transform] duration-200 hover:text-foreground hover:-translate-y-px"
+                      className="type-small text-body w-fit transition-[color,transform] duration-200 hover:text-brand hover:-translate-y-px"
                     >
                       {label}
                     </a>

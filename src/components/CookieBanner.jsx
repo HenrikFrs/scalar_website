@@ -104,7 +104,7 @@ export default function CookieBanner() {
             to our use of cookies.{" "}
             <a
               href="/privacy-policy"
-              className="underline underline-offset-4 text-body hover:text-green transition-colors"
+              className="underline underline-offset-4 text-body hover:text-brand transition-colors"
             >
               Privacy Policy
             </a>

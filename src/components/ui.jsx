@@ -26,7 +26,7 @@ export const SectionHeader = ({
       {accent && (
         <>
           {" "}
-          {accent}
+          <span className="italic text-brand">{accent}</span>
         </>
       )}
     </h2>

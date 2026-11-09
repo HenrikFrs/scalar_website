@@ -353,7 +353,7 @@ const ROICalculator = () => {
                   over their lifetime.
                 </p>
                 <div className="relative group flex-shrink-0">
-                  <span className="ui-label text-muted cursor-default underline underline-offset-4 decoration-dotted hover:text-green transition-colors duration-300">
+                  <span className="ui-label text-muted cursor-default underline underline-offset-4 decoration-dotted hover:text-brand transition-colors duration-300">
                     How is this calculated?
                   </span>
                   <div className="absolute bottom-full left-0 mb-2 w-[22rem] max-w-[calc(100vw-4.5rem)] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">

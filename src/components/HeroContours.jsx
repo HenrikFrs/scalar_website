@@ -89,7 +89,7 @@ const traceLevel = (ctx, values, cols, rows, level) => {
 };
 
 // Very subtle drifting contour lines behind the hero
-const HeroContours = () => {
+const HeroContours = ({ opacity = "opacity-45" }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -185,7 +185,7 @@ const HeroContours = () => {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-45"
+      className={`absolute inset-0 w-full h-full pointer-events-none ${opacity}`}
     />
   );
 };
