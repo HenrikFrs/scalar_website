@@ -71,10 +71,10 @@ const Comparison = () => {
     >
       <div>
         <div className="comp-header mb-16 flex flex-col items-center text-center gap-6">
-          <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-[#3799f7]/25 backdrop-blur-sm text-[#89c4ff]">
+          <span className="text-[9px] md:text-[11px] font-sans font-semibold tracking-[0.16em] leading-none px-3 py-2 bg-brand/20 backdrop-blur-sm text-brand">
             The Difference
           </span>
-          <h2 className="text-[33px] md:text-[42px] font-medium text-foreground font-serif leading-tight max-w-2xl">
+          <h2 className="text-[33px] md:text-[42px] font-normal text-foreground font-serif leading-tight max-w-2xl">
             We optimize for the right results and only charge for what we
             deliver
           </h2>
@@ -107,11 +107,11 @@ const Comparison = () => {
             <div className="px-8 pt-8 pb-2">
               <div className="flex items-center gap-2 mb-3">
                 <img
-                  src={`${import.meta.env.BASE_URL}logo10-black.svg`}
+                  src={`${import.meta.env.BASE_URL}favicon_old.svg`}
                   alt="Scalar"
-                  className="h-4 brightness-0 invert"
+                  className="h-5 brightness-0 invert"
                 />
-                <p className="text-xl font-medium text-foreground">Scalar</p>
+                <p className="text-xl leading-none font-medium text-foreground">Scalar</p>
               </div>
             </div>
             <ul className="flex flex-col">

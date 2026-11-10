@@ -73,18 +73,18 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`${navTheme} nav-guide fixed top-0 left-0 right-0 z-[60] w-full bg-background transition-colors duration-300`}
+      className={`${navTheme} nav-guide fixed top-0 left-0 right-0 z-[60] w-full bg-background bg-noise transition-colors duration-300`}
     >
       {/* Same box as the page guides, so their lines run through the bar.
           Logo left, links centred on the page, CTA right */}
       <nav className="nav-box relative mx-auto grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-[66px] md:h-[73px] px-4 md:px-10">
         <a href="/" className="flex items-center gap-2 w-fit">
           <img
-            src={`${import.meta.env.BASE_URL}logo10-black.svg`}
+            src={`${import.meta.env.BASE_URL}favicon_old.svg`}
             alt="Scalar logo"
-            className="brand-logo h-4"
+            className="brand-logo h-6"
           />
-          <span className="font-serif font-normal text-[23px] tracking-[-0.02em] translate-y-[1px] text-foreground transition-colors duration-300">
+          <span className="font-brand font-normal text-[20px] leading-none tracking-[-0.02em] text-foreground transition-colors duration-300">
             Scalar
           </span>
         </a>
@@ -166,7 +166,7 @@ export const Hero = () => {
           <span className="hero-element block text-balance">
             <span className="whitespace-nowrap">Done-for-you</span> outbound.
           </span>
-          <span className="hero-element block text-balance italic text-brand">
+          <span className="hero-element block text-balance text-highlight">
             Pay per qualified sales call.
           </span>
         </h1>

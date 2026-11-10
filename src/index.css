@@ -1,3 +1,13 @@
+/* Title font: LT Superior Serif by LyonsType, SIL Open Font License 1.1
+   (copyright and licence are embedded in the font file) */
+@font-face {
+  font-family: "LT Superior Serif";
+  src: url("./assets/fonts/LTSuperiorSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,55 +18,31 @@
      palette for data-theme="dark", and .theme-dark keeps a block (the
      footer) dark while the rest of the page is light */
   :root,
-  .theme-dark {
-    --background: 21 21 21; /* #151515 */
-    --surface: 21 21 21; /* #151515, same as the page: reference panels are set apart only by their lines */
-    --surface2: 38 38 38;
-    --border: 46 46 46;
-    --border-mid: 60 60 60;
-    --border-light: rgb(46 46 46); /* #2E2E2E hairline */
-    --foreground: 231 234 221; /* #E7EADD, warm off-white headings */
-    --body: 150 150 150; /* #969696 */
-    --muted: 150 150 150;
-    --title-accent: 231 234 221;
-    --accent: 231 234 221;
-    --accent-soft: 31 31 31;
+  .theme-dark,
+  :root[data-theme="dark"] {
+    /* Palette copied from remarkable-line-097507.framer.app */
+    --background: 6 6 6; /* #060606 page */
+    --surface: 18 18 18; /* #121212 sections and cards */
+    --surface2: 30 30 30; /* #1E1E1E raised cards */
+    --border: 31 31 31; /* White at 10% over the page */
+    --border-mid: 56 56 56; /* White at 20% */
+    --border-light: rgb(31 31 31);
+    --foreground: 255 255 255; /* White headings */
+    --body: 155 155 155; /* White at 60%, the body text */
+    --muted: 131 131 131; /* White at 50% */
+    --title-accent: 255 255 255;
+    --accent: 255 255 255;
+    --accent-soft: 30 30 30;
     --warn: 255 107 53;
-    --brand: 25 117 110; /* #19756E, the reference site's dark green accent */
-    --guide: rgb(46 46 46);
-    --btn: 255 254 250; /* Light pill with dark text, as on the reference */
-    --btn-text: 21 21 21;
-    --btn-hover: 222 222 216;
+    --brand: 37 99 235; /* #2563EB blue accent */
+    --highlight: 255 255 255; /* Titles are fully white, second part included */
+    --guide: rgb(31 31 31);
+    --btn: 255 255 255; /* White pill with black text */
+    --btn-text: 0 0 0;
+    --btn-hover: 204 204 204; /* White at 80% */
     --logo-filter: brightness(0) invert(1);
-    /* Fine grain over the page, as on the reference's dark sections */
-    --noise: url("./assets/noise.png");
+    --noise: url("./assets/noise.png"); /* Fine grey grain at 10% */
     color-scheme: dark;
-  }
-
-  /* Light mode, the site's theme (data-theme="light" on <html> in
-     index.html). The dark palette above stays for .theme-dark blocks */
-  :root[data-theme="light"] {
-    --background: 255 254 250; /* #FFFEFA, the reference site's page white */
-    --surface: 255 255 255; /* #FFFFFF, the reference's box white */
-    --surface2: 236 236 236;
-    --border: 227 225 218;
-    --border-mid: 208 208 208;
-    --border-light: rgb(227 225 218); /* Soft warm hairline */
-    --foreground: 14 11 10;
-    --body: 14 11 10;
-    --muted: 14 11 10;
-    --title-accent: 14 11 10;
-    --accent: 14 11 10;
-    --accent-soft: 232 232 232;
-    --warn: 255 107 53;
-    --brand: 25 117 110; /* #19756E, the reference site's dark green accent */
-    --guide: rgb(227 225 218);
-    --btn: 17 17 19;
-    --btn-text: 255 255 255;
-    --btn-hover: 58 58 62;
-    --logo-filter: brightness(0);
-    --noise: none;
-    color-scheme: light;
   }
 
   html {
@@ -164,7 +150,7 @@
     @apply py-28 md:py-40;
   }
 
-  /* Type scale, after the reference site. Ovo titles step down at 1200px
+  /* Type scale, after the reference site. LT Superior Serif titles step down at 1200px
      and 810px; everything else is Instrument Sans */
   .type-h1,
   .type-h2,
@@ -255,7 +241,7 @@
     @apply btn-label inline-flex items-center justify-center gap-2 rounded-full h-[48px] px-6 cursor-pointer;
   }
 
-  /* Soft shadow at rest; the whole surface shifts one shade on hover */
+  /* Soft shadow at rest; the whole surface turns slightly lighter on hover */
   .btn-primary {
     @apply bg-btn text-btnText hover:bg-btnHover;
     transition:
@@ -322,9 +308,11 @@
     letter-spacing: 0;
   }
 
-  /* Labels are set in the brand blue. Buttons stay neutral. */
+  /* Section labels: a plain rounded pill with a hairline border */
+  /* Eyebrow label: plain blue text, no pill */
   .pill-tag {
-    @apply ui-label inline-flex items-center gap-2 text-brand uppercase;
+    @apply ui-label inline-flex items-center gap-2 uppercase text-brand;
+    font-size: 12px;
   }
 
   /* One hairline box split into three cells */
@@ -371,6 +359,18 @@
   @media (min-resolution: 2dppx) {
     .bg-noise {
       background-size: 128px 128px;
+    }
+  }
+  /* Grain plus the section's top separator line, so neither hides the other */
+  .section-line.bg-noise {
+    background-image: linear-gradient(var(--guide), var(--guide)), var(--noise);
+    background-position: center top, 0 0;
+    background-size: min(100% - 16px, 1400px) 1px, 256px 256px;
+    background-repeat: no-repeat, repeat;
+  }
+  @media (min-resolution: 2dppx) {
+    .section-line.bg-noise {
+      background-size: min(100% - 16px, 1400px) 1px, 128px 128px;
     }
   }
   /* Mono never inherits the tighter tracking of the body text */

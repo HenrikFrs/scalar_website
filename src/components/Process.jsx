@@ -80,7 +80,7 @@ const Process = () => {
                 key={step.title}
                 className="p-6 md:p-8 flex flex-col gap-2"
               >
-                <span className="type-stat text-brand mb-6">{step.day}</span>
+                <span className="type-stat text-foreground mb-6">{step.day}</span>
                 <p className="type-title-lg text-heading">
                   {step.title}
                 </p>
@@ -93,7 +93,7 @@ const Process = () => {
                       <ArrowRight
                         size={14}
                         strokeWidth={1.5}
-                        className="mt-1 flex-shrink-0 text-brand"
+                        className="mt-1 flex-shrink-0 text-foreground"
                       />
                       {b}
                     </li>

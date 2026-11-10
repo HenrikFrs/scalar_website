@@ -27,7 +27,7 @@ const ProspectScorer = () => {
   return (
     <div className="h-48 w-full bg-surface2 p-5 flex flex-col justify-between overflow-hidden relative border border-pillBorder">
       <div className="flex items-center gap-2 mb-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#5b8dee] animate-pulse"></span>
+        <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
         <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
           Scoring
         </span>
@@ -38,15 +38,15 @@ const ProspectScorer = () => {
         <div className="flex items-center gap-3">
           <div className="flex-1 h-1.5 bg-surface rounded-full overflow-hidden">
             <div
-              className="h-full bg-[#5b8dee] rounded-full transition-all duration-700"
+              className="h-full bg-brand rounded-full transition-all duration-700"
               style={{ width: `${current.score}%` }}
             />
           </div>
-          <span className="text-[10px] font-mono text-[#5b8dee] w-6 text-right">
+          <span className="text-[10px] font-mono text-brand w-6 text-right">
             {current.score}
           </span>
         </div>
-        <span className="self-start text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#14349D]/20 border border-[#14349D]/30 text-[#5b8dee]">
+        <span className="self-start text-[10px] font-mono px-2 py-0.5 rounded-full bg-brand/15 border border-brand/30 text-brand">
           {current.fit}
         </span>
       </div>
@@ -83,7 +83,7 @@ const CopyTypewriter = () => {
   const Var = ({ name }) => (
     <span
       key={`${name}-${idx}`}
-      className="text-[#5b8dee] bg-[#14349D]/20 rounded px-0.5 transition-all duration-300"
+      className="text-brand bg-brand/15 rounded px-0.5 transition-all duration-300"
     >
       {variables[name][idx]}
     </span>
@@ -92,7 +92,7 @@ const CopyTypewriter = () => {
   return (
     <div className="h-48 w-full bg-surface2 p-5 flex flex-col overflow-hidden border border-pillBorder">
       <div className="flex items-center gap-2 mb-3">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#5b8dee] animate-pulse"></span>
+        <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
         <span className="text-[10px] font-mono text-muted tracking-wider uppercase">
           Live Copy
         </span>
@@ -106,7 +106,7 @@ const CopyTypewriter = () => {
         {["first_name", "company", "trigger"].map((v) => (
           <span
             key={v}
-            className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#14349D]/20 border border-[#14349D]/30 text-[#5b8dee]"
+            className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-brand/15 border border-brand/30 text-brand"
           >
             {`{${v}}`}
           </span>
@@ -174,7 +174,7 @@ const DeliverabilityMonitor = () => {
         <span className="text-[10px] font-mono text-muted">
           10 domains · 100 inboxes
         </span>
-        <span className="text-[10px] font-mono text-[#5b8dee]">
+        <span className="text-[10px] font-mono text-brand">
           2,000 / day
         </span>
       </div>

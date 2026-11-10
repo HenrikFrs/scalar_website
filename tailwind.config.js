@@ -29,7 +29,8 @@ export default {
         greenLight: v("border-mid"),
         greenDeep: v("accent-soft"),
         warn: v("warn"),
-        brand: v("brand"), // The one accent: dark green
+        brand: v("brand"), // Accent colour
+        highlight: v("highlight"), // Greyed part of titles
         btn: v("btn"),
         btnText: v("btn-text"),
         btnHover: v("btn-hover"),
@@ -45,8 +46,8 @@ export default {
       },
       fontFamily: {
         sans: ['"Instrument Sans"', "system-ui", "sans-serif"],
-        // Title font (font-serif): Ovo, as on the reference site
-        serif: ["Ovo", "Georgia", '"Times New Roman"', "serif"],
+        // Title font (font-serif): LT Superior Serif, self-hosted (see index.css)
+        serif: ['"LT Superior Serif"', "Georgia", "serif"],
         brand: ["Geist", "Inter", "sans-serif"],
         ui: ['"Instrument Sans"', "system-ui", "sans-serif"],
         mono: ['"Geist Mono"', "ui-monospace", "monospace"],

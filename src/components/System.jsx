@@ -281,8 +281,8 @@ const StepRow = ({ step, flipped }) => (
   <div
     className={`w-full max-w-[1100px] mx-auto grid grid-cols-1 gap-8 lg:gap-x-12 lg:items-center ${
       flipped
-        ? "lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]"
-        : "lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]"
+        ? "lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
+        : "lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]"
     }`}
   >
     <div
@@ -299,7 +299,7 @@ const StepRow = ({ step, flipped }) => (
             <ArrowRight
               size={14}
               strokeWidth={1.5}
-              className="mt-[5px] flex-shrink-0 text-brand"
+              className="mt-[5px] flex-shrink-0 text-foreground"
             />
             {item}
           </p>

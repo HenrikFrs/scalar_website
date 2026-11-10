@@ -31,11 +31,11 @@ const linkColumns = [
 // (brand left, link columns right). Every band sits inside the page guides.
 const Footer = () => (
   // At least one screen tall, so the navbar is over the footer at the page's end
-  <footer className="theme-dark section-line relative isolate overflow-hidden bg-background text-body min-h-[100dvh] flex flex-col">
+  <footer className="theme-dark section-line relative isolate overflow-hidden bg-background bg-noise text-body min-h-[100dvh] flex flex-col">
     <div className="page-guides" aria-hidden="true" />
 
-    {/* CTA, over the same drifting contours as the hero (in the dark line
-        colour here), kept between the vertical guide lines */}
+    {/* CTA, over the same drifting contours as the hero, kept between the
+        vertical guide lines */}
     <div className="relative">
       <div className="footer-box absolute inset-y-0 left-0 right-0 mx-auto overflow-hidden pointer-events-none">
         <HeroContours />
@@ -43,7 +43,7 @@ const Footer = () => (
     <div className="shell relative">
       <div className="py-28 md:py-36 flex flex-col items-center text-center">
         <h2 className="type-h1 text-heading text-balance max-w-4xl">
-          See if Scalar makes sense for <span className="italic text-brand">your business.</span>
+          See if Scalar makes sense for <span className="text-highlight">your business.</span>
         </h2>
         <p className="mt-5 type-body text-body max-w-xl">
           You only pay for the qualified calls you decide to take.
@@ -61,11 +61,11 @@ const Footer = () => (
         <div className="p-6 md:p-10 border-b md:border-b-0 md:border-r border-borderLight flex flex-col gap-4">
           <a href="/" className="flex items-center gap-2 w-fit">
             <img
-              src={`${import.meta.env.BASE_URL}logo10-black.svg`}
+              src={`${import.meta.env.BASE_URL}favicon_old.svg`}
               alt="Scalar logo"
-              className="brand-logo h-4"
+              className="brand-logo h-6"
             />
-            <span className="font-serif font-normal text-[23px] tracking-[-0.02em] translate-y-[1px] text-foreground">
+            <span className="font-brand font-normal text-[20px] leading-none tracking-[-0.02em] text-foreground">
               Scalar
             </span>
           </a>
