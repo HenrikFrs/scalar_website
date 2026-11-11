@@ -85,7 +85,7 @@ const Footer = () => (
               </span>
             </a>
             <p className="type-body text-body">
-              Done-for-you outbound. Pay per qualified sales call.
+              Done-for-you pipeline. Pay per qualified sales call.
             </p>
           </div>
           <nav className="flex flex-wrap gap-x-4 gap-y-2">

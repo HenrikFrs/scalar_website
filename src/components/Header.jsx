@@ -167,7 +167,7 @@ export const Hero = () => {
             <span className="hero-element pill-tag mb-6">Performance-based</span>
             <h1 className="type-h1 text-[44px] md:text-[60px] lg:text-[76px] leading-none text-heading">
               <span className="hero-element block text-balance">
-                <span className="whitespace-nowrap">Done-for-you</span> outbound.
+                <span className="whitespace-nowrap">Done-for-you</span> pipeline.
               </span>
               <span className="hero-element block text-balance text-highlight">
                 Pay per qualified sales call.
