@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SectionHeader } from "./ui";
+import { Section, SectionHeader } from "./ui";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,23 +69,22 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section id="testimonials" ref={sectionRef} className="section-line">
-      <div className="shell section-y">
-        <SectionHeader
-            align="center"
-          className="test-header mb-12"
-          eyebrow="Testimonials"
-          title="Our clients get results and"
-          accent="enjoy the process"
-        />
+    <Section id="testimonials" ref={sectionRef}>
+      <SectionHeader
+        className="test-header"
+        eyebrow="Testimonials"
+        title="Our clients get results and"
+        accent="enjoy the process"
+      />
 
+      <div className="frame-body">
         <div className="test-grid box-grid">
           {testimonials.map((t) => (
             <TestimonialCard key={t.author} {...t} />
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

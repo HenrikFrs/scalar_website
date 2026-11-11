@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 import { Minus, Plus } from "lucide-react";
-import { SectionHeader } from "./ui";
+import { Section, SectionHeader } from "./ui";
 
 const PANEL_EASE = "0.35s cubic-bezier(0.4, 0, 0.2, 1)";
 
@@ -99,12 +99,13 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" ref={sectionRef} className="section-line">
-      {/* As on the reference: a wide title column (title on one line), a
-          140px gap, then the list */}
-      <div className="shell section-y grid grid-cols-1 gap-y-12 min-[810px]:gap-y-16 min-[1200px]:grid-cols-[minmax(0,520px)_minmax(0,1fr)] min-[1200px]:gap-x-[140px]">
+    <Section id="faq" ref={sectionRef}>
+      {/* Title column with room for the title's two lines and the
+          subtitle, a 120px gap, then the list */}
+      <div className="frame-header grid grid-cols-1 gap-y-12 min-[810px]:gap-y-16 min-[1200px]:grid-cols-[minmax(0,460px)_minmax(0,1fr)] min-[1200px]:gap-x-[120px]">
         <SectionHeader
-          className="faq-header"
+          align="left"
+          className="faq-header !p-0 md:!items-start"
           eyebrow="FAQ"
           title="Frequently asked questions"
           description="Everything you need to know to get started."
@@ -123,7 +124,7 @@ const FAQ = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

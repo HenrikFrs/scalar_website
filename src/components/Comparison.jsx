@@ -107,7 +107,7 @@ const Comparison = () => {
             <div className="px-8 pt-8 pb-2">
               <div className="flex items-center gap-2 mb-3">
                 <img
-                  src={`${import.meta.env.BASE_URL}favicon_old.svg`}
+                  src={`${import.meta.env.BASE_URL}logo18-white.svg`}
                   alt="Scalar"
                   className="h-5 brightness-0 invert"
                 />

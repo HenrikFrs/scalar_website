@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
-import { SectionHeader } from "./ui";
+import { Section, SectionHeader } from "./ui";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,48 +63,37 @@ const Process = () => {
   }, []);
 
   return (
-    <section id="process" ref={sectionRef} className="section-line">
-      <div className="shell">
-        <div className="section-y">
-          <SectionHeader
-            align="center"
-            className="proc-header mb-12"
-            eyebrow="Timeline"
-            title="From kickoff to"
-            accent="booked meetings"
-          />
+    <Section id="process" ref={sectionRef}>
+      <SectionHeader
+        className="proc-header"
+        eyebrow="Timeline"
+        title="From kickoff to"
+        accent="booked meetings"
+      />
 
-          <div className="proc-list box-grid">
-            {steps.map((step) => (
-              <div
-                key={step.title}
-                className="p-6 md:p-8 flex flex-col gap-2"
-              >
-                <span className="type-stat text-foreground mb-6">{step.day}</span>
-                <p className="type-title-lg text-heading">
-                  {step.title}
-                </p>
-                <ul className="flex flex-col gap-2.5 mt-2">
-                  {step.bullets.map((b, j) => (
-                    <li
-                      key={j}
-                      className="type-small text-body flex gap-2.5"
-                    >
-                      <ArrowRight
-                        size={14}
-                        strokeWidth={1.5}
-                        className="mt-1 flex-shrink-0 text-foreground"
-                      />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+      <div className="frame-body">
+        <div className="proc-list box-grid">
+          {steps.map((step) => (
+            <div key={step.title} className="p-6 md:p-8 flex flex-col gap-2">
+              <span className="type-stat text-foreground mb-6">{step.day}</span>
+              <p className="type-title-lg text-heading">{step.title}</p>
+              <ul className="flex flex-col gap-2.5 mt-2">
+                {step.bullets.map((b, j) => (
+                  <li key={j} className="type-small text-body flex gap-2.5">
+                    <ArrowRight
+                      size={14}
+                      strokeWidth={1.5}
+                      className="mt-1 flex-shrink-0 text-foreground"
+                    />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useLocation } from "react-router-dom";
 import { openCal } from "../lib/cal";
-import HeroContours from "./HeroContours";
+import HeroGrid from "./HeroGrid";
+import { SectionBorder } from "./ui";
 
 export const MagneticButton = ({
   children,
@@ -73,18 +74,19 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`${navTheme} nav-guide fixed top-0 left-0 right-0 z-[60] w-full bg-background bg-noise transition-colors duration-300`}
+      className={`${navTheme} fixed top-0 left-0 right-0 z-[60] w-full bg-background bg-noise transition-colors duration-300`}
     >
-      {/* Same box as the page guides, so their lines run through the bar.
+      {/* Same column as the sections, so its edges run through the bar.
           Logo left, links centred on the page, CTA right */}
-      <nav className="nav-box relative mx-auto grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-[66px] md:h-[73px] px-4 md:px-10">
+      <nav className="nav-box relative mx-auto">
+        <div className="md:frame grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-[66px] md:h-[73px] px-4 md:px-10">
         <a href="/" className="flex items-center gap-2 w-fit">
           <img
-            src={`${import.meta.env.BASE_URL}favicon_old.svg`}
+            src={`${import.meta.env.BASE_URL}logo18-white.svg`}
             alt="Scalar logo"
             className="brand-logo h-6"
           />
-          <span className="font-brand font-normal text-[20px] leading-none tracking-[-0.02em] text-foreground transition-colors duration-300">
+          <span className="font-brand font-normal text-[20px] leading-none tracking-[-0.02em] translate-y-px text-foreground transition-colors duration-300">
             Scalar
           </span>
         </a>
@@ -103,12 +105,17 @@ export const Navbar = () => {
 
         <MagneticButton
           variant="primary"
-          className="h-8 px-3.5 text-[13px] md:h-[41px] md:px-5 md:text-[14px] justify-self-end"
+          className="h-9 px-[15px] text-[13.5px] md:h-[41px] md:px-5 md:text-[14px] justify-self-end"
           onClick={openCal}
         >
           Schedule a call
         </MagneticButton>
+        </div>
       </nav>
+      {/* Bottom edge: runs past the column, nearly the full screen width */}
+      <div className="absolute inset-x-0 bottom-0">
+        <SectionBorder full />
+      </div>
     </header>
   );
 };
@@ -150,40 +157,39 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative overflow-hidden min-h-[100svh] flex"
-    >
-      {/* Very subtle drifting contour lines, behind the content and kept
-          between the vertical guide lines */}
-      <div className="footer-box absolute inset-y-0 left-0 right-0 mx-auto overflow-hidden pointer-events-none">
-        <HeroContours opacity="opacity-[0.55]" />
-      </div>
-      {/* Top padding clears the navbar, so the content centers in the space below it */}
-      <div className="shell relative z-10 flex flex-col items-center justify-center text-center pt-28 pb-28 md:pb-36">
-        <span className="hero-element pill-tag mb-5">Performance-based</span>
-        <h1 className="type-h1 text-[44px] md:text-[60px] lg:text-[76px] leading-none text-heading">
-          <span className="hero-element block text-balance">
-            <span className="whitespace-nowrap">Done-for-you</span> outbound.
-          </span>
-          <span className="hero-element block text-balance text-highlight">
-            Pay per qualified sales call.
-          </span>
-        </h1>
+    <section ref={containerRef} className="pt-[66px] md:pt-[73px]">
+      {/* Fills the screen below the navbar: a bordered block with the dot
+          grid behind the centred content */}
+      <div className="shell">
+        <div className="frame relative overflow-hidden min-h-[calc(100svh-66px)] md:min-h-[calc(100svh-73px)] flex">
+          <HeroGrid />
+          <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-[var(--ci)] py-20">
+            <span className="hero-element pill-tag mb-6">Performance-based</span>
+            <h1 className="type-h1 text-[44px] md:text-[60px] lg:text-[76px] leading-none text-heading">
+              <span className="hero-element block text-balance">
+                <span className="whitespace-nowrap">Done-for-you</span> outbound.
+              </span>
+              <span className="hero-element block text-balance text-highlight">
+                Pay per qualified sales call.
+              </span>
+            </h1>
 
-        <p className="hero-element mt-5 type-lead text-body max-w-lg">
-          We handle sending infrastructure, targeting, copy, outreach and
-          replies. You focus on closing deals.
-        </p>
+            <p className="hero-element mt-6 type-lead text-body max-w-lg">
+              We handle sending infrastructure, targeting, copy, outreach and
+              replies. You focus on closing deals.
+            </p>
 
-        <MagneticButton
-          variant="primary"
-          className="hero-element mt-7"
-          onClick={openCal}
-        >
-          Book your strategy call
-        </MagneticButton>
+            <MagneticButton
+              variant="primary"
+              className="hero-element mt-8"
+              onClick={openCal}
+            >
+              Book your strategy call
+            </MagneticButton>
+          </div>
+        </div>
       </div>
+      <SectionBorder />
 
       {/* Hidden until the new VSL is recorded. To bring it back, render
           <HeroVideo /> here, make the section flex-col, and restore the shell's

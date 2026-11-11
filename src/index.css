@@ -21,12 +21,12 @@
   .theme-dark,
   :root[data-theme="dark"] {
     /* Palette copied from remarkable-line-097507.framer.app */
-    --background: 6 6 6; /* #060606 page */
-    --surface: 18 18 18; /* #121212 sections and cards */
-    --surface2: 30 30 30; /* #1E1E1E raised cards */
-    --border: 31 31 31; /* White at 10% over the page */
+    --background: 16 14 17; /* #100e11 page, copied from primora.xyz */
+    --surface: 16 14 17; /* #100e11, the page colour; boxes skip the grain */
+    --surface2: 36 33 38; /* #242126 raised cards */
+    --border: 36 33 38; /* #242126, same as the hero grid lines */
     --border-mid: 56 56 56; /* White at 20% */
-    --border-light: rgb(31 31 31);
+    --border-light: rgb(36 33 38);
     --foreground: 255 255 255; /* White headings */
     --body: 155 155 155; /* White at 60%, the body text */
     --muted: 131 131 131; /* White at 50% */
@@ -36,7 +36,7 @@
     --warn: 255 107 53;
     --brand: 37 99 235; /* #2563EB blue accent */
     --highlight: 255 255 255; /* Titles are fully white, second part included */
-    --guide: rgb(31 31 31);
+    --guide: rgb(36 33 38);
     --btn: 255 255 255; /* White pill with black text */
     --btn-text: 0 0 0;
     --btn-hover: 204 204 204; /* White at 80% */
@@ -67,88 +67,100 @@
 }
 
 @layer components {
-  /* Solid guide lines just outside the content column. They sit behind the
-     content, so dark sections draw their own copy in the dark --guide colour
-     (those sections need `relative isolate`). */
-  .page-guides {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-inline: auto;
-    width: min(100% - 16px, 1400px);
-    z-index: -1;
-    pointer-events: none;
-    border-inline: 1px solid var(--guide);
+  /* Layout system copied from primora.xyz. Every section is a bordered
+     column (.frame inside .shell), and a rule across the column
+     (SectionBorder) separates sections. */
+  :root {
+    --gp: 16px; /* Space between the screen edge and the column */
+    --ci: 0px; /* Padding inside the column (none on phones, which hide its lines) */
   }
-
-  @media (max-width: 767px) {
-    .page-guides {
-      display: none;
+  @media (min-width: 768px) {
+    :root {
+      --gp: 24px;
+      --ci: 40px;
     }
   }
 
-  /* Solid top edge of a section; ends at the vertical guide lines */
-  .section-line {
-    background: linear-gradient(var(--guide), var(--guide)) center top /
-      min(100% - 16px, 1400px) 1px no-repeat;
+  /* The centred page column: up to 1400px wide, 24px from the screen edges */
+  .shell {
+    width: 100%;
+    max-width: 1448px;
+    margin-inline: auto;
+    padding-inline: var(--gp);
   }
 
-  /* The navbar's inner box lines up with the page guides */
+  /* The column's vertical edges, from 768px (hidden on phones) */
+  @media (min-width: 768px) {
+    .frame {
+      border-inline: 1px solid var(--guide);
+    }
+  }
+
+  /* Section separator: spans the column, meeting its vertical lines */
+  .section-border {
+    height: 1px;
+    background: var(--guide);
+    pointer-events: none;
+  }
+  /* The navbar's version runs past the column (screen width minus 12px a side) */
+  .section-border.is-full {
+    position: relative;
+    background: none;
+  }
+  .section-border.is-full::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: calc(100vw - 24px);
+    height: 1px;
+    transform: translateX(-50%);
+    background: var(--guide);
+  }
+
+  /* A section's header block, padded off the column edges */
+  .frame-header {
+    padding: 64px var(--ci);
+  }
+  @media (max-width: 767px) {
+    .frame-header {
+      padding-block: 48px;
+    }
+  }
+
+  /* Padded area under a section's header, holding its box */
+  .frame-body {
+    padding: 0 var(--ci) 64px;
+  }
+  @media (max-width: 767px) {
+    .frame-body {
+      padding-bottom: 48px;
+    }
+  }
+
+  /* One outlined box split into three cells; transparent, so the page and its grain show through */
+  .box-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 border border-borderLight divide-y md:divide-y-0 md:divide-x divide-borderLight;
+  }
+
+  /* Outlined box with softly rounded corners, for screenshots and diagrams */
+  .media-box {
+    border: 1px solid var(--guide);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* The navbar's inner box lines up with the column */
   .nav-box {
     width: 100%;
   }
   @media (min-width: 768px) {
     .nav-box {
-      width: min(100% - 16px, 1400px);
-      border-inline: 1px solid var(--guide);
+      max-width: 1448px;
+      padding-inline: var(--gp);
     }
   }
 
-  /* Footer bands share the guides' box, so their inner lines meet the
-     vertical guides */
-  .footer-box {
-    width: 100%;
-  }
-  @media (min-width: 768px) {
-    .footer-box {
-      width: min(100% - 16px, 1400px);
-    }
-  }
-  /* Solid bottom edge of the navbar */
-  .nav-guide::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: var(--guide);
-  }
-
-  /* The centered content column shared by every section. From 768px it
-     shares the guides' box and sits 40px inside the lines (1320px max), as on the reference */
-  .shell {
-    width: 100%;
-    margin-inline: auto;
-    padding-inline: 1rem;
-  }
-  @media (min-width: 768px) {
-    .shell {
-      width: min(100% - 16px, 1400px);
-      padding-inline: 40px;
-    }
-  }
-
-  .section-x {
-    @apply px-4 md:px-16 lg:px-96;
-  }
-
-  /* Vertical breathing room shared by every section */
-  .section-y {
-    @apply py-28 md:py-40;
-  }
 
   /* Type scale, after the reference site. LT Superior Serif titles step down at 1200px
      and 810px; everything else is Instrument Sans */
@@ -251,43 +263,75 @@
       2px 2px 8px rgb(55 55 55 / 0.15),
       inset 1px 1px 9px rgb(255 255 255 / 0.1);
   }
-  /* Diagram parts for the "How it works" visuals: square hairline boxes on
-     the page background, like the rest of the site. The highlighted step
-     gets a blue edge instead of a fill */
-  .flow-node,
-  .flow-node-dim {
-    border: 1px solid var(--border-light);
-    background: rgb(var(--background));
+  /* Motion for the "How it works" diagrams (SystemVisuals.jsx). SVG
+     transforms use the drawing's own units */
+  .viz-pulse {
+    animation: viz-pulse 3s ease-in-out infinite;
   }
-  .flow-node {
-    border-color: rgb(var(--brand) / 0.45);
-    box-shadow: inset 2px 0 0 rgb(var(--brand));
+  @keyframes viz-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
   }
-  .flow-line {
-    display: block;
-    width: 1px;
-    height: 12px;
-    margin-inline: auto;
-    background: var(--guide);
+  /* A short dash running along a path */
+  .viz-flow {
+    stroke-dasharray: 14 200;
+    animation: viz-flow 2.6s linear infinite;
   }
-  .fade-y {
-    mask-image: linear-gradient(
-      to bottom,
-      transparent,
-      #000 18%,
-      #000 82%,
-      transparent
-    );
+  @keyframes viz-flow {
+    from { stroke-dashoffset: 14; }
+    to { stroke-dashoffset: -200; }
   }
-  @media (max-width: 559px) {
-    .fade-x {
-      mask-image: linear-gradient(
-        to right,
-        transparent,
-        #000 8%,
-        #000 92%,
-        transparent
-      );
+  .viz-scan {
+    animation: viz-scan 5s ease-in-out infinite alternate;
+  }
+  @keyframes viz-scan {
+    from { transform: translateX(0); }
+    to { transform: translateX(360px); }
+  }
+  .viz-grow {
+    transform-box: fill-box;
+    transform-origin: left center;
+    animation: viz-grow 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes viz-grow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  .viz-travel {
+    animation: viz-travel 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+  @keyframes viz-travel {
+    0% { transform: translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: translateX(328px); opacity: 0; }
+  }
+  .viz-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: viz-ring 3.2s ease-out infinite;
+  }
+  @keyframes viz-ring {
+    0%, 70% { transform: scale(0.65); opacity: 0; }
+    80% { opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .viz-pulse,
+    .viz-flow,
+    .viz-scan,
+    .viz-grow,
+    .viz-travel,
+    .viz-ring {
+      animation: none;
+    }
+    .viz-flow {
+      stroke-dasharray: none;
+      opacity: 0.4;
+    }
+    .viz-ring,
+    .viz-travel {
+      opacity: 0;
     }
   }
 
@@ -308,16 +352,23 @@
     letter-spacing: 0;
   }
 
-  /* Section labels: a plain rounded pill with a hairline border */
-  /* Eyebrow label: plain blue text, no pill */
+  /* Eyebrow label, copied from primora.xyz's taglines: a small square blue
+     dot, then bold uppercase Geist Mono in muted grey */
   .pill-tag {
-    @apply ui-label inline-flex items-center gap-2 uppercase text-brand;
+    @apply inline-flex items-center font-mono uppercase;
+    gap: 1em;
+    color: #635f65;
     font-size: 12px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.08em;
   }
-
-  /* One hairline box split into three cells */
-  .box-grid {
-    @apply grid grid-cols-1 md:grid-cols-3 bg-surface border border-borderLight divide-y md:divide-y-0 md:divide-x divide-borderLight;
+  .pill-tag::before {
+    content: "";
+    flex: none;
+    width: 0.625rem; /* 10px, same as the reference */
+    height: 0.625rem;
+    background-color: rgb(var(--brand));
   }
 
   /* The logo image is forced to white, or black in light mode */
@@ -346,6 +397,22 @@
   }
 }
 
+@layer components {
+  /* Hero grid (HeroGrid.jsx): fades out toward the middle so the headline
+     sits on plain background, and each dot swaps between its two colours */
+  .hero-grid {
+    -webkit-mask-image: radial-gradient(ellipse 60% 62% at 50% 50%, transparent 40%, #000 100%);
+    mask-image: radial-gradient(ellipse 60% 62% at 50% 50%, transparent 40%, #000 100%);
+  }
+  .hero-dot-a { animation: hero-dot-a ease-in-out infinite; }
+  .hero-dot-b { animation: hero-dot-b ease-in-out infinite; }
+  @keyframes hero-dot-a { 0%, 100% { fill: rgb(var(--brand)); } 50% { fill: #f96d57; } }
+  @keyframes hero-dot-b { 0%, 100% { fill: #f96d57; } 50% { fill: rgb(var(--brand)); } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-dot-a, .hero-dot-b { animation: none; }
+  }
+}
+
 @layer utilities {
   /* Page grain (dark mode only). Grey specks at 10% opacity, one per
      screen pixel, so the grain stays as fine as possible. Boxes keep a
@@ -359,18 +426,6 @@
   @media (min-resolution: 2dppx) {
     .bg-noise {
       background-size: 128px 128px;
-    }
-  }
-  /* Grain plus the section's top separator line, so neither hides the other */
-  .section-line.bg-noise {
-    background-image: linear-gradient(var(--guide), var(--guide)), var(--noise);
-    background-position: center top, 0 0;
-    background-size: min(100% - 16px, 1400px) 1px, 256px 256px;
-    background-repeat: no-repeat, repeat;
-  }
-  @media (min-resolution: 2dppx) {
-    .section-line.bg-noise {
-      background-size: min(100% - 16px, 1400px) 1px, 128px 128px;
     }
   }
   /* Mono never inherits the tighter tracking of the body text */
