@@ -5,6 +5,7 @@ import gsap from "gsap";
 import Lenis from "lenis";
 import { Navbar, Hero } from "./components/Header";
 import CampaignResults from "./components/CampaignResults";
+import LiveReplies from "./components/LiveReplies";
 import Problem from "./components/Problem";
 import System from "./components/System";
 import Process from "./components/Process";
@@ -31,6 +32,7 @@ const Home = () => (
     <System />
     <Process />
     <ROICalculator />
+    <LiveReplies />
     <Testimonials />
     <FAQ />
   </>
