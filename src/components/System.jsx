@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { Section, SectionHeader } from "./ui";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import SystemDetail from "./SystemDetail";
 import {
   InfraVisual,
   MessagingVisual,
@@ -14,7 +16,6 @@ const visuals = {
   messaging: MessagingVisual,
   reply: ReplyVisual,
 };
-
 
 const steps = [
   {
@@ -61,7 +62,7 @@ const steps = [
 
 // One step per row: text beside its diagram in an outlined box. `flipped`
 // swaps the sides on desktop, so rows alternate
-const StepRow = ({ step, flipped }) => (
+const StepRow = ({ step, flipped, onOpen }) => (
   <div className="px-[var(--ci)] py-10 md:py-12 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center">
     {/* Indented like text inside the boxes elsewhere (their p-6 md:p-8), on
         the outer side */}
@@ -85,6 +86,19 @@ const StepRow = ({ step, flipped }) => (
           </p>
         ))}
       </div>
+
+      <button
+        type="button"
+        onClick={onOpen}
+        className="group ui-label text-muted hover:text-brand w-fit mt-4 flex items-center gap-1.5 underline underline-offset-4 decoration-dotted transition-all duration-300 hover:-translate-y-px"
+      >
+        Learn more
+        <ArrowUpRight
+          size={14}
+          strokeWidth={1.5}
+          className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        />
+      </button>
     </div>
 
     <div
@@ -97,32 +111,41 @@ const StepRow = ({ step, flipped }) => (
   </div>
 );
 
-// Static on purpose: no sticky step list or scroll-driven reveals
-const System = () => (
-  <Section id="system" className="text-body">
-    <SectionHeader
-      eyebrow="The solution"
-      title="A clear process for quality outbound"
-      accent="at scale"
-      description="Our process ensures that we cover your entire target market while every message stays relevant and results stay consistent."
-    />
+// Static on purpose: no sticky step list or scroll-driven reveals. Each step
+// opens a pop-up with the in-depth explanation
+const System = () => {
+  const [openIndex, setOpenIndex] = useState(null);
 
-    {steps.map((step, i) => (
-      <StepRow key={step.label} step={step} flipped={i % 2 === 1} />
-    ))}
+  return (
+    <Section id="system" className="text-body">
+      <SectionHeader
+        eyebrow="The solution"
+        title="A clear process for quality outbound"
+        accent="at scale"
+        description="Our process ensures that we cover your entire target market while every message stays relevant and results stay consistent."
+      />
 
-    {/* Closing statement, centred with plenty of room like the reference's
-        text section */}
-    <div className="px-[var(--ci)] py-16 md:py-20 flex flex-col items-center gap-4 text-center">
-      <h3 className="type-h2 text-[28px] min-[810px]:text-[32px] min-[1200px]:text-[36px] text-heading text-balance">
-        You own the entire system
-      </h3>
-      <p className="type-lead text-body max-w-xl">
-        The domains, inboxes, contact data and copy all belong to you. Take it
-        in-house any time, or keep us running it.
-      </p>
-    </div>
-  </Section>
-);
+      {steps.map((step, i) => (
+        <StepRow
+          key={step.label}
+          step={step}
+          flipped={i % 2 === 1}
+          onOpen={() => setOpenIndex(i)}
+        />
+      ))}
+
+      {openIndex !== null &&
+        createPortal(
+          <SystemDetail
+            steps={steps}
+            index={openIndex}
+            onClose={() => setOpenIndex(null)}
+            onNavigate={setOpenIndex}
+          />,
+          document.body,
+        )}
+    </Section>
+  );
+};
 
 export default System;
