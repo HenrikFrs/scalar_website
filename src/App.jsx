@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
@@ -12,6 +12,7 @@ import Process from "./components/Process";
 import Comparison from "./components/Comparison";
 import Timeline from "./components/Timeline";
 import ROICalculator from "./components/ROICalculator";
+import Offer from "./components/Offer";
 import Advantage from "./components/Advantage";
 // import Features from "./components/Features"; // hidden
 import Protocol from "./components/Protocol";
@@ -21,22 +22,36 @@ import Footer from "./components/Footer";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
 import CookieBanner from "./components/CookieBanner";
+import { SENDING_DAYS } from "./lib/infra";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Home = () => (
-  <>
-    <Hero />
-    <CampaignResults />
-    <Problem />
-    <System />
-    <Process />
-    <ROICalculator />
-    <LiveReplies />
-    <Testimonials />
-    <FAQ />
-  </>
-);
+const Home = () => {
+  // Monthly sending volume and fee per attended call, set in the ROI
+  // calculator and also shown in the offer
+  const [messagesSent, setMessagesSent] = useState(5000 * SENDING_DAYS);
+  const [feePerCall, setFeePerCall] = useState(250);
+
+  return (
+    <>
+      <Hero />
+      <CampaignResults />
+      <Problem />
+      <System />
+      <Process />
+      <ROICalculator
+        messagesSent={messagesSent}
+        setMessagesSent={setMessagesSent}
+        feePerCall={feePerCall}
+        setFeePerCall={setFeePerCall}
+      />
+      <Offer messagesSent={messagesSent} feePerCall={feePerCall} />
+      <LiveReplies />
+      <Testimonials />
+      <FAQ />
+    </>
+  );
+};
 
 function App() {
   useEffect(() => {

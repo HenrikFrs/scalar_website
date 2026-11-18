@@ -3,9 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Info, Plus, Minus } from "lucide-react";
 import {
-  ACTIVE_DOMAIN_MONTHLY_COST,
-  BACKUP_DOMAIN_MONTHLY_COST,
-  BACKUP_DOMAIN_RATIO,
+  DOMAIN_MONTHLY_COST,
   DOMAIN_PRICE,
   DOMAIN_ROTATION_MONTHS,
   EMAILS_PER_DOMAIN,
@@ -14,7 +12,7 @@ import {
   INBOXES_PER_DOMAIN,
   INBOX_COST_PER_DOMAIN,
   SENDING_DAYS,
-  DATA_MONTHLY_COST,
+  COST_PER_CONTACT,
   getInfra,
 } from "../lib/infra";
 import { Section, SectionHeader } from "./ui";
@@ -41,6 +39,7 @@ const SliderField = ({
   step,
   onChange,
   tooltip,
+  note,
 }) => {
   const pct = ((value - min) / (max - min)) * 100;
   const trackStyle = {
@@ -67,6 +66,7 @@ const SliderField = ({
         className="roi-slider w-full h-0.5 appearance-none cursor-pointer"
         style={trackStyle}
       />
+      {note && <p className="type-small text-muted -mt-1">{note}</p>}
     </div>
   );
 };
@@ -175,14 +175,17 @@ const BreakdownRow = ({ label, detail, value, strong = false }) => (
   </div>
 );
 
-const ROICalculator = () => {
+const ROICalculator = ({
+  messagesSent,
+  setMessagesSent,
+  feePerCall,
+  setFeePerCall,
+}) => {
   const sectionRef = useRef(null);
 
-  const [messagesSent, setMessagesSent] = useState(22000);
   const leadsReached = messagesSent / EMAILS_PER_LEAD;
   const [msgPerResponse, setMsgPerResponse] = useState(750);
-  const [feePerCall, setFeePerCall] = useState(350);
-  const [bookingPct, setBookingPct] = useState(50);
+  const [bookingPct, setBookingPct] = useState(40);
   const [showRate, setShowRate] = useState(85);
   const [closeRate, setCloseRate] = useState(25);
   const [ltv, setLtv] = useState(50000);
@@ -195,14 +198,20 @@ const ROICalculator = () => {
   const totalFees = adherentCalls * feePerCall;
   const {
     emailsSent,
-    activeDomains,
-    backupDomains,
+    domains,
+    inboxes,
+    domainCost,
+    dataCost,
     monthlyCost: infraCost,
   } = getInfra(leadsReached);
   const totalCost = totalFees + infraCost;
   const roi = totalPipeline - totalCost;
   const roiMultiple =
     totalCost > 0 ? (totalPipeline / totalCost).toFixed(1) : "∞";
+  // All-in: call fees and tech, spread over the calls and clients they bring
+  const costPerCall = adherentCalls > 0 ? totalCost / adherentCalls : null;
+  const costPerClient = closed > 0 ? totalCost / closed : null;
+  const orDash = (n) => (n === null ? "–" : fmtMoney(n));
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -241,10 +250,11 @@ const ROICalculator = () => {
               display={`${Math.round(
                 messagesSent / SENDING_DAYS,
               ).toLocaleString("en-US")} / day · ${messagesSent.toLocaleString("en-US")} / month`}
-              min={10000}
-              max={106000}
-              step={2000}
+              min={1000 * SENDING_DAYS}
+              max={10000 * SENDING_DAYS}
+              step={100 * SENDING_DAYS}
               onChange={setMessagesSent}
+              note={`Needs ${domains} domains with ${inboxes.toLocaleString("en-US")} inboxes.`}
               tooltip={`The total number of cold emails your campaign sends. Each lead gets ${EMAILS_PER_LEAD} messages, so this reaches ${leadsReached.toLocaleString("en-US")} leads per month.`}
             />
             <SliderField
@@ -261,7 +271,7 @@ const ROICalculator = () => {
               label="Fee Per Attended Call"
               value={feePerCall}
               display={`$${feePerCall}`}
-              min={250}
+              min={200}
               max={500}
               step={10}
               onChange={setFeePerCall}
@@ -326,26 +336,35 @@ const ROICalculator = () => {
                   <span className="ui-label text-muted">{label}</span>
                   <span className="type-stat text-heading tabular-nums mt-2">
                     {value}
+                    <span className="type-small text-muted ml-1.5">/ mo</span>
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col flex-1 justify-center gap-6 p-6 md:p-8">
-              <p className="type-stat text-heading">
-                Every dollar returns{" "}
-                <span className="text-brand">{roiMultiple}×</span>
+            <div className="flex flex-col flex-1 justify-center gap-5 p-6 md:p-8">
+              <p className="type-lead text-body">
+                Each month you invest{" "}
+                <span className="text-heading">{fmtMoney(totalCost)}</span>{" "}
+                <span className="text-muted">
+                  ({fmtMoney(totalFees)} in call fees + {fmtMoney(infraCost)} in
+                  tech)
+                </span>{" "}
+                and win clients worth{" "}
+                <span className="text-heading">{fmtMoney(totalPipeline)}</span>{" "}
+                over their lifetime
+                {costPerClient !== null && (
+                  <span className="text-muted">
+                    {" "}
+                    (CAC: {fmtMoney(costPerClient)})
+                  </span>
+                )}
+                .
               </p>
               <div className="flex flex-col items-start gap-5">
-                <p className="type-body text-body">
-                  Each month you invest{" "}
-                  <span className="text-heading">{fmtMoney(totalCost)}</span>{" "}
-                  ({fmtMoney(totalFees)} in call fees + {fmtMoney(infraCost)} in
-                  tech), you win clients worth{" "}
-                  <span className="text-heading">
-                    {fmtMoney(totalPipeline)}
-                  </span>{" "}
-                  over their lifetime.
+                <p className="font-serif text-2xl md:text-[28px] leading-tight tracking-[-0.02em] text-heading">
+                  Every dollar returns{" "}
+                  <span className="text-brand">{roiMultiple}×</span>
                 </p>
                 <div className="relative group flex-shrink-0">
                   <span className="ui-label text-muted cursor-default underline underline-offset-4 decoration-dotted hover:text-brand transition-colors duration-300">
@@ -398,18 +417,14 @@ const ROICalculator = () => {
                           value={fmtMoney(totalFees)}
                         />
                         <BreakdownRow
-                          label="Active domains"
-                          detail={`${activeDomains} × $${ACTIVE_DOMAIN_MONTHLY_COST.toFixed(2)}`}
-                          value={fmtMoney(activeDomains * ACTIVE_DOMAIN_MONTHLY_COST)}
-                        />
-                        <BreakdownRow
-                          label="Backup domains"
-                          detail={`${backupDomains} × $${BACKUP_DOMAIN_MONTHLY_COST.toFixed(2)}`}
-                          value={fmtMoney(backupDomains * BACKUP_DOMAIN_MONTHLY_COST)}
+                          label="Domains & inboxes"
+                          detail={`${domains} × $${DOMAIN_MONTHLY_COST.toFixed(2)}`}
+                          value={fmtMoney(domainCost)}
                         />
                         <BreakdownRow
                           label="Contact data"
-                          value={fmtMoney(DATA_MONTHLY_COST)}
+                          detail={`${leadsReached.toLocaleString("en-US")} × $${COST_PER_CONTACT.toFixed(2)}`}
+                          value={fmtMoney(dataCost)}
                         />
                         <BreakdownRow
                           label="Total cost"
@@ -425,6 +440,16 @@ const ROICalculator = () => {
                           strong
                         />
                         <BreakdownRow
+                          label="Cost per attended call"
+                          detail="all-in"
+                          value={orDash(costPerCall)}
+                        />
+                        <BreakdownRow
+                          label="Cost per client"
+                          detail="all-in"
+                          value={orDash(costPerClient)}
+                        />
+                        <BreakdownRow
                           label="Return multiple"
                           value={`${roiMultiple}×`}
                         />
@@ -436,8 +461,7 @@ const ROICalculator = () => {
                         {SENDING_DAYS} days ={" "}
                         {EMAILS_PER_DOMAIN.toLocaleString("en-US")} emails/month,
                         so {emailsSent.toLocaleString("en-US")} emails need{" "}
-                        {activeDomains} active domains, plus{" "}
-                        {Math.round(BACKUP_DOMAIN_RATIO * 100)}% as backups. A
+                        {domains} domains. A
                         domain costs ${INBOX_COST_PER_DOMAIN} for inboxes + $
                         {DOMAIN_PRICE} ÷ {DOMAIN_ROTATION_MONTHS} months
                         (rotation).
