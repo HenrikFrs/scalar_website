@@ -251,7 +251,7 @@ const ROICalculator = ({
                 messagesSent / SENDING_DAYS,
               ).toLocaleString("en-US")} / day · ${messagesSent.toLocaleString("en-US")} / month`}
               min={1000 * SENDING_DAYS}
-              max={10000 * SENDING_DAYS}
+              max={20000 * SENDING_DAYS}
               step={100 * SENDING_DAYS}
               onChange={setMessagesSent}
               note={`Needs ${domains} domains with ${inboxes.toLocaleString("en-US")} inboxes.`}

@@ -29,7 +29,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   // Monthly sending volume and fee per attended call, set in the ROI
   // calculator and also shown in the offer
-  const [messagesSent, setMessagesSent] = useState(5000 * SENDING_DAYS);
+  const [messagesSent, setMessagesSent] = useState(10000 * SENDING_DAYS);
   const [feePerCall, setFeePerCall] = useState(250);
 
   return (

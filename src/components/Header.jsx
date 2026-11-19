@@ -80,36 +80,36 @@ export const Navbar = () => {
           Logo left, links centred on the page, CTA right */}
       <nav className="nav-box relative mx-auto">
         <div className="md:frame grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-[66px] md:h-[73px] px-4 md:px-10">
-        <a href="/" className="flex items-center gap-2 w-fit">
-          <img
-            src={`${import.meta.env.BASE_URL}logo18-white.svg`}
-            alt="Scalar logo"
-            className="brand-logo h-6"
-          />
-          <span className="font-brand font-normal text-[20px] leading-none tracking-[-0.02em] translate-y-px text-foreground transition-colors duration-300">
-            Scalar
-          </span>
-        </a>
+          <a href="/" className="flex items-center gap-2 w-fit">
+            <img
+              src={`${import.meta.env.BASE_URL}logo18-white.svg`}
+              alt="Scalar logo"
+              className="brand-logo h-6"
+            />
+            <span className="font-brand font-normal text-[20px] leading-none tracking-[-0.02em] translate-y-px text-foreground transition-colors duration-300">
+              Scalar
+            </span>
+          </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map(({ label, href }) => (
-            <a
-              key={label}
-              href={`/#${href}`}
-              className="type-small text-body transition-colors duration-200 hover:text-brand"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map(({ label, href }) => (
+              <a
+                key={label}
+                href={`/#${href}`}
+                className="type-small text-body transition-colors duration-200 hover:text-brand"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
 
-        <MagneticButton
-          variant="primary"
-          className="h-9 px-[15px] text-[13.5px] md:h-[41px] md:px-5 md:text-[14px] justify-self-end"
-          onClick={openCal}
-        >
-          Schedule a call
-        </MagneticButton>
+          <MagneticButton
+            variant="primary"
+            className="h-9 px-[15px] text-[13.5px] md:h-[41px] md:px-5 md:text-[14px] justify-self-end"
+            onClick={openCal}
+          >
+            Schedule a call
+          </MagneticButton>
         </div>
       </nav>
       {/* Bottom edge: runs past the column, nearly the full screen width */}
@@ -164,10 +164,13 @@ export const Hero = () => {
         <div className="frame relative overflow-hidden min-h-[calc(100svh-66px)] md:min-h-[calc(100svh-73px)] flex">
           <HeroGrid />
           <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-[var(--ci)] py-20">
-            <span className="hero-element pill-tag mb-6">Performance-based</span>
+            <span className="hero-element pill-tag mb-6">
+              Performance-based
+            </span>
             <h1 className="type-h1 text-[44px] md:text-[60px] lg:text-[76px] leading-none text-heading">
               <span className="hero-element block text-balance">
-                <span className="whitespace-nowrap">Done-for-you</span> pipeline.
+                <span className="whitespace-nowrap">Done-for-you</span>{" "}
+                pipeline.
               </span>
               <span className="hero-element block text-balance text-highlight">
                 Pay per qualified sales call.
@@ -175,8 +178,8 @@ export const Hero = () => {
             </h1>
 
             <p className="hero-element mt-6 type-lead text-body max-w-lg">
-              We handle sending infrastructure, targeting, copy, outreach and
-              replies. You focus on closing deals.
+              We handle infrastructure, targeting, copy, outreach and replies.
+              Your sales team gets a calendar full of qualified calls.
             </p>
 
             <MagneticButton
