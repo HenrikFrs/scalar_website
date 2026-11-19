@@ -5,8 +5,8 @@ import React, { useEffect, useRef, useState } from "react";
 // swaps between two colours, and a radial fade that clears the middle for
 // the headline. It is drawn at real pixel size so the cells keep their size however
 // tall the hero is.
-const PITCH = 88; // Cell size in px (the reference uses 71)
-const GAP = PITCH * 0.09375; // Space between a line end and the intersection, scaled with the cell like the reference (6.656 / 71)
+const PITCH = 88; // Default cell size in px (the reference uses 71)
+const GAP_RATIO = 0.09375; // Space between a line end and the intersection, scaled with the cell like the reference (6.656 / 71)
 const LINE = "#242126";
 const DOT_A = "#2563EB"; // Brand blue
 const DOT_B = "#F96D57"; // Coral
@@ -17,7 +17,8 @@ const rand = (n) => {
   return x - Math.floor(x);
 };
 
-const HeroGrid = ({ className = "" }) => {
+const HeroGrid = ({ className = "", pitch = PITCH, dotSize = 2, style }) => {
+  const GAP = pitch * GAP_RATIO;
   const ref = useRef(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
 
@@ -40,13 +41,13 @@ const HeroGrid = ({ className = "" }) => {
     // One intersection sits exactly in the middle, like the reference
     const cx = w / 2;
     const cy = h / 2;
-    const x0 = cx - Math.ceil(cx / PITCH + 1) * PITCH;
-    const y0 = cy - Math.ceil(cy / PITCH + 1) * PITCH;
-    const len = PITCH - GAP * 2;
+    const x0 = cx - Math.ceil(cx / pitch + 1) * pitch;
+    const y0 = cy - Math.ceil(cy / pitch + 1) * pitch;
+    const len = pitch - GAP * 2;
 
     let i = 0;
-    for (let x = x0; x <= w + PITCH; x += PITCH) {
-      for (let y = y0; y <= h + PITCH; y += PITCH) {
+    for (let x = x0; x <= w + pitch; x += pitch) {
+      for (let y = y0; y <= h + pitch; y += pitch) {
         lines += `M${x} ${y + GAP}v${len}M${x + GAP} ${y}h${len}`;
         if (x > 0 && x < w && y > 0 && y < h) {
           dots.push({
@@ -67,6 +68,7 @@ const HeroGrid = ({ className = "" }) => {
       ref={ref}
       aria-hidden="true"
       className={`hero-grid absolute inset-0 pointer-events-none ${className}`}
+      style={style}
     >
       {w > 0 && (
         <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} fill="none">
@@ -75,10 +77,10 @@ const HeroGrid = ({ className = "" }) => {
             <rect
               key={`${d.x}-${d.y}`}
               className={d.alt ? "hero-dot-b" : "hero-dot-a"}
-              x={d.x - 1}
-              y={d.y - 1}
-              width="2"
-              height="2"
+              x={d.x - dotSize / 2}
+              y={d.y - dotSize / 2}
+              width={dotSize}
+              height={dotSize}
               fill={d.alt ? DOT_B : DOT_A}
               style={{
                 animationDuration: `${d.duration}s`,

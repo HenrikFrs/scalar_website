@@ -165,7 +165,7 @@ export const Hero = () => {
           <HeroGrid />
           <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-[var(--ci)] py-20">
             <span className="hero-element pill-tag mb-6">
-              Performance-based
+              For B2B sales teams
             </span>
             <h1 className="type-h1 text-[44px] md:text-[60px] lg:text-[76px] leading-none text-heading">
               <span className="hero-element block text-balance">
