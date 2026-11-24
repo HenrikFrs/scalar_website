@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
 // tall the hero is.
 const PITCH = 88; // Default cell size in px (the reference uses 71)
 const GAP_RATIO = 0.09375; // Space between a line end and the intersection, scaled with the cell like the reference (6.656 / 71)
-const LINE = "#242126";
+const LINE = "var(--guide)"; // Grid line colour follows the theme
 const DOT_A = "#2563EB"; // Brand blue
 const DOT_B = "#F96D57"; // Coral
 

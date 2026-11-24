@@ -1,5 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Lenis from "lenis";
@@ -21,6 +26,7 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import LinkedIn from "./pages/LinkedIn";
 import CookieBanner from "./components/CookieBanner";
 import { SENDING_DAYS } from "./lib/infra";
 
@@ -78,21 +84,32 @@ function App() {
 
   return (
     <Router basename="/">
-      {/* overflow-x-clip, not hidden: hidden would break the sticky sections */}
-      <div className="min-h-screen bg-background bg-noise text-body relative isolate overflow-x-clip">
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/imprint" element={<Impressum />} />
-            <Route path="/privacy-policy" element={<Datenschutz />} />
-          </Routes>
-        </main>
-        <Footer />
-        <CookieBanner />
-      </div>
+      <Layout />
     </Router>
   );
 }
+
+// The LinkedIn page (German, light mode) brings its own navbar and footer
+const Layout = () => {
+  const { pathname } = useLocation();
+  const isLinkedIn = pathname.startsWith("/linkedin");
+
+  return (
+    // overflow-x-clip, not hidden: hidden would break the sticky sections
+    <div className="min-h-screen bg-background bg-noise text-body relative isolate overflow-x-clip">
+      {!isLinkedIn && <Navbar />}
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/linkedin" element={<LinkedIn />} />
+          <Route path="/imprint" element={<Impressum />} />
+          <Route path="/privacy-policy" element={<Datenschutz />} />
+        </Routes>
+      </main>
+      {!isLinkedIn && <Footer />}
+      <CookieBanner lang={isLinkedIn ? "de" : "en"} />
+    </div>
+  );
+};
 
 export default App;

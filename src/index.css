@@ -45,6 +45,32 @@
     color-scheme: dark;
   }
 
+  /* Light mode, used by the LinkedIn page (/linkedin) to set it apart
+     from the main site */
+  .theme-light,
+  :root[data-theme="light"] {
+    --background: 255 255 255;
+    --surface: 255 255 255;
+    --surface2: 245 244 246; /* #f5f4f6 raised cards */
+    --border: 233 231 235; /* #e9e7eb hairlines */
+    --border-mid: 214 211 217;
+    --border-light: rgb(233 231 235);
+    --foreground: 16 14 17; /* #100e11 headings */
+    --body: 92 88 95; /* #5c585f body text */
+    --muted: 120 116 123;
+    --title-accent: 16 14 17;
+    --accent: 16 14 17;
+    --accent-soft: 245 244 246;
+    --highlight: 16 14 17;
+    --guide: rgb(233 231 235);
+    --btn: 16 14 17; /* Black pill with white text */
+    --btn-text: 255 255 255;
+    --btn-hover: 58 55 60;
+    --logo-filter: brightness(0);
+    --noise: none; /* No grain on white */
+    color-scheme: light;
+  }
+
   html {
     scroll-behavior: smooth;
   }

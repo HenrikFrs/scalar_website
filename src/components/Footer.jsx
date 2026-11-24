@@ -10,6 +10,7 @@ const linkColumns = [
       { label: "How it works", href: "/#system" },
       { label: "Process", href: "/#process" },
       { label: "FAQ", href: "/#faq" },
+      { label: "LinkedIn Outreach", href: "/linkedin" },
     ],
   },
   {
@@ -31,7 +32,7 @@ const navLinks = linkColumns.find((c) => c.title === "Explore").links;
 const legalLinks = linkColumns.find((c) => c.title === "Legal").links;
 const connectLinks = linkColumns.find((c) => c.title === "Connect").links;
 
-const FooterLink = ({ label, href, external }) => (
+export const FooterLink = ({ label, href, external }) => (
   <a
     href={href}
     {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
@@ -46,7 +47,7 @@ const FooterLink = ({ label, href, external }) => (
 // and links on top, social at the bottom) and a legal row beneath it
 // Inline Cal.com booker. It boots only when the footer nears the
 // viewport, so its script and iframe don't slow down the first paint.
-const CalEmbed = () => {
+export const CalEmbed = ({ theme = "dark", label = "Book a call" }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const CalEmbed = () => {
     const boot = () => {
       if (booted) return;
       booted = true;
-      mountCalInline("#cal-inline");
+      mountCalInline("#cal-inline", theme);
     };
     if (!("IntersectionObserver" in window)) {
       boot();
@@ -73,12 +74,12 @@ const CalEmbed = () => {
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [theme]);
 
   return (
     <div
       ref={ref}
-      aria-label="Book a call"
+      aria-label={label}
       className="mt-12 w-full max-w-6xl min-h-[680px] rounded-[16px] border border-borderLight bg-background overflow-hidden text-left"
     >
       <div id="cal-inline" className="w-full h-full min-h-[680px]" />

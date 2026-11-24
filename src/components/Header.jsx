@@ -28,15 +28,20 @@ export const MagneticButton = ({
   );
 };
 
-const navLinks = [
-  { label: "How it works", href: "system" },
-  { label: "Process", href: "process" },
-  { label: "FAQ", href: "faq" },
+const defaultNavLinks = [
+  { label: "How it works", href: "/#system" },
+  { label: "Process", href: "/#process" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 const NAV_MIDPOINT = 36; // Half the 73px bar: where it switches over a dark section
 
-export const Navbar = () => {
+// The LinkedIn page passes its own links, CTA and home link
+export const Navbar = ({
+  links = defaultNavLinks,
+  ctaLabel = "Schedule a call",
+  homeHref = "/",
+}) => {
   const [overDark, setOverDark] = useState(false);
   const { pathname } = useLocation();
 
@@ -80,7 +85,7 @@ export const Navbar = () => {
           Logo left, links centred on the page, CTA right */}
       <nav className="nav-box relative mx-auto">
         <div className="md:frame grid grid-cols-[1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-[66px] md:h-[73px] px-4 md:px-10">
-          <a href="/" className="flex items-center gap-2 w-fit">
+          <a href={homeHref} className="flex items-center gap-2 w-fit">
             <img
               src={`${import.meta.env.BASE_URL}logo18-white.svg`}
               alt="Scalar logo"
@@ -92,10 +97,10 @@ export const Navbar = () => {
           </a>
 
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(({ label, href }) => (
+            {links.map(({ label, href }) => (
               <a
                 key={label}
-                href={`/#${href}`}
+                href={href}
                 className="type-small text-body transition-colors duration-200 hover:text-brand"
               >
                 {label}
@@ -108,7 +113,7 @@ export const Navbar = () => {
             className="h-9 px-[15px] text-[13.5px] md:h-[41px] md:px-5 md:text-[14px] justify-self-end"
             onClick={openCal}
           >
-            Schedule a call
+            {ctaLabel}
           </MagneticButton>
         </div>
       </nav>

@@ -55,7 +55,27 @@ function loadGTM() {
   document.head.appendChild(s);
 }
 
-export default function CookieBanner() {
+const copy = {
+  en: {
+    label: "Cookie consent",
+    before: "We use cookies and similar tracking technologies to analyze traffic and improve your experience. By clicking",
+    after: ", you consent to our use of cookies.",
+    privacy: "Privacy Policy",
+    accept: "Accept",
+    decline: "Decline",
+  },
+  de: {
+    label: "Cookie-Einwilligung",
+    before: "Wir nutzen Cookies und ähnliche Technologien, um Besuche auszuwerten und die Website zu verbessern. Mit Klick auf",
+    after: " stimmen Sie der Nutzung von Cookies zu.",
+    privacy: "Datenschutzerklärung",
+    accept: "Akzeptieren",
+    decline: "Ablehnen",
+  },
+};
+
+export default function CookieBanner({ lang = "en" }) {
+  const t = copy[lang] ?? copy.en;
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -72,8 +92,8 @@ export default function CookieBanner() {
     }
     if (prior === "declined") return;
     // No prior choice: show banner
-    const t = setTimeout(() => setVisible(true), 1200);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setVisible(true), 1200);
+    return () => clearTimeout(timer);
   }, []);
 
   function accept() {
@@ -93,20 +113,18 @@ export default function CookieBanner() {
     <div
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[10000] w-[calc(100%-2rem)] max-w-2xl"
       role="dialog"
-      aria-label="Cookie consent"
+      aria-label={t.label}
     >
       <div className="bg-surface/95 backdrop-blur-md border border-borderLight px-6 py-5 shadow-2xl flex flex-col sm:flex-row sm:items-center gap-4">
         <div className="flex-1 min-w-0">
           <p className="type-small text-body">
-            We use cookies and similar tracking technologies to analyze traffic
-            and improve your experience. By clicking{" "}
-            <span className="text-green">Accept</span>, you consent
-            to our use of cookies.{" "}
+            {t.before} <span className="text-green">{t.accept}</span>
+            {t.after}{" "}
             <a
               href="/privacy-policy"
               className="underline underline-offset-4 text-body hover:text-brand transition-colors"
             >
-              Privacy Policy
+              {t.privacy}
             </a>
           </p>
         </div>
@@ -116,13 +134,13 @@ export default function CookieBanner() {
             onClick={decline}
             className="btn-label text-body hover:text-foreground transition-colors px-3 py-1.5"
           >
-            Decline
+            {t.decline}
           </button>
           <button
             onClick={accept}
             className="btn btn-primary h-[41px] px-5"
           >
-            Accept
+            {t.accept}
           </button>
         </div>
       </div>

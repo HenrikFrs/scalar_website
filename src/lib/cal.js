@@ -63,18 +63,39 @@ const darkVars = {
   "cal-text-muted": "#838383",
 };
 
-export const mountCalInline = (selector) => {
+// Light palette for the LinkedIn page
+const lightVars = {
+  "cal-brand": "#100e11",
+  "cal-brand-emphasis": "#3a373c",
+  "cal-brand-text": "#ffffff",
+  "cal-bg": "#ffffff",
+  "cal-bg-emphasis": "#f5f4f6",
+  "cal-bg-subtle": "#faf9fb",
+  "cal-bg-muted": "#faf9fb",
+  "cal-border": "#e9e7eb",
+  "cal-border-subtle": "#e9e7eb",
+  "cal-border-muted": "#f1f0f2",
+  "cal-border-emphasis": "#d6d3d9",
+  "cal-border-booker-width": "0px",
+  "cal-text-emphasis": "#100e11",
+  "cal-text": "#3a373c",
+  "cal-text-subtle": "#5c585f",
+  "cal-text-muted": "#78747b",
+};
+
+export const mountCalInline = (selector, theme = "dark") => {
+  const vars = theme === "light" ? lightVars : darkVars;
   const Cal = loadCal();
   Cal("init", CAL_NAMESPACE, { origin: "https://app.cal.com" });
   Cal.ns[CAL_NAMESPACE]("inline", {
     elementOrSelector: selector,
-    config: { layout: "month_view", theme: "dark" },
+    config: { layout: "month_view", theme },
     calLink: CAL_LINK,
   });
   Cal.ns[CAL_NAMESPACE]("ui", {
-    theme: "dark",
+    theme,
     hideEventTypeDetails: false,
     layout: "month_view",
-    cssVarsPerTheme: { dark: darkVars, light: darkVars },
+    cssVarsPerTheme: { dark: vars, light: vars },
   });
 };
