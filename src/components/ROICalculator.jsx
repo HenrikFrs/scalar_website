@@ -19,7 +19,7 @@ import { Section, SectionHeader } from "./ui";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Tooltip = ({ text }) => (
+export const Tooltip = ({ text }) => (
   <div className="relative group">
     <Info size={13} className="text-muted/60 cursor-default" />
     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
@@ -30,7 +30,7 @@ const Tooltip = ({ text }) => (
   </div>
 );
 
-const SliderField = ({
+export const SliderField = ({
   label,
   value,
   display,
@@ -71,7 +71,7 @@ const SliderField = ({
   );
 };
 
-const NumberField = ({
+export const NumberField = ({
   label,
   value,
   min,
@@ -81,6 +81,7 @@ const NumberField = ({
   prefix,
   suffix,
   tooltip,
+  locale = "en-US",
 }) => {
   const handleChange = (raw) => {
     const n = Number(raw);
@@ -100,8 +101,8 @@ const NumberField = ({
           <input
             type="text"
             inputMode="numeric"
-            value={value.toLocaleString("en-US")}
-            onChange={(e) => handleChange(e.target.value.replace(/,/g, ""))}
+            value={value.toLocaleString(locale)}
+            onChange={(e) => handleChange(e.target.value.replace(/\D/g, ""))}
             className="bg-transparent font-mono text-sm text-heading focus:outline-none w-full"
           />
           {suffix && (
@@ -146,7 +147,7 @@ const performanceTiers = [
 const getPerformanceTier = (leadsPerReply) =>
   performanceTiers.find(({ max }) => leadsPerReply <= max).label;
 
-const BreakdownSection = ({ title, children }) => (
+export const BreakdownSection = ({ title, children }) => (
   <div className="flex flex-col gap-1.5">
     <p className="ui-label text-green mb-0.5">
       {title}
@@ -155,7 +156,7 @@ const BreakdownSection = ({ title, children }) => (
   </div>
 );
 
-const BreakdownRow = ({ label, detail, value, strong = false }) => (
+export const BreakdownRow = ({ label, detail, value, strong = false }) => (
   <div
     className={`flex items-baseline justify-between gap-4 ${
       strong ? "border-t border-borderMid pt-1.5 mt-0.5" : ""

@@ -62,7 +62,7 @@ const steps = [
 
 // One step per row: text beside its diagram in an outlined box. `flipped`
 // swaps the sides on desktop, so rows alternate
-const StepRow = ({ step, flipped, onOpen }) => (
+const StepRow = ({ step, flipped, onOpen, visual, moreLabel }) => (
   <div className="px-[var(--ci)] py-10 md:py-12 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center">
     {/* Indented like text inside the boxes elsewhere (their p-6 md:p-8), on
         the outer side */}
@@ -92,7 +92,7 @@ const StepRow = ({ step, flipped, onOpen }) => (
         onClick={onOpen}
         className="group ui-label text-muted hover:text-brand w-fit mt-4 flex items-center gap-1.5 underline underline-offset-4 decoration-dotted transition-all duration-300 hover:-translate-y-px"
       >
-        Learn more
+        {moreLabel}
         <ArrowUpRight
           size={14}
           strokeWidth={1.5}
@@ -106,31 +106,32 @@ const StepRow = ({ step, flipped, onOpen }) => (
         flipped ? "lg:order-1" : ""
       }`}
     >
-      {React.createElement(visuals[step.illustration])}
+      {React.createElement(visual)}
     </div>
   </div>
 );
 
-// Static on purpose: no sticky step list or scroll-driven reveals. Each step
-// opens a pop-up with the in-depth explanation
-const System = () => {
+// The alternating step rows plus their pop-up. Shared with the LinkedIn
+// page, which passes its own steps, diagrams, pop-up copy and labels
+export const SystemSteps = ({
+  steps,
+  visuals,
+  details,
+  detailLabels,
+  moreLabel = "Learn more",
+}) => {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <Section id="system" className="text-body">
-      <SectionHeader
-        eyebrow="The solution"
-        title="A clear process for quality outbound"
-        accent="at scale"
-        description="Our process ensures that we cover your entire target market while every message stays relevant and results stay consistent."
-      />
-
+    <>
       {steps.map((step, i) => (
         <StepRow
           key={step.label}
           step={step}
           flipped={i % 2 === 1}
           onOpen={() => setOpenIndex(i)}
+          visual={visuals[step.illustration]}
+          moreLabel={moreLabel}
         />
       ))}
 
@@ -141,11 +142,27 @@ const System = () => {
             index={openIndex}
             onClose={() => setOpenIndex(null)}
             onNavigate={setOpenIndex}
+            content={details}
+            labels={detailLabels}
           />,
           document.body,
         )}
-    </Section>
+    </>
   );
 };
+
+// Static on purpose: no sticky step list or scroll-driven reveals. Each step
+// opens a pop-up with the in-depth explanation
+const System = () => (
+  <Section id="system" className="text-body">
+    <SectionHeader
+      eyebrow="The solution"
+      title="A clear process for quality outbound"
+      accent="at scale"
+      description="Our process ensures that we cover your entire target market while every message stays relevant and results stay consistent."
+    />
+    <SystemSteps steps={steps} visuals={visuals} />
+  </Section>
+);
 
 export default System;

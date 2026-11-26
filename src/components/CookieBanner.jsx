@@ -67,7 +67,7 @@ const copy = {
   de: {
     label: "Cookie-Einwilligung",
     before: "Wir nutzen Cookies und ähnliche Technologien, um Besuche auszuwerten und die Website zu verbessern. Mit Klick auf",
-    after: " stimmen Sie der Nutzung von Cookies zu.",
+    after: " stimmst du der Nutzung von Cookies zu.",
     privacy: "Datenschutzerklärung",
     accept: "Akzeptieren",
     decline: "Ablehnen",

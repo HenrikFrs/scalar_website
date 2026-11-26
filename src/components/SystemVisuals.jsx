@@ -117,7 +117,12 @@ export const InfraVisual = () => {
 
 // 2. Every company in the market, scanned and sorted: blue fits the ICP,
 //    coral is on the do-not-contact list, grey is filtered out
-export const TargetingVisual = () => {
+const targetingLegend = { fit: "Fit", out: "No fit", dnc: "Do not contact" };
+
+export const TargetingVisual = ({
+  legend = targetingLegend,
+  label = "Every company in the market checked against the ideal customer profile",
+}) => {
   const cols = 13;
   const rowsN = 6;
   const x0 = 60;
@@ -135,7 +140,7 @@ export const TargetingVisual = () => {
   const fieldBottom = y0 + (rowsN - 1) * dy;
 
   return (
-    <Frame label="Every company in the market checked against the ideal customer profile">
+    <Frame label={label}>
       {dots.map(({ x, y, status, key }) => (
         <rect
           key={key}
@@ -166,14 +171,27 @@ export const TargetingVisual = () => {
         </linearGradient>
       </defs>
 
-      {/* Legend */}
+      {/* Legend; each entry starts after the previous label (8 units
+          per mono capital, which keeps the English legend where it was) */}
       <g transform={`translate(${x0 - 2} ${fieldBottom + 40})`}>
-        <rect y="-7" width="6" height="6" className="fill-brand" />
-        <Label x={14} y={0} anchor="start">Fit</Label>
-        <rect x="70" y="-7" width="6" height="6" className="fill-foreground/20" />
-        <Label x={84} y={0} anchor="start">No fit</Label>
-        <rect x="164" y="-7" width="6" height="6" fill={CORAL} />
-        <Label x={178} y={0} anchor="start">Do not contact</Label>
+        {[
+          { text: legend.fit, className: "fill-brand" },
+          { text: legend.out, className: "fill-foreground/20" },
+          { text: legend.dnc, fill: CORAL },
+        ].reduce(
+          (acc, item) => {
+            const x = acc.x;
+            acc.items.push(
+              <g key={item.text}>
+                <rect x={x} y="-7" width="6" height="6" className={item.className} fill={item.fill} />
+                <Label x={x + 14} y={0} anchor="start">{item.text}</Label>
+              </g>,
+            );
+            acc.x = x + 14 + item.text.length * 8 + 32;
+            return acc;
+          },
+          { x: 0, items: [] },
+        ).items}
       </g>
     </Frame>
   );
@@ -187,13 +205,16 @@ const variants = [
   { name: "D", rate: 1.8, state: "testing" },
 ];
 
-export const MessagingVisual = () => {
+export const MessagingVisual = ({
+  data = variants,
+  max = 4.5,
+  label = "Message variants compared by reply rate; the winner scales",
+}) => {
   const trackX = 84;
   const trackW = 290;
-  const max = 4.5;
   return (
-    <Frame label="Message variants compared by reply rate; the winner scales">
-      {variants.map(({ name, rate, state }, i) => {
+    <Frame label={label}>
+      {data.map(({ name, rate, state }, i) => {
         const y = 52 + i * 46;
         const w = (rate / max) * trackW;
         const winner = state === "winner";
@@ -239,21 +260,23 @@ export const MessagingVisual = () => {
 };
 
 // 4. A reply, answered within minutes, becomes a booked meeting
-export const ReplyVisual = () => {
+export const ReplyVisual = ({
+  names = ["Reply", "Answer", "Meeting"],
+  time = "6 min",
+  label = "A reply answered within six minutes and turned into a booked meeting",
+}) => {
   const y = 112;
-  const nodes = [
-    { x: 76, label: "Reply" },
-    { x: 240, label: "Answer" },
-    { x: 404, label: "Meeting" },
-  ];
+  const nodes = [76, 240, 404].map((x, i) => ({ x, label: names[i] }));
   return (
-    <Frame label="A reply answered within six minutes and turned into a booked meeting">
+    <Frame label={label}>
       <path d={`M${nodes[0].x} ${y}H${nodes[2].x}`} className="stroke-foreground/20" />
       {/* A dot travelling along the line */}
       <rect x={nodes[0].x - 2} y={y - 2} width="4" height="4" className="fill-brand viz-travel" />
 
       {/* Time between reply and answer */}
-      <Label x={(nodes[0].x + nodes[1].x) / 2} y={y - 14}>6 min</Label>
+      {time && (
+        <Label x={(nodes[0].x + nodes[1].x) / 2} y={y - 14}>{time}</Label>
+      )}
 
       {nodes.map(({ x, label }, i) => {
         const last = i === nodes.length - 1;
@@ -300,6 +323,59 @@ export const ReplyVisual = () => {
           </g>
         );
       })}
+    </Frame>
+  );
+};
+
+// 5. LinkedIn: a profile card whose key parts light up in turn, with visits
+//    flowing in from the left
+export const ProfileVisual = ({
+  parts = ["Headline", "About", "Proof"],
+  visits = "Profile visits",
+  label = "A LinkedIn profile whose headline, about section and proof are tuned for the ideal customer",
+}) => {
+  const cx = 150; // card left
+  const cw = 200; // card width
+  const rowsY = [118, 152, 186];
+  return (
+    <Frame label={label}>
+      {/* Visits flowing into the profile */}
+      {[96, 120, 144].map((y, i) => (
+        <g key={y}>
+          <path d={`M40 ${y}H${cx - 8}`} className="fill-none stroke-foreground/10" />
+          <path
+            d={`M40 ${y}H${cx - 8}`}
+            className="fill-none stroke-brand viz-flow"
+            style={{ animationDelay: `${(-i * 0.8).toFixed(2)}s` }}
+          />
+        </g>
+      ))}
+      <Label x={40} y={176} anchor="start">{visits}</Label>
+
+      {/* Card with banner and avatar */}
+      <rect x={cx} y="24" width={cw} height="192" className="fill-background stroke-foreground/30" />
+      <rect x={cx} y="24" width={cw} height="40" className="fill-foreground/5" />
+      <rect x={cx + 16} y="44" width="36" height="36" className="fill-background stroke-foreground/30" />
+      <rect x={cx + 30} y="58" width="8" height="8" className="fill-brand" />
+      <rect x={cx + 64} y="72" width="70" height="4" className="fill-foreground/30" />
+      <rect x={cx + 64} y="82" width="44" height="4" className="fill-foreground/15" />
+
+      {/* Headline, about and proof: each lights up in turn */}
+      {rowsY.map((y, i) => (
+        <g key={y}>
+          <rect
+            x={cx + 16}
+            y={y - 6}
+            width={[150, 120, 96][i]}
+            height="5"
+            className="fill-brand viz-pulse"
+            style={{ animationDelay: `${(-i * 1).toFixed(2)}s` }}
+          />
+          <rect x={cx + 16} y={y + 4} width={[110, 156, 130][i]} height="4" className="fill-foreground/15" />
+          <path d={`M${cx + cw} ${y}H${cx + cw + 20}`} className="stroke-foreground/20" />
+          <Label x={cx + cw + 28} y={y + 4} anchor="start">{parts[i]}</Label>
+        </g>
+      ))}
     </Frame>
   );
 };

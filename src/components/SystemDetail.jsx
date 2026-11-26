@@ -73,14 +73,28 @@ const Block = ({ label, children }) => (
   </div>
 );
 
+const defaultLabels = {
+  why: "Why it matters",
+  how: "How we solve it",
+  close: "Close",
+};
+
 // Large pop-up with the in-depth explanation of one step. Prev/next move
-// through the steps without closing it
-const SystemDetail = ({ steps, index, onClose, onNavigate }) => {
+// through the steps without closing it. `content` and `labels` let another
+// page (the German LinkedIn one) reuse it with its own copy
+const SystemDetail = ({
+  steps,
+  index,
+  onClose,
+  onNavigate,
+  content = details,
+  labels = defaultLabels,
+}) => {
   const overlayRef = useRef(null);
   const panelRef = useRef(null);
   const scrollRef = useRef(null);
   const step = steps[index];
-  const detail = details[step.illustration];
+  const detail = content[step.illustration];
   const prev = steps[index - 1];
   const next = steps[index + 1];
 
@@ -150,7 +164,7 @@ const SystemDetail = ({ steps, index, onClose, onNavigate }) => {
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label={labels.close}
             className="flex-shrink-0 p-2 -m-2 text-muted hover:text-heading transition-colors duration-200"
           >
             <X size={20} strokeWidth={1.5} />
@@ -162,7 +176,7 @@ const SystemDetail = ({ steps, index, onClose, onNavigate }) => {
           data-lenis-prevent
           className="overflow-y-auto overscroll-contain p-6 md:p-10 flex flex-col gap-10"
         >
-          <Block label="Why it matters">
+          <Block label={labels.why}>
             {detail.why.map((p) => (
               <p key={p} className="type-body text-body">
                 {p}
@@ -170,7 +184,7 @@ const SystemDetail = ({ steps, index, onClose, onNavigate }) => {
             ))}
           </Block>
 
-          <Block label="How we solve it">
+          <Block label={labels.how}>
             <ul className="flex flex-col gap-3">
               {detail.what.map((item, i) => (
                 <li key={i} className="type-body text-body flex gap-3">

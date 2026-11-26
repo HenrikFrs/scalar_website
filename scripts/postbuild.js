@@ -26,8 +26,8 @@ page = replaceOnce(
 page = replaceOnce(
   page,
   "<title>Scalar</title>",
-  `<title>LinkedIn-Outreach für B2B im DACH-Raum | Scalar</title>
-    <meta name="description" content="Neue Kundengespräche über LinkedIn, ohne Retainer: Wir übernehmen Zielgruppe, Nachrichten und Antworten. Sie zahlen nur pro wahrgenommenem Termin." />`,
+  `<title>Scalar | LinkedIn-Outreach für B2B im DACH-Raum</title>
+    <meta name="description" content="Neue Kundengespräche über LinkedIn, ohne Retainer: Wir übernehmen Zielgruppe, Nachrichten und Antworten. Abgerechnet wird pro wahrgenommenem Termin." />`,
 );
 
 mkdirSync("dist/linkedin", { recursive: true });
